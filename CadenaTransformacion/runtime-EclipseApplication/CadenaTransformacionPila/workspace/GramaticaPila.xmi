@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pila:PagoServicio xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:pila="http://co.edu.uniandes.pila">
- <entidades name="Aportante">
- 	<atributos name="nombreRazonSocial" tipoPrimitivo="CadenaCaracteres"/>
-	<atributos name="digitoVerificacion" tipoPrimitivo="CadenaCaracteres"/>
-	<atributos name="naturalezaJuridica" tipoPrimitivo="CadenaCaracteres"/>
-	<atributos name="numeroIdentificacion" tipoPrimitivo="Entero"/>
-	<atributos name="tipoIdentificacion" tipoPrimitivo="CadenaCaracteres">
+  <entidades name="Aportante">
+    <atributos name="nombreRazonSocial" tipoPrimitivo="CadenaCaracteres"/>
+    <atributos name="digitoVerificacion" tipoPrimitivo="CadenaCaracteres"/>
+    <atributos name="naturalezaJuridica" tipoPrimitivo="CadenaCaracteres"/>
+    <atributos name="numeroIdentificacion" tipoPrimitivo="Entero"/>
+    <atributos name="tipoIdentificacion" tipoPrimitivo="CadenaCaracteres">
       <listaLlaveValor llave="1" valor="&quot;CedulaCiudadania&quot;"/>
       <listaLlaveValor llave="2" valor="&quot;CedulaExtranjeria&quot;"/>
       <listaLlaveValor llave="3" valor="&quot;TarjetaIdentidad&quot;"/>
@@ -13,8 +13,17 @@
       <listaLlaveValor llave="5" valor="&quot;Pasaporte&quot;"/>
       <listaLlaveValor llave="6" valor="&quot;CarneDiplomatico&quot;"/>
     </atributos>
+    <atributos name="tipo" tipoPrimitivo="CadenaCaracteres">
+      <listaLlaveValor llave="1" valor="&quot;Traslado&quot;"/>
+      <listaLlaveValor llave="2" valor="&quot;VariacionSalario&quot;"/>
+      <listaLlaveValor llave="3" valor="&quot;SLN&quot;"/>
+      <listaLlaveValor llave="4" valor="&quot;Incapacidad&quot;"/>
+      <listaLlaveValor llave="5" valor="&quot;LicenciaPaternidad&quot;"/>
+      <listaLlaveValor llave="6" valor="&quot;Vacaciones&quot;"/>
+      <listaLlaveValor llave="7" valor="&quot;LicenciaRemunerada&quot;"/>
+      <listaLlaveValor llave="8" valor="&quot;AporteVoluntario&quot;"/>
+    </atributos>
   </entidades>
-
   <entidades name="Novedad">
     <atributos name="fechaInicio" tipoPrimitivo="Fecha"/>
     <atributos name="fechaFin" tipoPrimitivo="Fecha"/>
@@ -52,7 +61,7 @@
     </atributos>
     <atributos name="numeroIdentificacion" tipoPrimitivo="Entero"/>
     <atributos name="montoPension" tipoPrimitivo="Flotante"/>
-    <atributos name="novedades" listaEntidad="//@entidades.0"/>
+    <atributos name="novedades" listaEntidad="//@entidades.1"/>
     <atributos name="actividadEconomica" tipoPrimitivo="Entero"/>
     <atributos name="tipoPensionado" referencia="TipoPensionado"/>
     <atributos name="tipoPagadorPension" referencia="TipoPagadorPension"/>
@@ -182,7 +191,7 @@
             </nombreCalificado>
           </expresionTerminal>
         </expresionCondicion>
-        <variables name="ultimaNovedad" referenciaEntidad="//@entidades.0">
+        <variables name="ultimaNovedad" referenciaEntidad="//@entidades.1">
           <expresion>
             <expresionTerminal>
               <nombreCalificado>
