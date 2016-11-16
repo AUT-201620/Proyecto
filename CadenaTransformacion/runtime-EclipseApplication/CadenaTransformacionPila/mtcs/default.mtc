@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.mtcflow.model:MTC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.mtcflow.model="http://com.mtcflow.mtc/1.1">
   <files name="gramatica.pila" URI="models/gramatica.pila"/>
-  <metamodels name="GramaticaPilaMM" alias="GramaticaPilaMM"/>
-  <models name="GramaticaPilaModel" URI="GramaticaPila.xmi" metamodels="//@metamodels.0"/>
-  <transformations xsi:type="com.mtcflow.model:T2MTransformation" name="Gen gramatica XMI" URI="Pila.xtext"/>
+  <metamodels name="Pila.ecore" URI="Pila.ecore" alias="Pila.ecore"/>
+  <metamodels name="metamodeloTablas.ecore" URI="metamodeloTablas.ecore" alias="metamodeloTablas.ecore"/>
+  <metamodels name="metamodeloArquitectura.ecore" URI="metamodeloArquitectura.ecore" alias="metamodeloArquitectura.ecore"/>
+  <models name="GramaticaPila.xmi" URI="GramaticaPila.xmi" metamodels="//@metamodels.0"/>
+  <models name="planilla.tablaspila" URI="planilla.tablaspila" metamodels="//@metamodels.1"/>
+  <models name="ArquitecturaMVC.xmi" URI="ArquitecturaMVC.xmi" metamodels="//@metamodels.2"/>
+  <inputModels model="//@models.0" modelAlias="mGram" transformation="//@transformations.1" metamodelAlias="mGram"/>
+  <inputModels model="//@models.1" modelAlias="mTab" transformation="//@transformations.1" metamodelAlias="mTab"/>
+  <inputModels model="//@models.2" modelAlias="mArq" transformation="//@transformations.2"/>
+  <inputModels model="//@models.0" modelAlias="mGram" transformation="//@transformations.2"/>
+  <transformations xsi:type="com.mtcflow.model:T2MTransformation" name="Pila.xtext" URI="Pila.xtext"/>
+  <transformations xsi:type="com.mtcflow.model:M2MTransformation" name="GramaticaPila2Arquitectura.etl" URI="GramaticaPila2Arquitectura.etl"/>
+  <transformations xsi:type="com.mtcflow.model:M2TTransformation" name="Arquitectura2Text.egl" URI="Arquitectura2Text.egl" target="gen"/>
   <outputModels modelAlias="gramatica.pila" model="//@models.0" transformation="//@transformations.0"/>
+  <outputModels modelAlias="mArq" model="//@models.2" transformation="//@transformations.1" metamodelAlias="mArq"/>
   <inputFiles file="//@files.0" transformation="//@transformations.0"/>
 </com.mtcflow.model:MTC>
