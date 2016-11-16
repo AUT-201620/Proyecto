@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pila:PagoServicio xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:pila="http://co.edu.uniandes.pila">
+ <entidades name="Aportante">
+ 	<atributos name="nombreRazonSocial" tipoPrimitivo="CadenaCaracteres"/>
+	<atributos name="digitoVerificacion" tipoPrimitivo="CadenaCaracteres"/>
+	<atributos name="naturalezaJuridica" tipoPrimitivo="CadenaCaracteres"/>
+	<atributos name="numeroIdentificacion" tipoPrimitivo="Entero"/>
+	<atributos name="tipoIdentificacion" tipoPrimitivo="CadenaCaracteres">
+      <listaLlaveValor llave="1" valor="&quot;CedulaCiudadania&quot;"/>
+      <listaLlaveValor llave="2" valor="&quot;CedulaExtranjeria&quot;"/>
+      <listaLlaveValor llave="3" valor="&quot;TarjetaIdentidad&quot;"/>
+      <listaLlaveValor llave="4" valor="&quot;RegistroCivil&quot;"/>
+      <listaLlaveValor llave="5" valor="&quot;Pasaporte&quot;"/>
+      <listaLlaveValor llave="6" valor="&quot;CarneDiplomatico&quot;"/>
+    </atributos>
+  </entidades>
+
+  <entidades name="Novedad">
+    <atributos name="fechaInicio" tipoPrimitivo="Fecha"/>
+    <atributos name="fechaFin" tipoPrimitivo="Fecha"/>
+    <atributos name="noConsolidada" tipoPrimitivo="Booleano"/>
+    <atributos name="fechaCreacion" tipoPrimitivo="Fecha"/>
+    <atributos name="tipo" tipoPrimitivo="CadenaCaracteres">
+      <listaLlaveValor llave="1" valor="&quot;Traslado&quot;"/>
+      <listaLlaveValor llave="2" valor="&quot;VariacionSalario&quot;"/>
+      <listaLlaveValor llave="3" valor="&quot;SLN&quot;"/>
+      <listaLlaveValor llave="4" valor="&quot;Incapacidad&quot;"/>
+      <listaLlaveValor llave="5" valor="&quot;LicenciaPaternidad&quot;"/>
+      <listaLlaveValor llave="6" valor="&quot;Vacaciones&quot;"/>
+      <listaLlaveValor llave="7" valor="&quot;LicenciaRemunerada&quot;"/>
+      <listaLlaveValor llave="8" valor="&quot;AporteVoluntario&quot;"/>
+    </atributos>
+  </entidades>
+  <entidades name="Pensionado">
+    <atributos name="viveExterior" tipoPrimitivo="Booleano"/>
+    <atributos name="noTieneGrupoFamiliar" tipoPrimitivo="Booleano"/>
+    <atributos name="altoRiesgo" tipoPrimitivo="Booleano"/>
+    <atributos name="congresista" tipoPrimitivo="Booleano"/>
+    <atributos name="cti" tipoPrimitivo="Booleano"/>
+    <atributos name="aviador" tipoPrimitivo="Booleano"/>
+    <atributos name="primerNombre" tipoPrimitivo="CadenaCaracteres"/>
+    <atributos name="otrosNombres" tipoPrimitivo="CadenaCaracteres"/>
+    <atributos name="primerApellido" tipoPrimitivo="CadenaCaracteres"/>
+    <atributos name="segundoApellido" tipoPrimitivo="CadenaCaracteres"/>
+    <atributos name="tipoIdentificacion" tipoPrimitivo="CadenaCaracteres">
+      <listaLlaveValor llave="1" valor="&quot;CedulaCiudadania&quot;"/>
+      <listaLlaveValor llave="2" valor="&quot;CedulaExtranjeria&quot;"/>
+      <listaLlaveValor llave="3" valor="&quot;TarjetaIdentidad&quot;"/>
+      <listaLlaveValor llave="4" valor="&quot;RegistroCivil&quot;"/>
+      <listaLlaveValor llave="5" valor="&quot;Pasaporte&quot;"/>
+      <listaLlaveValor llave="6" valor="&quot;CarneDiplomatico&quot;"/>
+    </atributos>
+    <atributos name="numeroIdentificacion" tipoPrimitivo="Entero"/>
+    <atributos name="montoPension" tipoPrimitivo="Flotante"/>
+    <atributos name="novedades" listaEntidad="//@entidades.0"/>
+    <atributos name="actividadEconomica" tipoPrimitivo="Entero"/>
+    <atributos name="tipoPensionado" referencia="TipoPensionado"/>
+    <atributos name="tipoPagadorPension" referencia="TipoPagadorPension"/>
+    <atributos name="tipoPension" referencia="TipoPension"/>
+  </entidades>
+  <serviciosComputo name="pagoSalud">
+    <variables name="tarifa" tipoPrimitivo="Flotante">
+      <expresion>
+        <expresionTerminal real="1.12"/>
+      </expresion>
+    </variables>
+    <condiciones condicionSi="si" asignacionVariable="//@serviciosComputo.0/@variables.0">
+      <expresionCondicion>
+        <operacion operador="&amp;&amp;">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getViveExterior</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getNoTieneGrupoFamiliar</ides>
+            </nombreCalificado>
+          </derecha>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.0/@variables.0">
+      <expresionCondicion>
+        <expresionTerminal>
+          <nombreCalificado>
+            <ides>pensionado</ides>
+            <ides>getCti</ides>
+          </nombreCalificado>
+        </expresionTerminal>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <expresionRetorno>
+      <operacion operador="*">
+        <izquierda>
+          <nombreCalificado>
+            <ides>pensionado</ides>
+            <ides>getMontoPension</ides>
+          </nombreCalificado>
+        </izquierda>
+        <derecha>
+          <nombreCalificado>
+            <ides>tarifa</ides>
+          </nombreCalificado>
+        </derecha>
+      </operacion>
+    </expresionRetorno>
+  </serviciosComputo>
+  <serviciosComputo name="pagoPension">
+    <variables name="tarifa" tipoPrimitivo="Flotante">
+      <expresion>
+        <expresionTerminal/>
+      </expresion>
+    </variables>
+    <condiciones condicionSi="si" asignacionVariable="//@serviciosComputo.1/@variables.0">
+      <expresionCondicion>
+        <expresionTerminal>
+          <nombreCalificado>
+            <ides>pensionado</ides>
+            <ides>getAltoRiesgo</ides>
+          </nombreCalificado>
+        </expresionTerminal>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.26"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.1/@variables.0">
+      <expresionCondicion>
+        <expresionTerminal>
+          <nombreCalificado>
+            <ides>pensionado</ides>
+            <ides>getCongresista</ides>
+          </nombreCalificado>
+        </expresionTerminal>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.255"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.1/@variables.0">
+      <expresionCondicion>
+        <expresionTerminal>
+          <nombreCalificado>
+            <ides>pensionado</ides>
+            <ides>getCti</ides>
+          </nombreCalificado>
+        </expresionTerminal>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.35"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.1/@variables.0">
+      <expresionCondicion>
+        <expresionTerminal>
+          <nombreCalificado>
+            <ides>pensionado</ides>
+            <ides>getAviador</ides>
+          </nombreCalificado>
+        </expresionTerminal>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.21"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSiNinguno="siNinguno">
+      <subCondiciones condicionSi="si">
+        <expresionCondicion>
+          <expresionTerminal>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>tieneNovedades</ides>
+            </nombreCalificado>
+          </expresionTerminal>
+        </expresionCondicion>
+        <variables name="ultimaNovedad" referenciaEntidad="//@entidades.0">
+          <expresion>
+            <expresionTerminal>
+              <nombreCalificado>
+                <ides>pensionado</ides>
+                <ides>ultimaNovedad</ides>
+              </nombreCalificado>
+            </expresionTerminal>
+          </expresion>
+        </variables>
+        <variables name="dias" tipoPrimitivo="Fecha">
+          <expresion>
+            <expresionTerminal>
+              <nombreCalificado>
+                <ides>ultimaNovedad</ides>
+                <ides>diasEntreFechaFinInicio</ides>
+              </nombreCalificado>
+            </expresionTerminal>
+          </expresion>
+        </variables>
+        <subCondiciones condicionSi="si" asignacionVariable="//@serviciosComputo.1/@variables.0">
+          <expresionCondicion>
+            <operacion operador="&lt;">
+              <izquierda>
+                <nombreCalificado>
+                  <ides>dias</ides>
+                </nombreCalificado>
+              </izquierda>
+              <derecha entero="4"/>
+            </operacion>
+          </expresionCondicion>
+          <expresionAsignacionVariable>
+            <expresionTerminal/>
+          </expresionAsignacionVariable>
+        </subCondiciones>
+        <subCondiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.1/@variables.0">
+          <expresionCondicion>
+            <operacion operador="&lt;">
+              <izquierda>
+                <nombreCalificado>
+                  <ides>dias</ides>
+                </nombreCalificado>
+              </izquierda>
+              <derecha entero="8"/>
+            </operacion>
+          </expresionCondicion>
+          <expresionAsignacionVariable>
+            <expresionTerminal real="1.12"/>
+          </expresionAsignacionVariable>
+        </subCondiciones>
+        <subCondiciones condicionSiNinguno="siNinguno" asignacionVariable="//@serviciosComputo.1/@variables.0">
+          <expresionAsignacionVariable>
+            <expresionTerminal real="1.16"/>
+          </expresionAsignacionVariable>
+        </subCondiciones>
+      </subCondiciones>
+      <subCondiciones condicionSiNinguno="siNinguno" asignacionVariable="//@serviciosComputo.1/@variables.0">
+        <expresionAsignacionVariable>
+          <expresionTerminal real="1.16"/>
+        </expresionAsignacionVariable>
+      </subCondiciones>
+    </condiciones>
+    <expresionRetorno>
+      <operacion operador="*">
+        <izquierda>
+          <nombreCalificado>
+            <ides>pensionado</ides>
+            <ides>getMontoPension</ides>
+          </nombreCalificado>
+        </izquierda>
+        <derecha>
+          <nombreCalificado>
+            <ides>tarifa</ides>
+          </nombreCalificado>
+        </derecha>
+      </operacion>
+    </expresionRetorno>
+  </serviciosComputo>
+  <serviciosComputo name="pagoRiesgos">
+    <variables name="tarifa" tipoPrimitivo="Flotante">
+      <expresion>
+        <expresionTerminal/>
+      </expresion>
+    </variables>
+    <condiciones condicionSi="si" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="8022"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.00522"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="8513"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.00522"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="117"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.01044"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="1541"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.01044"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="1592"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.02436"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="1743"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.02436"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="2101"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.0435"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="2322"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.04345"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="1431"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.0696"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <condiciones condicionSi="siNo" asignacionVariable="//@serviciosComputo.2/@variables.0">
+      <expresionCondicion>
+        <operacion operador="==">
+          <izquierda>
+            <nombreCalificado>
+              <ides>pensionado</ides>
+              <ides>getActividadEconomica</ides>
+            </nombreCalificado>
+          </izquierda>
+          <derecha entero="2321"/>
+        </operacion>
+      </expresionCondicion>
+      <expresionAsignacionVariable>
+        <expresionTerminal real="1.0696"/>
+      </expresionAsignacionVariable>
+    </condiciones>
+    <expresionRetorno>
+      <operacion operador="*">
+        <izquierda>
+          <nombreCalificado>
+            <ides>pensionado</ides>
+            <ides>getMontoPension</ides>
+          </nombreCalificado>
+        </izquierda>
+        <derecha>
+          <nombreCalificado>
+            <ides>tarifa</ides>
+          </nombreCalificado>
+        </derecha>
+      </operacion>
+    </expresionRetorno>
+  </serviciosComputo>
+</pila:PagoServicio>

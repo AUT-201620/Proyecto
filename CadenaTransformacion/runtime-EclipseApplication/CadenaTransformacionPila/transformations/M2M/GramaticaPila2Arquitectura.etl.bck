@@ -1,0 +1,89 @@
+pre{
+	mGram!PagoServicio.all.collect(p|p.getArquitectura());
+}
+operation mGram!PagoServicio getArquitectura(): mArq!ArquitecturaMVC {
+	var arqMVC = new mArq!ArquitecturaMVC;
+	//var modelos = new Set;
+	arqMVC.modelos = self.entidades.collect(e|e.getModelo());
+	//g.titulo="Basic Column";
+	//g.subtitulo="";
+	//g.tipo=series!TipoGrafica#basicColumn;   
+	//g.graficaSerie=self.architectureResults.collect(c|c.getSerie());
+	//g.graficaEjeX=self.architectureResults.collect(a|a.getEjeX());
+	return arqMVC;
+}
+
+//De GramaticaPila!Entidad a ArquitecturaMVC!Modelo
+operation mGram!Entidad getModelo(): mArq!Modelo {
+	var modelo = new mArq!Modelo;
+	modelo.nombre = self.name;
+	modelo.atributos = self.atributos.collect(e|e.getAtributoModelo());
+	return modelo;
+}   
+
+//De GramaticaPila!Atributo a ArquitecturaMVC!AtributoModelo
+operation mGram!Atributo getAtributoModelo(): mArq!AtributoModelo {
+	var atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = self.name;
+	if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#CADENA_CARACTERES) {
+		atributoModelo.tipo = mArq!TipoDato#STRING;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#ENTERO) {
+		atributoModelo.tipo = mArq!TipoDato#INTEGER;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FLOTANTE) {
+		atributoModelo.tipo = mArq!TipoDato#FLOAT;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FECHA) {
+		atributoModelo.tipo = mArq!TipoDato#DATE;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#BOOLEANO) {
+		atributoModelo.tipo = mArq!TipoDato#BOOLEAN;
+	}
+	else if ((self.tipoPrimitivo = mGram!TipoDatoPrimitivo#NO_ASIGNADO) or (self.tipoPrimitivo = "")) {
+		atributoModelo.tipo = mArq!TipoDato#REFERENCE;
+		if (self.referencia <> "") {
+			atributoModelo.nombreReferencia = self.referencia;
+		}
+		else if (self.listaEntidad.isDefined()) {
+			atributoModelo.nombreReferencia = self.listaEntidad.name;
+		}
+	}
+	atributoModelo.codigosValor = self.listaLlaveValor.collect(l|l.getCodigoValor());
+	return atributoModelo;
+}   
+
+//De GramaticaPila!LlaveValor a ArquitecturaMVC!CodigoValor
+operation mGram!LlaveValor getCodigoValor(): mArq!CodigoValor {
+	var codigoValor = new mArq!CodigoValor;
+	codigoValor.codigo = self.llave;
+	codigoValor.valor = self.valor;
+	return codigoValor;
+}   
+/*
+operation jm!ArchitectureResults getSerie(): series!Serie {
+	var s= new series!Serie;
+	s.name=self.architecture;    
+	s.serieDato=self.resultsJMeter.collect(c|c.getDato());
+	return s;
+}   
+
+operation jm!ArchitectureResults getEjeX(): series!EjeX {   
+	var e = new series!EjeX;
+	e.name = "";
+	e.ejeXCategoria = self.resultsJMeter.collect(c|c.getCategoria());
+	return e;    
+} 
+operation jm!Results getDato(): series!Dato {   
+	var d= new series!Dato;
+	d.name=self.result.last().value;
+	return d;    
+} 
+operation jm!Results getCategoria(): series!Categoria {   
+	var c= new series!Categoria;
+	c.name=self.result.at(1).value;
+	return c;    
+} 
+        */
+    
+    

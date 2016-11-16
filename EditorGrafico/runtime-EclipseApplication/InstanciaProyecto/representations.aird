@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Proyecto="http://www.uniandes.edu.co/proyecto" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:table="http://www.eclipse.org/sirius/table/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/table/description/1.1.0 http://www.eclipse.org/sirius/table/1.1.0#//description" xmi:id="_eB4vcJJyEeaEAMF2K02ufg" selectedViews="_RQgx4JJ2EeauJJMIF6ChyQ" version="11.0.0.201604141600">
+  <semanticResources>planilla.proyecto</semanticResources>
+  <ownedViews xmi:type="viewpoint:DView" xmi:id="_RQgx4JJ2EeauJJMIF6ChyQ">
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']"/>
+    <ownedRepresentations xmi:type="table:DTable" xmi:id="_-u3gYJLdEeaAT71bk3XV5A" name="new Pension Pagador Cross Table" headerColumnWidth="123">
+      <target xmi:type="Proyecto:PlanillaUnica" href="planilla.proyecto#/"/>
+      <lines xmi:type="table:DLine" xmi:id="_fr69QJcxEeawRocOl_QoNg" label="Vejez (1)">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_fsK04JcxEeawRocOl_QoNg" label="X" column="_fsEuQJcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_fsK04ZcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="204,242,166">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_fsK04pcxEeawRocOl_QoNg" label="X" column="_fsEuQZcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_fsLb8JcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="204,242,166">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_fsDgIJcxEeawRocOl_QoNg" label="Sobrevivencia vitalicia (2)">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_fsLb8ZcxEeawRocOl_QoNg" label="X" column="_fsEHMZcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_fsLb8pcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="204,242,166">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_fsLb85cxEeawRocOl_QoNg" label="X" column="_fsEuQJcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_fsLb9JcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="204,242,166">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_fsLb9ZcxEeawRocOl_QoNg" label="X" column="_fsEuQZcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_fsLb9pcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="204,242,166">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_fsEHMJcxEeawRocOl_QoNg" label="Sobrevivencia temporal (3)">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_fsLb95cxEeawRocOl_QoNg" label="X" column="_fsEHMZcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_fsMDAJcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="204,242,166">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_fsMDAZcxEeawRocOl_QoNg" label="X" column="_fsEuQJcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_fsMDApcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="204,242,166">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_fsMDA5cxEeawRocOl_QoNg" label="X" column="_fsEuQZcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_fsMDBJcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="204,242,166">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_fsEHMZcxEeawRocOl_QoNg" label="Empleador (1)" cells="_fsLb8ZcxEeawRocOl_QoNg _fsLb95cxEeawRocOl_QoNg" width="117">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_fsEuQJcxEeawRocOl_QoNg" label="Administrador Pensiones (2)" cells="_fsK04JcxEeawRocOl_QoNg _fsLb85cxEeawRocOl_QoNg _fsMDAZcxEeawRocOl_QoNg" width="192">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_fsEuQZcxEeawRocOl_QoNg" label="Pagador Pensiones (3)" cells="_fsK04pcxEeawRocOl_QoNg _fsLb9ZcxEeawRocOl_QoNg _fsMDA5cxEeawRocOl_QoNg" width="160">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_fsEuQpcxEeawRocOl_QoNg" label="Pagador4 (4)" width="110">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <description xmi:type="description_1:CrossTableDescription" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="table:DTable" xmi:id="_AYrr0JRoEeah_aW-LL8uzw" name="new Pension Pensionado Cross Table" headerColumnWidth="189">
+      <target xmi:type="Proyecto:PlanillaUnica" href="planilla.proyecto#/"/>
+      <lines xmi:type="table:DLine" xmi:id="_xCj48JcxEeawRocOl_QoNg" label="Vejez (1)">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pepe%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_xCyicJcxEeawRocOl_QoNg" label="X" column="_xCmVMJcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCyicZcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_xCyicpcxEeawRocOl_QoNg" label="X" column="_xCmVMZcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCyic5cxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_xCyidJcxEeawRocOl_QoNg" label="X" column="_xCmVMpcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCyidZcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_xCkgAJcxEeawRocOl_QoNg" label="Sobrevivencia vitalicia (2)">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pepe%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_xCzJgJcxEeawRocOl_QoNg" label="X" column="_xCmVMJcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCzJgZcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_xCzJgpcxEeawRocOl_QoNg" label="X" column="_xCmVMZcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCzJg5cxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_xCzJhJcxEeawRocOl_QoNg" label="X" column="_xCmVMpcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCzJhZcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_xCkgAZcxEeawRocOl_QoNg" label="Sobrevivencia temporal (3)">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pepe%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_xCzJhpcxEeawRocOl_QoNg" label="X" column="_xCmVMJcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCzwkJcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_xCzwkZcxEeawRocOl_QoNg" label="X" column="_xCmVMZcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCzwkpcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_xCzwk5cxEeawRocOl_QoNg" label="X" column="_xCmVMpcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_xCzwlJcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="194,239,255">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_xCmVMJcxEeawRocOl_QoNg" label="Prima Media Con Tope (1)" cells="_xCyicJcxEeawRocOl_QoNg _xCzJgJcxEeawRocOl_QoNg _xCzJhpcxEeawRocOl_QoNg" width="181">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_xCmVMZcxEeawRocOl_QoNg" label="Prima Media Sin Tope (2)" cells="_xCyicpcxEeawRocOl_QoNg _xCzJgpcxEeawRocOl_QoNg _xCzwkZcxEeawRocOl_QoNg" width="175">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_xCmVMpcxEeawRocOl_QoNg" label="Ahorro individual (3)" cells="_xCyidJcxEeawRocOl_QoNg _xCzJhJcxEeawRocOl_QoNg _xCzwk5cxEeawRocOl_QoNg" width="152">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_xCm8QJcxEeawRocOl_QoNg" label="Pensionado4 (4)" width="128">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <description xmi:type="description_1:CrossTableDescription" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="table:DTable" xmi:id="_whYXwJRuEea_Lq90_ToR0Q" name="new Tipos Pagador Pension Edition Table" headerColumnWidth="170">
+      <target xmi:type="Proyecto:PlanillaUnica" href="planilla.proyecto#/"/>
+      <lines xmi:type="table:DLine" xmi:id="_JsAT4JcyEeawRocOl_QoNg" label="Tipo Pagador Pension 1">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipos%20Pagador%20Pension%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pagador%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_JsA68pcyEeawRocOl_QoNg" label="1" column="_whYXzZRuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_JsA685cyEeawRocOl_QoNg" label="Empleador" column="_whYXzpRuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_JsBiAJcyEeawRocOl_QoNg" label="Empleador" column="_whYXz5RuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_JsAT4ZcyEeawRocOl_QoNg" label="Tipo Pagador Pension 2">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipos%20Pagador%20Pension%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pagador%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_JsBiAZcyEeawRocOl_QoNg" label="2" column="_whYXzZRuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_JsBiApcyEeawRocOl_QoNg" label="Administrador Pensiones" column="_whYXzpRuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_JsBiA5cyEeawRocOl_QoNg" label="Administrador de Pensiones" column="_whYXz5RuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_JsA68JcyEeawRocOl_QoNg" label="Tipo Pagador Pension 3">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipos%20Pagador%20Pension%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pagador%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_JsCJEJcyEeawRocOl_QoNg" label="3" column="_whYXzZRuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_JsCJEZcyEeawRocOl_QoNg" label="Pagador Pensiones" column="_whYXzpRuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_JsCJEpcyEeawRocOl_QoNg" label="Pagador de Pensiones" column="_whYXz5RuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_JsA68ZcyEeawRocOl_QoNg" label="Tipo Pagador Pension 4">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipos%20Pagador%20Pension%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pagador%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_JsCJE5cyEeawRocOl_QoNg" label="4" column="_whYXzZRuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_JsCJFJcyEeawRocOl_QoNg" label="Pagador4" column="_whYXzpRuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_JsCwIJcyEeawRocOl_QoNg" label="" column="_whYXz5RuEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+          <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        </cells>
+      </lines>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_whYXzZRuEea_Lq90_ToR0Q" label="Codigo" cells="_JsA68pcyEeawRocOl_QoNg _JsBiAZcyEeawRocOl_QoNg _JsCJEJcyEeawRocOl_QoNg _JsCJE5cyEeawRocOl_QoNg" width="54" featureName="codigo">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipos%20Pagador%20Pension%20Edition%20Table']/@ownedColumnMappings[name='Codigo%20Tipo%20Pagador%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_whYXzpRuEea_Lq90_ToR0Q" label="Nombre" cells="_JsA685cyEeawRocOl_QoNg _JsBiApcyEeawRocOl_QoNg _JsCJEZcyEeawRocOl_QoNg _JsCJFJcyEeawRocOl_QoNg" width="141" featureName="nombre">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipos%20Pagador%20Pension%20Edition%20Table']/@ownedColumnMappings[name='Nombre%20Tipo%20Pagador%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_whYXz5RuEea_Lq90_ToR0Q" label="Descripcion" cells="_JsBiAJcyEeawRocOl_QoNg _JsBiA5cyEeawRocOl_QoNg _JsCJEpcyEeawRocOl_QoNg _JsCwIJcyEeawRocOl_QoNg" width="157" featureName="descripcion">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipos%20Pagador%20Pension%20Edition%20Table']/@ownedColumnMappings[name='Descripcion%20Tipo%20Pagador%20Column']"/>
+      </columns>
+      <description xmi:type="description_1:EditionTableDescription" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipos%20Pagador%20Pension%20Edition%20Table']"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="table:DTable" xmi:id="__90bIJRvEea_Lq90_ToR0Q" name="new Tipo Pensionado Edition Table" headerColumnWidth="143">
+      <target xmi:type="Proyecto:PlanillaUnica" href="planilla.proyecto#/"/>
+      <lines xmi:type="table:DLine" xmi:id="_H33cwJcyEeawRocOl_QoNg" label="Tipo Pensionado 1">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_H34q4ZcyEeawRocOl_QoNg" label="1" column="__90bNZRvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H35R8JcyEeawRocOl_QoNg" label="Prima Media Con Tope" column="__90bNpRvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H35R8ZcyEeawRocOl_QoNg" label="Pensionado de regimen de prima media. Tope maximo de pension 25 SMMLV" column="__90bN5RvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H35R8pcyEeawRocOl_QoNg" label="[Empleador, Administrador Pensiones, Pagador Pensiones]" column="_H34q4JcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_H34D0JcyEeawRocOl_QoNg" label="Tipo Pensionado 2">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_H4HUYJcyEeawRocOl_QoNg" label="2" column="__90bNZRvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4HUYZcyEeawRocOl_QoNg" label="Prima Media Sin Tope" column="__90bNpRvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4H7cJcyEeawRocOl_QoNg" label="Pensionado de regimen de prima media. Sin tope maximo de pension" column="__90bN5RvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4H7cZcyEeawRocOl_QoNg" label="[Administrador Pensiones, Pagador Pensiones]" column="_H34q4JcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_H34D0ZcyEeawRocOl_QoNg" label="Tipo Pensionado 3">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_H4IigJcyEeawRocOl_QoNg" label="3" column="__90bNZRvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4IigZcyEeawRocOl_QoNg" label="Ahorro individual" column="__90bNpRvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4IigpcyEeawRocOl_QoNg" label="Pensionado de regimen de ahorro individual. No aplica tope maximo de pension" column="__90bN5RvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4Iig5cyEeawRocOl_QoNg" label="[Administrador Pensiones]" column="_H34q4JcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_H34D0pcyEeawRocOl_QoNg" label="Tipo Pensionado 4">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_H4JJkJcyEeawRocOl_QoNg" label="4" column="__90bNZRvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4JwoJcyEeawRocOl_QoNg" label="Pensionado4" column="__90bNpRvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4JwoZcyEeawRocOl_QoNg" label="" column="__90bN5RvEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_H4JwopcyEeawRocOl_QoNg" label="[Administrador Pensiones]" column="_H34q4JcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        </cells>
+      </lines>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="__90bNZRvEea_Lq90_ToR0Q" label="Codigo" cells="_H34q4ZcyEeawRocOl_QoNg _H4HUYJcyEeawRocOl_QoNg _H4IigJcyEeawRocOl_QoNg _H4JJkJcyEeawRocOl_QoNg" width="54" featureName="codigo">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']/@ownedColumnMappings[name='Codigo%20Pensionado%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="__90bNpRvEea_Lq90_ToR0Q" label="Nombre" cells="_H35R8JcyEeawRocOl_QoNg _H4HUYZcyEeawRocOl_QoNg _H4IigZcyEeawRocOl_QoNg _H4JwoJcyEeawRocOl_QoNg" width="130" featureName="nombre">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']/@ownedColumnMappings[name='Nombre%20Pensionado%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="__90bN5RvEea_Lq90_ToR0Q" label="Descripcion" cells="_H35R8ZcyEeawRocOl_QoNg _H4H7cJcyEeawRocOl_QoNg _H4IigpcyEeawRocOl_QoNg _H4JwoZcyEeawRocOl_QoNg" width="433" featureName="descripcion">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']/@ownedColumnMappings[name='Descripcion%20Pensionado%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_H34q4JcyEeawRocOl_QoNg" label="Tipos Pagador Pension" cells="_H35R8pcyEeawRocOl_QoNg _H4H7cZcyEeawRocOl_QoNg _H4Iig5cyEeawRocOl_QoNg _H4JwopcyEeawRocOl_QoNg" width="318" featureName="tiposPagadorPension">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']/@ownedColumnMappings[name='Tipos%20Pagador%20Pension%20Pensionado%20Column']"/>
+      </columns>
+      <description xmi:type="description_1:EditionTableDescription" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pensionado%20Edition%20Table']"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="table:DTable" xmi:id="_TOI1QJRwEea_Lq90_ToR0Q" name="new Tipo Pension Edition Table" headerColumnWidth="123">
+      <target xmi:type="Proyecto:PlanillaUnica" href="planilla.proyecto#/"/>
+      <lines xmi:type="table:DLine" xmi:id="_Iiz3MJcyEeawRocOl_QoNg" label="Tipo Pension 1">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_Ii1sYZcyEeawRocOl_QoNg" label="1" column="_TOI1TZRwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_Ii1sYpcyEeawRocOl_QoNg" label="Vejez" column="_TOI1TpRwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_Ii1sY5cyEeawRocOl_QoNg" label="Vejez" column="_TOI1T5RwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_Ii1sZJcyEeawRocOl_QoNg" label="[Prima Media Con Tope, Prima Media Sin Tope, Ahorro individual]" column="_Ii1FUJcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_Ii_dYJcyEeawRocOl_QoNg" label="[Administrador Pensiones, Pagador Pensiones]" column="_Ii1sYJcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_Iiz3MZcyEeawRocOl_QoNg" label="Tipo Pension 2">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_IjGyIJcyEeawRocOl_QoNg" label="2" column="_TOI1TZRwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_IjGyIZcyEeawRocOl_QoNg" label="Sobrevivencia vitalicia" column="_TOI1TpRwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_IjHZMJcyEeawRocOl_QoNg" label="Sobrevivencia vitalicia riesgo comun" column="_TOI1T5RwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_IjHZMZcyEeawRocOl_QoNg" label="[Prima Media Con Tope, Prima Media Sin Tope, Ahorro individual]" column="_Ii1FUJcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_IjIAQJcyEeawRocOl_QoNg" label="[Empleador, Administrador Pensiones, Pagador Pensiones]" column="_Ii1sYJcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.1"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_Iiz3MpcyEeawRocOl_QoNg" label="Tipo Pension 3">
+        <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_IjInUJcyEeawRocOl_QoNg" label="3" column="_TOI1TZRwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_IjInUZcyEeawRocOl_QoNg" label="Sobrevivencia temporal" column="_TOI1TpRwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_IjInUpcyEeawRocOl_QoNg" label="Sobrevivencia temporal riesgo comun" column="_TOI1T5RwEea_Lq90_ToR0Q">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_IjInU5cyEeawRocOl_QoNg" label="[Prima Media Con Tope, Prima Media Sin Tope, Ahorro individual]" column="_Ii1FUJcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_IjJOYJcyEeawRocOl_QoNg" label="[Empleador, Administrador Pensiones, Pagador Pensiones]" column="_Ii1sYJcyEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPension" href="planilla.proyecto#//@tiposPension.2"/>
+        </cells>
+      </lines>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_TOI1TZRwEea_Lq90_ToR0Q" label="Codigo" cells="_Ii1sYZcyEeawRocOl_QoNg _IjGyIJcyEeawRocOl_QoNg _IjInUJcyEeawRocOl_QoNg" width="54" featureName="codigo">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']/@ownedColumnMappings[name='Codigo%20Tipo%20Pension%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_TOI1TpRwEea_Lq90_ToR0Q" label="Nombre" cells="_Ii1sYpcyEeawRocOl_QoNg _IjGyIZcyEeawRocOl_QoNg _IjInUZcyEeawRocOl_QoNg" width="133" featureName="nombre">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']/@ownedColumnMappings[name='Nombre%20Tipo%20Pension%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_TOI1T5RwEea_Lq90_ToR0Q" label="Descripcion" cells="_Ii1sY5cyEeawRocOl_QoNg _IjHZMJcyEeawRocOl_QoNg _IjInUpcyEeawRocOl_QoNg" width="209" featureName="descripcion">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']/@ownedColumnMappings[name='Descripcion%20Tipo%20Pension%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_Ii1FUJcyEeawRocOl_QoNg" label="Tipos Pensionado" cells="_Ii1sZJcyEeawRocOl_QoNg _IjHZMZcyEeawRocOl_QoNg _IjInU5cyEeawRocOl_QoNg" width="357" featureName="tiposPensionado">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']/@ownedColumnMappings[name='Tipos%20Pensionado%20Pension%20Column']"/>
+      </columns>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_Ii1sYJcyEeawRocOl_QoNg" label="Tipos Pagador" cells="_Ii_dYJcyEeawRocOl_QoNg _IjIAQJcyEeawRocOl_QoNg _IjJOYJcyEeawRocOl_QoNg" width="318" featureName="tiposPagadorPension">
+        <originMapping xmi:type="description_1:FeatureColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']/@ownedColumnMappings[name='Tipos%20Pagador%20Pension%20Column']"/>
+      </columns>
+      <description xmi:type="description_1:EditionTableDescription" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Tipo%20Pension%20Edition%20Table']"/>
+    </ownedRepresentations>
+    <ownedRepresentations xmi:type="table:DTable" xmi:id="_J8SBAJcxEeawRocOl_QoNg" name="new Pensionado Pagador Cross Table" headerColumnWidth="183">
+      <target xmi:type="Proyecto:PlanillaUnica" href="planilla.proyecto#/"/>
+      <lines xmi:type="table:DLine" xmi:id="_J8SBAZcxEeawRocOl_QoNg" label="Prima Media Con Tope (1)">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20PePa%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_J8SBApcxEeawRocOl_QoNg" label="X" column="_J8SoFpcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_J8SBA5cxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="238,201,142">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_J8SBBJcxEeawRocOl_QoNg" label="X" column="_J8SoF5cxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_J8SBBZcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="238,201,142">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_J8SBBpcxEeawRocOl_QoNg" label="X" column="_J8SoGJcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.0"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_J8SBB5cxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="238,201,142">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_J8SBCJcxEeawRocOl_QoNg" label="Prima Media Sin Tope (2)">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20PePa%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_J8SBCZcxEeawRocOl_QoNg" label="X" column="_J8SoF5cxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_J8SBCpcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="238,201,142">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+        <cells xmi:type="table:DCell" xmi:id="_J8SBC5cxEeawRocOl_QoNg" label="X" column="_J8SoGJcxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.1"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_J8SBDJcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="238,201,142">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_J8SoEJcxEeawRocOl_QoNg" label="Ahorro individual (3)">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20PePa%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_J8SoEZcxEeawRocOl_QoNg" label="X" column="_J8SoF5cxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.2"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_J8SoEpcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="238,201,142">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <lines xmi:type="table:DLine" xmi:id="_J8SoE5cxEeawRocOl_QoNg" label="Pensionado4 (4)">
+        <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+        <originMapping xmi:type="description_1:LineMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20PePa%20Line']"/>
+        <cells xmi:type="table:DCell" xmi:id="_J8SoFJcxEeawRocOl_QoNg" label="X" column="_J8SoF5cxEeawRocOl_QoNg">
+          <target xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+          <semanticElements xmi:type="Proyecto:TipoPensionado" href="planilla.proyecto#//@tiposPensionado.3"/>
+          <currentStyle xmi:type="table:DCellStyle" xmi:id="_J8SoFZcxEeawRocOl_QoNg" labelSize="14" defaultForegroundStyle="true" defaultBackgroundStyle="true" foregroundColor="255,255,255" backgroundColor="238,201,142">
+            <labelFormat>bold</labelFormat>
+            <foregroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+            <backgroundStyleOrigin xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+          </currentStyle>
+          <intersectionMapping xmi:type="description_1:IntersectionMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@intersection.0"/>
+        </cells>
+      </lines>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_J8SoFpcxEeawRocOl_QoNg" label="Empleador (1)" cells="_J8SBApcxEeawRocOl_QoNg" width="117">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.0"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_J8SoF5cxEeawRocOl_QoNg" label="Administrador Pensiones (2)" cells="_J8SBBJcxEeawRocOl_QoNg _J8SBCZcxEeawRocOl_QoNg _J8SoEZcxEeawRocOl_QoNg _J8SoFJcxEeawRocOl_QoNg" width="192">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.1"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_J8SoGJcxEeawRocOl_QoNg" label="Pagador Pensiones (3)" cells="_J8SBBpcxEeawRocOl_QoNg _J8SBC5cxEeawRocOl_QoNg" width="160">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.2"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <columns xmi:type="table:DTargetColumn" xmi:id="_J8SoGZcxEeawRocOl_QoNg" label="Pagador4 (4)" width="110">
+        <target xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        <semanticElements xmi:type="Proyecto:TipoPagadorPension" href="planilla.proyecto#//@tiposPagadorPension.3"/>
+        <originMapping xmi:type="description_1:ElementColumnMapping" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedColumnMappings.0"/>
+      </columns>
+      <description xmi:type="description_1:CrossTableDescription" href="platform:/resource/Proyecto.design/description/Proyecto.odesign#//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']"/>
+    </ownedRepresentations>
+  </ownedViews>
+</viewpoint:DAnalysis>

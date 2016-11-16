@@ -1,0 +1,58 @@
+package persistence;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+[%
+for (modelo in mArq!ArquitecturaMVC.all.at(0).modelos.select(e|e.esEntidad and not e.esCrud )){
+%]
+import entities.[%=modelo.nombre.firstToUpperCase()%];
+[%
+}
+%]
+
+/**
+ * @author am.osorio
+ * Servicios de Persistencia para Validaciones
+ */
+public class ValidacionesPersistence {
+	
+	[%
+	for (modelo in mArq!ArquitecturaMVC.all.at(0).modelos.select(e|e.esEntidad and not e.esCrud )){
+	%]
+	/**
+	 *
+	 * @return
+	 */
+	public List<[%=modelo.nombre.firstToUpperCase()%]> getAll[%=modelo.nombre.firstToUpperCase()%](){
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+    	List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase()%] = (List<[%=modelo.nombre.firstToUpperCase()%]>)em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase()%]s").getResultList();
+		em.close();		
+    	return [%=modelo.nombre.firstToLowerCase()%];
+    }
+	[%
+	}
+	%]
+	[%
+	//public List<TipoPensionado> findByPension (Long idPension){
+		//EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		//em.getTransaction().begin();
+    	//List<TipoPensionado> tipos = (List<TipoPensionado>)em.createNamedQuery("TipoPensionado.getByPension").setParameter("idPension", idPension).getResultList();
+		//em.close();		
+    	//return tipos;
+	//}
+	
+	//public List<TipoPagador> findByPensioPensionado(Long idPension, Long idPensionado){
+		//EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		//em.getTransaction().begin();
+    	//List<TipoPagador> tipos = (List<TipoPagador>)em.createNamedQuery("TipoPagador.getByPensionPensionado").
+    			//setParameter("idPension", idPension).
+    			//setParameter("idPensionado", idPensionado).
+    			//getResultList();
+		//em.close();		
+    	//return tipos;
+	//}
+	%]
+}

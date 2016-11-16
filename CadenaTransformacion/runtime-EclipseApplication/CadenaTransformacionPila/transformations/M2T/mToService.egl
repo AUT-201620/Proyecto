@@ -1,0 +1,81 @@
+package services;
+
+import entities.[%=controlador.nombre.firstToUpperCase()%];
+import persistence.[%=controlador.nombre.firstToUpperCase()%]Persistence;
+
+import javax.annotation.ManagedBean;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+
+import java.util.List;
+
+/**
+ * @author am.osorio
+ * Servicios CRUD de [%=controlador.nombre.firstToUpperCase()%]
+ */
+@ManagedBean
+public class [%=controlador.nombre.firstToUpperCase()%]Services implements I[%=controlador.nombre.firstToUpperCase()%]Services {
+
+	private [%=controlador.nombre.firstToUpperCase()%]Persistence persistance;
+	
+	@Inject
+    private EntityManager etm;
+
+	/**
+	 * Constructor  [%=controlador.nombre.firstToUpperCase()%]Services
+	 */
+	public [%=controlador.nombre.firstToUpperCase()%]Services() {
+		persistance = new [%=controlador.nombre.firstToUpperCase()%]Persistence();
+	}
+	
+	/**
+	 *
+	 * @return
+	 */
+	@Override
+	public List<[%=controlador.nombre.firstToUpperCase()%]> getAll() {
+		List<[%=controlador.nombre.firstToUpperCase()%]> [%=controlador.nombre.toLowerCase()%]List = persistance.getAll();
+		return [%=controlador.nombre.toLowerCase()%]List;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public [%=controlador.nombre.firstToUpperCase()%] get(Long id) {
+		[%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%] = persistance.get(id);
+		return [%=controlador.nombre.toLowerCase()%];
+	}
+	
+	/**
+	 * 
+	 * @param [%=controlador.nombre.toLowerCase()%]
+	 * @return
+	 */
+	@Override
+	public [%=controlador.nombre.firstToUpperCase()%] create([%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%]) {
+		return persistance.create([%=controlador.nombre.toLowerCase()%]);
+	}
+	
+	/**
+	 * 
+	 * @param [%=controlador.nombre.toLowerCase()%]
+	 * @return
+	 */
+	@Override
+	public [%=controlador.nombre.firstToUpperCase()%] update([%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%]) {
+		return persistance.update([%=controlador.nombre.toLowerCase()%]);
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public void delete(Long id) {
+		persistance.delete(id);
+	}
+}

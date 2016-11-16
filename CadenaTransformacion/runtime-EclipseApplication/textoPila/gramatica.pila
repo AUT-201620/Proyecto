@@ -1,0 +1,113 @@
+entidad Novedad {
+	atributo fechaInicio: Fecha;
+	atributo fechaFin: Fecha;
+	atributo noConsolidada: Booleano;
+	atributo fechaCreacion: Fecha; 
+	atributo tipo: CadenaCaracteres {1="Traslado", 2="VariacionSalario", 3="SLN", 4="Incapacidad", 
+		5="LicenciaPaternidad", 6="Vacaciones", 7="LicenciaRemunerada", 8="AporteVoluntario"
+	};
+}
+
+entidad Pensionado {
+	atributo viveExterior: Booleano;
+	atributo noTieneGrupoFamiliar: Booleano;
+	atributo altoRiesgo: Booleano;
+	atributo congresista: Booleano;
+	atributo cti: Booleano;
+	atributo aviador: Booleano;
+	atributo primerNombre: CadenaCaracteres;
+	atributo otrosNombres: CadenaCaracteres;
+	atributo primerApellido: CadenaCaracteres;
+	atributo segundoApellido: CadenaCaracteres;
+	atributo tipoIdentificacion: CadenaCaracteres {1="CedulaCiudadania", 2="CedulaExtranjeria", 
+		3="TarjetaIdentidad", 4="RegistroCivil", 5="Pasaporte", 6="CarneDiplomatico"
+	};
+	atributo numeroIdentificacion: Entero;
+	atributo montoPension: Flotante;
+	atributo novedades: Lista Novedad;
+	atributo actividadEconomica: Entero;
+	atributo tipoPensionado: Referencia TipoPensionado;
+	atributo tipoPagador: Referencia TipoPagador;
+	atributo tipoPension: Referencia TipoPension;
+}
+
+servicioComputo pagoSalud {
+	var tarifa: Flotante = 1.12;
+	si pensionado.getViveExterior && pensionado.getNoTieneGrupoFamiliar {
+		tarifa = 0;
+	 }
+	siNo pensionado.getCti {
+		tarifa = 0;
+	 }
+	retornar pensionado.getMontoPension * tarifa;
+}
+
+servicioComputo pagoPension  {
+	var tarifa: Flotante = 0;
+	si pensionado.getAltoRiesgo {
+		tarifa = 1.26;
+	}
+	siNo pensionado.getCongresista {
+		tarifa = 1.255;
+	}
+	siNo pensionado.getCti {
+		tarifa = 1.35;
+	}
+	siNo pensionado.getAviador {
+		tarifa = 1.21;
+	}
+	siNinguno {
+		si pensionado.tieneNovedades {
+			var ultimaNovedad: Novedad = pensionado.ultimaNovedad;
+			var dias: Fecha = ultimaNovedad.diasEntreFechaFinInicio;
+			si dias < 4 {
+				tarifa = 0;
+			}
+			siNo dias < 8 {
+				tarifa = 1.12;
+			}
+			siNinguno {
+				tarifa = 1.16;
+			}
+		}
+		siNinguno {
+			tarifa = 1.16;
+		}
+	}
+	retornar pensionado.getMontoPension * tarifa;
+}
+
+servicioComputo pagoRiesgos {
+	var tarifa: Flotante = 0;
+	si pensionado.getActividadEconomica == 8022 {
+		tarifa = 1.00522;
+	}
+	siNo pensionado.getActividadEconomica == 8513 {
+		tarifa = 1.00522;
+	}
+	siNo pensionado.getActividadEconomica == 0117 {
+		tarifa = 1.01044;
+	}
+	siNo pensionado.getActividadEconomica == 1541 {
+		tarifa = 1.01044;
+	}
+	siNo pensionado.getActividadEconomica == 1592 {
+		tarifa = 1.02436;
+	}
+	siNo pensionado.getActividadEconomica == 1743 {
+		tarifa = 1.02436;
+	}
+	siNo pensionado.getActividadEconomica == 2101 {
+		tarifa = 1.0435;
+	}
+	siNo pensionado.getActividadEconomica == 2322 {
+		tarifa = 1.04345;
+	}
+	siNo pensionado.getActividadEconomica == 1431 {
+		tarifa = 1.0696;
+	}
+	siNo pensionado.getActividadEconomica == 2321 {
+		tarifa = 1.0696;
+	}
+	retornar pensionado.getMontoPension * tarifa;
+}

@@ -1,0 +1,228 @@
+package web.beans;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.ValueChangeEvent;
+
+import entities.*;
+import services.*;
+
+/**
+ * Backing Bean para la pantalla [%=vista.nombre.firstToUpperCase()%]
+ *
+ */
+
+@ManagedBean
+@ViewScoped
+public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private List<[%=vista.nombre.firstToUpperCase()%]> [%=vista.nombre.firstToLowerCase()%]List = new ArrayList<[%=vista.nombre.firstToUpperCase()%]>();
+	private I[%=vista.nombre.firstToUpperCase()%]Services services;
+	private IValidacionesServices validacionesServices;
+	private [%=vista.nombre.firstToUpperCase()%] [%=vista.nombre.firstToLowerCase()%];
+	private Long identificador;
+	private Boolean buttonCrud;
+	private TipoDocumento [] tiposDocumento;
+	
+	[%
+	//private List<TipoPension> tipoPension;
+	//private List<TipoPensionado> tipoPensionado;
+	//private List<TipoPagador> tipoPagador;
+	%]
+
+	/**
+	 * Constructor de [%=vista.nombre.firstToUpperCase()%]Bean
+	 */
+	public [%=vista.nombre.firstToUpperCase()%]Bean() {
+		services = new [%=vista.nombre.firstToUpperCase()%]Services();
+		validacionesServices = new ValidacionesServices();
+		[%=vista.nombre.firstToLowerCase()%] = new [%=vista.nombre.firstToUpperCase()%]();
+		buttonCrud = Boolean.TRUE;
+	[%
+		//pensionado.setTipoPension(new TipoPension());
+		//pensionado.setTipoPensionado(new TipoPensionado());
+		//pensionado.setTipoPagador(new TipoPagador());
+	%]
+	}
+	
+	
+	/**
+	 * 
+	 */
+	@PostConstruct
+	public void init() {
+		this.[%=vista.nombre.firstToLowerCase()%]List = services.getAll();
+	}
+
+	public void crear() {
+		services.create(this.[%=vista.nombre.firstToLowerCase()%]);
+		this.[%=vista.nombre.firstToLowerCase()%]List = services.getAll();
+	}
+
+	public void delete() {
+		services.delete(this.identificador);
+		this.[%=vista.nombre.firstToLowerCase()%]List = services.getAll();
+	}
+
+	public void ver() {
+		this.[%=vista.nombre.firstToLowerCase()%] = services.find(this.identificador);
+		buttonCrud = Boolean.FALSE;
+	}
+	
+	public void editar() {
+		this.[%=vista.nombre.firstToLowerCase()%] = services.update(this.[%=vista.nombre.firstToLowerCase()%]);
+		this.[%=vista.nombre.firstToLowerCase()%]List = services.getAll();
+	}
+
+	public void clear[%=vista.nombre.firstToUpperCase()%]() {
+		this.[%=vista.nombre.firstToLowerCase()%] = new [%=vista.nombre.firstToUpperCase()%]();
+		buttonCrud = Boolean.TRUE;
+	[%
+		//Pensionado.setTipoPension(new TipoPension());
+		//Pensionado.setTipoPensionado(new TipoPensionado());
+		//Pensionado.setTipoPagador(new TipoPagador());
+		//this.tipoPensionado = null;
+		//this.tipoPagador = null;
+	%]
+	}
+
+	[%
+	//public void getListTipos() {
+       //if(pensionado.getTipoPension().getId()!=null){
+			//this.setTipoPensionado(validacionesservices.getTipoPensionado(pensionado.getTipoPension().getId()));
+		//} 
+        //if(pensionado.getTipoPension().getId()!=null && pensionado.getTipoPensionado().getId() !=null){
+			//this.setTipoPagador(validacionesservices.getTipoPagador(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
+		//}
+    //}
+    %]
+	
+	/**
+	 * @return the [%=vista.nombre.firstToLowerCase()%]List
+	 */
+	public List<[%=vista.nombre.firstToUpperCase()%]> get[%=vista.nombre.firstToUpperCase()%]List() {
+		return [%=vista.nombre.firstToLowerCase()%]List;
+	}
+
+	/**
+	 * @param [%=vista.nombre.firstToLowerCase()%]List
+	 * the [%=vista.nombre.firstToLowerCase()%]List to set
+	 */
+	public void set[%=vista.nombre.firstToUpperCase()%]List(List<[%=vista.nombre.firstToUpperCase()%]> [%=vista.nombre.firstToLowerCase()%]List) {
+		this.[%=vista.nombre.firstToLowerCase()%]List = [%=vista.nombre.firstToLowerCase()%]List;
+	}
+
+	/**
+	 * @return the [%=vista.nombre.firstToLowerCase()%]
+	 */
+	public [%=vista.nombre.firstToUpperCase()%] get[%=vista.nombre.firstToUpperCase()%]() {
+		if ([%=vista.nombre.firstToLowerCase()%] == null) {
+			[%=vista.nombre.firstToLowerCase()%] = new [%=vista.nombre.firstToUpperCase()%]();
+		}
+		return [%=vista.nombre.firstToLowerCase()%];
+	}
+
+	/**
+	 * @param [%=vista.nombre.firstToLowerCase()%]
+	 * the [%=vista.nombre.firstToLowerCase()%] to set
+	 */
+	public void set[%=vista.nombre.firstToUpperCase()%]([%=vista.nombre.firstToUpperCase()%] [%=vista.nombre.firstToLowerCase()%]) {
+		this.[%=vista.nombre.firstToLowerCase()%] = [%=vista.nombre.firstToLowerCase()%];
+	}
+
+	/**
+	 * @return the identificador
+	 */
+	public Long getIdentificador() {
+		return identificador;
+	}
+
+	/**
+	 * @param identificador
+	 * the identificador to set
+	 */
+	public void setIdentificador(Long identificador) {
+		this.identificador = identificador;
+	}
+
+	/**
+	 * @return the buttonCrud
+	 */
+	public Boolean getButtonCrud() {
+		return buttonCrud;
+	}
+
+	/**
+	 * @param buttonCrud the buttonCrud to set
+	 */
+	public void setButtonCrud(Boolean buttonCrud) {
+		this.buttonCrud = buttonCrud;
+	}
+
+	/**
+	 * @return the tiposDocumento
+	 */
+	public TipoDocumento[] getTiposDocumento() {
+		return TipoDocumento.values();
+	}
+
+	/**
+	 * @param tiposDocumento the tiposDocumento to set
+	 */
+	public void setTiposDocumento(TipoDocumento[] tiposDocumento) {
+		this.tiposDocumento = tiposDocumento;
+	}
+
+[%
+	/**
+	 * @return the tipoPension
+	 */
+	/*public List<TipoPension> getTipoPension() {
+		this.tipoPension= validacionesservices.getTipoPension();
+		return tipoPension;
+	}
+
+	/**
+	 * @param tipoPension the tipoPension to set
+	 */
+	/*public void setTipoPension(List<TipoPension> tipoPension) {
+		this.tipoPension = tipoPension;
+	}
+
+
+	/**
+	 * @return the tipoPensionado
+	 */
+	/*public List<TipoPensionado> getTipoPensionado() {
+		return tipoPensionado;
+	}
+
+	/**
+	 * @param tipoPensionado the tipoPensionado to set
+	 */
+	/*public void setTipoPensionado(List<TipoPensionado> tipoPensionado) {
+		this.tipoPensionado = tipoPensionado;
+	}
+
+	/**
+	 * @return the tipoPagador
+	 */
+	/*public List<TipoPagador> getTipoPagador() {
+		return tipoPagador;
+	}
+
+	/**
+	 * @param tipoPagador the tipoPagador to set
+	 */
+	/*public void setTipoPagador(List<TipoPagador> tipoPagador) {
+		this.tipoPagador = tipoPagador;
+	}*/
+%]
+}

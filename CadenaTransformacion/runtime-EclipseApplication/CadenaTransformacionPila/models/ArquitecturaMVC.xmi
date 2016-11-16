@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ArquitecturaMVC:ArquitecturaMVC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ArquitecturaMVC="http://www.uniandes.edu.co.arquitecturaMVC">
+  <vistas nombre="Aportante">
+    <atributos nombre="nombreRazonSocial" etiqueta="nombreRazonSocial"/>
+    <atributos nombre="digitoVerificacion" etiqueta="digitoVerificacion"/>
+    <atributos nombre="naturalezaJuridica" etiqueta="naturalezaJuridica"/>
+    <atributos nombre="numeroIdentificacion" etiqueta="numeroIdentificacion"/>
+    <atributos nombre="tipoIdentificacion" tipo="LISTA" etiqueta="tipoIdentificacion"/>
+  </vistas>
+  <vistas nombre="Novedad">
+    <atributos nombre="fechaInicio" tipo="FECHA" etiqueta="fechaInicio"/>
+    <atributos nombre="fechaFin" tipo="FECHA" etiqueta="fechaFin"/>
+    <atributos nombre="noConsolidada" tipo="BOOLEANO" etiqueta="noConsolidada"/>
+    <atributos nombre="fechaCreacion" tipo="FECHA" etiqueta="fechaCreacion"/>
+    <atributos nombre="tipo" tipo="LISTA" etiqueta="tipo"/>
+  </vistas>
+  <vistas nombre="Pensionado">
+    <atributos nombre="viveExterior" tipo="BOOLEANO" etiqueta="viveExterior"/>
+    <atributos nombre="noTieneGrupoFamiliar" tipo="BOOLEANO" etiqueta="noTieneGrupoFamiliar"/>
+    <atributos nombre="altoRiesgo" tipo="BOOLEANO" etiqueta="altoRiesgo"/>
+    <atributos nombre="congresista" tipo="BOOLEANO" etiqueta="congresista"/>
+    <atributos nombre="cti" tipo="BOOLEANO" etiqueta="cti"/>
+    <atributos nombre="aviador" tipo="BOOLEANO" etiqueta="aviador"/>
+    <atributos nombre="primerNombre" etiqueta="primerNombre"/>
+    <atributos nombre="otrosNombres" etiqueta="otrosNombres"/>
+    <atributos nombre="primerApellido" etiqueta="primerApellido"/>
+    <atributos nombre="segundoApellido" etiqueta="segundoApellido"/>
+    <atributos nombre="tipoIdentificacion" tipo="LISTA" etiqueta="tipoIdentificacion"/>
+    <atributos nombre="numeroIdentificacion" etiqueta="numeroIdentificacion"/>
+    <atributos nombre="montoPension" etiqueta="montoPension"/>
+    <atributos nombre="novedades" tipo="REFERENCIA" etiqueta="novedades" vistaReferencia="//@vistas.0"/>
+    <atributos nombre="actividadEconomica" etiqueta="actividadEconomica"/>
+    <atributos nombre="tipoPensionado" tipo="LISTA" etiqueta="tipoPensionado"/>
+    <atributos nombre="tipoPagadorPension" tipo="LISTA" etiqueta="tipoPagadorPension"/>
+    <atributos nombre="tipoPension" tipo="LISTA" etiqueta="tipoPension"/>
+  </vistas>
+  <controladores nombre="Aportante"/>
+  <controladores nombre="Novedad"/>
+  <controladores nombre="Pensionado"/>
+  <controladores nombre="TipoPagadorPension" esCrud="false"/>
+  <controladores nombre="TipoPensionado" esCrud="false"/>
+  <controladores nombre="TipoPension" esCrud="false"/>
+  <modelos nombre="Aportante">
+    <atributos nombre="nombreRazonSocial"/>
+    <atributos nombre="digitoVerificacion"/>
+    <atributos nombre="naturalezaJuridica"/>
+    <atributos nombre="numeroIdentificacion" tipo="INTEGER"/>
+    <atributos nombre="tipoIdentificacion">
+      <codigosValor codigo="1" valor="&quot;CedulaCiudadania&quot;"/>
+      <codigosValor codigo="2" valor="&quot;CedulaExtranjeria&quot;"/>
+      <codigosValor codigo="3" valor="&quot;TarjetaIdentidad&quot;"/>
+      <codigosValor codigo="4" valor="&quot;RegistroCivil&quot;"/>
+      <codigosValor codigo="5" valor="&quot;Pasaporte&quot;"/>
+      <codigosValor codigo="6" valor="&quot;CarneDiplomatico&quot;"/>
+    </atributos>
+  </modelos>
+  <modelos nombre="Novedad">
+    <atributos nombre="fechaInicio" tipo="DATE"/>
+    <atributos nombre="fechaFin" tipo="DATE"/>
+    <atributos nombre="noConsolidada" tipo="BOOLEAN"/>
+    <atributos nombre="fechaCreacion" tipo="DATE"/>
+    <atributos nombre="tipo">
+      <codigosValor codigo="1" valor="&quot;Traslado&quot;"/>
+      <codigosValor codigo="2" valor="&quot;VariacionSalario&quot;"/>
+      <codigosValor codigo="3" valor="&quot;SLN&quot;"/>
+      <codigosValor codigo="4" valor="&quot;Incapacidad&quot;"/>
+      <codigosValor codigo="5" valor="&quot;LicenciaPaternidad&quot;"/>
+      <codigosValor codigo="6" valor="&quot;Vacaciones&quot;"/>
+      <codigosValor codigo="7" valor="&quot;LicenciaRemunerada&quot;"/>
+      <codigosValor codigo="8" valor="&quot;AporteVoluntario&quot;"/>
+    </atributos>
+  </modelos>
+  <modelos nombre="Pensionado">
+    <atributos nombre="viveExterior" tipo="BOOLEAN"/>
+    <atributos nombre="noTieneGrupoFamiliar" tipo="BOOLEAN"/>
+    <atributos nombre="altoRiesgo" tipo="BOOLEAN"/>
+    <atributos nombre="congresista" tipo="BOOLEAN"/>
+    <atributos nombre="cti" tipo="BOOLEAN"/>
+    <atributos nombre="aviador" tipo="BOOLEAN"/>
+    <atributos nombre="primerNombre"/>
+    <atributos nombre="otrosNombres"/>
+    <atributos nombre="primerApellido"/>
+    <atributos nombre="segundoApellido"/>
+    <atributos nombre="tipoIdentificacion">
+      <codigosValor codigo="1" valor="&quot;CedulaCiudadania&quot;"/>
+      <codigosValor codigo="2" valor="&quot;CedulaExtranjeria&quot;"/>
+      <codigosValor codigo="3" valor="&quot;TarjetaIdentidad&quot;"/>
+      <codigosValor codigo="4" valor="&quot;RegistroCivil&quot;"/>
+      <codigosValor codigo="5" valor="&quot;Pasaporte&quot;"/>
+      <codigosValor codigo="6" valor="&quot;CarneDiplomatico&quot;"/>
+    </atributos>
+    <atributos nombre="numeroIdentificacion" tipo="INTEGER"/>
+    <atributos nombre="montoPension" tipo="FLOAT"/>
+    <atributos nombre="novedades" tipo="REFERENCELIST" modeloReferencia="//@modelos.0"/>
+    <atributos nombre="actividadEconomica" tipo="INTEGER"/>
+    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.3"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.8"/>
+    <atributos nombre="tipoPension" tipo="REFERENCE" modeloReferencia="//@modelos.7"/>
+  </modelos>
+  <modelos nombre="TipoPensionado" esCrud="false">
+    <atributos nombre="codigo" tipo="INTEGER"/>
+    <atributos nombre="nombre"/>
+    <atributos nombre="descripcion"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCELIST" modeloReferencia="//@modelos.8"/>
+    <atributos nombre="tipoPension" tipo="REFERENCELIST" modeloReferencia="//@modelos.7"/>
+    <datos campos="codigo, nombre, descripcion" valores="1, Prima Media Con Tope, Pensionado de regimen de prima media. Tope maximo de pension 25 SMMLV"/>
+    <datos campos="codigo, nombre, descripcion" valores="2, Prima Media Sin Tope, Pensionado de regimen de prima media. Sin tope maximo de pension"/>
+    <datos campos="codigo, nombre, descripcion" valores="3, Ahorro individual, Pensionado de regimen de ahorro individual. No aplica tope maximo de pension"/>
+    <datos campos="codigo, nombre, descripcion" valores="4, Riesgos Laborales Con Tope, Pensionado de Riesgos Laborales. Tope maximo de 25 smlmv"/>
+    <datos campos="codigo, nombre, descripcion" valores="5, Por Empleador Con Tope, Pensionado por el empleador con tope maximo de 25 smlmv"/>
+    <datos campos="codigo, nombre, descripcion" valores="6, Por Empleador Sin Tope, Pensionado por el empleador sin tope maximo de pension"/>
+    <datos campos="codigo, nombre, descripcion" valores="7, Por Entidad Regimen Especial Con Tope, Pensionado de entidades de los regimenes especial y de excepcion, con tope maximo de pensionde 25 smlmv"/>
+    <datos campos="codigo, nombre, descripcion" valores="8, Por Entidad Regimen Especial Sin Tope, Pensionado de entidades de los regimenes especial y de excepcion sin tope maximo en pension"/>
+    <datos campos="codigo, nombre, descripcion" valores="9, Beneficiario UPC Adicional, Beneficiario UPC Adicional"/>
+  </modelos>
+  <modelos nombre="TipoPensionadoTipoPagador" esCrud="false" esEntidad="false">
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="1, 1"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="1, 2"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="1, 3"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="2, 2"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="2, 3"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="3, 2"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="4, 3"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="5, 1"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="6, 1"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="7, 4"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="8, 4"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="9, 1"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="9, 2"/>
+    <datos campos="codigoTipoPensionado, codigoTipoPagador" valores="9, 3"/>
+  </modelos>
+  <modelos nombre="TipoPensionTipoPagador" esCrud="false" esEntidad="false">
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="1, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="1, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="2, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="2, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="2, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="2, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="3, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="3, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="3, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="3, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="4, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="4, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="4, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="4, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="5, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="6, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="7, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="8, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="8, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="8, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="8, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="9, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="10, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="10, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="10, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="11, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="11, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="12, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="13, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="13, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="14, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="14, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="15, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="16, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="20, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="20, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="20, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="20, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="18, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="18, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="18, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPagador" valores="18, 4"/>
+  </modelos>
+  <modelos nombre="TipoPensionTipoPensionado" esCrud="false" esEntidad="false">
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="1, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="1, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="1, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="2, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="2, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="2, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="2, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="2, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="2, 7"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="2, 8"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="3, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="3, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="3, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="3, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="3, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="3, 7"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="3, 8"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="4, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="4, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="4, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="4, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="4, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="4, 7"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="4, 8"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="5, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="5, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="5, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="6, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="6, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="6, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="7, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="7, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="7, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="8, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="8, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="8, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="8, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="8, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="8, 7"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="8, 8"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="9, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="10, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="10, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="10, 7"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="10, 8"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="11, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="11, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="11, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="11, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="11, 7"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="11, 8"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="12, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="12, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="13, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="13, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="14, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="14, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="14, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="14, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="15, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="15, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="16, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="20, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="20, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="20, 3"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="20, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="20, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="20, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="20, 7"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="20, 8"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="18, 1"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="18, 2"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="18, 4"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="18, 5"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="18, 6"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="18, 7"/>
+    <datos campos="codigoTipoPension, codigoTipoPensionado" valores="18, 8"/>
+  </modelos>
+  <modelos nombre="TipoPension" esCrud="false">
+    <atributos nombre="codigo" tipo="INTEGER"/>
+    <atributos nombre="nombre"/>
+    <atributos nombre="descripcion"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCELIST" modeloReferencia="//@modelos.8"/>
+    <atributos nombre="tipoPensionado" tipo="REFERENCELIST" modeloReferencia="//@modelos.3"/>
+    <datos campos="codigo, nombre, descripcion" valores="1, Vejez, Vejez"/>
+    <datos campos="codigo, nombre, descripcion" valores="2, Sobrevivencia vitalicia, Sobrevivencia vitalicia riesgo comun"/>
+    <datos campos="codigo, nombre, descripcion" valores="3, Sobrevivencia temporal riesgo comun, Sobrevivencia temporal riesgo comun"/>
+    <datos campos="codigo, nombre, descripcion" valores="4, Sobrevivencia temporal riesgo comun conyuge &lt;30, Sobrevivencia temporal riesgo comun conyuge o compa&#xf1;era menor de 30 a&#xf1;os sin hijos."/>
+    <datos campos="codigo, nombre, descripcion" valores="5, Sobrevivencia vitalicia, Sobrevivencia vitalicia por riesgo laboral"/>
+    <datos campos="codigo, nombre, descripcion" valores="6, Sobrevivencia temporal riesgo laboral, Sobrevivencia temporal riesgo laboral"/>
+    <datos campos="codigo, nombre, descripcion" valores="7, Sobrevivencia temporal riesgo laboral conyuge &lt; 30, Sobrevivencia temporal riesgo laboral conyuge menor 30 a&#xf1;os sin hijos"/>
+    <datos campos="codigo, nombre, descripcion" valores="8, Invalidez riesgo comun, Invalidez riesgo comun"/>
+    <datos campos="codigo, nombre, descripcion" valores="9, Invalidez riesgo laboral, Invalidez riesgo laboral"/>
+    <datos campos="codigo, nombre, descripcion" valores="10, Jubilacion, Jubilacion"/>
+    <datos campos="codigo, nombre, descripcion" valores="11, Jubilacion para compartir, Jubilacion para compartir"/>
+    <datos campos="codigo, nombre, descripcion" valores="12, Sancion, Sancion"/>
+    <datos campos="codigo, nombre, descripcion" valores="13, Convencional, Convencional"/>
+    <datos campos="codigo, nombre, descripcion" valores="14, Convencional para compartir, Convencional para compartir"/>
+    <datos campos="codigo, nombre, descripcion" valores="15, Gracia, Gracia"/>
+    <datos campos="codigo, nombre, descripcion" valores="16, Por convenio internacional, Por convenio internacional"/>
+    <datos campos="codigo, nombre, descripcion" valores="20, Sentencia judicial, Sentencia judicial"/>
+    <datos campos="codigo, nombre, descripcion" valores="18, Conciliaciones, Conciliaciones"/>
+  </modelos>
+  <modelos nombre="TipoPagadorPension" esCrud="false">
+    <atributos nombre="codigo" tipo="INTEGER"/>
+    <atributos nombre="nombre"/>
+    <atributos nombre="descripcion"/>
+    <atributos nombre="tipoPension" tipo="REFERENCELIST" modeloReferencia="//@modelos.7"/>
+    <atributos nombre="tipoPensionado" tipo="REFERENCELIST" modeloReferencia="//@modelos.3"/>
+    <datos campos="codigo, nombre, descripcion" valores="1, Empleador, Empleador"/>
+    <datos campos="codigo, nombre, descripcion" valores="2, Administrador Pensiones, Administrador de Pensiones"/>
+    <datos campos="codigo, nombre, descripcion" valores="3, Pagador Pensiones, Pagador de Pensiones"/>
+    <datos campos="codigo, nombre, descripcion" valores="4, Entidades regimen Especial, Pensiones de entidades de los regimenes especial y de excepcion"/>
+  </modelos>
+</ArquitecturaMVC:ArquitecturaMVC>

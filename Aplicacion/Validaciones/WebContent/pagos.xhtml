@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>PAGOS</h1>
+	<h:form id="pagos">
+
+
+		<p:panel header="Select a Location" style="margin-bottom:10px;">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="entidad" value="Entidad: " />
+				<p:selectOneMenu id="entidad" value="#{pagosBean.entidad}"
+					style="width:150px">
+					<p:ajax listener="#{pagosBean.calculoPagoTotal}" update="pagos" />
+					<f:selectItem itemLabel="Seleccione Entidad" itemValue=""						/>
+					<f:selectItems value="#{entidadBean.entidadList}" />
+				</p:selectOneMenu>
+				
+			</h:panelGrid>
+
+			<p:separator />
+
+			
+		</p:panel>
+
+
+
+
+		<h:panelGroup>
+			<p:selectOneMenu id="entidadesFind" value="#{pagosBean.entidad}">
+				<f:selectItem/>
+				<p:ajax listener="#{pagosBean.entidad}" update="pagos" />
+				<f:selectItems value="#{entidadBean.entidadList}" var="entidad"
+					itemLabel="#{entidad.numeroIdentificacion}" itemValue="#{entidad}" />
+			</p:selectOneMenu>
+			<p:commandButton action="#{pagosBean.calculoPagoTotal}" id="buscar"
+				update="pnlDatosEtidad" icon="ui-icon-search"
+				value="Calcular Liquidacion" />
+
+		</h:panelGroup>
+		<p:panelGrid columns="4" id="pnlDatosEtidad">
+			<h:outputLabel for="primerNombre" value="Primer Nombre:" />
+			<p:outputLabel id="primerNombre"
+				value="#{pagosBean.entidad.primerNombre}">
+			</p:outputLabel>
+
+			<h:outputLabel for="segundoNombre" value="Segundo Nombre:" />
+			<p:outputLabel id="segundoNombre"
+				value="#{pagosBean.entidad.segundoNombre}">
+			</p:outputLabel>
+
+			<h:outputLabel for="primerApellido" value="Primer Apellido:" />
+			<p:outputLabel id="primerApellido"
+				value="#{pagosBean.entidad.primerApellido}">
+			</p:outputLabel>
+
+			<h:outputLabel for="segundoApellido" value="Segundo Apellido:" />
+			<p:outputLabel id="segundoApellido"
+				value="#{pagosBean.entidad.segundoApellido}">
+			</p:outputLabel>
+
+			<h:outputLabel for="numeroIdentificacion"
+				value="Numero Identificacion:" />
+			<p:outputLabel id="numeroIdentificacion"
+				value="#{pagosBean.entidad.numeroIdentificacion}">
+			</p:outputLabel>
+
+			<h:outputLabel for="valorPorPagar" value="Valor a Pagar" />
+			<p:outputLabel id="valorPorPagar" value="#{pagosBean.valorPorPagar}">
+			</p:outputLabel>
+
+			<f:facet name="footer">
+				<p:commandButton value="Pagar" styleClass="ui-confirmdialog-yes"
+					icon="ui-icon-check" action="#{pagosBean.showMessagePago}" />
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>
+
+

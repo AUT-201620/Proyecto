@@ -1,0 +1,59 @@
+package persistence;
+
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import entities.[%=modelo.nombre.firstToUpperCase()%];
+
+/**
+ * @author am.osorio
+ * Clases de Persistencia para [%=modelo.nombre.firstToUpperCase()%]
+ */
+@Stateless
+public class [%=modelo.nombre.firstToUpperCase()%]Persistence {
+
+    public List<[%=modelo.nombre.firstToUpperCase()%]> getAll(){
+    	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+    	List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase()%]List = (List<[%=modelo.nombre.firstToUpperCase()%]>)em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase()%]s").getResultList();
+		em.close();		
+    	return [%=modelo.nombre.firstToLowerCase()%]List;
+    	
+    }
+    
+    public [%=modelo.nombre.firstToUpperCase()%] get(Long id){
+    	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+		[%=modelo.nombre.firstToUpperCase()%] [%=modelo.nombre.firstToLowerCase()%] = em.find([%=modelo.nombre.firstToUpperCase()%].class, id);
+    	em.close();
+		return [%=modelo.nombre.firstToLowerCase()%];
+    }
+    
+    public [%=modelo.nombre.firstToUpperCase()%] create([%=modelo.nombre.firstToUpperCase()%] [%=modelo.nombre.firstToLowerCase()%]){
+    	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+    	em.persist([%=modelo.nombre.firstToLowerCase()%]);
+    	em.getTransaction().commit();
+    	em.close();
+		return [%=modelo.nombre.firstToLowerCase()%];
+    }
+
+	public [%=modelo.nombre.firstToUpperCase()%] update([%=modelo.nombre.firstToUpperCase()%] [%=modelo.nombre.firstToLowerCase()%]){
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+		em.merge([%=modelo.nombre.firstToLowerCase()%]);
+		em.getTransaction().commit();
+		em.close();
+		return [%=modelo.nombre.firstToLowerCase()%];
+	}
+	
+	public void delete(Long id){
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+		[%=modelo.nombre.firstToUpperCase()%] [%=modelo.nombre.firstToLowerCase()%] = em.find([%=modelo.nombre.firstToUpperCase()%].class, id);
+		em.remove([%=modelo.nombre.firstToLowerCase()%]);
+		em.getTransaction().commit();
+		em.close();
+	}
+}

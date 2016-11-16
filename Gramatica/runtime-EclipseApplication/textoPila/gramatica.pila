@@ -1,0 +1,112 @@
+entidad Novedad {
+	atributo fechaInicio: Fecha;
+	atributo fechaFin: Fecha;
+	atributo noConsolidada: Booleano;
+	atributo fechaCreacion: Fecha; 
+	atributo tipo: CadenaCaracteres {1="Traslado", 2="VariacionSalario", 3="SLN", 4="Incapacidad", 
+		5="LicenciaPaternidad", 6="Vacaciones", 7="LicenciaRemunerada", 8="AporteVoluntario"
+	};
+}
+
+entidad Pensionado {
+	atributo viveExterior: Booleano;
+	atributo noTieneGrupoFamiliar: Booleano;
+	atributo altoRiesgo: Booleano;
+	atributo congresista: Booleano;
+	atributo cti: Booleano;
+	atributo aviador: Booleano;
+	atributo primerNombre: CadenaCaracteres;
+	atributo otrosNombres: CadenaCaracteres;
+	atributo primerApellido: CadenaCaracteres;
+	atributo segundoApellido: CadenaCaracteres;
+	atributo tipoIdentificacion: CadenaCaracteres {1="CedulaCiudadania", 2="CedulaExtranjeria", 
+		3="TarjetaIdentidad", 4="RegistroCivil", 5="Pasaporte", 6="CarneDiplomatico"
+	};
+	atributo numeroIdentificacion: Entero;
+	atributo montoPension: Flotante;
+	atributo novedades: Lista Novedad;
+	atributo actividadEconomica: Entero;
+	atributo tipoPensionado: Referencia TipoPension;
+	atributo tipoPagador: Referencia TipoPagador;
+	atributo tipoPension: Referencia TipoPension;
+}
+
+servicioComputo pagoSalud {
+	var tarifa: Flotante = 1.12;
+	si pensionado.viveExterior && pensionado.noTieneGrupoFamiliar {
+		tarifa = 0;
+	 }
+	siNo pensionado.cti {
+		tarifa = 0;
+	 }
+	retornar pensionado.montoPension * tarifa;
+}
+
+servicioComputo pagoPension  {
+	var ultimaNovedad: Novedad = pensionado.novedades.ultima;
+	var tarifa: Flotante = 0;
+	si pensionado.altoRiesgo {
+		tarifa = 1.26;
+	}
+	siNo pensionado.congresista {
+		tarifa = 1.255;
+	}
+	siNo pensionado.cti {
+		tarifa = 1.35;
+	}
+	siNo pensionado.aviador {
+		tarifa = 1.21;
+	}
+	siNo ultimaNovedad.noConsolidada {
+		var dias: Fecha = ultimaNovedad.fechafin - ultimaNovedad.fechaInicio;
+		
+		si dias > 4 {
+			tarifa = 0;
+		}
+		siNo dias < 8 {
+			tarifa = 1.12;
+		}
+		siNo dias > 7 {
+			tarifa = 1.16;
+		}
+	}
+	siNinguno {
+		tarifa = 1.16;
+	}
+	retornar pensionado.montoPension * tarifa;
+}
+
+servicioComputo pagoRiesgos {
+	var tarifa: Flotante = 0;
+	si pensionado.actividadEconomica == 8022 {
+		tarifa = 1.00522;
+	}
+	siNo pensionado.actividadEconomica == 8513 {
+		tarifa = 1.00522;
+	}
+	siNo pensionado.actividadEconomica == 0117 {
+		tarifa = 1.01044;
+	}
+	siNo pensionado.actividadEconomica == 1541 {
+		tarifa = 1.01044;
+	}
+	siNo pensionado.actividadEconomica == 1592 {
+		tarifa = 1.02436;
+	}
+	siNo pensionado.actividadEconomica == 1743 {
+		tarifa = 1.02436;
+	}
+	siNo pensionado.actividadEconomica == 2101 {
+		tarifa = 1.0435;
+	}
+	siNo pensionado.actividadEconomica == 2322 {
+		tarifa = 1.04345;
+	}
+	siNo pensionado.actividadEconomica == 1431 {
+		tarifa = 1.0696;
+	}
+	siNo pensionado.actividadEconomica == 2321 {
+		tarifa = 1.0696;
+	}
+	retornar pensionado.montoPension * tarifa;
+}

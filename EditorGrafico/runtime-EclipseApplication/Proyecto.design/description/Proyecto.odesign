@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" name="Proyecto" version="11.0.0.201601261200">
+  <ownedViewpoints name="PlanillaUnica" modelFileExtension="proyecto">
+    <ownedRepresentations xsi:type="description_1:CrossTableDescription" name="Pensionado Pagador Cross Table" domainClass="PlanillaUnica">
+      <ownedLineMappings name="Tipo Pensionado PePa Line" domainClass="TipoPensionado" semanticCandidatesExpression="feature:tiposPensionado" headerLabelExpression="[self.nombre + ' (' + self.codigo + ')'/]"/>
+      <ownedCreateLine name="Tipo Pensionado PePa Create Line" label="Crear Linea Tipo Pensionado" mapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20PePa%20Line']">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="TipoPensionado" referenceName="tiposPensionado">
+            <subModelOperations xsi:type="tool:SetValue" featureName="codigo" valueExpression="[container.tiposPensionado->size()/]"/>
+            <subModelOperations xsi:type="tool:SetValue" featureName="nombre" valueExpression="['Pensionado' + container.tiposPensionado->size()/]"/>
+          </subModelOperations>
+        </firstModelOperation>
+      </ownedCreateLine>
+      <ownedColumnMappings name="Tipo Pagador PePa Column" headerLabelExpression="[self.nombre + ' (' + self.codigo + ')'/]" domainClass="TipoPagadorPension" semanticCandidatesExpression="feature:tiposPagadorPension"/>
+      <intersection name="Tipo Pensionado Pagador Pepa Intersection" lineMapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pensionado%20PePa%20Line']" columnMapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedColumnMappings.0" labelExpression="X" columnFinderExpression="[self.tiposPagadorPension/]">
+        <defaultForeground labelSize="14">
+          <labelFormat>bold</labelFormat>
+          <foreGroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultForeground>
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_chocolate']"/>
+        </defaultBackground>
+      </intersection>
+      <createColumn name="Tipo Pagador PePa Create Column" label="Crear Columna Tipo Pagador Pension" mapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pensionado%20Pagador%20Cross%20Table']/@ownedColumnMappings.0">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="TipoPagadorPension" referenceName="tiposPagadorPension">
+            <subModelOperations xsi:type="tool:SetValue" featureName="nombre" valueExpression="['Pagador' + container.tiposPagadorPension->size()/]"/>
+            <subModelOperations xsi:type="tool:SetValue" featureName="codigo" valueExpression="[container.tiposPagadorPension->size()/]"/>
+          </subModelOperations>
+        </firstModelOperation>
+      </createColumn>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:CrossTableDescription" name="Pension Pagador Cross Table" domainClass="PlanillaUnica">
+      <ownedLineMappings name="Tipo Pension Pension Line" domainClass="TipoPension" semanticCandidatesExpression="feature:tiposPension" headerLabelExpression="[self.nombre + ' (' + self.codigo + ')'/]"/>
+      <ownedCreateLine name="Tipo Pension Pension Create Line" label="Crear Linea Tipo Pension" mapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pension%20Line']">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="TipoPension" referenceName="tiposPension">
+            <subModelOperations xsi:type="tool:SetValue" featureName="codigo" valueExpression="[container.tiposPension->size()/]"/>
+            <subModelOperations xsi:type="tool:SetValue" featureName="nombre" valueExpression="['Pension' + container.tiposPension->size()/]"/>
+          </subModelOperations>
+        </firstModelOperation>
+      </ownedCreateLine>
+      <ownedColumnMappings name="Tipo Pagador Pension Column" headerLabelExpression="[self.nombre + ' (' + self.codigo + ')'/]" domainClass="TipoPagadorPension" semanticCandidatesExpression="feature:tiposPagadorPension"/>
+      <intersection name="Tipo Pension Pagador Pension Intersection" lineMapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pension%20Line']" columnMapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedColumnMappings.0" labelExpression="X" columnFinderExpression="[self.tiposPagadorPension/]">
+        <defaultForeground labelSize="14">
+          <labelFormat>bold</labelFormat>
+          <foreGroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultForeground>
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+        </defaultBackground>
+      </intersection>
+      <createColumn name="Tipo Pagador Pension Create Column" label="Crear Columna Tipo Pagador" mapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pagador%20Cross%20Table']/@ownedColumnMappings.0">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="TipoPagadorPension" referenceName="tiposPagadorPension">
+            <subModelOperations xsi:type="tool:SetValue" featureName="codigo" valueExpression="[container.tiposPagadorPension->size()/]"/>
+            <subModelOperations xsi:type="tool:SetValue" featureName="nombre" valueExpression="['Pagador' + container.tiposPagadorPension->size()/]"/>
+          </subModelOperations>
+        </firstModelOperation>
+      </createColumn>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:CrossTableDescription" name="Pension Pensionado Cross Table" domainClass="PlanillaUnica">
+      <ownedLineMappings name="Tipo Pension Pepe Line" domainClass="TipoPension" semanticCandidatesExpression="feature:tiposPension" headerLabelExpression="[self.nombre + ' (' + self.codigo + ')'/]"/>
+      <ownedCreateLine name="Tipo Pension Pepe Create Line" label="Crear Linea Tipo Pension" mapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pepe%20Line']">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="TipoPension" referenceName="tiposPension">
+            <subModelOperations xsi:type="tool:SetValue" featureName="codigo" valueExpression="[container.tiposPension->size()/]"/>
+            <subModelOperations xsi:type="tool:SetValue" featureName="nombre" valueExpression="['Pension' + container.tiposPension->size()/]"/>
+          </subModelOperations>
+        </firstModelOperation>
+      </ownedCreateLine>
+      <ownedColumnMappings name="Tipo Pensionado Pepe Column" headerLabelExpression="[self.nombre + ' (' + self.codigo + ')'/]" domainClass="TipoPensionado" semanticCandidatesExpression="feature:tiposPensionado"/>
+      <intersection name="Tipo Pension Pensionado Pepe Intersection" lineMapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedLineMappings[name='Tipo%20Pension%20Pepe%20Line']" columnMapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedColumnMappings.0" labelExpression="X" columnFinderExpression="[self.tiposPensionado/]">
+        <defaultForeground labelSize="14">
+          <labelFormat>bold</labelFormat>
+          <foreGroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultForeground>
+        <defaultBackground>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+        </defaultBackground>
+      </intersection>
+      <createColumn name="Tipo Pensionado PePe Create Column" forceRefresh="true" mapping="//@ownedViewpoints[name='PlanillaUnica']/@ownedRepresentations[name='Pension%20Pensionado%20Cross%20Table']/@ownedColumnMappings.0">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="TipoPensionado" referenceName="tiposPensionado">
+            <subModelOperations xsi:type="tool:SetValue" featureName="codigo" valueExpression="[container.tiposPensionado->size()/]"/>
+            <subModelOperations xsi:type="tool:SetValue" featureName="nombre" valueExpression="['Pensionado' + container.tiposPensionado->size()/]"/>
+          </subModelOperations>
+        </firstModelOperation>
+      </createColumn>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:EditionTableDescription" name="Tipo Pensionado Edition Table" domainClass="PlanillaUnica">
+      <ownedLineMappings name="Tipo Pensionado Line" domainClass="TipoPensionado" semanticCandidatesExpression="feature:tiposPensionado"/>
+      <ownedColumnMappings name="Codigo Pensionado Column" headerLabelExpression="Codigo" featureName="codigo" labelExpression="feature:codigo"/>
+      <ownedColumnMappings name="Nombre Pensionado Column" headerLabelExpression="Nombre" featureName="nombre" labelExpression="feature:nombre"/>
+      <ownedColumnMappings name="Descripcion Pensionado Column" headerLabelExpression="Descripcion" featureName="descripcion" labelExpression="feature:descripcion"/>
+      <ownedColumnMappings name="Tipos Pagador Pension Pensionado Column" headerLabelExpression="Tipos Pagador Pension" featureName="tiposPagadorPension" labelExpression="[self.tiposPagadorPension->collect(t|t.nombre)/]"/>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:EditionTableDescription" name="Tipos Pagador Pension Edition Table" domainClass="PlanillaUnica">
+      <ownedLineMappings name="Tipo Pagador Pension Line" domainClass="TipoPagadorPension" semanticCandidatesExpression="feature:tiposPagadorPension"/>
+      <ownedColumnMappings name="Codigo Tipo Pagador Column" headerLabelExpression="Codigo" featureName="codigo" labelExpression="feature:codigo"/>
+      <ownedColumnMappings name="Nombre Tipo Pagador Column" headerLabelExpression="Nombre" featureName="nombre" labelExpression="feature:nombre"/>
+      <ownedColumnMappings name="Descripcion Tipo Pagador Column" headerLabelExpression="Descripcion" featureName="descripcion" labelExpression="feature:descripcion"/>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:EditionTableDescription" name="Tipo Pension Edition Table" domainClass="PlanillaUnica">
+      <ownedLineMappings name="Tipo Pension Line" domainClass="TipoPension" semanticCandidatesExpression="feature:tiposPension"/>
+      <ownedColumnMappings name="Codigo Tipo Pension Column" headerLabelExpression="Codigo" featureName="codigo" labelExpression="feature:codigo"/>
+      <ownedColumnMappings name="Nombre Tipo Pension Column" headerLabelExpression="Nombre" featureName="nombre" labelExpression="feature:nombre"/>
+      <ownedColumnMappings name="Descripcion Tipo Pension Column" headerLabelExpression="Descripcion" featureName="descripcion" labelExpression="feature:descripcion"/>
+      <ownedColumnMappings name="Tipos Pensionado Pension Column" headerLabelExpression="Tipos Pensionado" featureName="tiposPensionado" labelExpression="[self.tiposPensionado->collect(t|t.nombre)/]"/>
+      <ownedColumnMappings name="Tipos Pagador Pension Column" headerLabelExpression="Tipos Pagador" featureName="tiposPagadorPension" labelExpression="[self.tiposPagadorPension->collect(t|t.nombre)/]"/>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>

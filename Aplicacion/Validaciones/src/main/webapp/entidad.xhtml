@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>ENTIDAD</h1>
+	<h:form id="entidadCrud">
+
+
+		<p:commandButton action="#{entidadBean.clearEntidad}"
+			value="Nueva Entidad" 
+			 oncomplete="PF('formulario').show();" update="formulario"/>
+
+
+		<p:dataTable var="entidad" value="#{entidadBean.entidadList}"
+			>
+
+			<p:column headerText="Tipo Identificacion">
+				<h:outputText value="#{entidad.tipoIdentificacion}" />
+			</p:column>
+
+			<p:column headerText="N° Identificacion">
+				<h:outputText value="#{entidad.numeroIdentificacion}" />
+			</p:column>
+
+			<p:column headerText="Nombres">
+				<h:outputText
+					value="#{entidad.primerNombre} #{entidad.segundoNombre}" />
+			</p:column>
+
+			<p:column headerText="Apellidos">
+				<h:outputText
+					value="#{entidad.primerApellido} #{entidad.segundoApellido}" />
+			</p:column>
+
+			<p:column headerText="Ingreso Base Cotizacion">
+				<h:outputText value="#{entidad.ingresoBaseCotizacion}" />
+			</p:column>
+
+			<p:column headerText="Alto Riesgo">
+				<h:outputText value="#{entidad.altoRiesgo}" />
+			</p:column>
+
+			<p:column headerText="Vive Exterior">
+				<h:outputText value="#{entidad.viveExterior}" />
+			</p:column>
+			<p:column headerText="Actividad Economica">
+				<h:outputText value="#{entidad.actividadEconomica}" />
+			</p:column>
+			<p:column headerText="Acciones">
+
+				<p:commandButton action="#{entidadBean.delete}" value="Eliminar" update=":entidadCrud">
+					<f:setPropertyActionListener target="#{entidadBean.identificador}"
+						value="#{entidad.id}" />
+				</p:commandButton>
+
+				<p:commandButton action="#{entidadBean.ver}" value="Ver/Editar" oncomplete="PF('formulario').show();" update="formulario">
+					<f:setPropertyActionListener target="#{entidadBean.identificador}" value="#{entidad.id}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+
+
+	<p:dialog header="Formulario" widgetVar="formulario" modal="true"
+		width="80%%" height="100%" id="formulario">
+		<h:form>
+			<h:panelGrid columns="4" cellpadding="5">
+				<h:outputLabel for="primerNombre" value="Primer Nombre:" />
+				<p:inputText id="primerNombre"
+					value="#{entidadBean.entidad.primerNombre}" required="true"
+					label="Primer Nombre" />
+
+				<h:outputLabel for="segundoNombre" value="Segundo Nombre:" />
+				<p:inputText id="segundoNombre"
+					value="#{entidadBean.entidad.segundoNombre}" required="true"
+					label="Segundo Nombre" />
+
+				<h:outputLabel for="primerApellido" value="Primer Apellido:" />
+				<p:inputText id="primerApellido"
+					value="#{entidadBean.entidad.primerApellido}" required="true"
+					label="Primer Apellido" />
+
+				<h:outputLabel for="segundoApellido" value="Segundo Apellido:" />
+				<p:inputText id="segundoApellido"
+					value="#{entidadBean.entidad.segundoApellido}" required="true"
+					label="Segundo Apellido" />
+
+				<h:outputLabel for="tipoIdentificacion" value="Tipo Identificacion:" />
+				<p:inputText id="tipoIdentificacion"
+					value="#{entidadBean.entidad.tipoIdentificacion}" required="true"
+					label="Tipo Identificacion" />
+
+				<h:outputLabel for="numeroIdentificacion"
+					value="Numero Identificacion:" />
+				<p:inputText id="numeroIdentificacion"
+					value="#{entidadBean.entidad.numeroIdentificacion}" required="true"
+					label="Numero Identificacion" />
+
+				<h:outputLabel for="viveExterior" value="Vive Exterior:" />
+				<p:selectBooleanCheckbox id="viveExterior"
+					value="#{entidadBean.entidad.viveExterior}" required="true"
+					label="Vive Exterior" />
+
+				<h:outputLabel for="grupoFamiliar" value="Grupo Familiar:" />
+				<p:selectBooleanCheckbox id="grupoFamiliar"
+					value="#{entidadBean.entidad.grupoFamiliar}" required="true"
+					label="Grupo Familiar" />
+
+				<h:outputLabel for="actividadEconomica" value="Actividad Economica:" />
+				<p:selectBooleanCheckbox id="actividadEconomica"
+					value="#{entidadBean.entidad.actividadEconomica}" required="true"
+					label="Actividad Economica" />
+
+				<h:outputLabel for="altoRiesgo" value="Alto Riesgo:" />
+				<p:selectBooleanCheckbox id="altoRiesgo"
+					value="#{entidadBean.entidad.altoRiesgo}" required="true"
+					label="Alto Riesgo" />
+
+				<h:outputLabel for="congresista" value="Congresista:" />
+				<p:selectBooleanCheckbox id="congresista"
+					value="#{entidadBean.entidad.congresista}" required="true"
+					label="Congresista" />
+
+				<h:outputLabel for="cti" value="CTI:" />
+				<p:selectBooleanCheckbox id="cti" value="#{entidadBean.entidad.cti}"
+					required="true" label="CTI" />
+
+				<h:outputLabel for="aviador" value="Aviador:" />
+				<p:selectBooleanCheckbox id="aviador"
+					value="#{entidadBean.entidad.aviador}" required="true"
+					label="Aviador" />
+
+				<h:outputLabel for="ingresoBaseCotizacion"
+					value="Ingreso Base Cotizacion:" />
+				<p:inputText id="ingresoBaseCotizacion"
+					value="#{entidadBean.entidad.ingresoBaseCotizacion}"
+					required="true" label="Ingreso Base Cotizacion" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Crear"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+						actionListener="#{entidadBean.crear}"  oncomplete="PF('formulario').hide();" update="entidadCrud"
+						rendered="#{entidadBean.buttonCrud}"/>
+						
+					<p:commandButton value="Editar"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+						actionListener="#{entidadBean.editar}"  oncomplete="PF('formulario').hide();" update="entidadCrud"
+						rendered="#{!entidadBean.buttonCrud}"/>
+						
+					<p:commandButton value="Cancelar" 
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="PF('formulario').hide();"  update="entidadCrud"/>
+				</f:facet>
+			</h:panelGrid>
+
+		</h:form>
+	</p:dialog>
+
+
+</h:body>
+</html>

@@ -1,0 +1,25 @@
+package services;
+
+import java.util.List;
+[%
+for (controlador in mArq!ArquitecturaMVC.all.at(0).controladores.select(e|not e.esCrud)){
+%]
+import entities.[%=controlador.nombre.firstToUpperCase()%];
+[%
+}
+%]
+
+public interface IValidacionesServices {
+	[%
+	for (controlador in mArq!ArquitecturaMVC.all.at(0).controladores.select(e|not e.esCrud)){
+	%]
+	public List<[%=controlador.nombre.firstToUpperCase()%]> getAll[%=controlador.nombre.firstToUpperCase()%]();
+	[%
+	}
+	%]
+	
+	[%
+	//public List<TipoPensionado> getTipoPensionado(Long idPension);
+	//public List<TipoPagador> getTipoPagador(Long idPension,Long idPensionado);
+	%]
+}

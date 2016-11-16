@@ -1,0 +1,19 @@
+package services;
+
+import entities.[%=controlador.nombre.firstToUpperCase()%];
+
+import java.util.List;
+
+public interface I[%=controlador.nombre.firstToUpperCase()%]Services {
+	
+	public List<[%=controlador.nombre.firstToUpperCase()%]> getAll();
+	
+	public [%=controlador.nombre.firstToUpperCase()%] get(Long id);
+	
+	public [%=controlador.nombre.firstToUpperCase()%] create([%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%]);
+		
+	public [%=controlador.nombre.firstToUpperCase()%] update([%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%]);
+		
+	public void delete(Long id);
+
+}

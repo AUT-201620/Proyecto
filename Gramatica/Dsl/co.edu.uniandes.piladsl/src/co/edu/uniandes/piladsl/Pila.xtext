@@ -1,0 +1,101 @@
+grammar co.edu.uniandes.piladsl.Pila with org.eclipse.xtext.common.Terminals
+
+generate pila "http://co.edu.uniandes.pila"
+
+PagoServicio :
+	(entidades+=Entidad)+
+	(serviciosComputo+=ServicioComputo)*
+;
+
+Entidad:
+	'entidad' name=ID LLAVEI (atributos+=Atributo)* LLAVED;
+	
+Atributo:
+	'atributo' name=ID DOSPTOS  (tipoPrimitivo=TipoDatoPrimitivo (LLAVEI listaLlaveValor+=LlaveValor (COMA listaLlaveValor+=LlaveValor)* LLAVED)? | 'Lista' listaEntidad=[Entidad] | 'Referencia' referencia=ID)
+	PTOCOMA
+;
+
+LlaveValor:
+	llave=INT IGUAL valor=CADENA_LITERAL
+;
+
+enum TipoDatoPrimitivo:
+	NO_ASIGNADO = 'NoAsignado' | CADENA_CARACTERES = 'CadenaCaracteres' | ENTERO = 'Entero' | FLOTANTE = 'Flotante' | FECHA = 'Fecha' | BOOLEANO = 'Booleano' 
+;	
+        
+ServicioComputo:
+	'servicioComputo' name=ID 
+	LLAVEI
+	(variables+=Variable)*
+	(condiciones+=Condicion)*
+	('retornar' expresionRetorno=Expresion PTOCOMA)?
+	LLAVED
+;
+
+Variable:
+	'var' name=ID DOSPTOS (tipoPrimitivo=TipoDatoPrimitivo | referenciaEntidad=[Entidad]) IGUAL expresion=Expresion PTOCOMA
+;
+
+Condicion:
+	(condicionSi=('si'|'siNo') expresionCondicion=Expresion | condicionSiNinguno='siNinguno')
+	LLAVEI
+	(variables+=Variable)*
+	(asignacionVariable=[Variable] IGUAL expresion+=Expresion PTOCOMA)?
+	(subCondiciones+=Condicion)*
+	('retornar' expresionRetorno=Expresion PTOCOMA)?
+	LLAVED
+;
+
+Expresion:
+   izquierda=ExpresionTerminal (operador+=Operador derechas+=ExpresionTerminal)*;
+   
+ExpresionTerminal returns Expresion:
+    entero=INT | real=INT '.' INT | nombreCalificado=NombreCalificado
+;
+
+enum Operador:
+	SUMA = '+'| RESTA = '-'| MULTIPLICACION = '*'| DIVISION = '/' |
+	IGUAL = '=='| DIFERENTE = '!='| 
+	MAYOR = '>'| MAYOR_IGUAL = '>='| MENOR = '<'| MENOR_IGUAL = '<=' |
+	Y = '&&' | O = '||'
+;	
+        
+
+NombreCalificado://http://stackoverflow.com/questions/14539985/xtext-dsl-grammar-scoping-customization
+    ides+=ID ('.' ides+=ID)*;
+    
+terminal CADENA_LITERAL:
+'"'('\\' . | !('\\' | '"' | '\b' | '\t' | '\n' | '\f' | '\r'))* '"';
+			
+/* Delimitador de Arreglos Izquierdo */
+terminal IGUAL: 
+	'=';
+
+/* Delimitador de Arreglos Izquierdo */
+terminal PARENTI: 
+	'(';
+
+/* Delimitador de Arreglos Derecho */
+terminal PARENTD: 
+	')';
+
+/* Delimitador de atributos */
+terminal COMA: 
+	',';	
+	
+/* Delimitador de cadenas de caracteres y valores */
+terminal PTOCOMA: 
+	';';
+	
+/* Delimitador de cadenas de caracteres y valores */
+terminal DOSPTOS: 
+	':';
+	
+/* Delimitador de Objetos Izquierdo */
+terminal LLAVEI: 
+	'{';
+
+/*Delimitador de Objetos Derecho */
+terminal LLAVED: 
+	'}';
+

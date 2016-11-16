@@ -1,0 +1,140 @@
+package entities;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Date;
+
+/**
+ * @author am.osorio
+ *
+ */
+@NamedQueries({
+	@NamedQuery(name="[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase()%]s",
+    	query="SELECT e FROM [%=modelo.nombre.firstToUpperCase()%] e"),
+    [%if (not modelo.esCrud){
+    %]
+	@NamedQuery(name="[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase()%]Validaciones",
+	   	query="SELECT p FROM [%=modelo.nombre.firstToUpperCase()%] p" +
+	    [%for (atributo in modelo.atributos.select(m|m.modeloReferencia <> null)){
+	    %]
+	    	 " join p.[%=atributo.modeloReferencia.nombre.firstToLowerCase()%] [%=atributo.modeloReferencia.nombre.toLowerCase()%] " +
+		[%}
+		%]
+		" WHERE "+
+		[%for (atributo in modelo.atributos.select(m|m.modeloReferencia <> null)){
+	    %]
+	    	 " [%=atributo.modeloReferencia.nombre.toLowerCase()%].id = :id[%=atributo.modeloReferencia.nombre.firstToLowerCase()%] and"
+		[%}
+		%])
+	[%}
+  %]
+})
+
+@Entity
+public class [%=modelo.nombre.firstToUpperCase()%] implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
+	[%for (atributo in modelo.atributos) {
+		if (atributo.tipo.name == 'REFERENCE'){
+	%]
+	private [%=atributo.modeloReferencia.nombre.firstToUpperCase()%] [%=atributo.nombre%];
+	[%	}
+		else if (atributo.tipo.name == 'REFERENCELIST' and atributo.modeloReferencia.datos.isEmpty){
+	%]
+	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "[%=modelo.nombre.firstToLowerCase()%]")
+	private List<[%=atributo.modeloReferencia.nombre.firstToUpperCase()%]> [%=atributo.nombre%];
+	[%	}
+		else if (atributo.tipo.name == 'REFERENCELIST' and atributo.modeloReferencia.datos.notEmpty){
+	%]
+	@ManyToMany(mappedBy = "[%=modelo.nombre.firstToLowerCase()%]")
+	private List<[%=atributo.modeloReferencia.nombre.firstToUpperCase()%]> [%=atributo.nombre%];
+	[%	}
+		else{
+	%]
+	private [%=atributo.tipo.name.toLowerCase().firstToUpperCase()%] [%=atributo.nombre%];
+	[%
+		}
+	   }
+	%]
+	
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	[%for (atributo in modelo.atributos) {
+		if (atributo.tipo.name == 'REFERENCE'){
+	%]
+	/**
+	 * @return the [%=atributo.nombre.firstToLowerCase()%]
+	 */
+	public [%=atributo.modeloReferencia.nombre.firstToUpperCase()%] get[%=atributo.nombre.firstToUpperCase()%]() {
+		return [%=atributo.nombre.firstToLowerCase()%];
+	}
+	/**
+	 * @param [%=atributo.nombre.firstToLowerCase()%] the [%=atributo.nombre.firstToLowerCase()%] to set
+	 */
+	public void set[%=atributo.modeloReferencia.nombre.firstToUpperCase()%]([%=atributo.modeloReferencia.nombre.firstToUpperCase()%] [%=atributo.nombre.firstToLowerCase()%]) {
+		this.[%=atributo.nombre.firstToLowerCase()%] = [%=atributo.nombre.firstToLowerCase()%];
+	}
+	
+	[%	}
+		else if (atributo.tipo.name == 'REFERENCELIST'){
+	%]
+	/**
+	 * @return the [%=atributo.nombre.firstToLowerCase()%]
+	 */
+	public List<[%=atributo.modeloReferencia.nombre.firstToUpperCase()%]> get[%=atributo.nombre.firstToUpperCase()%]() {
+		return [%=atributo.nombre.firstToLowerCase()%];
+	}
+	/**
+	 * @param [%=atributo.nombre.firstToLowerCase()%] the [%=atributo.nombre.firstToLowerCase()%] to set
+	 */
+	public void set[%=atributo.nombre.firstToUpperCase()%](List<Novedad> [%=atributo.nombre.firstToLowerCase()%]) {
+		this.[%=atributo.nombre.firstToLowerCase()%] = [%=atributo.nombre.firstToLowerCase()%];
+	}
+	
+	[%	}
+		else{
+	%]
+	/**
+	 * @return the [%=atributo.nombre.firstToLowerCase()%]
+	 */
+	public [%=atributo.tipo.name.toLowerCase().firstToUpperCase()%] get[%=atributo.nombre.firstToUpperCase()%]() {
+		return [%=atributo.nombre.firstToLowerCase()%];
+	}
+	/**
+	 * @param [%=atributo.nombre.firstToLowerCase()%] the [%=atributo.nombre.firstToLowerCase()%] to set
+	 */
+	public void set[%=atributo.nombre.firstToUpperCase()%]([%=atributo.tipo.name.toLowerCase().firstToUpperCase()%] [%=atributo.nombre.firstToLowerCase()%]) {
+		this.[%=atributo.nombre.firstToLowerCase()%] = [%=atributo.nombre.firstToLowerCase()%];
+	}
+	[%
+		}
+	   }
+	%]
+	
+	@Override
+	public String toString() {
+		return "[%=modelo.nombre.firstToUpperCase()%]{" +
+				"id=" + id +
+				[%for (atributo in modelo.atributos) {
+				%]
+				", [%=atributo.nombre.firstToLowerCase()%]='" + [%=atributo.nombre.firstToLowerCase()%] + '\'' +
+				[% } %]
+				'}';
+	}
+}

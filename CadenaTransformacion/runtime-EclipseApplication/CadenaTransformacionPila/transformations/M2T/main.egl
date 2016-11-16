@@ -1,0 +1,122 @@
+[%
+	var root : mArq!ArquitecturaMVC:= mArq!ArquitecturaMVC.all.at(0); 
+	
+	//Generador de entidades
+	//Pendientes:
+	//1. NamedQueries de tablas de validaciones quitar and si es el ultimo objeto del for.
+	//2. Falta agregar namedQuery especial para novedades.
+	//3. En relacion contraria de novedades falta poner la relacion manyToOne
+	for(modelo in root.modelos) {
+		if(modelo.esEntidad){
+			var tEntities:Template:= TemplateFactory.load('mToEntities.egl');
+			tEntities.populate('modelo', modelo);
+			tEntities.generate('./Validaciones/src/main/java/entities/' + modelo.nombre.firstToUpperCase() +'.java');
+		}
+	}
+	
+	//Generador de Servicios de Persistencia
+	//Pendientes:
+	//1.  Falta generar metodo especial para novedades: public List<Novedad> findByEntidadId(Long pensionadoId)
+	for(modelo in root.modelos) {
+		if(modelo.esEntidad and modelo.esCrud){
+			var tPersistence:Template:= TemplateFactory.load('mToPersistence.egl');
+			tPersistence.populate('modelo', modelo);
+			tPersistence.generate('./Validaciones/src/main/java/persistence/' + modelo.nombre.firstToUpperCase() +'Persistence.java');
+		}
+	}
+	
+	//Generador de interfaces Crud
+	//Pendientes:
+	//1. Falta metodo especial para novedades: public List<Novedad> findByEntidadId(Long pensionadoId);
+	for(controlador in root.controladores) {
+		if(controlador.esCrud){
+			var tInterfaz:Template:= TemplateFactory.load('mToInterfaz.egl');
+			tInterfaz.populate('controlador', controlador);
+			tInterfaz.generate('./Validaciones/src/main/java/services/I' + controlador.nombre.firstToUpperCase() +'Services.java');
+		}
+	}
+	
+	//Generador de servicios Crud
+	//Pendientes:
+	//1. Falta metodo especial para novedades: public List<Novedad> findByEntidadId(Long pensionadoId);
+	for(controlador in root.controladores) {
+		if(controlador.esCrud){
+			var tService:Template:= TemplateFactory.load('mToService.egl');
+			tService.populate('controlador', controlador);
+			tService.generate('./Validaciones/src/main/java/services/' + controlador.nombre.firstToUpperCase() +'Services.java');
+		}
+	}
+	
+	//Generador de ManagedBeans
+	//Pendientes:
+	//1. Falta normalizar beans para estandarizar e identificar diferencias
+	//2. Se crean beans pero aun estan incompletos
+	for(vista in root.vistas) {
+		var tVista:Template:= TemplateFactory.load('mToManagedBean.egl');
+		tVista.populate('vista', vista);
+		tVista.generate('./Validaciones/src/main/java/web/beans/' + vista.nombre.firstToUpperCase() +'Bean.java');
+	}
+	
+	//Generador de ManagedBeans de Pagos!!!!!!!
+	
+	//Generador de Servivio de Pagos!!!!!!!	
+	
+	//Generador de Interfaz de Pagos!!!!!!!	
+	
+	//Generador de Enums!!!!!!!
+	//Pendientes:
+	//1. Desde los objetos vistas no hay como generar los enum: TipoDocumento y TipoNovedad
+	
+	//Generador de xhtmls!!!!!!!
+%]
+	
+[% 
+	//Generador de interfaz de validaciones
+	//Pendientes:
+	//1. Falta generar metodos con parametros de entrada de acuerdo a las referencias
+	var t: Template:=TemplateFactory.load('mToInterfazVal.egl');
+	t.generate('./Validaciones/src/main/java/services/IValidacionesServices.java');
+	
+	//Generador de Servicio de validaciones
+	//Pendientes:
+	//1. Falta generar metodos con parametros de entrada de acuerdo a las referencias
+	var t: Template:=TemplateFactory.load('mToServiceVal.egl');
+	t.generate('./Validaciones/src/main/java/services/ValidacionesServices.java');
+	
+	//Generador de Servicio de Persistencia de validaciones
+	//Pendientes:
+	//1. Falta generar metodos con parametros de entrada de acuerdo a las referencias
+	var t: Template:=TemplateFactory.load('mToPersistenceVal.egl');
+	t.generate('./Validaciones/src/main/java/persistence/ValidacionesPersistence.java');
+%]
+
+[%
+	//Generador de objetos genericos
+	//1. PersistanceManager
+	var t: Template:=TemplateFactory.load('genEntityManager.egl');
+	t.generate('./Validaciones/src/main/java/persistence/PersistenceManager.java');
+	//2. Hibernate dialect
+	var t: Template:=TemplateFactory.load('genImprovedDialect.egl');
+	t.generate('./Validaciones/src/main/java/dialect/ImprovedDialect.java');
+	//3. Persistence.xml
+	var t: Template:=TemplateFactory.load('genPersistenceXml.egl');
+	t.generate('./Validaciones/src/main/resources/META-INF/persistence.xml');
+	//4. load.sql
+	//ESTE FALTA GENERARLO: SON LOS INSERTS
+	//5. faces-config.xml
+	var t: Template:=TemplateFactory.load('genFacesConfigXml.egl');
+	t.generate('./Validaciones/src/main/webapp/WEB-INF/faces-config.xml');
+	//5. web.xml
+	var t: Template:=TemplateFactory.load('genWebXml.egl');
+	t.generate('./Validaciones/src/main/webapp/WEB-INF/web.xml');
+	//6. Shiro.ini
+	var t: Template:=TemplateFactory.load('genShiro.egl');
+	t.generate('./Validaciones/src/main/webapp/WEB-INF/shiro.ini');
+	//7. Login.xhtml
+	var t: Template:=TemplateFactory.load('genLoginXhtml.egl');
+	t.generate('./Validaciones/src/main/webapp/login.xhtml');
+	//8. pom.xml
+	var t: Template:=TemplateFactory.load('genPomXml.egl');
+	t.generate('./Validaciones/pom.xml');
+%]
+	

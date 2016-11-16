@@ -1,0 +1,61 @@
+package services;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import persistence.*;
+
+[%
+for (controlador in mArq!ArquitecturaMVC.all.at(0).controladores.select(e|not e.esCrud)){
+%]
+import entities.[%=controlador.nombre.firstToUpperCase()%];
+[%
+}
+%]
+
+/**
+ * @author am.osorio
+ * Servicios de Validaciones
+ */
+public class ValidacionesServices implements IValidacionesServices {
+
+private ValidacionesPersistence persistance;
+	
+	@Inject
+    private EntityManager etm;
+    
+	/**
+	 * Constructor ValidacionesServices
+	 */
+	public ValidacionesServices(){
+		persistance = new ValidacionesPersistence();
+	}
+	
+	[%
+	for (controlador in mArq!ArquitecturaMVC.all.at(0).controladores.select(e|not e.esCrud)){
+	%]
+	/**
+	 *
+	 * @return
+	 */
+	public List<[%=controlador.nombre.firstToUpperCase()%]> getAll[%=controlador.nombre.firstToUpperCase()%](){
+		List<[%=controlador.nombre.firstToUpperCase()%]> [%=controlador.nombre.firstToLowerCase()%] = persistance.getAll[%=controlador.nombre.firstToUpperCase()%]();
+		return [%=controlador.nombre.firstToLowerCase()%];
+	}
+	[%
+	}
+	%]
+	
+	[%
+	//public List<TipoPensionado> getTipoPensionado(Long idPension){
+		//List<TipoPensionado> tipos = persistance.findByPension(idPension);
+		//return tipos;
+	//}
+	
+	//public List<TipoPagador> getTipoPagador(Long idPension,Long idPensionado){
+		//List<TipoPagador> tipos = persistance.findByPensioPensionado(idPension,idPensionado);
+		//return tipos;
+	//}
+	%]
+
+}

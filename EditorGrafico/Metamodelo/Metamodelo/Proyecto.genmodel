@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/Metamodelo/src" modelPluginID="Metamodelo"
+    modelName="Proyecto" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>Proyecto.ecore</foreignModel>
+  <genPackages prefix="Proyecto" disposableProviderFactory="true" ecorePackage="Proyecto.ecore#/">
+    <genClasses ecoreClass="Proyecto.ecore#//PlanillaUnica">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Proyecto.ecore#//PlanillaUnica/tiposPensionado"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Proyecto.ecore#//PlanillaUnica/tiposPagadorPension"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Proyecto.ecore#//PlanillaUnica/tiposPension"/>
+    </genClasses>
+    <genClasses ecoreClass="Proyecto.ecore#//TipoPensionado">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPensionado/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPensionado/nombre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Proyecto.ecore#//TipoPensionado/tiposPagadorPension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPensionado/descripcion"/>
+    </genClasses>
+    <genClasses ecoreClass="Proyecto.ecore#//TipoPagadorPension">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPagadorPension/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPagadorPension/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPagadorPension/descripcion"/>
+    </genClasses>
+    <genClasses ecoreClass="Proyecto.ecore#//TipoPension">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPension/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPension/nombre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Proyecto.ecore#//TipoPension/tiposPagadorPension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Proyecto.ecore#//TipoPension/descripcion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Proyecto.ecore#//TipoPension/tiposPensionado"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

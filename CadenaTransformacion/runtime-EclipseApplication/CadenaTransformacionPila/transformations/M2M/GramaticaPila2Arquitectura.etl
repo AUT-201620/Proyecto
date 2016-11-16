@@ -1,0 +1,416 @@
+pre {
+	mGram!PagoServicio.all.collect(p|p.getArquitectura());
+}
+
+operation mGram!PagoServicio getArquitectura(): mArq!ArquitecturaMVC {
+	var arqMVC = new mArq!ArquitecturaMVC;
+	
+    //Modelos
+	arqMVC.modelos = self.entidades.collect(e|e.getModelo());
+	arqMVC.modelos.addAll(getModelosTablaPila());
+	
+	
+	for (m: mArq!Modelo in arqMVC.modelos) {
+		m.completarModelos();
+	}
+
+	//Controladores
+	arqMVC.controladores = self.entidades.collect(e|e.getControlador());
+	arqMVC.controladores.addAll(getControladoresTablaPila());
+
+    //Vistas
+	arqMVC.vistas = self.entidades.collect(e|e.getVista());
+	
+	for (m: mArq!Vista in arqMVC.vistas) {
+		m.completarVistas();
+	}
+
+	return arqMVC;
+}
+
+//De GramaticaPila!Entidad a ArquitecturaMVC!Modelo
+operation mGram!Entidad getModelo(): mArq!Modelo {
+	var modelo = new mArq!Modelo;
+	modelo.nombre = self.name;
+	return modelo;
+}   
+
+operation  getModelosTablaPila(): Set {
+	var modelos = new Set;
+	var modelo;
+	
+	//Correccion para que no se generan QUEMADOS los modelos de TipoPension, TipoPensionado y TipoPagador
+	for (m: mGram!Atributo in mGram!Atributo.all.select(e|e.referencia <> null)){
+		modelo = new mArq!Modelo;
+		modelo.nombre = m.name.firstToUpperCase();
+		modelo.esCrud = false;
+		modelos.add(modelo);
+	}
+	
+	//NOTA:: Esta parte si deberia ir "Quemada" ???
+	modelo = new mArq!Modelo;
+	modelo.nombre = "TipoPensionTipoPensionado";
+	modelo.esCrud = false;
+	modelo.esEntidad = false;
+	modelos.add(modelo);
+	modelo = new mArq!Modelo;
+	modelo.nombre = "TipoPensionadoTipoPagador";
+	modelo.esCrud = false;
+	modelo.esEntidad = false;
+	modelos.add(modelo);
+	modelo = new mArq!Modelo;
+	modelo.nombre = "TipoPensionTipoPagador";
+	modelo.esCrud = false;
+	modelo.esEntidad = false;
+	modelos.add(modelo);
+
+	return modelos;
+}
+
+
+//De GramaticaPila!Entidad a ArquitecturaMVC!Modelo
+operation mArq!Modelo completarModelos()  {
+	var entidad = mGram!Entidad.all.select(e|e.name = self.nombre).first();
+	if (entidad.isDefined()) {
+		self.atributos = entidad.atributos.collect(e|e.getAtributoModelo());
+	}
+	completarModeloTipoPension();
+	completarModeloTipoPensionado();
+	completarModeloTipoPagadorPension();
+	completarModeloTipoPensionTipoPensionado();
+	completarModeloTipoPensionTipoPagador();
+	completarModeloTipoPensionadoTipoPagador();
+}   
+
+//De GramaticaPila!Atributo a ArquitecturaMVC!AtributoModelo
+operation mGram!Atributo getAtributoModelo(): mArq!AtributoModelo {
+	var atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = self.name;
+	if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#CADENA_CARACTERES) {
+		atributoModelo.tipo = mArq!TipoDato#STRING;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#ENTERO) {
+		atributoModelo.tipo = mArq!TipoDato#INTEGER;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FLOTANTE) {
+		atributoModelo.tipo = mArq!TipoDato#FLOAT;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FECHA) {
+		atributoModelo.tipo = mArq!TipoDato#DATE;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#BOOLEANO) {
+		atributoModelo.tipo = mArq!TipoDato#BOOLEAN;
+	}
+	else if ((self.tipoPrimitivo = mGram!TipoDatoPrimitivo#NO_ASIGNADO) or (self.tipoPrimitivo = "")) {
+		
+		var nombreReferencia = "";
+		if (self.referencia <> null) {
+			atributoModelo.tipo = mArq!TipoDato#REFERENCE;
+			nombreReferencia = self.referencia;
+		}
+		else if (self.listaEntidad.isDefined()) {
+		atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+			nombreReferencia = self.listaEntidad.name;
+		}
+		var modelo = mArq!Modelo.all.select(m|m.nombre = nombreReferencia).first();
+		if (modelo.isDefined()) {
+			atributoModelo.modeloReferencia = modelo;
+		}
+	}
+	atributoModelo.codigosValor = self.listaLlaveValor.collect(l|l.getCodigoValor());
+	return atributoModelo;
+}   
+
+//De GramaticaPila!LlaveValor a ArquitecturaMVC!CodigoValor
+operation mGram!LlaveValor getCodigoValor(): mArq!CodigoValor {
+	var codigoValor = new mArq!CodigoValor;
+	codigoValor.codigo = self.llave;
+	codigoValor.valor = self.valor;
+	return codigoValor;
+}   
+
+operation mArq!Modelo getAtributosModelosTablaPila() {
+	self.atributos = new Set;
+	var atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "codigo";
+	atributoModelo.tipo = mArq!TipoDato#INTEGER;
+	self.atributos.add(atributoModelo);
+	atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "nombre";
+	atributoModelo.tipo = mArq!TipoDato#STRING;
+	self.atributos.add(atributoModelo);
+	atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "descripcion";
+	atributoModelo.tipo = mArq!TipoDato#STRING;
+	self.atributos.add(atributoModelo);
+}
+
+operation completarModeloTipoPension() {
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPension").first();
+	if (modelo.isDefined()) {
+		modelo.completarAtributosModeloTipoPension();
+		modelo.completarDatosModeloTipoPension();
+	}
+}
+
+operation mArq!Modelo completarAtributosModeloTipoPension() {
+	self.getAtributosModelosTablaPila();
+	
+	var atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "tipoPagadorPension";
+	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	var modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPagadorPension").first();
+	if (modeloReferencia.isDefined()) {
+		atributoModelo.modeloReferencia = modeloReferencia;
+	}
+	self.atributos.add(atributoModelo);
+	
+	atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "tipoPensionado";
+	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPensionado").first();
+	if (modeloReferencia.isDefined()) {
+		atributoModelo.modeloReferencia = modeloReferencia;
+	}
+	self.atributos.add(atributoModelo);
+}
+
+operation mArq!Modelo completarDatosModeloTipoPension() {
+	var tiposPension = mTab!TipoPension.all;
+	self.datos = new Set;
+	for (tipoPension: mTab!TipoPension in tiposPension) {
+		var dato = new mArq!Dato;
+		dato.campos = "codigo, nombre, descripcion";
+		dato.valores = tipoPension.codigo + ", " + tipoPension.nombre + ", " + tipoPension.descripcion;
+		self.datos.add(dato);
+	}
+}
+
+operation completarModeloTipoPensionado() {
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionado").first();
+	if (modelo.isDefined()) {
+		modelo.completarAtributosModeloTipoPensionado();
+		modelo.completarDatosModeloTipoPensionado();
+	}
+}
+
+operation mArq!Modelo completarAtributosModeloTipoPensionado() {
+	self.getAtributosModelosTablaPila();
+	var atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "tipoPagadorPension";
+	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	var modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPagadorPension").first();
+	if (modeloReferencia.isDefined()) {
+		atributoModelo.modeloReferencia = modeloReferencia;
+	}
+	self.atributos.add(atributoModelo);
+	
+	var atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "tipoPension";
+	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	var modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPension").first();
+	if (modeloReferencia.isDefined()) {
+		atributoModelo.modeloReferencia = modeloReferencia;
+	}
+	self.atributos.add(atributoModelo);
+}
+
+operation mArq!Modelo completarDatosModeloTipoPensionado() {
+	var tiposPensionado = mTab!TipoPensionado.all;
+	self.datos = new Set;
+	for (tipoPensionado: mTab!TipoPensionado in tiposPensionado) {
+		var dato = new mArq!Dato;
+		dato.campos = "codigo, nombre, descripcion";
+		dato.valores = tipoPensionado.codigo + ", " + tipoPensionado.nombre + ", " + tipoPensionado.descripcion;
+		self.datos.add(dato);
+	}
+}
+
+operation completarModeloTipoPagadorPension() {
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPagadorPension").first();
+	if (modelo.isDefined()) {
+		modelo.completarAtributosModeloTipoPagadorPension();
+		modelo.completarDatosModeloTipoPagadorPension();
+	}
+}
+
+operation mArq!Modelo completarAtributosModeloTipoPagadorPension() {
+	self.getAtributosModelosTablaPila();
+	var atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "tipoPension";
+	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	var modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPension").first();
+	if (modeloReferencia.isDefined()) {
+		atributoModelo.modeloReferencia = modeloReferencia;
+	}
+	self.atributos.add(atributoModelo);
+	
+	atributoModelo = new mArq!AtributoModelo;
+	atributoModelo.nombre = "tipoPensionado";
+	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPensionado").first();
+	if (modeloReferencia.isDefined()) {
+		atributoModelo.modeloReferencia = modeloReferencia;
+	}
+	self.atributos.add(atributoModelo);
+}
+
+operation mArq!Modelo completarDatosModeloTipoPagadorPension() {
+	var tiposPagadorPension = mTab!TipoPagadorPension.all;
+	self.datos = new Set;
+	for (tipoPagadorPension: mTab!TipoPagadorPension in tiposPagadorPension) {
+		var dato = new mArq!Dato;
+		dato.campos = "codigo, nombre, descripcion";
+		dato.valores = tipoPagadorPension.codigo + ", " + tipoPagadorPension.nombre + ", " + tipoPagadorPension.descripcion;
+		self.datos.add(dato);
+	}
+}
+
+operation completarModeloTipoPensionTipoPensionado() {
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionTipoPensionado").first();
+	if (modelo.isDefined()) {
+		modelo.completarDatosModeloTipoPensionTipoPensionado();
+	}
+}
+
+operation mArq!Modelo completarDatosModeloTipoPensionTipoPensionado() {
+	var tiposPension = mTab!TipoPension.all;
+	self.datos = new Set;
+	for (tipoPension: mTab!TipoPension in tiposPension) {
+		for (tipoPensionado: mTab!TipoPensionado in tipoPension.tiposPensionado) {
+			var dato = new mArq!Dato;
+			dato.campos = "codigoTipoPension, codigoTipoPensionado";
+			dato.valores = tipoPension.codigo + ", " + tipoPensionado.codigo;
+			self.datos.add(dato);
+		}
+	}
+}
+
+operation completarModeloTipoPensionTipoPagador() {
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionTipoPagador").first();
+	if (modelo.isDefined()) {
+		modelo.completarDatosModeloTipoPensionTipoPagador();
+	}
+}
+
+operation mArq!Modelo completarDatosModeloTipoPensionTipoPagador() {
+	var tiposPension = mTab!TipoPension.all;
+	self.datos = new Set;
+	for (tipoPension: mTab!TipoPension in tiposPension) {
+		for (tipoPagador: mTab!TipoPagadorPension in tipoPension.tiposPagadorPension) {
+			var dato = new mArq!Dato;
+			dato.campos = "codigoTipoPension, codigoTipoPagador";
+			dato.valores = tipoPension.codigo + ", " + tipoPagador.codigo;
+			self.datos.add(dato);
+		}
+	}
+}
+
+operation completarModeloTipoPensionadoTipoPagador() {
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionadoTipoPagador").first();
+	if (modelo.isDefined()) {
+		modelo.completarDatosModeloTipoPensionadoTipoPagador();
+	}
+}
+
+operation mArq!Modelo completarDatosModeloTipoPensionadoTipoPagador() {
+	var tiposPensionado = mTab!TipoPensionado.all;
+	self.datos = new Set;
+	for (tipoPensionado: mTab!TipoPensionado in tiposPensionado) {
+		for (tipoPagador: mTab!TipoPagadorPension in tipoPensionado.tiposPagadorPension) {
+			var dato = new mArq!Dato;
+			dato.campos = "codigoTipoPensionado, codigoTipoPagador";
+			dato.valores = tipoPensionado.codigo + ", " + tipoPagador.codigo;
+			self.datos.add(dato);
+		}
+	}
+}
+
+//Contoladores
+//De GramaticaPila!Entidad a ArquitecturaMVC!Contralador
+operation mGram!Entidad getControlador(): mArq!Controlador {
+	var modelo = new mArq!Controlador;
+	modelo.nombre = self.name;
+	return modelo;
+}   
+
+operation getControladoresTablaPila(): Set {
+	var controladores = new Set;
+	var controlador = new mArq!Controlador;
+	controlador.nombre = "TipoPension";
+	controlador.esCrud = false;
+	controladores.add(controlador);
+	controlador = new mArq!Controlador;
+	controlador.nombre = "TipoPensionado";
+	controlador.esCrud = false;
+	controladores.add(controlador);
+	controlador = new mArq!Controlador;
+	controlador.nombre = "TipoPagadorPension";
+	controlador.esCrud = false;
+	controladores.add(controlador);
+	
+	//Estos controladores no es necesario crearlos
+	/*controlador = new mArq!Controlador;
+	controlador.nombre = "TipoPensionTipoPensionado";
+	controladores.add(controlador);
+	controlador = new mArq!Controlador;
+	controlador.nombre = "TipoPensionadoTipoPagador";
+	controladores.add(controlador);
+	controlador = new mArq!Controlador;
+	controlador.nombre = "TipoPensionTipoPagador";
+	controladores.add(controlador);*/
+	
+	return controladores;
+}
+
+//Vistas
+//De GramaticaPila!Entidad a ArquitecturaMVC!Vista
+operation mGram!Entidad getVista(): mArq!Vista {
+	var vista = new mArq!Vista;
+	vista.nombre = self.name;
+	return vista;
+}   
+
+//De GramaticaPila!Entidad a ArquitecturaMVC!Modelo
+operation mArq!Vista completarVistas()  {
+	var entidad = mGram!Entidad.all.select(e|e.name = self.nombre).first();
+	if (entidad.isDefined()) {
+		self.atributos = entidad.atributos.collect(e|e.getAtributoVista());
+	}
+}   
+
+//De GramaticaPila!Atributo a ArquitecturaMVC!AtributoVista
+operation mGram!Atributo getAtributoVista(): mArq!AtributoVista {
+	var atributoVista = new mArq!AtributoVista;
+	atributoVista.nombre = self.name;
+	atributoVista.etiqueta = self.name;
+	if (self.listaLlaveValor.isDefined() and (self.listaLlaveValor.size() > 0)) {
+		atributoVista.tipo = mArq!TipoAtributoVista#LISTA;
+	}
+	else if (self.listaEntidad.isDefined()) {
+		atributoVista.tipo = mArq!TipoAtributoVista#REFERENCIA;
+		var vista = mArq!Vista.all.select(m|m.nombre = self.listaEntidad.name).first();
+		if (vista.isDefined()) {
+			atributoVista.vistaReferencia = vista;
+		}
+	}
+	else if (((self.tipoPrimitivo = mGram!TipoDatoPrimitivo#NO_ASIGNADO) or (self.tipoPrimitivo = "")) and (self.referencia <> "")) {
+		atributoVista.tipo = mArq!TipoAtributoVista#LISTA;
+	}	
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#CADENA_CARACTERES) {
+		atributoVista.tipo = mArq!TipoAtributoVista#TEXTO;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#ENTERO) {
+		atributoVista.tipo = mArq!TipoAtributoVista#TEXTO;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FLOTANTE) {
+		atributoVista.tipo = mArq!TipoAtributoVista#TEXTO;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FECHA) {
+		atributoVista.tipo = mArq!TipoAtributoVista#FECHA;
+	}
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#BOOLEANO) {
+		atributoVista.tipo = mArq!TipoAtributoVista#BOOLEANO;
+	}
+	return atributoVista;
+}
