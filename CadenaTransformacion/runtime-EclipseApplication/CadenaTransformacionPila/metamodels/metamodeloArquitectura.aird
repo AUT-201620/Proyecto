@@ -3,15 +3,16 @@
   <semanticResources>metamodeloArquitectura.ecore</semanticResources>
   <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
   <ownedViews xmi:type="viewpoint:DView" xmi:id="__KEGkKeBEea1kb3jkTTcrA">
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
     <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_DBV6IKeCEea1kb3jkTTcrA" name="metamodelo Arquitectura class diagram">
       <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_DBV6IaeCEea1kb3jkTTcrA" source="DANNOTATION_CUSTOMIZATION_KEY">
         <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_DBV6IqeCEea1kb3jkTTcrA">
-          <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_lD6nQKwaEeaNaYAMMRf6Kw" sourceArrow="FillDiamond" routingStyle="manhattan">
+          <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_JwuKkK6FEea0dofRaRorBg" routingStyle="manhattan">
             <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_lD6nQawaEeaNaYAMMRf6Kw" showIcon="false" labelExpression="service:render">
+            <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_JwuKka6FEea0dofRaRorBg" showIcon="false" labelExpression="service:render">
               <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
-            <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_lD6nQqwaEeaNaYAMMRf6Kw" labelSize="6" showIcon="false" labelExpression="service:eKeysLabel">
+            <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_JwuKkq6FEea0dofRaRorBg" labelSize="6" showIcon="false" labelExpression="service:eKeysLabel">
               <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
             </endLabelStyleDescription>
           </computedStyleDescriptions>
@@ -457,7 +458,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_FMEsWqeCEea1kb3jkTTcrA" name="enLista : EBoolean = false" tooltipText="">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_FMEsWqeCEea1kb3jkTTcrA" name="enLista : EBoolean = true" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="metamodeloArquitectura.ecore#//AtributoVista/enLista"/>
           <semanticElements xmi:type="ecore:EAttribute" href="metamodeloArquitectura.ecore#//AtributoVista/enLista"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_FMEsW6eCEea1kb3jkTTcrA" labelAlignment="LEFT">
@@ -746,63 +747,63 @@
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_FMYOUKeCEea1kb3jkTTcrA" name="[0..*] vistas" sourceNode="_FLe2cKeCEea1kb3jkTTcrA" targetNode="_FLxxZKeCEea1kb3jkTTcrA">
         <target xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//ArquitecturaMVC/vistas"/>
         <semanticElements xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//ArquitecturaMVC/vistas"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_lD6nQ6waEeaNaYAMMRf6Kw" description="_lD6nQKwaEeaNaYAMMRf6Kw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_lD6nRKwaEeaNaYAMMRf6Kw" showIcon="false"/>
-          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_lD6nRawaEeaNaYAMMRf6Kw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_JwuKk66FEea0dofRaRorBg" description="_JwuKkK6FEea0dofRaRorBg" routingStyle="manhattan" strokeColor="0,0,0">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_JwuKlK6FEea0dofRaRorBg" showIcon="false"/>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_JwuKla6FEea0dofRaRorBg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_FMYOV6eCEea1kb3jkTTcrA" name="[0..*] controladores" sourceNode="_FLe2cKeCEea1kb3jkTTcrA" targetNode="_FLonc6eCEea1kb3jkTTcrA">
         <target xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//ArquitecturaMVC/controladores"/>
         <semanticElements xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//ArquitecturaMVC/controladores"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_lEEYQKwaEeaNaYAMMRf6Kw" description="_lD6nQKwaEeaNaYAMMRf6Kw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_lEEYQawaEeaNaYAMMRf6Kw" showIcon="false"/>
-          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_lEEYQqwaEeaNaYAMMRf6Kw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_JwuKlq6FEea0dofRaRorBg" description="_JwuKkK6FEea0dofRaRorBg" routingStyle="manhattan" strokeColor="0,0,0">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_JwuKl66FEea0dofRaRorBg" showIcon="false"/>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_JwuKmK6FEea0dofRaRorBg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_FMYOW6eCEea1kb3jkTTcrA" name="[0..*] modelos" sourceNode="_FLe2cKeCEea1kb3jkTTcrA" targetNode="_FLoneaeCEea1kb3jkTTcrA">
         <target xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//ArquitecturaMVC/modelos"/>
         <semanticElements xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//ArquitecturaMVC/modelos"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_lEEYQ6waEeaNaYAMMRf6Kw" description="_lD6nQKwaEeaNaYAMMRf6Kw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_lEEYRKwaEeaNaYAMMRf6Kw" showIcon="false"/>
-          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_lEEYRawaEeaNaYAMMRf6Kw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_JwuKma6FEea0dofRaRorBg" description="_JwuKkK6FEea0dofRaRorBg" routingStyle="manhattan" strokeColor="0,0,0">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_JwuKmq6FEea0dofRaRorBg" showIcon="false"/>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_JwuKm66FEea0dofRaRorBg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_FMYOa6eCEea1kb3jkTTcrA" name="[0..*] atributos" sourceNode="_FLoneaeCEea1kb3jkTTcrA" targetNode="_FLe2cqeCEea1kb3jkTTcrA">
         <target xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//Modelo/atributos"/>
         <semanticElements xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//Modelo/atributos"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_lEEYSawaEeaNaYAMMRf6Kw" description="_lD6nQKwaEeaNaYAMMRf6Kw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_lEEYSqwaEeaNaYAMMRf6Kw" showIcon="false"/>
-          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_lEEYS6waEeaNaYAMMRf6Kw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_JwuKn66FEea0dofRaRorBg" description="_JwuKkK6FEea0dofRaRorBg" routingStyle="manhattan" strokeColor="0,0,0">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_JwuKoK6FEea0dofRaRorBg" showIcon="false"/>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_JwuKoa6FEea0dofRaRorBg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_FMYOb6eCEea1kb3jkTTcrA" name="[0..*] datos" sourceNode="_FLoneaeCEea1kb3jkTTcrA" targetNode="_FLondaeCEea1kb3jkTTcrA">
         <target xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//Modelo/datos"/>
         <semanticElements xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//Modelo/datos"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_lEEYTKwaEeaNaYAMMRf6Kw" description="_lD6nQKwaEeaNaYAMMRf6Kw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_lEEYTawaEeaNaYAMMRf6Kw" showIcon="false"/>
-          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_lEEYTqwaEeaNaYAMMRf6Kw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_JwuKoq6FEea0dofRaRorBg" description="_JwuKkK6FEea0dofRaRorBg" routingStyle="manhattan" strokeColor="0,0,0">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_JwuKo66FEea0dofRaRorBg" showIcon="false"/>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_JwuKpK6FEea0dofRaRorBg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_FMYOc6eCEea1kb3jkTTcrA" name="[0..*] atributos" sourceNode="_FLxxZKeCEea1kb3jkTTcrA" targetNode="_FLe2dKeCEea1kb3jkTTcrA">
         <target xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//Vista/atributos"/>
         <semanticElements xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//Vista/atributos"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_lEEYT6waEeaNaYAMMRf6Kw" description="_lD6nQKwaEeaNaYAMMRf6Kw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_lEEYUKwaEeaNaYAMMRf6Kw" showIcon="false"/>
-          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_lEEYUawaEeaNaYAMMRf6Kw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_Jw3UgK6FEea0dofRaRorBg" description="_JwuKkK6FEea0dofRaRorBg" routingStyle="manhattan" strokeColor="0,0,0">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_Jw3Uga6FEea0dofRaRorBg" showIcon="false"/>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_Jw3Ugq6FEea0dofRaRorBg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_BHtDsKedEea6S-LJgkbPkg" name="[0..*] codigosValor" sourceNode="_FLe2cqeCEea1kb3jkTTcrA" targetNode="_FLoncaeCEea1kb3jkTTcrA">
         <target xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//AtributoModelo/codigosValor"/>
         <semanticElements xmi:type="ecore:EReference" href="metamodeloArquitectura.ecore#//AtributoModelo/codigosValor"/>
-        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_lEEYRqwaEeaNaYAMMRf6Kw" description="_lD6nQKwaEeaNaYAMMRf6Kw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_lEEYR6waEeaNaYAMMRf6Kw" showIcon="false"/>
-          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_lEEYSKwaEeaNaYAMMRf6Kw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_JwuKnK6FEea0dofRaRorBg" description="_JwuKkK6FEea0dofRaRorBg" routingStyle="manhattan" strokeColor="0,0,0">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_JwuKna6FEea0dofRaRorBg" showIcon="false"/>
+          <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_JwuKnq6FEea0dofRaRorBg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
       </ownedDiagramElements>
@@ -841,7 +842,6 @@
       <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@additionalLayers[name='Validation']"/>
       <target xmi:type="ecore:EPackage" href="metamodeloArquitectura.ecore#/"/>
     </ownedRepresentations>
-    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
   </ownedViews>
   <ownedViews xmi:type="viewpoint:DView" xmi:id="_Ap1zEKeJEea1kb3jkTTcrA">
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>

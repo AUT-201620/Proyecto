@@ -1,6 +1,6 @@
 [%
 	//Generation Path
-	var basicPath: String := '.';//'../../gen';
+	var basicPath: String := '.';
 	var appName: String := 'Validaciones';
 	var appPath: String := basicPath + '/' + appName;
 	var srcPath: String := appPath + '/src';
@@ -81,6 +81,12 @@
 	//1. Desde los objetos vistas no hay como generar los enum: TipoDocumento y TipoNovedad
 	
 	//Generador de xhtmls!!!!!!!
+	
+	for(vista in root.vistas) {
+		var tVista: Template := TemplateFactory.load(templatePath + '/mToXhtml.egl');
+		tVista.populate('vista', vista);
+		tVista.generate(srcMainPath + '/webapp/pages/' + vista.nombre.firstToLowerCase() +'.xhtml');
+	}
 %]
 
 [% 

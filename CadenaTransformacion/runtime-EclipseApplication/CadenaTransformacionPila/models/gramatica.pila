@@ -6,9 +6,6 @@ entidad Aportante {
 	atributo tipoIdentificacion: CadenaCaracteres {1="CedulaCiudadania", 2="CedulaExtranjeria", 
 		3="TarjetaIdentidad", 4="RegistroCivil", 5="Pasaporte", 6="CarneDiplomatico"
 	};
-	atributo tipo: CadenaCaracteres {1="Traslado", 2="VariacionSalario", 3="SLN", 4="Incapacidad", 
-		5="LicenciaPaternidad", 6="Vacaciones", 7="LicenciaRemunerada", 8="AporteVoluntario"
-	};
 }
 
 entidad Novedad {

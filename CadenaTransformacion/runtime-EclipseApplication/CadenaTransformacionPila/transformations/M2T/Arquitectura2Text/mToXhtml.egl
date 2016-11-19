@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+<h:body>
+	<ui:include src="menu.xhtml" />
+	<h1>[%=vista.nombre.toUpperCase()%]</h1>
+	<h:form id="[%=vista.nombre.firstToLowerCase()%]Crud">
+		<p:commandButton action="#{[%=vista.nombre.firstToLowerCase()%]Bean.clear[%=vista.nombre.firstToUpperCase()%]}"
+				value="Nuevo [%=vista.nombre.firstToLowerCase()%]" 
+				oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').show();" update="formulario[%=vista.nombre.firstToUpperCase()%]"/>
+				
+		
+		<p:dataTable var="[%=vista.nombre.firstToLowerCase()%]" value="#{[%=vista.nombre.firstToLowerCase()%]Bean.[%=vista.nombre.firstToLowerCase()%]List}">
+		
+		[%for (atributo in vista.atributos) {
+			if (atributo.enLista){
+		%]
+			<p:column headerText="[%=atributo.nombre.firstToUpperCase()%]">
+				<h:outputText value="#[%=vista.nombre.firstToLowerCase()%].[%=atributo.nombre.firstToLowerCase()%]}" />
+			</p:column>
+		[%
+			}
+		}
+		%]
+		
+			<p:column headerText="Acciones" >			
+				<p:commandButton action="#{[%=vista.nombre.firstToLowerCase()%]Bean.delete}" value="Eliminar" update=":[%=vista.nombre.firstToLowerCase()%]Crud">
+					<f:setPropertyActionListener target="#{[%=vista.nombre.firstToLowerCase()%]Bean.identificador}" value="#{[%=vista.nombre.firstToLowerCase()%].id}" />
+				</p:commandButton>
+		
+				<p:commandButton action="#{[%=vista.nombre.firstToLowerCase()%]Bean.ver}" value="Ver/Editar" oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').show();" update="formulario[%=vista.nombre.firstToUpperCase()%]">
+					<f:setPropertyActionListener target="#{[%=vista.nombre.firstToLowerCase()%]Bean.identificador}" value="#{[%=vista.nombre.firstToLowerCase()%].id}" />
+				</p:commandButton>
+			</p:column>
+			
+		</p:dataTable>
+	
+	</h:form>
+	
+	
+	<p:dialog header="formulario[%=vista.nombre.firstToUpperCase()%]" widgetVar="formulario[%=vista.nombre.firstToUpperCase()%]"
+		modal="true" width="80%" height="100%" id="formulario[%=vista.nombre.firstToUpperCase()%]">
+		<h:form>
+			<h:panelGrid columns="4" cellpadding="5">
+			[%for (atributo in vista.atributos) {
+			%]
+				<h:outputLabel for="[%=atributo.nombre.firstToLowerCase()%]" value="[%=atributo.nombre.firstToUpperCase()%]:" />
+		        <p:inputText id="[%=atributo.nombre.firstToLowerCase()%]" value="#{[%=vista.nombre.firstToLowerCase()%]Bean.[%=vista.nombre.firstToLowerCase()%].[%=atributo.nombre.firstToLowerCase()%]}" required="true" label="[%=atributo.etiqueta%]" />
+ 			 
+			[%
+			}
+			%]
+				<f:facet name="footer">
+					<p:commandButton value="Crear"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+						actionListener="#{aportanteBean.crear}"  oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').hide();" update="aportanteCrud"
+						rendered="#{aportanteBean.buttonCrud}"/>
+						
+					<p:commandButton value="Editar"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+						actionListener="#{[%=vista.nombre.firstToLowerCase()%]Bean.editar}"  oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').hide();" update="[%=vista.nombre.firstToLowerCase()%]Crud"
+						rendered="#{![%=vista.nombre.firstToLowerCase()%]Bean.buttonCrud}"/>
+						
+					<p:commandButton value="Cancelar" 
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="PF('formulario[%=vista.nombre.firstToUpperCase()%]').hide();"  update="[%=vista.nombre.firstToLowerCase()%]Crud"/>
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>
+				

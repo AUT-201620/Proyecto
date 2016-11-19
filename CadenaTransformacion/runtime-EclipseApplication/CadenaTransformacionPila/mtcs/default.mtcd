@@ -5,6 +5,7 @@
   <semanticResources>default.mtc</semanticResources>
   <semanticResources>platform:/resource/CadenaTransformacionPila/mtcs/default.mtc</semanticResources>
   <ownedViews xmi:id="_yXJz0HTpEeO7kd1RfsmAcw">
+    <viewpoint href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']"/>
     <ownedRepresentations xsi:type="diagram:DSemanticDiagram" xmi:id="_GwhFIHWkEeOHkLQMMBSUFQ" name="Default">
       <ownedAnnotationEntries xmi:id="_GwhsMHWkEeOHkLQMMBSUFQ" source="GMF_DIAGRAMS">
         <data xsi:type="notation:Diagram" xmi:id="_GwhsMXWkEeOHkLQMMBSUFQ" type="Sirius" element="_GwhFIHWkEeOHkLQMMBSUFQ" measurementUnit="Pixel">
@@ -117,6 +118,17 @@
             </children>
             <styles xsi:type="notation:ShapeStyle" xmi:id="_TjU286xFEeafIORT_DN-uA" fontName="Segoe UI" fontHeight="10"/>
             <layoutConstraint xsi:type="notation:Bounds" xmi:id="_TjU29KxFEeafIORT_DN-uA" x="1340" y="230" width="160" height="50"/>
+          </children>
+          <children type="2001" element="//@ownedViews.0/@ownedRepresentations.0/@ownedDiagramElements.1">
+            <children type="5002">
+              <layoutConstraint xsi:type="notation:Location" y="5"/>
+            </children>
+            <children type="3003" element="//@ownedViews.0/@ownedRepresentations.0/@ownedDiagramElements.1/@ownedStyle">
+              <styles xsi:type="notation:ShapeStyle" fontName="Segoe UI"/>
+              <layoutConstraint xsi:type="notation:Bounds"/>
+            </children>
+            <styles xsi:type="notation:ShapeStyle" fontName="Segoe UI" fontHeight="10"/>
+            <layoutConstraint xsi:type="notation:Bounds" x="1375" y="60" width="90" height="110"/>
           </children>
           <styles xsi:type="notation:DiagramStyle" xmi:id="_GwhsMnWkEeOHkLQMMBSUFQ"/>
           <edges xmi:id="_gzvoGKwZEeaNaYAMMRf6Kw" type="4001" element="_gzvoP6wZEeaNaYAMMRf6Kw" source="_ts_rcKbAEeazPKRCDsxRpg" target="_gzvoAKwZEeaNaYAMMRf6Kw">
@@ -279,6 +291,22 @@
             <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_b_v-pqxHEeafIORT_DN-uA" id="(1.0,0.8636363636363636)"/>
             <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_b_v-p6xHEeafIORT_DN-uA" id="(0.0,0.7)"/>
           </edges>
+          <edges type="4001" element="//@ownedViews.0/@ownedRepresentations.0/@ownedDiagramElements.21" source="_TjU27axFEeafIORT_DN-uA" target="//@ownedViews.0/@ownedRepresentations.0/@ownedAnnotationEntries.0/@data/@children.10">
+            <children type="6001">
+              <layoutConstraint xsi:type="notation:Bounds" x="-22" y="-10"/>
+            </children>
+            <children type="6002">
+              <layoutConstraint xsi:type="notation:Bounds" x="-7" y="10"/>
+            </children>
+            <children type="6003">
+              <layoutConstraint xsi:type="notation:Bounds" x="-38" y="10"/>
+            </children>
+            <styles xsi:type="notation:ConnectorStyle" routing="Rectilinear"/>
+            <styles xsi:type="notation:FontStyle" fontName="Segoe UI"/>
+            <bendpoints xsi:type="notation:RelativeBendpoints" points="[-15, 0, 0, 60]$[-15, -60, 0, 0]"/>
+            <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.59375,0.0)"/>
+            <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.5,1.0)"/>
+          </edges>
         </data>
       </ownedAnnotationEntries>
       <ownedAnnotationEntries xmi:id="_8Aro8Ka_EeazPKRCDsxRpg" source="DANNOTATION_CUSTOMIZATION_KEY">
@@ -297,6 +325,23 @@
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
         <ownedStyle xsi:type="diagram:Square" xmi:id="_ts8oIKbAEeazPKRCDsxRpg" labelSize="10" showIcon="false" iconPath="/com.mtcflow.diagram/icons/file.png" borderSize="2" borderSizeComputationExpression="2" borderColor="209,209,209" labelPosition="node" width="9" height="11" color="255,255,255">
+          <description xsi:type="style:SquareDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='artifact_file']/@style"/>
+        </ownedStyle>
+        <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='artifact_file']"/>
+      </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DNode" name="gen" incomingEdges="//@ownedViews.0/@ownedRepresentations.0/@ownedDiagramElements.21" width="9" height="11" resizeKind="NSEW">
+        <target href="default.mtc#//@files.1"/>
+        <semanticElements href="default.mtc#//@files.1"/>
+        <decorations>
+          <description xsi:type="description:MappingBasedDecoration" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='FileArtifact']"/>
+        </decorations>
+        <decorations>
+          <description xsi:type="description:MappingBasedDecoration" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='Corner']"/>
+        </decorations>
+        <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
+        <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
+        <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
+        <ownedStyle xsi:type="diagram:Square" labelSize="10" showIcon="false" iconPath="/com.mtcflow.diagram/icons/file.png" borderSize="2" borderSizeComputationExpression="2" borderColor="209,209,209" labelPosition="node" width="9" height="11" color="255,255,255">
           <description xsi:type="style:SquareDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='artifact_file']/@style"/>
         </ownedStyle>
         <actualMapping href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@nodeMappings[name='artifact_file']"/>
@@ -500,7 +545,7 @@
         </ownedStyle>
         <actualMapping xsi:type="description:EdgeMapping" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Output%20Model']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xsi:type="diagram:DNode" xmi:id="_TjU3ZaxFEeafIORT_DN-uA" name="Arquitectura2Text.egl" tooltipText="Double click to open the related file" incomingEdges="_TjU3aKxFEeafIORT_DN-uA _b_guEKxHEeafIORT_DN-uA" width="16" height="5" resizeKind="EAST_WEST">
+      <ownedDiagramElements xsi:type="diagram:DNode" xmi:id="_TjU3ZaxFEeafIORT_DN-uA" name="Arquitectura2Text.egl" tooltipText="Double click to open the related file" outgoingEdges="//@ownedViews.0/@ownedRepresentations.0/@ownedDiagramElements.21" incomingEdges="_TjU3aKxFEeafIORT_DN-uA _b_guEKxHEeafIORT_DN-uA" width="16" height="5" resizeKind="EAST_WEST">
         <target href="default.mtc#//@transformations.2"/>
         <semanticElements href="default.mtc#//@transformations.2"/>
         <decorations xmi:id="_TjU3ZqxFEeafIORT_DN-uA">
@@ -532,12 +577,20 @@
         </ownedStyle>
         <actualMapping xsi:type="description:EdgeMapping" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Input%20Model']"/>
       </ownedDiagramElements>
+      <ownedDiagramElements xsi:type="diagram:DEdge" name="generates" sourceNode="_TjU3ZaxFEeafIORT_DN-uA" targetNode="//@ownedViews.0/@ownedRepresentations.0/@ownedDiagramElements.1">
+        <target href="default.mtc#//@outputFiles.0"/>
+        <semanticElements href="default.mtc#//@outputFiles.0"/>
+        <ownedStyle targetArrow="InputFillClosedArrow" size="4" routingStyle="manhattan" strokeColor="0,0,0">
+          <description xsi:type="style:EdgeStyleDescription" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Output%20File']/@style"/>
+          <centerLabelStyle labelSize="9" showIcon="false"/>
+        </ownedStyle>
+        <actualMapping xsi:type="description:EdgeMapping" href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer/@edgeMappings[name='Output%20File']"/>
+      </ownedDiagramElements>
       <description href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']"/>
       <filterVariableHistory xmi:id="_GwhFIXWkEeOHkLQMMBSUFQ"/>
       <activatedLayers href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@defaultLayer"/>
       <activatedLayers href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']/@ownedRepresentations[name='MTC%20Diagram']/@additionalLayers[name='Validation']"/>
       <target href="default.mtc#/"/>
     </ownedRepresentations>
-    <viewpoint href="../../../plugin/com.mtcflow.diagram/description/MTC.odesign#//@ownedViewpoints[name='mtc']"/>
   </ownedViews>
 </viewpoint:DAnalysis>
