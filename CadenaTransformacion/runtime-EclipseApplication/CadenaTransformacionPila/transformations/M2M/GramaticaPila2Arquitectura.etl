@@ -180,8 +180,8 @@ operation mArq!Modelo completarDatosModeloTipoPension() {
 	self.datos = new Set;
 	for (tipoPension: mTab!TipoPension in tiposPension) {
 		var dato = new mArq!Dato;
-		dato.campos = "codigo, nombre, descripcion";
-		dato.valores = tipoPension.codigo + ", " + tipoPension.nombre + ", " + tipoPension.descripcion;
+		dato.campos = "id, codigo, nombre, descripcion";
+		dato.valores = tipoPension.codigo + ", " + tipoPension.codigo + ", '" + tipoPension.nombre + "', '" + tipoPension.descripcion + "'";
 		self.datos.add(dato);
 	}
 }
@@ -220,8 +220,8 @@ operation mArq!Modelo completarDatosModeloTipoPensionado() {
 	self.datos = new Set;
 	for (tipoPensionado: mTab!TipoPensionado in tiposPensionado) {
 		var dato = new mArq!Dato;
-		dato.campos = "codigo, nombre, descripcion";
-		dato.valores = tipoPensionado.codigo + ", " + tipoPensionado.nombre + ", " + tipoPensionado.descripcion;
+		dato.campos = "id, codigo, nombre, descripcion";
+		dato.valores = tipoPensionado.codigo + ", " + tipoPensionado.codigo + ", '" + tipoPensionado.nombre + "', '" + tipoPensionado.descripcion + "'";
 		self.datos.add(dato);
 	}
 }
@@ -260,8 +260,8 @@ operation mArq!Modelo completarDatosModeloTipoPagadorPension() {
 	self.datos = new Set;
 	for (tipoPagadorPension: mTab!TipoPagadorPension in tiposPagadorPension) {
 		var dato = new mArq!Dato;
-		dato.campos = "codigo, nombre, descripcion";
-		dato.valores = tipoPagadorPension.codigo + ", " + tipoPagadorPension.nombre + ", " + tipoPagadorPension.descripcion;
+		dato.campos = "id, codigo, nombre, descripcion";
+		dato.valores = tipoPagadorPension.codigo + ", " + tipoPagadorPension.codigo + ", '" + tipoPagadorPension.nombre + "', '" + tipoPagadorPension.descripcion + "'";
 		self.datos.add(dato);
 	}
 }
@@ -279,7 +279,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionTipoPensionado() {
 	for (tipoPension: mTab!TipoPension in tiposPension) {
 		for (tipoPensionado: mTab!TipoPensionado in tipoPension.tiposPensionado) {
 			var dato = new mArq!Dato;
-			dato.campos = "codigoTipoPension, codigoTipoPensionado";
+			dato.campos = "tipopension_id, tipopensionado_id";
 			dato.valores = tipoPension.codigo + ", " + tipoPensionado.codigo;
 			self.datos.add(dato);
 		}
@@ -299,7 +299,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionTipoPagador() {
 	for (tipoPension: mTab!TipoPension in tiposPension) {
 		for (tipoPagador: mTab!TipoPagadorPension in tipoPension.tiposPagadorPension) {
 			var dato = new mArq!Dato;
-			dato.campos = "codigoTipoPension, codigoTipoPagador";
+			dato.campos = "tipopension_id, tipopagador_id";
 			dato.valores = tipoPension.codigo + ", " + tipoPagador.codigo;
 			self.datos.add(dato);
 		}
@@ -319,7 +319,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionadoTipoPagador() {
 	for (tipoPensionado: mTab!TipoPensionado in tiposPensionado) {
 		for (tipoPagador: mTab!TipoPagadorPension in tipoPensionado.tiposPagadorPension) {
 			var dato = new mArq!Dato;
-			dato.campos = "codigoTipoPensionado, codigoTipoPagador";
+			dato.campos = "tipopensionado_id, tipopagador_id";
 			dato.valores = tipoPensionado.codigo + ", " + tipoPagador.codigo;
 			self.datos.add(dato);
 		}
