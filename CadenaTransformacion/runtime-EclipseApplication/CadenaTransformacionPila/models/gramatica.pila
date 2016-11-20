@@ -13,7 +13,7 @@ entidad Novedad {
 	atributo fechaFin: Fecha;
 	atributo noConsolidada: Booleano;
 	atributo fechaCreacion: Fecha; 
-	atributo tipo: CadenaCaracteres {1="Traslado", 2="VariacionSalario", 3="SLN", 4="Incapacidad", 
+	atributo tipoNovedad: CadenaCaracteres {1="Traslado", 2="VariacionSalario", 3="SLN", 4="Incapacidad", 
 		5="LicenciaPaternidad", 6="Vacaciones", 7="LicenciaRemunerada", 8="AporteVoluntario"
 	};
 }
