@@ -82,9 +82,18 @@
 	
 	//Generador de Interfaz de Pagos!!!!!!!	
 	
-	//Generador de Enums!!!!!!!
-	//Pendientes:
-	//1. Desde los objetos vistas no hay como generar los enum: TipoDocumento y TipoNovedad
+	//Generador de Enums
+	for(modelo in root.modelos) {
+		for (atributoModelo in modelo.atributos) {
+			if (atributoModelo.codigosValor.isDefined() and (atributoModelo.codigosValor.size() > 0)) {
+				var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
+				var tEnum: Template := TemplateFactory.load(templatePath + '/mToEnum.egl');
+				tEnum.populate('atributoModelo', atributoModelo);
+				tEnum.setFormatter(jFormatter);
+				tEnum.generate(srcJavaPath + '/entities/' + atributoModelo.nombre.firstToUpperCase() + 'Enum.java');
+			}
+		}
+	}
 	
 	//Generador de xhtmls!!!!!!!
 	
