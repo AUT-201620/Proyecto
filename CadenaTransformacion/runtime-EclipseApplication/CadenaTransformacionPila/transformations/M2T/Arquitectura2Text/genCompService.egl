@@ -15,24 +15,147 @@ import java.util.List;
  */
 @ManagedBean
 public class ComputoServices {
-	/**
-	 *
-	 * @return
-	 */
+
 [%
 	for(servicio in servicios) {
-	servicio.obtenerNombre();
+	
 %]
 	public float [%=servicio.name.firstToUpperCase()%](Pensionado pensionado) {
+[%
+	if (servicio.variables.isDefined()) {
+		for (variable in servicio.variables) {
+			variable.obtenerTextoVariable();
+		}
+	}	
+	if (servicio.condiciones.isDefined()) {
+		for (condicion in servicio.condiciones) {
+			condicion.obtenerTextoCondicion();
+		}
+	}	
+	if (servicio.expresionRetorno.isDefined()) {
+		out.print('return ');
+		servicio.expresionRetorno.obtenerTextoExpresion();
+		out.println(';');
 	}
-
+%]	
+	}
 [%
 	}
 %]	
 }
 
-[%operation mGram!ServicioComputo obtenerNombre() {%]
-[%=self.name.firstToUpperCase()%]
-[%}%]	 
+[%
+	operation mGram!Condicion obtenerTextoCondicion() {
+		if (self.condicionSiNinguno.isDefined()) {
+			out.print('else');
+		}
+		else if (self.condicionSi.isDefined()) {
+			if (self.condicionSi = 'siNo') {
+				out.print('else if');
+			}
+			else {
+				out.print('if');
+			}
+			out.print(' (');
+			self.expresionCondicion.obtenerTextoExpresion();
+			out.print(')');
+		}
+		out.println(' {');
+		if (self.variables.isDefined()) {
+			for (variable in self.variables) {
+				variable.obtenerTextoVariable();
+			}
+		}	
+		if (self.asignacionVariable.isDefined()) {
+			out.print(self.asignacionVariable.name.firstToLowerCase());
+			out.print(' = ');
+			self.expresionAsignacionVariable.obtenerTextoExpresion();
+			out.println(';');
+		}
+		if (self.subCondiciones.isDefined()) {
+			for (subCondicion in self.subCondiciones) {
+				subCondicion.obtenerTextoCondicion();
+			}
+		}	
+		if (self.expresionRetorno.isDefined()) {
+			out.print('return ');
+			self.expresionRetorno.obtenerTextoExpresion();
+			out.println(';');
+		}
+		out.println('}');
+	}
+%]	 
 
+[%
+	operation mGram!Variable obtenerTextoVariable() {
+		if (self.referenciaEntidad.isDefined()) {
+			out.print(self.referenciaEntidad.name);
+		}
+		else if (self.tipoPrimitivo.isDefined()) {
+			if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#CADENA_CARACTERES) {
+				out.print('String');
+			}
+			else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#ENTERO) {
+				out.print('int');
+			}
+			else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FLOTANTE) {
+				out.print('float');
+			}
+			else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FECHA) {
+				out.print('Date');
+			}
+			else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#BOOLEANO) {
+				out.print('boolean');
+			}
+		}
+		out.print(' ');
+		out.print(self.name.firstToLowerCase());
+		out.print(' = ');
+		self.expresion.obtenerTextoExpresion();
+		out.println(';');
+	}
+%]	 
+
+[%
+	operation mGram!Expresion obtenerTextoExpresion() {
+		if (self.operacion.isDefined()) {
+			self.operacion.obtenerTextoOperacion();
+		}
+		else if (self.expresionTerminal.isDefined()) {
+			self.expresionTerminal.obtenerTextoExpresionTerminal();
+		}
+	}
+%]	 
+
+[%
+	operation mGram!Operacion obtenerTextoOperacion() {
+		self.izquierda.obtenerTextoExpresionTerminal();
+		out.print(' ');
+		out.print(self.operador);
+		out.print(' ');
+		self.derecha.obtenerTextoExpresionTerminal();
+	}
+%]	 
+
+[%
+	operation mGram!ExpresionTerminal obtenerTextoExpresionTerminal() {
+		var separador: String := '';
+		var paren: String := '';
+		if (self.nombreCalificado.isDefined()) {
+			for (ide in self.nombreCalificado.ides){
+				out.print(separador);
+				out.print(ide);
+				out.print(paren);
+				separador := '.';
+				paren := '()';
+			}
+		}
+		else if (self.real.isDefined()) {
+			out.print(self.real);
+		}
+		else if (self.entero.isDefined()) {
+			out.print(self.entero);
+		}
+	}
+%]	 
 
