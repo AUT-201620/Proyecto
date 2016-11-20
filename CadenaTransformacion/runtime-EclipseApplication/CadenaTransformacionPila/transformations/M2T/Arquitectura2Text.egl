@@ -11,6 +11,7 @@
 	var templatePath: String := 'Arquitectura2Text';
 
 	var root : mArq!ArquitecturaMVC:= mArq!ArquitecturaMVC.all.at(0);
+	var serviciosComputo: Set := mGram!ServicioComputo.all.asSet();
 %]
 
 [%
@@ -73,6 +74,9 @@
 	//Generador de ManagedBeans de Pagos!!!!!!!
 	
 	//Generador de Servivio de Pagos!!!!!!!	
+	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/genCompService.egl');
+	tServicioComputo.populate('servicios', serviciosComputo);
+    tServicioComputo.generate(srcJavaPath + '/services/ComputoServices.java');
 	
 	//Generador de Interfaz de Pagos!!!!!!!	
 	
