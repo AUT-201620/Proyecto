@@ -1,0 +1,38 @@
+package services;
+
+import entities.Pensionado;
+import entities.Novedad;
+
+import javax.annotation.ManagedBean;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+
+import java.util.List;
+
+/**
+ * @author am.osorio
+ * Servicios de Computo
+ */
+@ManagedBean
+public class ComputoServices {
+	/**
+	 *
+	 * @return
+	 */
+[%
+	for(servicio in servicios) {
+	servicio.obtenerNombre();
+%]
+	public float [%=servicio.name.firstToUpperCase()%](Pensionado pensionado) {
+	}
+
+[%
+	}
+%]	
+}
+
+[%operation mGram!ServicioComputo obtenerNombre() {%]
+[%=self.name.firstToUpperCase()%]
+[%}%]	 
+
+
