@@ -1,19 +1,16 @@
 package web.beans;
 
-import entities.Entidad;
+import entities.Pensionado;
 import entities.Novedad;
-import services.EntidadServices;
+import services.PensionadoServices;
 import services.NovedadServices;
-import services.iEntidadServices;
-import services.iNovedadServices;
+import services.IPensionadoServices;
+import services.INovedadServices;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,58 +19,51 @@ import java.util.List;
  */
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class NovedadBean implements Serializable{
 	
     private static final long serialVersionUID = 1L;
 
     private List<Novedad> novedadList = new ArrayList<Novedad>();
-    private List<Entidad> entidadList = new ArrayList<Entidad>();
-    private NovedadServices services;
-    private EntidadServices servicesEntidad;
+    private INovedadServices services;
+    private IPensionadoServices servicesEntidad;
     private Novedad novedad;
-    private Entidad entidad;
+    private Pensionado entidad;
     private Long identificador;
+
     private Long entidadId;
     private Boolean buttonCrud;
+    private TipoNovedad [] tiposNovedad;
 
     /**
      *
      */
-    public NovedadBean() {
+    public NovedadBean()
+    {
         services = new NovedadServices();
-        servicesEntidad = new EntidadServices();
+        servicesEntidad = new PensionadoServices();
         entidadId = (-1L);        
         novedad = new Novedad();
         buttonCrud = Boolean.TRUE;
     }
 
-    /**
-     *
-     */
-    @PostConstruct
-    public void init() {        
-        this.entidadList = servicesEntidad.findAll();
-    }
-    
-    
-	
-	public void findEntidadById(){
-		entidad=servicesEntidad.find(entidadId);
-		findByEntidad();
+	public void findEntidadById(Long idEn)
+    {
+        entidad = new Pensionado();
+		entidad=servicesEntidad.find(idEn);
 	}
 	
-	public void findByEntidad(){
-		this.novedadList = services.findByEntidadId(entidadId);
+	public void findByEntidad(Long idEn){
+
+        this.novedadList = services.findByPensionadoId(idEn);
+        findEntidadById(idEn);
 	}
 
     public void crear()
     {
-        novedad.setEntidad(entidad);
-        //entidad.getNovedades().add(this.novedad);
-        //servicesEntidad.update(entidad);
+        novedad.setPensionado(entidad);
         services.create(this.novedad);
-        this.novedadList = services.findByEntidadId(entidad.getId());
+        this.novedadList = services.findByPensionadoId(entidad.getId());
     }
 
     public void delete() {
@@ -158,19 +148,11 @@ public class NovedadBean implements Serializable{
         this.buttonCrud = buttonCrud;
     }
 
-	public List<Entidad> getEntidadList() {
-		return entidadList;
-	}
-
-	public void setEntidadList(List<Entidad> entidadList) {
-		this.entidadList = entidadList;
-	}
-
-	public Entidad getEntidad() {
+	public Pensionado getEntidad() {
 		return entidad;
 	}
 
-	public void setEntidad(Entidad entidad) {
+	public void setEntidad(Pensionado entidad) {
 		this.entidad = entidad;
 	}
 
@@ -180,6 +162,20 @@ public class NovedadBean implements Serializable{
 
 	public void setEntidadId(Long entidadId) {
 		this.entidadId = entidadId;
+	}
+
+	/**
+	 * @return the tiposNovedad
+	 */
+	public TipoNovedad [] getTiposNovedad() {
+		return TipoNovedad.values();
+	}
+
+	/**
+	 * @param tiposNovedad the tiposNovedad to set
+	 */
+	public void setTiposNovedad(TipoNovedad [] tiposNovedad) {
+		this.tiposNovedad = tiposNovedad;
 	}
     
 }

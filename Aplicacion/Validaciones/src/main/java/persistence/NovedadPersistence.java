@@ -29,7 +29,7 @@ public class NovedadPersistence
         return novedad;
     }
     
-    public List<Novedad> findByEntidadId(Long id){
+    public List<Novedad> findByPensionadoId(Long id){
         EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
         em.getTransaction().begin();
         @SuppressWarnings("unchecked")

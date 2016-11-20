@@ -1,6 +1,6 @@
 package services;
 
-import entities.Entidad;
+import entities.Pensionado;
 import entities.Novedad;
 import persistence.NovedadPersistence;
 
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by santi on 14/10/2016.
  */
-public class NovedadServices implements iNovedadServices 
+public class NovedadServices implements INovedadServices 
 {
     private NovedadPersistence persistance;
 
@@ -38,8 +38,8 @@ public class NovedadServices implements iNovedadServices
     }
 
     @Override
-	 public List<Novedad> findByEntidadId(Long entidadId) {
-    	List<Novedad> novedadListByIdEntidad = persistance.findByEntidadId(entidadId);
+	 public List<Novedad> findByPensionadoId(Long entidadId) {
+    	List<Novedad> novedadListByIdEntidad = persistance.findByPensionadoId(entidadId);
     	return novedadListByIdEntidad;        
 	    }
 

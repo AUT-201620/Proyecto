@@ -5,7 +5,6 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -14,14 +13,14 @@ import java.util.List;
  */
 
 @NamedQueries({
-@NamedQuery(name="Entidad.getEntidades",
-    query="SELECT e FROM Entidad e"),
-		@NamedQuery(name="Entidad.findByIdentificacion",
-				query="SELECT e FROM Entidad e WHERE e.numeroIdentificacion = :identificacion")
+@NamedQuery(name="Pensionado.getPensionados",
+    query="SELECT e FROM Pensionado e"),
+		@NamedQuery(name="Pensionado.findByIdentificacion",
+				query="SELECT e FROM Pensionado e WHERE e.numeroIdentificacion = :identificacion")
 })
 
 @Entity
-public class Entidad implements Serializable {
+public class Pensionado implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_BY_IDENTIFICACION ="Entidad.findByIdentificacion";
 	
@@ -42,15 +41,15 @@ public class Entidad implements Serializable {
 	private Boolean congresista;
 	private Boolean cti;
 	private Boolean aviador;
-	private BigDecimal ingresoBaseCotizacion;
+	private float montoPension;
 	private TipoPension tipoPension;
 	private TipoPensionado tipoPensionado;
 	private TipoPagador tipoPagador;
 
 	@ManyToOne
-	private SuperEntidad superEntidad;
+	private Aportante aportante;
 
-	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "entidad")
+	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "pensionado")
 	private List<Novedad> novedades;
 	/**
 	 * @return the id
@@ -223,22 +222,22 @@ public class Entidad implements Serializable {
 	/**
 	 * @return the ingresoBaseCotizacion
 	 */
-	public BigDecimal getIngresoBaseCotizacion() {
-		return ingresoBaseCotizacion;
+	public float getMontoPension() {
+		return montoPension;
 	}
 	/**
 	 * @param ingresoBaseCotizacion the ingresoBaseCotizacion to set
 	 */
-	public void setIngresoBaseCotizacion(BigDecimal ingresoBaseCotizacion) {
-		this.ingresoBaseCotizacion = ingresoBaseCotizacion;
+	public void setMontoPension(float montoPension) {
+		this.montoPension = montoPension;
 	}
 
-	public SuperEntidad getSuperEntidad() {
-		return superEntidad;
+	public Aportante getAportante() {
+		return aportante;
 	}
 
-	public void setSuperEntidad(SuperEntidad superEntidad) {
-		this.superEntidad = superEntidad;
+	public void setAportante(Aportante aportante) {
+		this.aportante = aportante;
 	}
 
 	public List<Novedad> getNovedades() {
@@ -302,8 +301,8 @@ public class Entidad implements Serializable {
 				", congresista=" + congresista +
 				", cti=" + cti +
 				", aviador=" + aviador +
-				", ingresoBaseCotizacion=" + ingresoBaseCotizacion +
-				", superEntidad=" + superEntidad +
+				", montoPension=" + montoPension +
+				", aportante=" + aportante +
 				", novedades=" + novedades +
 				'}';
 	}

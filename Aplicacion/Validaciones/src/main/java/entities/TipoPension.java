@@ -11,6 +11,10 @@ import java.util.List;
  * @author am.osorio
  *
  */
+@NamedQueries({
+    @NamedQuery(name="TipoPension.getAll",
+            query="SELECT e FROM TipoPension e")
+})
 @Entity
 public class TipoPension implements Serializable {
 	private static final long serialVersionUID = 1L;

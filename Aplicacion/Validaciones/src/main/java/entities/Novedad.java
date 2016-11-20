@@ -13,7 +13,7 @@ import java.util.Date;
         @NamedQuery(name="Novedad.getNovedades",
                 query="SELECT e FROM Novedad e"),
         @NamedQuery(name="Novedad.findByEntidadId",
-        query = "SELECT e FROM Novedad e where e.entidad.id = :entidadId")
+        query = "SELECT e FROM Novedad e where e.pensionado.id = :entidadId")
 })
 @Entity
 public class Novedad implements Serializable
@@ -29,8 +29,8 @@ public class Novedad implements Serializable
     private String tipo;
 
     @ManyToOne
-    @JoinColumn(name="entidad_id", nullable = false)
-    private Entidad entidad;
+    @JoinColumn(name="pensionado_id", nullable = false)
+    private Pensionado pensionado;
 
     public Long getId() {
         return id;
@@ -72,11 +72,11 @@ public class Novedad implements Serializable
         this.tipo = tipo;
     }
 
-    public Entidad getEntidad() {
-        return entidad;
+    public Pensionado getPensionado() {
+        return pensionado;
     }
 
-    public void setEntidad(Entidad entidad) {
-        this.entidad = entidad;
+    public void setPensionado(Pensionado pensionado) {
+        this.pensionado = pensionado;
     }
 }

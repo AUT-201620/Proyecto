@@ -11,60 +11,15 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>ENTIDAD</h1>
+	<ui:include src="menu.xhtml" />
+	<h1>NOVEDADES</h1>
 	<h:form id="novedadCrud">
-
-		<p:panelGrid columns="3">
-			<h:outputLabel value="Seleccione un entidad:" />
-			<p:selectOneMenu id="fltentidad" value="#{novedadBean.entidadId}"
-				required="true">
-				<f:selectItem itemLabel="Seleccione una Entidad" />
-				<f:selectItems value="#{novedadBean.entidadList}" var="entidad"
-					itemLabel="#{entidad.numeroIdentificacion}"
-					itemValue="#{entidad.id}" />
-			</p:selectOneMenu>
-			<p:commandButton action="#{novedadBean.findEntidadById}"
-				value="Buscar" update="pnlDatosEntidad, novedades" process="@form">
-			</p:commandButton>
-		</p:panelGrid>
-		<p:separator>
-		</p:separator>
-		<p:panelGrid columns="10" cellpadding="5" id="pnlDatosEntidad">
-			<h:outputLabel for="primerNombre" value="Primer Nombre:" />
-			<p:outputLabel id="primerNombre"
-				value="#{novedadBean.entidad.primerNombre}">
-			</p:outputLabel>
-
-			<h:outputLabel value="Segundo Nombre:" />
-			<p:outputLabel id="segundoNombre"
-				value="#{novedadBean.entidad.segundoNombre}">
-			</p:outputLabel>
-
-			<h:outputLabel value="Primer Apellido:" />
-			<p:outputLabel id="primerApellido"
-				value="#{novedadBean.entidad.primerApellido}">
-			</p:outputLabel>
-
-			<h:outputLabel value="Segundo Apellido:" />
-			<p:outputLabel id="segundoApellido"
-				value="#{novedadBean.entidad.segundoApellido}">
-			</p:outputLabel>
-
-			<h:outputLabel value="Numero Identificacion:" />
-			<p:outputLabel id="numeroIdentificacion"
-				value="#{novedadBean.entidad.numeroIdentificacion}">
-			</p:outputLabel>
-
-		</p:panelGrid>
-
-		<p:separator>
-		</p:separator>
-
-		<p:commandButton action="#{entidadBean.ver}" value="Insertar Novedad"
-			oncomplete="PF('formularioNovedad').show();" update="formularioNovedad">
-			<f:setPropertyActionListener target="#{entidadBean.identificador}"
-				value="#{entidad.id}" />
-		</p:commandButton>
+		<f:param>
+			<f:viewParam name="nombre" value="#{pensionadoBean.pensionado.id}"></f:viewParam>
+		</f:param>
+		<p:commandButton action="#{novedadBean.clearNovedad}"
+		value="Nueva Novedad"
+		oncomplete="PF('formularioNovedad').show();" update="formularioNovedad"/>
 
 		<p:dataTable id="novedades" var="novedad"
 			value="#{novedadBean.novedadList}">
@@ -81,6 +36,8 @@
 				<h:outputText value="#{novedad.fechaFin}" />
 			</p:column>
 
+			<p:column headerText="Acciones">
+
 			<p:commandButton action="#{novedadBean.delete}" value="Eliminar"
 				update=":novedadCrud">
 				<f:setPropertyActionListener target="#{novedadBean.identificador}"
@@ -92,6 +49,7 @@
 				<f:setPropertyActionListener target="#{novedadBean.identificador}"
 					value="#{novedad.id}" />
 			</p:commandButton>
+			</p:column>
 			
 		</p:dataTable>
 
@@ -111,15 +69,21 @@
 					required="true" label="Fecha Fin Novedad" />
 
 				<h:outputLabel for="tipoNovedad" value="Tipo Novedad:" />
-				<p:inputText id="tipoNovedad" value="#{novedadBean.novedad.tipo}"
-					required="true" label="Tipo Novedad" />
 
-
+				<h:selectOneMenu value="#{novedadBean.novedad.tipo}" required="true" label="Tipo Novedad" id="tipoNovedad">
+				    <f:selectItems value="#{novedadBean.tiposNovedad}" />
+				</h:selectOneMenu>
+				
 				<f:facet name="footer">
-					<p:commandButton value="Crear" styleClass="ui-confirmdialog-yes"
-						icon="ui-icon-check" actionListener="#{novedadBean.crear}"
-						oncomplete="PF('formularioNovedad').hide();" update="novedadCrud"
-						rendered="#{novedadBean.buttonCrud}" process="@form"/>
+					<p:commandButton value="Crear"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+						actionListener="#{novedadBean.crear}"  oncomplete="PF('formularioNovedad').hide();" update="novedadCrud"
+						rendered="#{novedadBean.buttonCrud}"/>
+						
+					<p:commandButton value="Editar"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+						actionListener="#{novedadBean.editar}"  oncomplete="PF('formularioNovedad').hide();" update="novedadCrud"
+						rendered="#{!novedadBean.buttonCrud}"/>
 
 					<p:commandButton value="Cancelar" styleClass="ui-confirmdialog-no"
 						icon="ui-icon-close" onclick="PF('formularioNovedad').hide();"

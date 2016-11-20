@@ -5,12 +5,7 @@ package entities;
 
 import java.io.Serializable;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * @author am.osorio
@@ -18,12 +13,12 @@ import javax.persistence.Entity;
  */
 
 @NamedQueries({
-@NamedQuery(name="SuperEntidad.getSuperEntidades",
-    query="SELECT e FROM SuperEntidad e")          
+@NamedQuery(name="Aportante.getAportantes",
+    query="SELECT e FROM Aportante e")          
 })
 
 @Entity
-public class SuperEntidad implements Serializable {
+public class Aportante implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -31,11 +26,11 @@ public class SuperEntidad implements Serializable {
 	private Long id;
 	private String nombreRazonSocial;
 	private String digitoVerificacion;
+
 	private String naturalezaJuridica;
 	private Integer numeroIdentificacion;
 	private String tipoIdentificacion;
-	
-	  
+
 	/**
 	 * @return the id
 	 */
@@ -75,15 +70,25 @@ public class SuperEntidad implements Serializable {
 	/**
 	 * @return the naturalezaJuridica
 	 */
+	//public TipoActividad getNaturalezaJuridica() {
+	//	return naturalezaJuridica;
+	//}
+
 	public String getNaturalezaJuridica() {
 		return naturalezaJuridica;
 	}
-	/**
-	 * @param naturalezaJuridica the naturalezaJuridica to set
-	 */
+
 	public void setNaturalezaJuridica(String naturalezaJuridica) {
 		this.naturalezaJuridica = naturalezaJuridica;
 	}
+
+	/**
+	 *
+	 * @param naturalezaJuridica the naturalezaJuridica to set
+	 */
+	//public void setNaturalezaJuridica(TipoActividad naturalezaJuridica) {
+	//	this.naturalezaJuridica = naturalezaJuridica;
+	//}
 	/**
 	 * @return the numeroIdentificacion
 	 */

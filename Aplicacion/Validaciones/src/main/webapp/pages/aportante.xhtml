@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+<h:body>
+	<ui:include src="menu.xhtml" />
+	<h1>APORTANTE</h1>
+	<h:form id="aportanteCrud">
+	<p:commandButton action="#{aportanteBean.clearAportante}"
+			value="Nuevo Aportante" 
+			 oncomplete="PF('formulario').show();" update="formulario"/>
+	
+	<p:dataTable var="aportante" value="#{aportanteBean.aportanteList}">
+	
+		<p:column headerText="Tipo Identificacion">
+			<h:outputText value="#{aportante.tipoIdentificacion}" />
+		</p:column>
+		
+		<p:column headerText="N° Identificacion">
+			<h:outputText value="#{aportante.numeroIdentificacion}" />
+		</p:column>
+		
+		<p:column headerText="Razon Social">
+			<h:outputText value="#{aportante.nombreRazonSocial}" />
+		</p:column>
+
+		<p:column headerText="Digito de Verificacion">
+			<h:outputText value="#{aportante.digitoVerificacion}" />
+		</p:column>
+
+		<p:column headerText="Naturaleza Juridica">
+			<h:outputText value="#{superEntidad.naturalezaJuridica}" />
+		</p:column>
+		
+		<p:column headerText="Acciones" >			
+			<p:commandButton action="#{aportanteBean.delete}" value="Eliminar" update=":aportanteCrud">
+				<f:setPropertyActionListener target="#{aportanteBean.identificador}" value="#{aportante.id}" />
+			</p:commandButton>
+
+			<p:commandButton action="#{aportanteBean.ver}" value="Ver/Editar" oncomplete="PF('formulario').show();" update="formulario">
+				<f:setPropertyActionListener target="#{aportanteBean.identificador}" value="#{aportante.id}" />
+			</p:commandButton>
+		</p:column>
+		
+	</p:dataTable>
+	
+	</h:form>
+	
+	
+	<p:dialog header="Formulario" widgetVar="formulario" modal="true"
+		width="80%%" height="100%" id="formulario">
+		<h:form>
+			<h:panelGrid columns="4" cellpadding="5">
+			<h:outputLabel for="nombreRazonSocial" value="Nombre Razon Social:" />
+	        <p:inputText id="nombreRazonSocial" value="#{aportanteBean.aportante.nombreRazonSocial}" required="true" label="Nombre Razon Social" />
+ 			            
+            <h:outputLabel for="tipoIdentificacion" value="Tipo Identificacion:" />
+				<h:selectOneMenu value="#{aportanteBean.aportante.tipoIdentificacion}" required="true" label="Tipo Identificacion">
+				    <f:selectItems value="#{aportanteBean.tiposDocumento}" />
+			</h:selectOneMenu>
+            
+            <h:outputLabel for="numeroIdentificacion" value="Numero Identificacion:" />
+            <p:inputText id="numeroIdentificacion" value="#{aportanteBean.aportante.numeroIdentificacion}" required="true" label="Numero Identificacion" />
+            
+            <h:outputLabel for="digitoVerificacion" value="Digito de Verificacion:" />
+        	<p:inputText  id="digitoVerificacion" value="#{aportanteBean.aportante.digitoVerificacion}" required="true" label="Digito de Verificacion" />
+        	
+        	<h:outputLabel for="naturalezaJuridica" value="Naturaleza Juridica:" />
+        	<p:inputText  id="naturalezaJuridica" value="#{aportanteBean.aportante.naturalezaJuridica}" required="true" label="Naturaleza Juridica" />
+        	
+			<f:facet name="footer">
+				<p:commandButton value="Crear"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+					actionListener="#{aportanteBean.crear}"  oncomplete="PF('formulario').hide();" update="aportanteCrud"
+					rendered="#{aportanteBean.buttonCrud}"/>
+					
+				<p:commandButton value="Editar"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+					actionListener="#{aportanteBean.editar}"  oncomplete="PF('formulario').hide();" update="aportanteCrud"
+					rendered="#{!aportanteBean.buttonCrud}"/>
+					
+				<p:commandButton value="Cancelar" 
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="PF('formulario').hide();"  update="aportanteCrud"/>
+			</f:facet>
+		</h:panelGrid>
+
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

@@ -11,6 +11,11 @@ import java.util.List;
  * @author am.osorio
  *
  */
+@NamedQueries({
+    @NamedQuery(name="TipoPensionado.getByPension",
+            query="SELECT p from TipoPensionado p join p.tipoPension e where e.id = :idPension")
+})
+
 
 @Entity
 public class TipoPensionado implements Serializable {
