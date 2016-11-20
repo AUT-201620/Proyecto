@@ -136,7 +136,10 @@
 	var t: Template:=TemplateFactory.load(templatePath + '/genPersistenceXml.egl');
 	t.generate(srcMainPath + '/resources/META-INF/persistence.xml');
 	//4. load.sql
-	//ESTE FALTA GENERARLO: SON LOS INSERTS
+	var tEntities: Template := TemplateFactory.load(templatePath + '/genLoadSql.egl');
+	tEntities.populate('modelosEntidad', root.modelos.select(m|not m.esCrud and m.esEntidad));
+	tEntities.populate('modelosRelacion', root.modelos.select(m|not m.esCrud and not m.esEntidad));
+	tEntities.generate(srcMainPath + '/resources/META-INF/load.sql');
 	//5. faces-config.xml
 	var t: Template:=TemplateFactory.load(templatePath + '/genFacesConfigXml.egl');
 	t.generate(srcMainPath + '/webapp/WEB-INF/faces-config.xml');

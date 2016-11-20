@@ -1,0 +1,33 @@
+[%
+	var separador: String := '';
+	for (modelo in modelosEntidad) {
+		if (modelo.datos.isDefined() and modelo.datos.size() > 0) {
+			out.println('');
+			out.println('--INSERTS DE LA ENTIDAD ' + modelo.nombre);
+			for (dato in modelo.datos) {
+				out.print('INSERT INTO public.');
+				out.print(modelo.nombre.toLowerCase());
+				out.print(' (');
+				out.print(dato.campos);
+				out.print(') VALUES (');
+				out.print(dato.valores);
+				out.println(');');
+			}
+		}
+	}
+	for (modelo in modelosRelacion) {
+		if (modelo.datos.isDefined() and modelo.datos.size() > 0) {
+			out.println('');
+			out.println('--INSERTS DE LA RELACION ' + modelo.nombre);
+			for (dato in modelo.datos) {
+				out.print('INSERT INTO public.');
+				out.print(modelo.nombre.toLowerCase());
+				out.print(' (');
+				out.print(dato.campos);
+				out.print(') VALUES (');
+				out.print(dato.valores);
+				out.println(');');
+			}
+		}
+	}
+%]
