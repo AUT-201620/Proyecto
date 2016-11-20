@@ -1,0 +1,19 @@
+package entities;
+
+/**
+ * @author am.osorio
+ *
+ */
+public enum [%=atributoModelo.nombre.firstToUpperCase()%] {
+[%
+	var separador: String := '';
+	for (codigoValor in atributoModelo.codigosValor) {
+		if (separador.length() > 0) {
+			out.println(separador);
+		}
+		out.print(codigoValor.valor.replace('"', ''));
+		separador := ',';
+	}
+	out.println(';');
+%]
+}
