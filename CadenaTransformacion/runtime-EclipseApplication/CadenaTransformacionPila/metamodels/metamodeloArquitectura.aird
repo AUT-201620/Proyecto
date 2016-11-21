@@ -123,7 +123,7 @@
               <styles xmi:type="notation:FilteringStyle" xmi:id="_FMhYaaeCEea1kb3jkTTcrA"/>
             </children>
             <styles xmi:type="notation:ShapeStyle" xmi:id="_FMhYZKeCEea1kb3jkTTcrA" fontName="Segoe UI" fontHeight="8"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FMhYZaeCEea1kb3jkTTcrA" x="970" y="495"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FMhYZaeCEea1kb3jkTTcrA" x="975" y="495"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_FMhYcaeCEea1kb3jkTTcrA" type="2003" element="_FLoneaeCEea1kb3jkTTcrA">
             <children xmi:type="notation:Node" xmi:id="_FMhYdKeCEea1kb3jkTTcrA" type="5007"/>
@@ -334,7 +334,7 @@
           </edges>
           <edges xmi:type="notation:Edge" xmi:id="_FMrJx6eCEea1kb3jkTTcrA" type="4001" element="_FMYOb6eCEea1kb3jkTTcrA" source="_FMhYcaeCEea1kb3jkTTcrA" target="_FMhYY6eCEea1kb3jkTTcrA">
             <children xmi:type="notation:Node" xmi:id="_FMrJy6eCEea1kb3jkTTcrA" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FMrJzKeCEea1kb3jkTTcrA" x="-64" y="-10"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FMrJzKeCEea1kb3jkTTcrA" x="-66" y="-10"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_FMrJzaeCEea1kb3jkTTcrA" type="6002">
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FMrJzqeCEea1kb3jkTTcrA" x="-19" y="10"/>
@@ -344,7 +344,7 @@
             </children>
             <styles xmi:type="notation:ConnectorStyle" xmi:id="_FMrJyKeCEea1kb3jkTTcrA" routing="Rectilinear"/>
             <styles xmi:type="notation:FontStyle" xmi:id="_FMrJyaeCEea1kb3jkTTcrA" fontColor="7490599" fontName="Segoe UI" fontHeight="8"/>
-            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FMrJyqeCEea1kb3jkTTcrA" points="[87, 73, -156, -203]$[256, 73, 13, -203]$[256, 178, 13, -98]"/>
+            <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FMrJyqeCEea1kb3jkTTcrA" points="[130, 73, -118, -203]$[261, 73, 13, -203]$[261, 178, 13, -98]"/>
             <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_FMrJ0aeCEea1kb3jkTTcrA" id="(0.40046296296296297,0.0)"/>
             <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_FMrJ0qeCEea1kb3jkTTcrA" id="(0.5,1.0)"/>
           </edges>
@@ -451,7 +451,7 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="__8XW4K98Eeafy9x9MCCS_Q" name="tipoReferencia : TipoReferencia = ONE_TO_MANY" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'org.eclipse.emf.ecore.impl.EAttributeImpl@86767cc{platform:/resource/CadenaTransformacionPila/metamodels/metamodeloArquitectura.ecore#//AtributoModelo/newAttribute}' must be set&#xA;ERROR : The typed element must have a type">
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="__8XW4K98Eeafy9x9MCCS_Q" name="tipoReferencia : TipoReferencia = ONE_TO_MANY" tooltipText="">
           <target xmi:type="ecore:EAttribute" href="metamodeloArquitectura.ecore#//AtributoModelo/tipoReferencia"/>
           <semanticElements xmi:type="ecore:EAttribute" href="metamodeloArquitectura.ecore#//AtributoModelo/tipoReferencia"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_EWs0MK99Eeafy9x9MCCS_Q" labelAlignment="LEFT">
