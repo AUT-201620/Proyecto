@@ -4,13 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 import persistence.*;
-
 [%
-for (controlador in mArq!ArquitecturaMVC.all.at(0).controladores.select(e|not e.esCrud)){
+	for (modelo in modelosEntidad) {
 %]
-import entities.[%=controlador.nombre.firstToUpperCase()%];
+import entities.[%=modelo.nombre.firstToUpperCase()%];
 [%
-}
+	}
 %]
 
 /**
@@ -30,32 +29,52 @@ private ValidacionesPersistence persistance;
 	public ValidacionesServices(){
 		persistance = new ValidacionesPersistence();
 	}
-	
-	[%
-	for (controlador in mArq!ArquitecturaMVC.all.at(0).controladores.select(e|not e.esCrud)){
-	%]
-	/**
-	 *
-	 * @return
-	 */
-	public List<[%=controlador.nombre.firstToUpperCase()%]> getAll[%=controlador.nombre.firstToUpperCase()%](){
-		List<[%=controlador.nombre.firstToUpperCase()%]> [%=controlador.nombre.firstToLowerCase()%] = persistance.getAll[%=controlador.nombre.firstToUpperCase()%]();
-		return [%=controlador.nombre.firstToLowerCase()%];
-	}
-	[%
-	}
-	%]
-	
-	[%
-	//public List<TipoPensionado> getTipoPensionado(Long idPension){
-		//List<TipoPensionado> tipos = persistance.findByPension(idPension);
-		//return tipos;
-	//}
-	
-	//public List<TipoPagador> getTipoPagador(Long idPension,Long idPensionado){
-		//List<TipoPagador> tipos = persistance.findByPensioPensionado(idPension,idPensionado);
-		//return tipos;
-	//}
-	%]
+[%
+	for (modelo in modelosEntidad) {
+%]
 
+	public List<[%=modelo.nombre.firstToUpperCase()%]> get[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]() {
+		List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = persistance.get[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]();
+		return [%=modelo.nombre.firstToLowerCase().obtenerPlural()%];
+	}
+[%
+		//Determinar los modelos que apuntan a este modelo con referencias Many To Many
+		var modelosConRefManyToManyAEsteModelo = modelo.eContainer().modelos.select(
+			m|m.nombre <> modelo.nombre and 
+			  m.atributos.select(
+			    a|a.tipo = mArq!TipoDato#REFERENCE and
+			      a.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY and 
+			      a.modeloReferencia.nombre = modelo.nombre
+			  ).size() > 0
+			);
+		if (modelosConRefManyToManyAEsteModelo.size() > 0) {
+			var parametros: String := '';
+			var parametrosEje: String := '';
+			var nombre: String = '';
+			var separador: String = '';
+			for (modeloRef in modelosConRefManyToManyAEsteModelo) {
+				nombre = nombre + modeloRef.nombre.firstToUpperCase();
+				parametros = parametros + separador + 'Long id' + modeloRef.nombre.firstToUpperCase(); 
+				parametrosEje = parametrosEje + separador + 'id' + modeloRef.nombre.firstToUpperCase(); 
+				separador := ', ';
+			}
+%]
+
+	public List<[%=modelo.nombre.firstToUpperCase()%]> getBy[%=nombre%]([%=parametros%]) {
+		List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = persistance.getBy[%=nombre%]([%=parametrosEje%]);
+		return [%=modelo.nombre.firstToLowerCase().obtenerPlural()%];
+	}
+[%
+		}
+	}
+%]
 }
+
+[%
+	operation String obtenerPlural(): String {
+		if (self.endsWith('a') or self.endsWith('e') or self.endsWith('i') or self.endsWith('o') or self.endsWith('u')) {
+			return self + 's';
+		}  
+		return self + 'es'; 
+	}
+%]	

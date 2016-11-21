@@ -3,13 +3,12 @@ package persistence;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
 [%
-for (modelo in mArq!ArquitecturaMVC.all.at(0).modelos.select(e|e.esEntidad and not e.esCrud )){
+	for (modelo in modelosEntidad) {
 %]
 import entities.[%=modelo.nombre.firstToUpperCase()%];
 [%
-}
+	}
 %]
 
 /**
@@ -18,41 +17,67 @@ import entities.[%=modelo.nombre.firstToUpperCase()%];
  */
 public class ValidacionesPersistence {
 	
-	[%
-	for (modelo in mArq!ArquitecturaMVC.all.at(0).modelos.select(e|e.esEntidad and not e.esCrud )){
-	%]
-	/**
-	 *
-	 * @return
-	 */
-	public List<[%=modelo.nombre.firstToUpperCase()%]> getAll[%=modelo.nombre.firstToUpperCase()%](){
+[%
+	for (modelo in modelosEntidad) {
+%]
+
+	public List<[%=modelo.nombre.firstToUpperCase()%]> find[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]() {
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-    	List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase()%] = (List<[%=modelo.nombre.firstToUpperCase()%]>)em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase()%]s").getResultList();
+    	List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = (List<[%=modelo.nombre.firstToUpperCase()%]>) em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]").getResultList();
 		em.close();		
-    	return [%=modelo.nombre.firstToLowerCase()%];
-    }
-	[%
+    	return [%=modelo.nombre.firstToLowerCase().obtenerPlural()%];
 	}
-	%]
-	[%
-	//public List<TipoPensionado> findByPension (Long idPension){
-		//EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-		//em.getTransaction().begin();
-    	//List<TipoPensionado> tipos = (List<TipoPensionado>)em.createNamedQuery("TipoPensionado.getByPension").setParameter("idPension", idPension).getResultList();
-		//em.close();		
-    	//return tipos;
-	//}
-	
-	//public List<TipoPagador> findByPensioPensionado(Long idPension, Long idPensionado){
-		//EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-		//em.getTransaction().begin();
-    	//List<TipoPagador> tipos = (List<TipoPagador>)em.createNamedQuery("TipoPagador.getByPensionPensionado").
-    			//setParameter("idPension", idPension).
-    			//setParameter("idPensionado", idPensionado).
-    			//getResultList();
-		//em.close();		
-    	//return tipos;
-	//}
-	%]
+[%
+		//Determinar los modelos que apuntan a este modelo con referencias Many To Many
+		var modelosConRefManyToManyAEsteModelo = modelo.eContainer().modelos.select(
+			m|m.nombre <> modelo.nombre and 
+			  m.atributos.select(
+			    a|a.tipo = mArq!TipoDato#REFERENCE and
+			      a.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY and 
+			      a.modeloReferencia.nombre = modelo.nombre
+			  ).size() > 0
+			);
+		if (modelosConRefManyToManyAEsteModelo.size() > 0) {
+			var parametros: String := '';
+			var parametrosEje: String := '';
+			var nombre: String = '';
+			var separador: String = '';
+			var listaParametros: Set;
+			for (modeloRef in modelosConRefManyToManyAEsteModelo) {
+				nombre = nombre + modeloRef.nombre.firstToUpperCase();
+				parametros = parametros + separador + 'Long id' + modeloRef.nombre.firstToUpperCase(); 
+				parametrosEje = parametrosEje + separador + 'id' + modeloRef.nombre.firstToUpperCase();
+				listaParametros.add('id' + modeloRef.nombre.firstToUpperCase()); 
+				separador := ', ';
+			}
+%]
+
+	public List<[%=modelo.nombre.firstToUpperCase()%]> getBy[%=nombre%]([%=parametros%]) {
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+    	List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = (List<[%=modelo.nombre.firstToUpperCase()%]>) em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].getBy[%=nombre%]")
+[%
+			for (parametro in listaParametros){
+%]
+			.setParameter("[%=parametro%]", [%=parametro%])
+[%
+			}
+%]
+    		.getResultList();
+		em.close();		
+    	return [%=modelo.nombre.firstToLowerCase().obtenerPlural()%];
+	}
+[%
+		}
+	}
+%]
 }
+[%
+	operation String obtenerPlural(): String {
+		if (self.endsWith('a') or self.endsWith('e') or self.endsWith('i') or self.endsWith('o') or self.endsWith('u')) {
+			return self + 's';
+		}  
+		return self + 'es'; 
+	}
+%]	

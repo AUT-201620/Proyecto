@@ -17,9 +17,7 @@
 [%
 	//Generador de entidades
 	//Pendientes:
-	//1. NamedQueries de tablas de validaciones quitar and si es el ultimo objeto del for.
-	//2. Falta agregar namedQuery especial para novedades.
-	//3. En relacion contraria de novedades falta poner la relacion manyToOne
+	//1. Falta agregar namedQuery especial para novedades.
 	for(modelo in root.modelos) {
 		if(modelo.esEntidad){
 			var tEntities: Template := TemplateFactory.load(templatePath + '/mToEntities.egl');
@@ -113,22 +111,20 @@
 %]
 
 [% 
+	var modelosEntidad: Set := root.modelos.select(m|not m.esCrud and m.esEntidad and m.datos.size() > 0);
 	//Generador de interfaz de validaciones
-	//Pendientes:
-	//1. Falta generar metodos con parametros de entrada de acuerdo a las referencias
 	var t: Template:=TemplateFactory.load(templatePath + '/mToInterfazVal.egl');
+	t.populate('modelosEntidad', modelosEntidad);
 	t.generate(srcJavaPath + '/services/IValidacionesServices.java');
 	
 	//Generador de Servicio de validaciones
-	//Pendientes:
-	//1. Falta generar metodos con parametros de entrada de acuerdo a las referencias
 	var t: Template:=TemplateFactory.load(templatePath + '/mToServiceVal.egl');
+	t.populate('modelosEntidad', modelosEntidad);
 	t.generate(srcJavaPath + '/services/ValidacionesServices.java');
 	
 	//Generador de Servicio de Persistencia de validaciones
-	//Pendientes:
-	//1. Falta generar metodos con parametros de entrada de acuerdo a las referencias
 	var t: Template:=TemplateFactory.load(templatePath + '/mToPersistenceVal.egl');
+	t.populate('modelosEntidad', modelosEntidad);
 	t.generate(srcJavaPath + '/persistence/ValidacionesPersistence.java');
 	
 	//Generador de script para validaciones
