@@ -10,26 +10,53 @@ import java.util.Date;
  * @author am.osorio
  *
  */
+[%
+	//Determinar los modelos que apuntan a este modelo con referencias One To Many
+	var modelosConRefOneToManyAEsteModelo = modelo.eContainer().modelos.select(
+		m|m.nombre <> modelo.nombre and 
+		  m.atributos.select(
+		    a|a.tipo = mArq!TipoDato#REFERENCE and
+		      a.tipoReferencia = mArq!TipoReferencia#ONE_TO_MANY and 
+		      a.modeloReferencia.nombre = modelo.nombre
+		  ).size() > 0
+		);
+
+	//Determinar los modelos que apuntan a este modelo con referencias Many To Many
+	var modelosConRefManyToManyAEsteModelo = modelo.eContainer().modelos.select(
+		m|m.nombre <> modelo.nombre and 
+		  m.atributos.select(
+		    a|a.tipo = mArq!TipoDato#REFERENCE and
+		      a.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY and 
+		      a.modeloReferencia.nombre = modelo.nombre
+		  ).size() > 0
+		);
+%]
+
 @NamedQueries({
-	@NamedQuery(name="[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase()%]s",
-    	query="SELECT e FROM [%=modelo.nombre.firstToUpperCase()%] e"),
-    [%if (not modelo.esCrud){
-    %]
-	@NamedQuery(name="[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase()%]Validaciones",
-	   	query="SELECT p FROM [%=modelo.nombre.firstToUpperCase()%] p" +
-	    [%for (atributo in modelo.atributos.select(m|m.modeloReferencia <> null)){
-	    %]
-	    	 " join p.[%=atributo.modeloReferencia.nombre.firstToLowerCase()%] [%=atributo.modeloReferencia.nombre.toLowerCase()%] " +
-		[%}
-		%]
-		" WHERE "+
-		[%for (atributo in modelo.atributos.select(m|m.modeloReferencia <> null)){
-	    %]
-	    	 " [%=atributo.modeloReferencia.nombre.toLowerCase()%].id = :id[%=atributo.modeloReferencia.nombre.firstToLowerCase()%] and"
-		[%}
-		%])
-	[%}
-  %]
+	@NamedQuery(name = "[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]",
+    	query = "SELECT e FROM [%=modelo.nombre.firstToUpperCase()%] e")
+[%
+	if (modelosConRefManyToManyAEsteModelo.size() > 0) {
+		var joins: String := '';
+		var wheres: String := '';
+		var aliasTablaPrincipal: String := 't0';
+		var tableNumber: Integer := 1;
+		var separador: String := '';
+		var nombre: String = '';
+		for (modeloRef in modelosConRefManyToManyAEsteModelo) {
+			nombre = nombre + modeloRef.nombre.firstToUpperCase();
+			joins = joins + ' join ' + aliasTablaPrincipal + '.' + modeloRef.nombre.firstToLowerCase() + ' t' + tableNumber; 
+			wheres = wheres + separador + 't' + tableNumber + '.id = :id' + modeloRef.nombre.firstToUpperCase(); 
+			separador := ' and ';
+			tableNumber := tableNumber + 1;
+		}
+%]    	
+	, @NamedQuery(name = "[%=modelo.nombre.firstToUpperCase()%].getBy[%=nombre%]",
+	   	query = "SELECT [%=aliasTablaPrincipal%] FROM [%=modelo.nombre.firstToUpperCase()%] [%=aliasTablaPrincipal%]" +
+	   	        "[%=joins%] WHERE [%=wheres%]")
+[%
+	}
+%]
 })
 
 @Entity
@@ -237,3 +264,12 @@ public class [%=modelo.nombre.firstToUpperCase()%] implements Serializable {
 				'}';
 	}
 }
+
+[%
+	operation String obtenerPlural(): String {
+		if (self.endsWith('a') or self.endsWith('e') or self.endsWith('i') or self.endsWith('o') or self.endsWith('u')) {
+			return self + 's';
+		}  
+		return self + 'es'; 
+	}
+%]	 
