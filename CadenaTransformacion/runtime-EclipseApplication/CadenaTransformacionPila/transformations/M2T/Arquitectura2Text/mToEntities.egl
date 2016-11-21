@@ -39,29 +39,81 @@ public class [%=modelo.nombre.firstToUpperCase()%] implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	[%for (atributo in modelo.atributos) {
-		if (atributo.tipo.name == 'REFERENCE'){
-	%]
+[%
+	for (atributo in modelo.atributos) {
+		if (atributo.tipo.name == 'REFERENCE') {
+			if (atributo.tipoReferencia = mArq!TipoReferencia#MANY_TO_ONE) {
+%]
+	@ManyToOne
 	private [%=atributo.modeloReferencia.nombre.firstToUpperCase()%] [%=atributo.nombre%];
-	[%	}
-		else if (atributo.tipo.name == 'REFERENCELIST' and atributo.modeloReferencia.datos.isEmpty){
-	%]
+[%
+			}
+			else if (atributo.tipoReferencia = mArq!TipoReferencia#ONE_TO_MANY) {
+%]
 	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "[%=modelo.nombre.firstToLowerCase()%]")
 	private List<[%=atributo.modeloReferencia.nombre.firstToUpperCase()%]> [%=atributo.nombre%];
-	[%	}
-		else if (atributo.tipo.name == 'REFERENCELIST' and atributo.modeloReferencia.datos.notEmpty){
-	%]
-	@ManyToMany(mappedBy = "[%=modelo.nombre.firstToLowerCase()%]")
+[%
+			}
+			else if (atributo.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY) {
+%]
+	@ManyToMany
 	private List<[%=atributo.modeloReferencia.nombre.firstToUpperCase()%]> [%=atributo.nombre%];
-	[%	}
-		else{
-	%]
-	private [%=atributo.tipo.name.toLowerCase().firstToUpperCase()%] [%=atributo.nombre%];
-	[%
+[%
+			}
 		}
-	   }
-	%]
-	
+		else {
+%]
+	private [%=atributo.tipo.name.toLowerCase().firstToUpperCase()%] [%=atributo.nombre%];
+[%
+		}
+	}
+%]
+[%
+	//Determinar los modelos que apuntan a este modelo con referencias One To Many
+	var modelosConRefOneToManyAEsteModelo = modelo.eContainer().modelos.select(
+		m|m.nombre <> modelo.nombre and 
+		  m.atributos.select(
+		    a|a.tipo = mArq!TipoDato#REFERENCE and
+		      a.tipoReferencia = mArq!TipoReferencia#ONE_TO_MANY and 
+		      a.modeloReferencia.nombre = modelo.nombre
+		  ).size() > 0
+		);
+	if (modelosConRefOneToManyAEsteModelo.size() > 0) {
+%]
+	//Referencia Bidireccional a Entidades que refieren a esta entidad como One To Many
+[%		
+		for (modeloRef in modelosConRefOneToManyAEsteModelo) {
+%]
+	@ManyToOne
+	@JoinColumn(name="[%=modeloRef.nombre.firstToLowerCase()%]_id", nullable = false)
+	private [%=modeloRef.nombre.firstToUpperCase()%] [%=modeloRef.nombre.firstToLowerCase()%];
+[%
+		}
+	}
+%]
+[%
+	//Determinar los modelos que apuntan a este modelo con referencias Many To Many
+	var modelosConRefManyToManyAEsteModelo = modelo.eContainer().modelos.select(
+		m|m.nombre <> modelo.nombre and 
+		  m.atributos.select(
+		    a|a.tipo = mArq!TipoDato#REFERENCE and
+		      a.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY and 
+		      a.modeloReferencia.nombre = modelo.nombre
+		  ).size() > 0
+		);
+	if (modelosConRefManyToManyAEsteModelo.size() > 0) {
+%]
+	//Referencia Bidireccional a Entidades que refieren a esta entidad como Many To Many
+[%		
+		for (modeloRef in modelosConRefManyToManyAEsteModelo) {
+%]
+	@ManyToMany(mappedBy = "[%=modelo.nombre.firstToLowerCase()%]")
+	private List<[%=modeloRef.nombre.firstToUpperCase()%]> [%=modeloRef.nombre.firstToLowerCase()%];
+[%
+		}
+	}
+%]
+
 	/**
 	 * @return the id
 	 */
@@ -75,9 +127,11 @@ public class [%=modelo.nombre.firstToUpperCase()%] implements Serializable {
 		this.id = id;
 	}
 
-	[%for (atributo in modelo.atributos) {
-		if (atributo.tipo.name == 'REFERENCE'){
-	%]
+[%
+	for (atributo in modelo.atributos) {
+		if (atributo.tipo.name == 'REFERENCE') {
+			if (atributo.tipoReferencia = mArq!TipoReferencia#MANY_TO_ONE) {
+%]
 	/**
 	 * @return the [%=atributo.nombre.firstToLowerCase()%]
 	 */
@@ -91,9 +145,10 @@ public class [%=modelo.nombre.firstToUpperCase()%] implements Serializable {
 		this.[%=atributo.nombre.firstToLowerCase()%] = [%=atributo.nombre.firstToLowerCase()%];
 	}
 	
-	[%	}
-		else if (atributo.tipo.name == 'REFERENCELIST'){
-	%]
+[%
+			}
+			else {
+%]
 	/**
 	 * @return the [%=atributo.nombre.firstToLowerCase()%]
 	 */
@@ -103,13 +158,15 @@ public class [%=modelo.nombre.firstToUpperCase()%] implements Serializable {
 	/**
 	 * @param [%=atributo.nombre.firstToLowerCase()%] the [%=atributo.nombre.firstToLowerCase()%] to set
 	 */
-	public void set[%=atributo.nombre.firstToUpperCase()%](List<Novedad> [%=atributo.nombre.firstToLowerCase()%]) {
+	public void set[%=atributo.nombre.firstToUpperCase()%](List<[%=atributo.modeloReferencia.nombre.firstToUpperCase()%]> [%=atributo.nombre.firstToLowerCase()%]) {
 		this.[%=atributo.nombre.firstToLowerCase()%] = [%=atributo.nombre.firstToLowerCase()%];
 	}
 	
-	[%	}
-		else{
-	%]
+[%
+			}
+		}
+		else {
+%]
 	/**
 	 * @return the [%=atributo.nombre.firstToLowerCase()%]
 	 */
@@ -122,11 +179,53 @@ public class [%=modelo.nombre.firstToUpperCase()%] implements Serializable {
 	public void set[%=atributo.nombre.firstToUpperCase()%]([%=atributo.tipo.name.toLowerCase().firstToUpperCase()%] [%=atributo.nombre.firstToLowerCase()%]) {
 		this.[%=atributo.nombre.firstToLowerCase()%] = [%=atributo.nombre.firstToLowerCase()%];
 	}
-	[%
+
+[%
 		}
-	   }
-	%]
-	
+	}
+%]
+[%
+	if (modelosConRefOneToManyAEsteModelo.size() > 0) {
+		for (modeloRef in modelosConRefOneToManyAEsteModelo) {
+%]
+	/**
+	 * @return the [%=modeloRef.nombre.firstToLowerCase()%]
+	 */
+	public [%=modeloRef.nombre.firstToUpperCase()%] get[%=modeloRef.nombre.firstToUpperCase()%]() {
+		return [%=modeloRef.nombre.firstToLowerCase()%];
+	}
+	/**
+	 * @param [%=modeloRef.nombre.firstToLowerCase()%] the [%=modeloRef.nombre.firstToLowerCase()%] to set
+	 */
+	public void set[%=modeloRef.nombre.firstToUpperCase()%]([%=modeloRef.nombre.firstToUpperCase()%] [%=modeloRef.nombre.firstToLowerCase()%]) {
+		this.[%=modeloRef.nombre.firstToLowerCase()%] = [%=modeloRef.nombre.firstToLowerCase()%];
+	}
+
+[%
+		}
+	}
+%]
+[%
+	if (modelosConRefManyToManyAEsteModelo.size() > 0) {
+		for (modeloRef in modelosConRefManyToManyAEsteModelo) {
+%]
+	/**
+	 * @return the [%=modeloRef.nombre.firstToLowerCase()%]
+	 */
+	public List<[%=modeloRef.nombre.firstToUpperCase()%]> get[%=modeloRef.nombre.firstToUpperCase()%]() {
+		return [%=modeloRef.nombre.firstToLowerCase()%];
+	}
+	/**
+	 * @param [%=modeloRef.nombre.firstToLowerCase()%] the [%=modeloRef.nombre.firstToLowerCase()%] to set
+	 */
+	public void set[%=modeloRef.nombre.firstToUpperCase()%](List<[%=modeloRef.nombre.firstToUpperCase()%]> [%=modeloRef.nombre.firstToLowerCase()%]) {
+		this.[%=modeloRef.nombre.firstToLowerCase()%] = [%=modeloRef.nombre.firstToLowerCase()%];
+	}
+
+[%
+		}
+	}
+%]
 	@Override
 	public String toString() {
 		return "[%=modelo.nombre.firstToUpperCase()%]{" +
