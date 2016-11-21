@@ -39,6 +39,7 @@ entidad Pensionado {
 	atributo tipoPensionado: Referencia TipoPensionado;
 	atributo tipoPagadorPension: Referencia TipoPagadorPension;
 	atributo tipoPension: Referencia TipoPension;
+	atributo aportante: Referencia Aportante;
 }
 
 servicioComputo pagoSalud {
