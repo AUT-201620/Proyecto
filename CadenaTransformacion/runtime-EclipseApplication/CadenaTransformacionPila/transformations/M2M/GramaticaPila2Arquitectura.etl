@@ -363,9 +363,9 @@ operation mArq!Vista completarVistas()  {
 operation mGram!Atributo getAtributoVista(): mArq!AtributoVista {
 	var atributoVista = new mArq!AtributoVista;
 	atributoVista.nombre = self.name;
-	atributoVista.etiqueta = self.name;
+	atributoVista.etiqueta = self.name.getEtiquetaAtributoVista();
 	if (self.listaLlaveValor.isDefined() and (self.listaLlaveValor.size() > 0)) {
-		atributoVista.tipo = mArq!TipoAtributoVista#LISTA;
+		atributoVista.tipo = mArq!TipoAtributoVista#ENUM;
 	}
 	else if (self.listaEntidad.isDefined()) {
 		atributoVista.tipo = mArq!TipoAtributoVista#REFERENCIA;
@@ -376,7 +376,7 @@ operation mGram!Atributo getAtributoVista(): mArq!AtributoVista {
 	}
 	else if (((self.tipoPrimitivo = mGram!TipoDatoPrimitivo#NO_ASIGNADO) or (self.tipoPrimitivo = "")) and (self.referencia <> "")) {
 		atributoVista.tipo = mArq!TipoAtributoVista#LISTA;
-	}	
+	}
 	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#CADENA_CARACTERES) {
 		atributoVista.tipo = mArq!TipoAtributoVista#TEXTO;
 	}
@@ -393,4 +393,13 @@ operation mGram!Atributo getAtributoVista(): mArq!AtributoVista {
 		atributoVista.tipo = mArq!TipoAtributoVista#BOOLEANO;
 	}
 	return atributoVista;
+}
+
+//Obtener etiquetas de Atributos Vista
+operation String getEtiquetaAtributoVista(): String {
+  	var etiqueta = "";
+  	for (texto: String in self.split("(?=\\p{Upper})")) {
+  		etiqueta += (texto + " ");
+  	}
+  	return etiqueta.firstToUpperCase().trim();
 }
