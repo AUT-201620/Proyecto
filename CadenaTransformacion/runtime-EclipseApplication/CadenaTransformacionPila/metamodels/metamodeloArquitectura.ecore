@@ -21,6 +21,7 @@
     <eLiterals name="BOOLEANO"/>
     <eLiterals name="FECHA"/>
     <eLiterals name="REFERENCIA"/>
+    <eLiterals name="ENUM"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArquitecturaMVC">
     <eStructuralFeatures xsi:type="ecore:EReference" name="vistas" upperBound="-1"

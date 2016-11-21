@@ -166,6 +166,10 @@
                 <styles xmi:type="notation:FontStyle" xmi:id="_ngAdYak0EeayC_oYw3BAjA" fontName="Segoe UI" fontHeight="8"/>
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_ngAdYqk0EeayC_oYw3BAjA"/>
               </children>
+              <children xmi:type="notation:Node" xmi:id="_1oLuIK94Eeas68SlK8y_iw" type="3010" element="_1nfxoK94Eeas68SlK8y_iw">
+                <styles xmi:type="notation:FontStyle" xmi:id="_1oLuIa94Eeas68SlK8y_iw" fontName="Segoe UI" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_1oLuIq94Eeas68SlK8y_iw"/>
+              </children>
               <styles xmi:type="notation:SortingStyle" xmi:id="_FMhYfaeCEea1kb3jkTTcrA"/>
               <styles xmi:type="notation:FilteringStyle" xmi:id="_FMhYfqeCEea1kb3jkTTcrA"/>
             </children>
@@ -626,6 +630,14 @@
           <target xmi:type="ecore:EEnumLiteral" href="metamodeloArquitectura.ecore#//TipoAtributoVista/REFERENCIA"/>
           <semanticElements xmi:type="ecore:EEnumLiteral" href="metamodeloArquitectura.ecore#//TipoAtributoVista/REFERENCIA"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_nfkYgKk0EeayC_oYw3BAjA" labelAlignment="LEFT">
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
+        </ownedElements>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_1nfxoK94Eeas68SlK8y_iw" name="ENUM" tooltipText="">
+          <target xmi:type="ecore:EEnumLiteral" href="metamodeloArquitectura.ecore#//TipoAtributoVista/ENUM"/>
+          <semanticElements xmi:type="ecore:EEnumLiteral" href="metamodeloArquitectura.ecore#//TipoAtributoVista/ENUM"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_1nhm0K94Eeas68SlK8y_iw" labelAlignment="LEFT">
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>

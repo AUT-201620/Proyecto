@@ -19,7 +19,7 @@
     <atributos name="fechaFin" tipoPrimitivo="Fecha"/>
     <atributos name="noConsolidada" tipoPrimitivo="Booleano"/>
     <atributos name="fechaCreacion" tipoPrimitivo="Fecha"/>
-    <atributos name="tipo" tipoPrimitivo="CadenaCaracteres">
+    <atributos name="tipoNovedad" tipoPrimitivo="CadenaCaracteres">
       <listaLlaveValor llave="1" valor="&quot;Traslado&quot;"/>
       <listaLlaveValor llave="2" valor="&quot;VariacionSalario&quot;"/>
       <listaLlaveValor llave="3" valor="&quot;SLN&quot;"/>

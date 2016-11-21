@@ -24,14 +24,13 @@
 		[%for (atributo in vista.atributos) {
 			if (atributo.enLista){
 		%]
-			<p:column headerText="[%=atributo.nombre.firstToUpperCase()%]">
+			<p:column headerText="[%=atributo.etiqueta%]">
 				<h:outputText value="#[%=vista.nombre.firstToLowerCase()%].[%=atributo.nombre.firstToLowerCase()%]}" />
 			</p:column>
 		[%
 			}
 		}
 		%]
-		
 			<p:column headerText="Acciones" >			
 				<p:commandButton action="#{[%=vista.nombre.firstToLowerCase()%]Bean.delete}" value="Eliminar" update=":[%=vista.nombre.firstToLowerCase()%]Crud">
 					<f:setPropertyActionListener target="#{[%=vista.nombre.firstToLowerCase()%]Bean.identificador}" value="#{[%=vista.nombre.firstToLowerCase()%].id}" />
@@ -50,14 +49,10 @@
 	<p:dialog header="formulario[%=vista.nombre.firstToUpperCase()%]" widgetVar="formulario[%=vista.nombre.firstToUpperCase()%]"
 		modal="true" width="80%" height="100%" id="formulario[%=vista.nombre.firstToUpperCase()%]">
 		<h:form>
-			<h:panelGrid columns="4" cellpadding="5">
-			[%for (atributo in vista.atributos) {
-			%]
-				<h:outputLabel for="[%=atributo.nombre.firstToLowerCase()%]" value="[%=atributo.nombre.firstToUpperCase()%]:" />
-		        <p:inputText id="[%=atributo.nombre.firstToLowerCase()%]" value="#{[%=vista.nombre.firstToLowerCase()%]Bean.[%=vista.nombre.firstToLowerCase()%].[%=atributo.nombre.firstToLowerCase()%]}" required="true" label="[%=atributo.etiqueta%]" />
- 			 
+			<h:panelGrid columns="4" cellpadding="5">					
 			[%
-			}
+				vista.obtenerTipoAtributo();
+
 			%]
 				<f:facet name="footer">
 					<p:commandButton value="Crear"
@@ -78,4 +73,48 @@
 	</p:dialog>
 </h:body>
 </html>
-				
+
+[%
+	operation mArq!Vista obtenerTipoAtributo() {
+		for (atributo in self.atributos) {
+			if (atributo.tipo <> mArq!TipoAtributoVista#REFERENCIA) {
+				out.print('<h:outputLabel for="'+ atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':" />\n');
+				if (atributo.tipo = mArq!TipoAtributoVista#LISTA) {
+					out.print('<p:selectOneMenu ');
+					out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
+					out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+					out.print('required="true" label="'+atributo.etiqueta+'">\n');
+					
+					out.print('<f:selectItem  itemLabel="Seleccione" itemValue="" />\n');
+					out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'List}" ');
+					out.print('var="'+atributo.nombre.firstToLowerCase()+'" itemLabel="#{'+atributo.nombre.firstToLowerCase()+'.descripcion}" ');
+					out.print('itemValue="#{'+atributo.nombre.firstToLowerCase()+'.id}"/>\n');
+					out.print('<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagador"/>\n');
+					out.print('</p:selectOneMenu>\n');
+				} 
+				else if (atributo.tipo = mArq!TipoAtributoVista#ENUM) {
+					out.print('<h:selectOneMenu value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+					out.print('required="true" label="'+atributo.etiqueta+'">\n');
+					out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'}" />\n');
+					out.print('</p:selectOneMenu>\n');
+				}
+				else {
+					if (atributo.tipo = mArq!TipoAtributoVista#TEXTO) {
+						 out.print('<p:inputText ');
+					}
+					else if (atributo.tipo = mArq!TipoAtributoVista#BOOLEANO) {
+						 out.print('<p:selectBooleanCheckbox ');
+					}
+					else if (atributo.tipo = mArq!TipoAtributoVista#FECHA) {
+						out.print('<p:calendar ');
+					}
+					
+					out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
+					out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+					out.print('required="true" label="'+atributo.etiqueta+'"/>\n');
+				}
+				out.print('\n');
+			}
+		}
+	}
+%]	 

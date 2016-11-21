@@ -2,7 +2,7 @@
 
 shiro.loginUrl = /login.xhtml
 # Redirect after successful login 
-authc.successUrl = /pages/index.xhtml 
+authc.successUrl = /pages/pensionado.xhtml
 
 cacheManager = org.apache.shiro.cache.MemoryConstrainedCacheManager
 securityManager.cacheManager = $cacheManager

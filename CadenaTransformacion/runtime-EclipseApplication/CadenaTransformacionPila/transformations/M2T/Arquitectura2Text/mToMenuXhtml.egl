@@ -9,11 +9,14 @@
 <h:form>  
 
     <p:menubar>
-        <p:menuitem value="Pensionados" url="/pages/pensionado.xhtml" />
-        <p:menuitem value="Aportantes" url="/pages/aportante.xhtml" />
-        <p:menuitem value="Novedades" url="/pages/novedad.xhtml" />
-        <p:menuitem value="Pago de Servicios" url="/pages/pagoServicios.xhtml" />
-        <p:menuitem value="Cerrar Sesión" url="/logout" />
+    [%
+for (vista in mArq!ArquitecturaMVC.all.at(0).vistas){
+%]
+	 	<p:menuitem value="[%=vista.nombre.firstToUpperCase()%]" url="/pages/[%=vista.nombre.firstToLowerCase()%].xhtml" />
+[%
+}
+%]
+		<p:menuitem value="Cerrar Sesión" url="/logout" />
     </p:menubar>
 	</h:form>
 </ui:composition>
