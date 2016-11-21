@@ -49,17 +49,17 @@ operation  getModelosTablaPila(): Set {
 	
 	//NOTA:: Esta parte si deberia ir "Quemada" ???
 	modelo = new mArq!Modelo;
-	modelo.nombre = "TipoPensionTipoPensionado";
+	modelo.nombre = "TipoPension_TipoPensionado";
 	modelo.esCrud = false;
 	modelo.esEntidad = false;
 	modelos.add(modelo);
 	modelo = new mArq!Modelo;
-	modelo.nombre = "TipoPensionadoTipoPagador";
+	modelo.nombre = "TipoPensionado_TipoPagador";
 	modelo.esCrud = false;
 	modelo.esEntidad = false;
 	modelos.add(modelo);
 	modelo = new mArq!Modelo;
-	modelo.nombre = "TipoPensionTipoPagador";
+	modelo.nombre = "TipoPension_TipoPagador";
 	modelo.esCrud = false;
 	modelo.esEntidad = false;
 	modelos.add(modelo);
@@ -104,17 +104,20 @@ operation mGram!Atributo getAtributoModelo(): mArq!AtributoModelo {
 	else if ((self.tipoPrimitivo = mGram!TipoDatoPrimitivo#NO_ASIGNADO) or (self.tipoPrimitivo = "")) {
 		
 		var nombreReferencia = "";
+		var tipoReferencia;
 		if (self.referencia <> null) {
-			atributoModelo.tipo = mArq!TipoDato#REFERENCE;
+			tipoReferencia = mArq!TipoReferencia#MANY_TO_ONE;
 			nombreReferencia = self.referencia;
 		}
 		else if (self.listaEntidad.isDefined()) {
-		atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+			tipoReferencia = mArq!TipoReferencia#ONE_TO_MANY;
 			nombreReferencia = self.listaEntidad.name;
 		}
 		var modelo = mArq!Modelo.all.select(m|m.nombre = nombreReferencia).first();
 		if (modelo.isDefined()) {
 			atributoModelo.modeloReferencia = modelo;
+			atributoModelo.tipo = mArq!TipoDato#REFERENCE;
+			atributoModelo.tipoReferencia = tipoReferencia;
 		}
 	}
 	atributoModelo.codigosValor = self.listaLlaveValor.collect(l|l.getCodigoValor());
@@ -158,7 +161,8 @@ operation mArq!Modelo completarAtributosModeloTipoPension() {
 	
 	var atributoModelo = new mArq!AtributoModelo;
 	atributoModelo.nombre = "tipoPagadorPension";
-	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	atributoModelo.tipo = mArq!TipoDato#REFERENCE;
+	atributoModelo.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY;
 	var modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPagadorPension").first();
 	if (modeloReferencia.isDefined()) {
 		atributoModelo.modeloReferencia = modeloReferencia;
@@ -167,7 +171,8 @@ operation mArq!Modelo completarAtributosModeloTipoPension() {
 	
 	atributoModelo = new mArq!AtributoModelo;
 	atributoModelo.nombre = "tipoPensionado";
-	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	atributoModelo.tipo = mArq!TipoDato#REFERENCE;
+	atributoModelo.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY;
 	modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPensionado").first();
 	if (modeloReferencia.isDefined()) {
 		atributoModelo.modeloReferencia = modeloReferencia;
@@ -198,17 +203,9 @@ operation mArq!Modelo completarAtributosModeloTipoPensionado() {
 	self.getAtributosModelosTablaPila();
 	var atributoModelo = new mArq!AtributoModelo;
 	atributoModelo.nombre = "tipoPagadorPension";
-	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
+	atributoModelo.tipo = mArq!TipoDato#REFERENCE;
+	atributoModelo.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY;
 	var modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPagadorPension").first();
-	if (modeloReferencia.isDefined()) {
-		atributoModelo.modeloReferencia = modeloReferencia;
-	}
-	self.atributos.add(atributoModelo);
-	
-	var atributoModelo = new mArq!AtributoModelo;
-	atributoModelo.nombre = "tipoPension";
-	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
-	var modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPension").first();
 	if (modeloReferencia.isDefined()) {
 		atributoModelo.modeloReferencia = modeloReferencia;
 	}
@@ -236,23 +233,6 @@ operation completarModeloTipoPagadorPension() {
 
 operation mArq!Modelo completarAtributosModeloTipoPagadorPension() {
 	self.getAtributosModelosTablaPila();
-	var atributoModelo = new mArq!AtributoModelo;
-	atributoModelo.nombre = "tipoPension";
-	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
-	var modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPension").first();
-	if (modeloReferencia.isDefined()) {
-		atributoModelo.modeloReferencia = modeloReferencia;
-	}
-	self.atributos.add(atributoModelo);
-	
-	atributoModelo = new mArq!AtributoModelo;
-	atributoModelo.nombre = "tipoPensionado";
-	atributoModelo.tipo = mArq!TipoDato#REFERENCELIST;
-	modeloReferencia = mArq!Modelo.all.select(m|m.nombre = "TipoPensionado").first();
-	if (modeloReferencia.isDefined()) {
-		atributoModelo.modeloReferencia = modeloReferencia;
-	}
-	self.atributos.add(atributoModelo);
 }
 
 operation mArq!Modelo completarDatosModeloTipoPagadorPension() {
