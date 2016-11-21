@@ -46,7 +46,6 @@
     <eLiterals name="DATE" value="3"/>
     <eLiterals name="BOOLEAN" value="4"/>
     <eLiterals name="REFERENCE" value="5"/>
-    <eLiterals name="REFERENCELIST"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Modelo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -69,9 +68,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="codigosValor" upperBound="-1"
         eType="#//CodigoValor" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modeloReferencia" eType="#//Modelo"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipoReferencia" eType="#//TipoReferencia"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dato">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="campos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoReferencia">
+    <eLiterals name="ONE_TO_MANY"/>
+    <eLiterals name="MANY_TO_ONE"/>
+    <eLiterals name="ONE_TO_ONE"/>
+    <eLiterals name="MANY_TO_MANY"/>
   </eClassifiers>
 </ecore:EPackage>
