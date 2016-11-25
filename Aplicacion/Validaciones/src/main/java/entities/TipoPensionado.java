@@ -28,7 +28,7 @@ public class TipoPensionado implements Serializable {
 	@ManyToMany(mappedBy = "tipoPensionado")
 	private List<TipoPension> tipoPension;
 	@ManyToMany
-	private List<TipoPagador> tipoPagadorPensionado;
+	private List<TipoPagadorPension> TipoPagadorPensionPensionado;
 	
 	/**
 	 * @return the id
@@ -79,16 +79,12 @@ public class TipoPensionado implements Serializable {
 	public void setTipoPension(List<TipoPension> tipoPension) {
 		this.tipoPension = tipoPension;
 	}
-	/**
-	 * @return the tipoPagadorPensionado
-	 */
-	public List<TipoPagador> getTipoPagadorPensionado() {
-		return tipoPagadorPensionado;
+	public List<TipoPagadorPension> getTipoPagadorPensionPensionado() {
+		return TipoPagadorPensionPensionado;
 	}
-	/**
-	 * @param tipoPagadorPensionado the tipoPagadorPensionado to set
-	 */
-	public void setTipoPagadorPensionado(List<TipoPagador> tipoPagadorPensionado) {
-		this.tipoPagadorPensionado = tipoPagadorPensionado;
+	public void setTipoPagadorPensionPensionado(
+			List<TipoPagadorPension> tipoPagadorPensionPensionado) {
+		TipoPagadorPensionPensionado = tipoPagadorPensionPensionado;
 	}
+
 }

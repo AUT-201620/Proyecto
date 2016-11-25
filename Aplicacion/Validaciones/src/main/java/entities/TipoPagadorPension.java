@@ -12,11 +12,11 @@ import java.util.List;
  *
  */
 @NamedQueries({
-    @NamedQuery(name="TipoPagador.getByPensionPensionado",
-            query="SELECT p from TipoPagador p join p.tipoPension e join p.tipoPensionado pe where e.id = :idPension and pe.id= :idPensionado")
+    @NamedQuery(name="TipoPagadorPension.getByPensionPensionado",
+            query="SELECT p from TipoPagadorPension p join p.tipoPension e join p.tipoPensionado pe where e.id = :idPension and pe.id= :idPensionado")
 })
 @Entity
-public class TipoPagador implements Serializable {
+public class TipoPagadorPension implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -25,9 +25,9 @@ public class TipoPagador implements Serializable {
 	private Long id;
 	private Long codigo;
 	private String descripcion;
-	@ManyToMany(mappedBy = "tipoPagador")
+	@ManyToMany(mappedBy = "TipoPagadorPension")
 	private List<TipoPension> tipoPension;
-	@ManyToMany(mappedBy = "tipoPagadorPensionado")
+	@ManyToMany(mappedBy = "TipoPagadorPensionPensionado")
 	private List<TipoPensionado> tipoPensionado;
 	
 	/**

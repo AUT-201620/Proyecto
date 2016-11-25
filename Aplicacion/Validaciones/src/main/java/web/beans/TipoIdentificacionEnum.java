@@ -1,6 +1,6 @@
 package web.beans;
 
-public enum TipoDocumento {
+public enum TipoIdentificacionEnum {
 	CEDULA_CIUDADANIA, CEDULA_EXTRANJERIA, 
 	TARJETA_INDETIDAD,REGISTRO_CIVIL, 
 	PASAPORTE, CARNE_DIPLOMATICO

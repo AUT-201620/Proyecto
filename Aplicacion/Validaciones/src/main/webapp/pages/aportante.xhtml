@@ -64,7 +64,7 @@
  			            
             <h:outputLabel for="tipoIdentificacion" value="Tipo Identificacion:" />
 				<h:selectOneMenu value="#{aportanteBean.aportante.tipoIdentificacion}" required="true" label="Tipo Identificacion">
-				    <f:selectItems value="#{aportanteBean.tiposDocumento}" />
+				    <f:selectItems value="#{aportanteBean.tipoIdentificacionEnum}" />
 			</h:selectOneMenu>
             
             <h:outputLabel for="numeroIdentificacion" value="Numero Identificacion:" />

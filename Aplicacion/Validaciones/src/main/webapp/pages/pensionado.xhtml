@@ -34,7 +34,7 @@
 
 			<p:column headerText="Nombres">
 				<h:outputText
-					value="#{pensionado.primerNombre} #{pensionado.segundoNombre}" />
+					value="#{pensionado.primerNombre} #{pensionado.otrosNombres}" />
 			</p:column>
 
 			<p:column headerText="Apellidos">
@@ -85,10 +85,10 @@
 					value="#{pensionadoBean.pensionado.primerNombre}" required="true"
 					label="Primer Nombre" />
 
-				<h:outputLabel for="segundoNombre" value="Segundo Nombre:" />
-				<p:inputText id="segundoNombre"
-					value="#{pensionadoBean.pensionado.segundoNombre}" required="true"
-					label="Segundo Nombre" />
+				<h:outputLabel for="otrosNombres" value="Otros Nombres:" />
+				<p:inputText id="otrosNombres"
+					value="#{pensionadoBean.pensionado.otrosNombres}" required="true"
+					label="Otros Nombres" />
 
 				<h:outputLabel for="primerApellido" value="Primer Apellido:" />
 				<p:inputText id="primerApellido"
@@ -102,7 +102,7 @@
 
 				<h:outputLabel for="tipoIdentificacion" value="Tipo Identificacion:" />
 				<h:selectOneMenu value="#{pensionadoBean.pensionado.tipoIdentificacion}" required="true" label="Tipo Identificacion">
-				    <f:selectItems value="#{pensionadoBean.tiposDocumento}" />
+				    <f:selectItems value="#{pensionadoBean.tipoIdentificacionEnum}" />
 				</h:selectOneMenu>
 				
 				<h:outputLabel for="numeroIdentificacion"
@@ -124,7 +124,7 @@
 				<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPension.id}" required="true" label="tipoPension" id="tipoPension">
 					<f:selectItem  itemLabel="Seleccione" itemValue="-1"/>
 					<f:selectItems value="#{pensionadoBean.tipoPension}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}"  />
-					<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagador"/>
+					<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagadorPension"/>
 				</p:selectOneMenu>
 				
 				
@@ -135,17 +135,17 @@
 						<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPensionado.id}" required="true" label="tipoPensionado" id="tipoPensionado">
 							<f:selectItem  itemLabel="Seleccione" itemValue="-1" />
 							<f:selectItems value="#{pensionadoBean.tipoPensionado}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}"  />
-							<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagador"/>
+							<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagadorPension"/>
 						</p:selectOneMenu>
 
 				</p:outputPanel>
 				
-				<h:outputLabel for="tipoPagador"
-							value="Tipo Pagador:" />
-				<p:outputPanel id ="panelTipoPagador">			
-						<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPagador.id}" required="true" label="tipoPagador" id="tipoPagador">
+				<h:outputLabel for="tipoPagadorPension"
+							value="Tipo Pagador Pension:" />
+				<p:outputPanel id ="panelTipoPagadorPension">			
+						<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPagadorPension.id}" required="true" label="tipoPagador" id="tipoPagador">
 							<f:selectItem  itemLabel="Seleccione" itemValue="-1"/>
-							<f:selectItems value="#{pensionadoBean.tipoPagador}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}"  />
+							<f:selectItems value="#{pensionadoBean.tipoPagadorPension}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}"  />
 						</p:selectOneMenu>
 
 				</p:outputPanel>

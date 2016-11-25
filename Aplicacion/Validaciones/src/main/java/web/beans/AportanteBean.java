@@ -32,19 +32,8 @@ public class AportanteBean implements Serializable {
 	private Long identificador;
 	private IValidacionesServices validacionesservices;
 	private Boolean buttonCrud;
-	private TipoDocumento [] tiposDocumento;
+	private TipoIdentificacionEnum [] tipoIdentificacionEnum;
 
-	//public List<TipoActividad> getTipoActividad()
-	//{
-	//	this.tipoActividad = validacionesservices.getTipoActividad();
-	//	return tipoActividad;
-	//}
-
-	//public void setTipoActividad(List<TipoActividad> tipoActividad) {
-	//	this.tipoActividad = tipoActividad;
-	//}
-
-	//private List<TipoActividad> tipoActividad;
 
 	public AportanteBean() {
 		services = new AportanteServices();
@@ -145,17 +134,14 @@ public class AportanteBean implements Serializable {
 	}
 
 
-	/**
-	 * @return the tiposDocumento
-	 */
-	public TipoDocumento[] getTiposDocumento() {
-		return TipoDocumento.values();
+	public TipoIdentificacionEnum[] getTipoIdentificacionEnum() {
+		return TipoIdentificacionEnum.values();
 	}
 
 	/**
 	 * @param tiposDocumento the tiposDocumento to set
 	 */
-	public void setTiposDocumento(TipoDocumento[] tiposDocumento) {
-		this.tiposDocumento = tiposDocumento;
+	public void setTipoIdentificacionEnum(TipoIdentificacionEnum[] tipoIdentificacionEnum) {
+		this.tipoIdentificacionEnum = tipoIdentificacionEnum;
 	}
 }

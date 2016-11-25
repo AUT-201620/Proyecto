@@ -1,11 +1,10 @@
-/**
- * 
- */
 package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Date;
 
 /**
  * @author am.osorio
@@ -13,45 +12,42 @@ import java.util.List;
  */
 
 @NamedQueries({
-@NamedQuery(name="Pensionado.getPensionados",
-    query="SELECT e FROM Pensionado e"),
-		@NamedQuery(name="Pensionado.findByIdentificacion",
-				query="SELECT e FROM Pensionado e WHERE e.numeroIdentificacion = :identificacion")
+	@NamedQuery(name = "Pensionado.getPensionados",
+    	query = "SELECT e FROM Pensionado e")
 })
 
 @Entity
 public class Pensionado implements Serializable {
 	private static final long serialVersionUID = 1L;
-	public static final String FIND_BY_IDENTIFICACION ="Entidad.findByIdentificacion";
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	private String primerNombre;
-	private String segundoNombre;
-	private String primerApellido;
-	private String segundoApellido;
-	private String tipoIdentificacion;
-	private Integer numeroIdentificacion;
 	private Boolean viveExterior;
 	private Boolean noTieneGrupoFamiliar;
-	private Integer actividadEconomica;
 	private Boolean altoRiesgo;
 	private Boolean congresista;
 	private Boolean cti;
 	private Boolean aviador;
-	private float montoPension;
-	private TipoPension tipoPension;
+	private String primerNombre;
+	private String otrosNombres;
+	private String primerApellido;
+	private String segundoApellido;
+	private String tipoIdentificacion;
+	private Integer numeroIdentificacion;
+	private Float montoPension;
+	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "pensionado")
+	private List<Novedad> novedades;
+	private Integer actividadEconomica;
+	@ManyToOne
 	private TipoPensionado tipoPensionado;
-	private TipoPagador tipoPagador;
-	
-
+	@ManyToOne
+	private TipoPagadorPension tipoPagadorPension;
+	@ManyToOne
+	private TipoPension tipoPension;
 	@ManyToOne
 	private Aportante aportante;
 
-	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "pensionado")
-	private List<Novedad> novedades;
 	/**
 	 * @return the id
 	 */
@@ -64,78 +60,7 @@ public class Pensionado implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/**
-	 * @return the primerNombre
-	 */
-	public String getPrimerNombre() {
-		return primerNombre;
-	}
-	/**
-	 * @param primerNombre the primerNombre to set
-	 */
-	public void setPrimerNombre(String primerNombre) {
-		this.primerNombre = primerNombre;
-	}
-	/**
-	 * @return the segundoNombre
-	 */
-	public String getSegundoNombre() {
-		return segundoNombre;
-	}
-	/**
-	 * @param segundoNombre the segundoNombre to set
-	 */
-	public void setSegundoNombre(String segundoNombre) {
-		this.segundoNombre = segundoNombre;
-	}
-	/**
-	 * @return the primerApellido
-	 */
-	public String getPrimerApellido() {
-		return primerApellido;
-	}
-	/**
-	 * @param primerApellido the primerApellido to set
-	 */
-	public void setPrimerApellido(String primerApellido) {
-		this.primerApellido = primerApellido;
-	}
-	/**
-	 * @return the segundoApellido
-	 */
-	public String getSegundoApellido() {
-		return segundoApellido;
-	}
-	/**
-	 * @param segundoApellido the segundoApellido to set
-	 */
-	public void setSegundoApellido(String segundoApellido) {
-		this.segundoApellido = segundoApellido;
-	}
-	/**
-	 * @return the tipoIdentificacion
-	 */
-	public String getTipoIdentificacion() {
-		return tipoIdentificacion;
-	}
-	/**
-	 * @param tipoIdentificacion the tipoIdentificacion to set
-	 */
-	public void setTipoIdentificacion(String tipoIdentificacion) {
-		this.tipoIdentificacion = tipoIdentificacion;
-	}
-	/**
-	 * @return the numeroIdentificacion
-	 */
-	public Integer getNumeroIdentificacion() {
-		return numeroIdentificacion;
-	}
-	/**
-	 * @param numeroIdentificacion the numeroIdentificacion to set
-	 */
-	public void setNumeroIdentificacion(Integer numeroIdentificacion) {
-		this.numeroIdentificacion = numeroIdentificacion;
-	}
+
 	/**
 	 * @return the viveExterior
 	 */
@@ -148,30 +73,20 @@ public class Pensionado implements Serializable {
 	public void setViveExterior(Boolean viveExterior) {
 		this.viveExterior = viveExterior;
 	}
+
 	/**
-	 * @return the grupoFamiliar
+	 * @return the noTieneGrupoFamiliar
 	 */
 	public Boolean getNoTieneGrupoFamiliar() {
 		return noTieneGrupoFamiliar;
 	}
 	/**
-	 * @param grupoFamiliar the grupoFamiliar to set
+	 * @param noTieneGrupoFamiliar the noTieneGrupoFamiliar to set
 	 */
 	public void setNoTieneGrupoFamiliar(Boolean noTieneGrupoFamiliar) {
 		this.noTieneGrupoFamiliar = noTieneGrupoFamiliar;
 	}
-	/**
-	 * @return the actividadEconomica
-	 */
-	public Integer getActividadEconomica() {
-		return actividadEconomica;
-	}
-	/**
-	 * @param actividadEconomica the actividadEconomica to set
-	 */
-	public void setActividadEconomica(Integer actividadEconomica) {
-		this.actividadEconomica = actividadEconomica;
-	}
+
 	/**
 	 * @return the altoRiesgo
 	 */
@@ -184,6 +99,7 @@ public class Pensionado implements Serializable {
 	public void setAltoRiesgo(Boolean altoRiesgo) {
 		this.altoRiesgo = altoRiesgo;
 	}
+
 	/**
 	 * @return the congresista
 	 */
@@ -196,6 +112,7 @@ public class Pensionado implements Serializable {
 	public void setCongresista(Boolean congresista) {
 		this.congresista = congresista;
 	}
+
 	/**
 	 * @return the cti
 	 */
@@ -208,6 +125,7 @@ public class Pensionado implements Serializable {
 	public void setCti(Boolean cti) {
 		this.cti = cti;
 	}
+
 	/**
 	 * @return the aviador
 	 */
@@ -220,47 +138,124 @@ public class Pensionado implements Serializable {
 	public void setAviador(Boolean aviador) {
 		this.aviador = aviador;
 	}
+
 	/**
-	 * @return the ingresoBaseCotizacion
+	 * @return the primerNombre
 	 */
-	public float getMontoPension() {
+	public String getPrimerNombre() {
+		return primerNombre;
+	}
+	/**
+	 * @param primerNombre the primerNombre to set
+	 */
+	public void setPrimerNombre(String primerNombre) {
+		this.primerNombre = primerNombre;
+	}
+
+	/**
+	 * @return the otrosNombres
+	 */
+	public String getOtrosNombres() {
+		return otrosNombres;
+	}
+	/**
+	 * @param otrosNombres the otrosNombres to set
+	 */
+	public void setOtrosNombres(String otrosNombres) {
+		this.otrosNombres = otrosNombres;
+	}
+
+	/**
+	 * @return the primerApellido
+	 */
+	public String getPrimerApellido() {
+		return primerApellido;
+	}
+	/**
+	 * @param primerApellido the primerApellido to set
+	 */
+	public void setPrimerApellido(String primerApellido) {
+		this.primerApellido = primerApellido;
+	}
+
+	/**
+	 * @return the segundoApellido
+	 */
+	public String getSegundoApellido() {
+		return segundoApellido;
+	}
+	/**
+	 * @param segundoApellido the segundoApellido to set
+	 */
+	public void setSegundoApellido(String segundoApellido) {
+		this.segundoApellido = segundoApellido;
+	}
+
+	/**
+	 * @return the tipoIdentificacion
+	 */
+	public String getTipoIdentificacion() {
+		return tipoIdentificacion;
+	}
+	/**
+	 * @param tipoIdentificacion the tipoIdentificacion to set
+	 */
+	public void setTipoIdentificacion(String tipoIdentificacion) {
+		this.tipoIdentificacion = tipoIdentificacion;
+	}
+
+	/**
+	 * @return the numeroIdentificacion
+	 */
+	public Integer getNumeroIdentificacion() {
+		return numeroIdentificacion;
+	}
+	/**
+	 * @param numeroIdentificacion the numeroIdentificacion to set
+	 */
+	public void setNumeroIdentificacion(Integer numeroIdentificacion) {
+		this.numeroIdentificacion = numeroIdentificacion;
+	}
+
+	/**
+	 * @return the montoPension
+	 */
+	public Float getMontoPension() {
 		return montoPension;
 	}
 	/**
-	 * @param ingresoBaseCotizacion the ingresoBaseCotizacion to set
+	 * @param montoPension the montoPension to set
 	 */
-	public void setMontoPension(float montoPension) {
+	public void setMontoPension(Float montoPension) {
 		this.montoPension = montoPension;
 	}
 
-	public Aportante getAportante() {
-		return aportante;
-	}
-
-	public void setAportante(Aportante aportante) {
-		this.aportante = aportante;
-	}
-
+	/**
+	 * @return the novedades
+	 */
 	public List<Novedad> getNovedades() {
 		return novedades;
 	}
-
+	/**
+	 * @param novedades the novedades to set
+	 */
 	public void setNovedades(List<Novedad> novedades) {
 		this.novedades = novedades;
 	}
+	
+	/**
+	 * @return the actividadEconomica
+	 */
+	public Integer getActividadEconomica() {
+		return actividadEconomica;
+	}
+	/**
+	 * @param actividadEconomica the actividadEconomica to set
+	 */
+	public void setActividadEconomica(Integer actividadEconomica) {
+		this.actividadEconomica = actividadEconomica;
+	}
 
-	/**
-	 * @return the tipoPension
-	 */
-	public TipoPension getTipoPension() {
-		return tipoPension;
-	}
-	/**
-	 * @param tipoPension the tipoPension to set
-	 */
-	public void setTipoPension(TipoPension tipoPension) {
-		this.tipoPension = tipoPension;
-	}
 	/**
 	 * @return the tipoPensionado
 	 */
@@ -273,38 +268,70 @@ public class Pensionado implements Serializable {
 	public void setTipoPensionado(TipoPensionado tipoPensionado) {
 		this.tipoPensionado = tipoPensionado;
 	}
+	
 	/**
-	 * @return the tipoPagador
+	 * @return the tipoPagadorPension
 	 */
-	public TipoPagador getTipoPagador() {
-		return tipoPagador;
+	public TipoPagadorPension getTipoPagadorPension() {
+		return tipoPagadorPension;
 	}
 	/**
-	 * @param tipoPagador the tipoPagador to set
+	 * @param tipoPagadorPension the tipoPagadorPension to set
 	 */
-	public void setTipoPagador(TipoPagador tipoPagador) {
-		this.tipoPagador = tipoPagador;
+	public void setTipoPagadorPension(TipoPagadorPension tipoPagadorPension) {
+		this.tipoPagadorPension = tipoPagadorPension;
 	}
+	
+	/**
+	 * @return the tipoPension
+	 */
+	public TipoPension getTipoPension() {
+		return tipoPension;
+	}
+	/**
+	 * @param tipoPension the tipoPension to set
+	 */
+	public void setTipoPension(TipoPension tipoPension) {
+		this.tipoPension = tipoPension;
+	}
+	
+	/**
+	 * @return the aportante
+	 */
+	public Aportante getAportante() {
+		return aportante;
+	}
+	/**
+	 * @param aportante the aportante to set
+	 */
+	public void setAportante(Aportante aportante) {
+		this.aportante = aportante;
+	}
+	
 	@Override
 	public String toString() {
-		return "Entidad{" +
+		return "Pensionado{" +
 				"id=" + id +
+				", viveExterior='" + viveExterior + '\'' +
+				", noTieneGrupoFamiliar='" + noTieneGrupoFamiliar + '\'' +
+				", altoRiesgo='" + altoRiesgo + '\'' +
+				", congresista='" + congresista + '\'' +
+				", cti='" + cti + '\'' +
+				", aviador='" + aviador + '\'' +
 				", primerNombre='" + primerNombre + '\'' +
-				", segundoNombre='" + segundoNombre + '\'' +
+				", otrosNombres='" + otrosNombres + '\'' +
 				", primerApellido='" + primerApellido + '\'' +
 				", segundoApellido='" + segundoApellido + '\'' +
 				", tipoIdentificacion='" + tipoIdentificacion + '\'' +
-				", numeroIdentificacion=" + numeroIdentificacion +
-				", viveExterior=" + viveExterior +
-				", noTieneGrupoFamiliar=" + noTieneGrupoFamiliar +
-				", actividadEconomica=" + actividadEconomica +
-				", altoRiesgo=" + altoRiesgo +
-				", congresista=" + congresista +
-				", cti=" + cti +
-				", aviador=" + aviador +
-				", montoPension=" + montoPension +
-				", aportante=" + aportante +
-				", novedades=" + novedades +
+				", numeroIdentificacion='" + numeroIdentificacion + '\'' +
+				", montoPension='" + montoPension + '\'' +
+				", novedades='" + novedades + '\'' +
+				", actividadEconomica='" + actividadEconomica + '\'' +
+				", tipoPensionado='" + tipoPensionado + '\'' +
+				", tipoPagadorPension='" + tipoPagadorPension + '\'' +
+				", tipoPension='" + tipoPension + '\'' +
+				", aportante='" + aportante + '\'' +
 				'}';
 	}
 }
+

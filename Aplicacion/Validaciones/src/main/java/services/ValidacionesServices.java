@@ -29,8 +29,8 @@ private ValidacionesPersistence persistance;
 		return tipos;
 	}
 	
-	public List<TipoPagador> getTipoPagador(Long idPension,Long idPensionado){
-		List<TipoPagador> tipos = persistance.findByPensioPensionado(idPension,idPensionado);
+	public List<TipoPagadorPension> getTipoPagadorPension(Long idPension,Long idPensionado){
+		List<TipoPagadorPension> tipos = persistance.findByPensionPensionado(idPension,idPensionado);
 		return tipos;
 	}
 }
