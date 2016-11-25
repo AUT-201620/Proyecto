@@ -42,6 +42,12 @@ public class NovedadServices implements INovedadServices
     	List<Novedad> novedadListByIdEntidad = persistance.findByPensionadoId(entidadId);
     	return novedadListByIdEntidad;        
 	    }
+    
+    @Override
+    public List<Novedad> findByPensionadoAll(Pensionado pensionado) {
+    	List<Novedad> novedadListByIdEntidad = persistance.findByPensionadoAll(pensionado);
+    	return novedadListByIdEntidad;        
+    }
 
     @Override
     public Novedad create(Novedad novedad) {

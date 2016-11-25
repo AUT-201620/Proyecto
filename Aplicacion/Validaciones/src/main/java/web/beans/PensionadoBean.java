@@ -7,7 +7,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.ValueChangeEvent;
 
 import entities.Pensionado;
 import entities.TipoPagador;
@@ -98,11 +97,17 @@ public class PensionadoBean implements Serializable {
 
 	
 	public void getListTipos() {
-        if(pensionado.getTipoPension().getId()!=null){
+        if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0){
 			this.setTipoPensionado(validacionesservices.getTipoPensionado(pensionado.getTipoPension().getId()));
-		} 
-        if(pensionado.getTipoPension().getId()!=null && pensionado.getTipoPensionado().getId() !=null){
+		} else{
+			this.setTipoPensionado(new ArrayList<TipoPensionado>());
+		}
+        if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0 
+        		&& pensionado.getTipoPensionado().getId() != null && pensionado.getTipoPensionado().getId() >0){
 			this.setTipoPagador(validacionesservices.getTipoPagador(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
+		}
+        else{
+			this.setTipoPagador(new ArrayList<TipoPagador>());
 		}
     }
 	

@@ -45,9 +45,9 @@ public class PagosBean implements Serializable {
 	}
 
 	public void calculoPagoTotal() {		
-		pagoSalud = servicesPagos.calculoPagoSalud(pensionado);	
-		pagoPension =  servicesPagos.calculoPagoPension(pensionado);
-		pagoRiesgo =  servicesPagos.calculoPagoRiesgo(pensionado);	
+		pagoSalud = servicesPagos.pagoSalud(pensionado);	
+		pagoPension =  servicesPagos.pagoPension(pensionado);
+		pagoRiesgo =  servicesPagos.pagoRiesgos(pensionado);	
 		valorPorPagar = pagoSalud + pagoRiesgo + pagoPension;
 	}
 

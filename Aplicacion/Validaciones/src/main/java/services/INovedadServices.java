@@ -1,6 +1,7 @@
 package services;
 
 import entities.Novedad;
+import entities.Pensionado;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ public interface INovedadServices
     public Novedad find(Long id);
 
     public List<Novedad> findByPensionadoId(Long entidadId);
+    
+    public List<Novedad> findByPensionadoAll(Pensionado pensionado);
 
     public Novedad create(Novedad entidad);
 

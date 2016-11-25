@@ -3,7 +3,6 @@
  */
 package services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.ManagedBean;
@@ -24,97 +23,93 @@ public class PagosServices implements IPagosServices {
 		servicesNovedad= new NovedadServices();
 	}
 
-
 	@Override
-	public float calculoPagoSalud(Pensionado pensionado) {
-		float pagoSalud;
-		List<Novedad> novedadesList = new ArrayList<Novedad>();
+	public float pagoRiesgos(Pensionado pensionado) {
+		float tarifa = 0;
+		if (pensionado.getActividadEconomica() == 8022) {
+			tarifa = (float) 0.00522;
+		}
+		else if (pensionado.getActividadEconomica() == 8513) {
+			tarifa = (float) 0.00522;
+		}
+		else if (pensionado.getActividadEconomica() == 117) {
+			tarifa = (float) 0.01044;
+		}
+		else if (pensionado.getActividadEconomica() == 1541) {
+			tarifa = (float) 0.01044;
+		}
+		else if (pensionado.getActividadEconomica() == 1592) {
+			tarifa = (float) 0.02436;
+		}
+		else if (pensionado.getActividadEconomica() == 1743) {
+			tarifa = (float) 0.02436;
+		}
+		else if (pensionado.getActividadEconomica() == 2101) {
+			tarifa = (float) 0.0435;
+		}
+		else if (pensionado.getActividadEconomica() == 2322) {
+			tarifa = (float) 0.04345;
+		}
+		else if (pensionado.getActividadEconomica() == 1431) {
+			tarifa = (float) 0.0696;
+		}
+		else if (pensionado.getActividadEconomica() == 2321) {
+			tarifa = (float) 0.0696;
+		}
+		return pensionado.getMontoPension() * tarifa;
 		
-		if (pensionado.getViveExterior() == true
-				&& pensionado.getGrupoFamiliar() == false) {
-			pagoSalud = pensionado.getMontoPension() * 0;
-
-		} else {
-			novedadesList = servicesNovedad.findByPensionadoId(pensionado.getId());
-
-			if (novedadesList.isEmpty()) {
-				pagoSalud = (pensionado.getMontoPension()* 12) /100 ; // el valor 12, 0 y demas debe ser
-				// consultado de un entity a
-				// crear luego, esto con el fin
-				// que si el valor en el entity
-				// cambio, el sistema lo asuma
-				// de forma automatica.
-			} else {
-				Long diasNovedad = 0L;
-				for (Novedad nov : novedadesList) {
-					diasNovedad = diasNovedad
-							+ (nov.getFechaFin().getTime() - nov
-									.getFechaInicio().getTime());
+	}
+	
+	@Override
+	public float pagoPension(Pensionado pensionado) {
+		List<Novedad> novedadesList = servicesNovedad.findByPensionadoId(pensionado.getId());
+		
+		float tarifa = 0;
+		if (pensionado.getAltoRiesgo()) {
+			tarifa = (float) 1.26;
+		}
+		else if (pensionado.getCongresista()) {
+			tarifa = (float) 1.255;
+		}
+		else if (pensionado.getCti()) {
+			tarifa = (float) 1.35;
+		}
+		else if (pensionado.getAviador()) {
+			tarifa = (float) 1.21;
+		}
+		else {
+			if (!novedadesList.isEmpty()) {
+				Novedad ultimaNovedad = novedadesList.get(novedadesList.size()-1);
+				long dias = ultimaNovedad.getFechaFin().getTime() - ultimaNovedad.getFechaInicio().getTime();
+				if (dias < 4) {
+					tarifa = 0;
 				}
-				Long totalDiasNovedad = diasNovedad / 86400000L;
-				if (totalDiasNovedad > 7) {
-					pagoSalud = pensionado.getMontoPension()*16 / 100;
-				} else if (totalDiasNovedad <= 7 && totalDiasNovedad > 3) {
-					pagoSalud = pensionado.getMontoPension() *12 /100;
-
-				} else {
-					pagoSalud = pensionado.getMontoPension() * 0;
+				else if (dias < 8) {
+					tarifa = (float) 1.12;
+				}
+				else {
+					tarifa = (float) 1.16;
 				}
 			}
-		}
-		return pagoSalud;
-	}
-
-
-	@Override
-	public float calculoPagoPension(Pensionado pensionado) {
-		float pagoPension;
-		List<Novedad> novedadesList = new ArrayList<Novedad>();
-		if (pensionado.getCti() == true) {
-			pagoPension = (float) (pensionado.getMontoPension() * 0.31);
-		}
-		else if(pensionado.getAltoRiesgo() == true){
-			pagoPension = (float) (pensionado.getMontoPension() *0.26);
-		}
-		else if (pensionado.getCongresista()==true){
-			pagoPension=(float) (pensionado.getMontoPension() * 0.255);			
-		}
-		else if (pensionado.getAviador()==true){
-			pagoPension=(float) (pensionado.getMontoPension() * 0.21);			
-		}
-		else { novedadesList = servicesNovedad.findByPensionadoId(pensionado.getId());
-		
-			if (novedadesList.isEmpty()){
-				pagoPension=(float) (pensionado.getMontoPension() *0.16);			
-		}
-			else{
-				Long diasNovedad = 0L;
-				for (Novedad nov : novedadesList) {
-					diasNovedad = diasNovedad
-							+ (nov.getFechaFin().getTime() - nov
-									.getFechaInicio().getTime());
-				}
-				Long totalDiasNovedad = diasNovedad / 86400000L;
-				if (totalDiasNovedad > 7) {
-					pagoPension= (float) (pensionado.getMontoPension() * 0.16);
-				} else if (totalDiasNovedad <= 7 && totalDiasNovedad > 3) {
-					pagoPension = (float) (pensionado.getMontoPension() * 0.12);
-
-				} else {
-					pagoPension = pensionado.getMontoPension() * 0;
-				}
+			else {
+				tarifa = (float) 1.16;
 			}
-			
 		}
+		return pensionado.getMontoPension() * tarifa;
 		
-		return pagoPension;
 	}
-
-
+	
 	@Override
-	public float calculoPagoRiesgo(Pensionado pensionado) {
-		// TODO Auto-generated method stub
-		return 0;
+	public float pagoSalud(Pensionado pensionado) {
+		float tarifa = (float) 1.12;
+		if (pensionado.getViveExterior() && pensionado.getNoTieneGrupoFamiliar()) {
+			tarifa = (float) 0;
+		}
+		else if (pensionado.getCti()) {
+			tarifa = (float) 0;
+		}
+		return pensionado.getMontoPension() * tarifa;
+		
 	}
 
 }

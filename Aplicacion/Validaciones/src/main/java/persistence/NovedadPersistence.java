@@ -1,6 +1,7 @@
 package persistence;
 
 import entities.Novedad;
+import entities.Pensionado;
 
 import javax.persistence.EntityManager;
 
@@ -32,8 +33,15 @@ public class NovedadPersistence
     public List<Novedad> findByPensionadoId(Long id){
         EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
         em.getTransaction().begin();
-        @SuppressWarnings("unchecked")
 		List<Novedad> novedadListByEntidadId = (List<Novedad>)em.createNamedQuery("Novedad.findByEntidadId").setParameter("entidadId", id).getResultList();        
+        em.close();
+        return novedadListByEntidadId;
+    }
+    
+    public List<Novedad> findByPensionadoAll(Pensionado pensionado){    	
+        EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+        em.getTransaction().begin();       
+		List<Novedad> novedadListByEntidadId = (List<Novedad>)em.createNamedQuery("Novedad.findByPensionadoAll").setParameter("pensionado", pensionado).getResultList();        
         em.close();
         return novedadListByEntidadId;
     }

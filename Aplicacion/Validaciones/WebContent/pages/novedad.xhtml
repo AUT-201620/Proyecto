@@ -14,30 +14,12 @@
 	<ui:include src="menu.xhtml" />
 	<h1>NOVEDADES</h1>
 	<h:form id="novedadCrud">
-
-		<p:panelGrid columns="3">
-			<h:outputLabel value="Seleccione un entidad:" />
-			<p:selectOneMenu id="fltentidad" value="#{novedadBean.entidadId}"
-				required="true">
-				<f:selectItem itemLabel="Seleccione una Entidad" />
-				<f:selectItems value="#{novedadBean.entidadList}" var="entidad"
-					itemLabel="#{entidad.primerNombre} #{entidad.segundoNombre} #{entidad.primerApellido} #{entidad.segundoApellido}"
-					itemValue="#{entidad.id}" />
-			</p:selectOneMenu>
-			<p:commandButton action="#{novedadBean.findEntidadById}"
-				value="Aceptar" update="novedades" process="@form">
-			</p:commandButton>
-		</p:panelGrid>
-		<p:separator>
-		</p:separator>
-		
-
-
-		<p:commandButton action="#{entidadBean.ver}" value="Insertar Novedad"
-			oncomplete="PF('formularioNovedad').show();" update="formularioNovedad">
-			<f:setPropertyActionListener target="#{entidadBean.identificador}"
-				value="#{entidad.id}" />
-		</p:commandButton>
+		<f:param>
+			<f:viewParam name="nombre" value="#{pensionadoBean.pensionado.id}"></f:viewParam>
+		</f:param>
+		<p:commandButton action="#{novedadBean.clearNovedad}"
+		value="Nueva Novedad"
+		oncomplete="PF('formularioNovedad').show();" update="formularioNovedad"/>
 
 		<p:dataTable id="novedades" var="novedad"
 			value="#{novedadBean.novedadList}">

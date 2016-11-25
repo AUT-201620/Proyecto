@@ -13,7 +13,9 @@ import java.util.Date;
         @NamedQuery(name="Novedad.getNovedades",
                 query="SELECT e FROM Novedad e"),
         @NamedQuery(name="Novedad.findByEntidadId",
-        query = "SELECT e FROM Novedad e where e.pensionado.id = :entidadId")
+        query = "SELECT e FROM Novedad e where e.pensionado.id = :entidadId ORDER BY e.fechaCreacion "),
+        @NamedQuery(name="Novedad.findByPensionadoAll",
+        query = "SELECT e FROM Novedad e where e.pensionado = :pensionado")
 })
 @Entity
 public class Novedad implements Serializable

@@ -35,8 +35,8 @@ public class Pensionado implements Serializable {
 	private String tipoIdentificacion;
 	private Integer numeroIdentificacion;
 	private Boolean viveExterior;
-	private Boolean grupoFamiliar;
-	private Boolean actividadEconomica;
+	private Boolean noTieneGrupoFamiliar;
+	private Integer actividadEconomica;
 	private Boolean altoRiesgo;
 	private Boolean congresista;
 	private Boolean cti;
@@ -45,6 +45,7 @@ public class Pensionado implements Serializable {
 	private TipoPension tipoPension;
 	private TipoPensionado tipoPensionado;
 	private TipoPagador tipoPagador;
+	
 
 	@ManyToOne
 	private Aportante aportante;
@@ -150,25 +151,25 @@ public class Pensionado implements Serializable {
 	/**
 	 * @return the grupoFamiliar
 	 */
-	public Boolean getGrupoFamiliar() {
-		return grupoFamiliar;
+	public Boolean getNoTieneGrupoFamiliar() {
+		return noTieneGrupoFamiliar;
 	}
 	/**
 	 * @param grupoFamiliar the grupoFamiliar to set
 	 */
-	public void setGrupoFamiliar(Boolean grupoFamiliar) {
-		this.grupoFamiliar = grupoFamiliar;
+	public void setNoTieneGrupoFamiliar(Boolean noTieneGrupoFamiliar) {
+		this.noTieneGrupoFamiliar = noTieneGrupoFamiliar;
 	}
 	/**
 	 * @return the actividadEconomica
 	 */
-	public Boolean getActividadEconomica() {
+	public Integer getActividadEconomica() {
 		return actividadEconomica;
 	}
 	/**
 	 * @param actividadEconomica the actividadEconomica to set
 	 */
-	public void setActividadEconomica(Boolean actividadEconomica) {
+	public void setActividadEconomica(Integer actividadEconomica) {
 		this.actividadEconomica = actividadEconomica;
 	}
 	/**
@@ -295,7 +296,7 @@ public class Pensionado implements Serializable {
 				", tipoIdentificacion='" + tipoIdentificacion + '\'' +
 				", numeroIdentificacion=" + numeroIdentificacion +
 				", viveExterior=" + viveExterior +
-				", grupoFamiliar=" + grupoFamiliar +
+				", noTieneGrupoFamiliar=" + noTieneGrupoFamiliar +
 				", actividadEconomica=" + actividadEconomica +
 				", altoRiesgo=" + altoRiesgo +
 				", congresista=" + congresista +

@@ -55,7 +55,7 @@ public class NovedadBean implements Serializable{
 	
 	public void findByEntidad(Long idEn){
 
-        this.novedadList = services.findByPensionadoId(idEn);
+		this.novedadList = services.findByPensionadoAll(entidad);
         findEntidadById(idEn);
 	}
 
@@ -63,7 +63,7 @@ public class NovedadBean implements Serializable{
     {
         novedad.setPensionado(entidad);
         services.create(this.novedad);
-        this.novedadList = services.findByPensionadoId(entidad.getId());
+        this.novedadList = services.findByPensionadoAll(entidad);
     }
 
     public void delete() {

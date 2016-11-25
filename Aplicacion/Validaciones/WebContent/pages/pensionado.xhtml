@@ -28,7 +28,7 @@
 				<h:outputText value="#{pensionado.tipoIdentificacion}" />
 			</p:column>
 
-			<p:column headerText="N° Identificacion">
+			<p:column headerText="Numero Identificacion">
 				<h:outputText value="#{pensionado.numeroIdentificacion}" />
 			</p:column>
 
@@ -110,6 +110,11 @@
 				<p:inputText id="numeroIdentificacion"
 					value="#{pensionadoBean.pensionado.numeroIdentificacion}" required="true"
 					label="Numero Identificacion" />
+					
+				<h:outputLabel for="actividadEconomica" value="Actividad Economica:" />
+				<p:inputText id="actividadEconomica"
+					value="#{pensionadoBean.pensionado.actividadEconomica}" required="true"
+					label="Actividad Economica" />
 			</h:panelGrid>
 		
 			<h:panelGrid columns="2">
@@ -117,7 +122,7 @@
 					value="Tipo Pension:" />
 					
 				<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPension.id}" required="true" label="tipoPension" id="tipoPension">
-					<f:selectItem  itemLabel="Seleccione" itemValue=""/>
+					<f:selectItem  itemLabel="Seleccione" itemValue="-1"/>
 					<f:selectItems value="#{pensionadoBean.tipoPension}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}"  />
 					<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagador"/>
 				</p:selectOneMenu>
@@ -128,7 +133,7 @@
 							
 				<p:outputPanel id ="panelTipoPensionado">			
 						<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPensionado.id}" required="true" label="tipoPensionado" id="tipoPensionado">
-							<f:selectItem  itemLabel="Seleccione" itemValue="" />
+							<f:selectItem  itemLabel="Seleccione" itemValue="-1" />
 							<f:selectItems value="#{pensionadoBean.tipoPensionado}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}"  />
 							<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagador"/>
 						</p:selectOneMenu>
@@ -139,7 +144,7 @@
 							value="Tipo Pagador:" />
 				<p:outputPanel id ="panelTipoPagador">			
 						<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPagador.id}" required="true" label="tipoPagador" id="tipoPagador">
-							
+							<f:selectItem  itemLabel="Seleccione" itemValue="-1"/>
 							<f:selectItems value="#{pensionadoBean.tipoPagador}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}"  />
 						</p:selectOneMenu>
 
@@ -154,15 +159,10 @@
 					value="#{pensionadoBean.pensionado.viveExterior}" required="true"
 					label="Vive Exterior" />
 					
-				<h:outputLabel for="grupoFamiliar" value="Grupo Familiar:" />
-				<p:selectBooleanCheckbox id="grupoFamiliar"
-					value="#{pensionadoBean.pensionado.grupoFamiliar}" required="true"
-					label="Grupo Familiar" />
-
-				<h:outputLabel for="actividadEconomica" value="Actividad Economica:" />
-				<p:selectBooleanCheckbox id="actividadEconomica"
-					value="#{pensionadoBean.pensionado.actividadEconomica}" required="true"
-					label="Actividad Economica" />
+				<h:outputLabel for="noTieneGrupoFamiliar" value="No tiene Grupo Familiar:" />
+				<p:selectBooleanCheckbox id="noTieneGrupoFamiliar"
+					value="#{pensionadoBean.pensionado.noTieneGrupoFamiliar}" required="true"
+					label="No tiene Grupo Familiar" />
 
 				<h:outputLabel for="altoRiesgo" value="Alto Riesgo:" />
 				<p:selectBooleanCheckbox id="altoRiesgo"
