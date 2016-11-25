@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import entities.*;
-import persistence.PensionadoPersistence;
 import persistence.ValidacionesPersistence;
 
 public class ValidacionesServices implements IValidacionesServices {
@@ -34,11 +33,4 @@ private ValidacionesPersistence persistance;
 		List<TipoPagador> tipos = persistance.findByPensioPensionado(idPension,idPensionado);
 		return tipos;
 	}
-
-	//@Override
-	//public List<TipoActividad> getTipoActividad()
-	//{
-	//	List<TipoActividad> tipos = persistance.findAllActivity();
-	//	return tipos;
-	//}
 }

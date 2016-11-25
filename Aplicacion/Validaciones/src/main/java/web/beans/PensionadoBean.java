@@ -73,6 +73,7 @@ public class PensionadoBean implements Serializable {
 	public void ver() {
 		this.pensionado = services.find(this.identificador);
 		buttonCrud = Boolean.FALSE;
+		getListTipos();
 	}
 	
 	public void editar() {

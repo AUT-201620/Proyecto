@@ -13,5 +13,4 @@ public interface IValidacionesServices {
 	public List<TipoPension> getTipoPension();
 	public List<TipoPensionado> getTipoPensionado(Long idPension);
 	public List<TipoPagador> getTipoPagador(Long idPension,Long idPensionado);
-	//public List<TipoActividad> getTipoActividad();
 }

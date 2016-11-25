@@ -20,14 +20,6 @@ public class ValidacionesPersistence {
     	
     }
 
-    //public List<TipoActividad> findAllActivity()
-	//{
-	//	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-	//	em.getTransaction().begin();
-	//	List<TipoActividad> tipos = (List<TipoActividad>) em.createNamedQuery("TipoActivity.getAll").getResultList();
-	//	em.close();
-	//	return tipos;
-	//}
 	
 	public List<TipoPensionado> findByPension (Long idPension){
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
