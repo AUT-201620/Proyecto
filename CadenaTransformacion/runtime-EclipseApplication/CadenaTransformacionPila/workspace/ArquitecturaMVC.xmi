@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ArquitecturaMVC:ArquitecturaMVC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ArquitecturaMVC="http://www.uniandes.edu.co.arquitecturaMVC" xsi:schemaLocation="http://www.uniandes.edu.co.arquitecturaMVC ../metamodels/metamodeloArquitectura.ecore">
+<ArquitecturaMVC:ArquitecturaMVC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ArquitecturaMVC="http://www.uniandes.edu.co.arquitecturaMVC">
   <vistas nombre="Aportante">
     <atributos nombre="nombreRazonSocial" etiqueta="Nombre Razon Social"/>
     <atributos nombre="digitoVerificacion" etiqueta="Digito Verificacion"/>
@@ -38,9 +38,9 @@
   <controladores nombre="Aportante"/>
   <controladores nombre="Novedad"/>
   <controladores nombre="Pensionado"/>
-  <controladores nombre="TipoPensionado" esCrud="false"/>
   <controladores nombre="TipoPagadorPension" esCrud="false"/>
   <controladores nombre="TipoPension" esCrud="false"/>
+  <controladores nombre="TipoPensionado" esCrud="false"/>
   <modelos nombre="Aportante">
     <atributos nombre="nombreRazonSocial"/>
     <atributos nombre="digitoVerificacion"/>
@@ -94,43 +94,18 @@
     <atributos nombre="montoPension" tipo="FLOAT"/>
     <atributos nombre="novedades" tipo="REFERENCE" modeloReferencia="//@modelos.1"/>
     <atributos nombre="actividadEconomica" tipo="INTEGER"/>
-    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.9" tipoReferencia="MANY_TO_ONE"/>
-    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.7" tipoReferencia="MANY_TO_ONE"/>
-    <atributos nombre="tipoPension" tipo="REFERENCE" modeloReferencia="//@modelos.8" tipoReferencia="MANY_TO_ONE"/>
+    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.5" tipoReferencia="MANY_TO_ONE"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.6" tipoReferencia="MANY_TO_ONE"/>
+    <atributos nombre="tipoPension" tipo="REFERENCE" modeloReferencia="//@modelos.4" tipoReferencia="MANY_TO_ONE"/>
     <atributos nombre="aportante" tipo="REFERENCE" modeloReferencia="//@modelos.0" tipoReferencia="MANY_TO_ONE"/>
   </modelos>
-  <modelos nombre="TipoPensionado_TipoPagador" esCrud="false" esEntidad="false"/>
   <modelos nombre="TipoPension_TipoPagador" esCrud="false" esEntidad="false"/>
-  <modelos nombre="TipoPension_TipoPensionado" esCrud="false" esEntidad="false"/>
-  <modelos nombre="Aportante" esCrud="false">
-    <atributos nombre="nombreRazonSocial"/>
-    <atributos nombre="digitoVerificacion"/>
-    <atributos nombre="naturalezaJuridica"/>
-    <atributos nombre="numeroIdentificacion" tipo="INTEGER"/>
-    <atributos nombre="tipoIdentificacion">
-      <codigosValor codigo="1" valor="&quot;CedulaCiudadania&quot;"/>
-      <codigosValor codigo="2" valor="&quot;CedulaExtranjeria&quot;"/>
-      <codigosValor codigo="3" valor="&quot;TarjetaIdentidad&quot;"/>
-      <codigosValor codigo="4" valor="&quot;RegistroCivil&quot;"/>
-      <codigosValor codigo="5" valor="&quot;Pasaporte&quot;"/>
-      <codigosValor codigo="6" valor="&quot;CarneDiplomatico&quot;"/>
-    </atributos>
-  </modelos>
-  <modelos nombre="TipoPagadorPension" esCrud="false">
-    <atributos nombre="codigo" tipo="INTEGER"/>
-    <atributos nombre="nombre"/>
-    <atributos nombre="descripcion"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Empleador', 'Empleador'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Administrador Pensiones', 'Administrador de Pensiones'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Pagador Pensiones', 'Pagador de Pensiones'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="4, 4, 'Entidades regimen Especial', 'Pensiones de entidades de los regimenes especial y de excepcion'"/>
-  </modelos>
   <modelos nombre="TipoPension" esCrud="false">
     <atributos nombre="codigo" tipo="INTEGER"/>
     <atributos nombre="nombre"/>
     <atributos nombre="descripcion"/>
-    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.7" tipoReferencia="MANY_TO_MANY"/>
-    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.9" tipoReferencia="MANY_TO_MANY"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.6" tipoReferencia="MANY_TO_MANY"/>
+    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.5" tipoReferencia="MANY_TO_MANY"/>
     <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Vejez', 'Vejez'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Sobrevivencia vitalicia', 'Sobrevivencia vitalicia riesgo comun'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Sobrevivencia temporal riesgo comun', 'Sobrevivencia temporal riesgo comun'"/>
@@ -154,7 +129,7 @@
     <atributos nombre="codigo" tipo="INTEGER"/>
     <atributos nombre="nombre"/>
     <atributos nombre="descripcion"/>
-    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.7" tipoReferencia="MANY_TO_MANY"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.6" tipoReferencia="MANY_TO_MANY"/>
     <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Prima Media Con Tope', 'Pensionado de regimen de prima media. Tope maximo de pension 25 SMMLV'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Prima Media Sin Tope', 'Pensionado de regimen de prima media. Sin tope maximo de pension'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Ahorro individual', 'Pensionado de regimen de ahorro individual. No aplica tope maximo de pension'"/>
@@ -165,4 +140,29 @@
     <datos campos="id, codigo, nombre, descripcion" valores="8, 8, 'Por Entidad Regimen Especial Sin Tope', 'Pensionado de entidades de los regimenes especial y de excepcion sin tope maximo en pension'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="9, 9, 'Beneficiario UPC Adicional', 'Beneficiario UPC Adicional'"/>
   </modelos>
+  <modelos nombre="TipoPagadorPension" esCrud="false">
+    <atributos nombre="codigo" tipo="INTEGER"/>
+    <atributos nombre="nombre"/>
+    <atributos nombre="descripcion"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Empleador', 'Empleador'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Administrador Pensiones', 'Administrador de Pensiones'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Pagador Pensiones', 'Pagador de Pensiones'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="4, 4, 'Entidades regimen Especial', 'Pensiones de entidades de los regimenes especial y de excepcion'"/>
+  </modelos>
+  <modelos nombre="TipoPensionado_TipoPagador" esCrud="false" esEntidad="false"/>
+  <modelos nombre="Aportante" esCrud="false">
+    <atributos nombre="nombreRazonSocial"/>
+    <atributos nombre="digitoVerificacion"/>
+    <atributos nombre="naturalezaJuridica"/>
+    <atributos nombre="numeroIdentificacion" tipo="INTEGER"/>
+    <atributos nombre="tipoIdentificacion">
+      <codigosValor codigo="1" valor="&quot;CedulaCiudadania&quot;"/>
+      <codigosValor codigo="2" valor="&quot;CedulaExtranjeria&quot;"/>
+      <codigosValor codigo="3" valor="&quot;TarjetaIdentidad&quot;"/>
+      <codigosValor codigo="4" valor="&quot;RegistroCivil&quot;"/>
+      <codigosValor codigo="5" valor="&quot;Pasaporte&quot;"/>
+      <codigosValor codigo="6" valor="&quot;CarneDiplomatico&quot;"/>
+    </atributos>
+  </modelos>
+  <modelos nombre="TipoPension_TipoPensionado" esCrud="false" esEntidad="false"/>
 </ArquitecturaMVC:ArquitecturaMVC>

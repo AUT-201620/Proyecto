@@ -2,7 +2,7 @@
 
 shiro.loginUrl = /login.xhtml
 # Redirect after successful login 
-authc.successUrl = /pages/pensionado.xhtml
+authc.successUrl = /pages/index.xhtml 
 
 cacheManager = org.apache.shiro.cache.MemoryConstrainedCacheManager
 securityManager.cacheManager = $cacheManager
@@ -10,13 +10,19 @@ securityManager.cacheManager = $cacheManager
 
 
 [users]
-usuario1 = 123456, general
-usuario2 = 123456, general
+usuario1 = 123456, aportante
+usuario2 = 123456, operador
 
 [roles]
-general = something:readpermission
+operador = *
+aportante = *
 
 [urls]
 /login.xhtml = authc
 /logout = logout
-/pages/** = authc
+/pages/pensionado.xhtml = authc, roles[aportante]
+/pages/novedad.xhtml = authc, roles[aportante]
+/pages/pagoServicios.xhtml = authc, roles[aportante]
+/pages/aportante.xhtml = authc, roles[operador]
+/pages/menu.xhtml = authc
+/pages/index.xhtml = authc

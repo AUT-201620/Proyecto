@@ -17,7 +17,7 @@
 [%
 	//Generador de entidades
 	//Pendientes:
-	//1. Falta agregar namedQuery especial para novedades.
+	//1. Revisión de errores en despligue
 	for(modelo in root.modelos) {
 		if(modelo.esEntidad){
 			var tEntities: Template := TemplateFactory.load(templatePath + '/mToEntities.egl');
