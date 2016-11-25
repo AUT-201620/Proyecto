@@ -56,7 +56,6 @@
     <atributos name="tipoPensionado" referencia="TipoPensionado"/>
     <atributos name="tipoPagadorPension" referencia="TipoPagadorPension"/>
     <atributos name="tipoPension" referencia="TipoPension"/>
-    <atributos name="aportante" referencia="Aportante"/>
   </entidades>
   <serviciosComputo name="pagoSalud">
     <variables name="tarifa" tipoPrimitivo="Flotante">

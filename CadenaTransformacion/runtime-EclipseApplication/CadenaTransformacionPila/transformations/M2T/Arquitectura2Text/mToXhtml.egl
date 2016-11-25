@@ -25,7 +25,7 @@
 			if (atributo.enLista){
 		%]
 			<p:column headerText="[%=atributo.etiqueta%]">
-				<h:outputText value="#[%=vista.nombre.firstToLowerCase()%].[%=atributo.nombre.firstToLowerCase()%]}" />
+				<h:outputText value="#{[%=vista.nombre.firstToLowerCase()%].[%=atributo.nombre.firstToLowerCase()%]}" />
 			</p:column>
 		[%
 			}
@@ -48,12 +48,14 @@
 	
 	<p:dialog header="formulario[%=vista.nombre.firstToUpperCase()%]" widgetVar="formulario[%=vista.nombre.firstToUpperCase()%]"
 		modal="true" width="80%" height="100%" id="formulario[%=vista.nombre.firstToUpperCase()%]">
-		<h:form>
-			<h:panelGrid columns="4" cellpadding="5">					
+		<h:form>			
 			[%
-				vista.obtenerTipoAtributo();
+				vista.obtenerTipoAtributosTexto();
+				vista.obtenerTipoAtributosLista();
+				vista.obtenerTipoAtributosCheck();
 
 			%]
+				<h:panelGrid columns="3">
 				<f:facet name="footer">
 					<p:commandButton value="Crear"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
@@ -75,46 +77,64 @@
 </html>
 
 [%
-	operation mArq!Vista obtenerTipoAtributo() {
-		for (atributo in self.atributos) {
-			if (atributo.tipo <> mArq!TipoAtributoVista#REFERENCIA) {
-				out.print('<h:outputLabel for="'+ atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':" />\n');
-				if (atributo.tipo = mArq!TipoAtributoVista#LISTA) {
-					out.print('<p:selectOneMenu ');
-					out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
-					out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
-					out.print('required="true" label="'+atributo.etiqueta+'">\n');
-					
-					out.print('<f:selectItem  itemLabel="Seleccione" itemValue="" />\n');
-					out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'List}" ');
-					out.print('var="'+atributo.nombre.firstToLowerCase()+'" itemLabel="#{'+atributo.nombre.firstToLowerCase()+'.descripcion}" ');
-					out.print('itemValue="#{'+atributo.nombre.firstToLowerCase()+'.id}"/>\n');
-					out.print('<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagador"/>\n');
-					out.print('</p:selectOneMenu>\n');
-				} 
-				else if (atributo.tipo = mArq!TipoAtributoVista#ENUM) {
-					out.print('<h:selectOneMenu value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
-					out.print('required="true" label="'+atributo.etiqueta+'">\n');
-					out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'}" />\n');
-					out.print('</p:selectOneMenu>\n');
-				}
-				else {
-					if (atributo.tipo = mArq!TipoAtributoVista#TEXTO) {
-						 out.print('<p:inputText ');
-					}
-					else if (atributo.tipo = mArq!TipoAtributoVista#BOOLEANO) {
-						 out.print('<p:selectBooleanCheckbox ');
-					}
-					else if (atributo.tipo = mArq!TipoAtributoVista#FECHA) {
-						out.print('<p:calendar ');
-					}
-					
-					out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
-					out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
-					out.print('required="true" label="'+atributo.etiqueta+'"/>\n');
-				}
-				out.print('\n');
-			}
+	operation mArq!Vista obtenerTipoAtributosTexto() {
+		out.print('<h:panelGrid columns="4" cellpadding="5">\n');
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#TEXTO)) {
+			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'"+ value="'+atributo.etiqueta+':"/>\n');
+			out.print('<p:inputText ');
+			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
+			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('required="true" label="'+atributo.etiqueta+'"/>\n');
 		}
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#ENUM)) {
+			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'"+ value="'+atributo.etiqueta+':"/>\n');
+			out.print('<h:selectOneMenu value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('required="true" label="'+atributo.etiqueta+'">\n');
+			out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'Enum}" />\n');
+			out.print('</p:selectOneMenu>\n');
+		}
+		
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#FECHA)) {
+			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'"+ value="'+atributo.etiqueta+':"/>\n');
+			out.print('<p:calendar ');
+			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
+			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('required="true" label="'+atributo.etiqueta+'"/>\n');
+		}
+		out.print('</h:panelGrid>');
+		out.print('\n');
+	}
+	
+	operation mArq!Vista obtenerTipoAtributosLista() {
+		out.print('<h:panelGrid columns="2">\n');
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA)) {
+			out.print('<h:outputLabel for="'+ atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':" />\n');
+			out.print('<p:selectOneMenu ');
+			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
+			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('required="true" label="'+atributo.etiqueta+'">\n');
+			
+			out.print('<f:selectItem  itemLabel="Seleccione" itemValue="" />\n');
+			out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'List}" ');
+			out.print('var="'+atributo.nombre.firstToLowerCase()+'" itemLabel="#{'+atributo.nombre.firstToLowerCase()+'.descripcion}" ');
+			out.print('itemValue="#{'+atributo.nombre.firstToLowerCase()+'.id}"/>\n');
+			out.print('<p:ajax event="change" listener="#{pensionadoBean.getListTipos}" update="panelTipoPensionado,panelTipoPagador"/>\n');
+			out.print('</p:selectOneMenu>\n');
+		}
+		out.print('</h:panelGrid>');
+		out.print('\n');
+	}
+	
+	operation mArq!Vista obtenerTipoAtributosCheck() {
+		out.print('<h:panelGrid columns="4" cellpadding="5">\n');
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#BOOLEANO)) {
+			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'"+ value="'+atributo.etiqueta+':"/>\n');
+			out.print('<p:selectBooleanCheckbox ');
+			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
+			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('required="true" label="'+atributo.etiqueta+'"/>\n');
+		}
+		out.print('</h:panelGrid>');
+		out.print('\n');
 	}
 %]	 
