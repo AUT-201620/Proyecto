@@ -2,6 +2,7 @@ pre {
 	mGram!PagoServicio.all.collect(p|p.getArquitectura());
 }
 
+//De GramaticaPila!PagoServicio a ArquitecturaMVC!Modelo
 operation mGram!PagoServicio getArquitectura(): mArq!ArquitecturaMVC {
 	var arqMVC = new mArq!ArquitecturaMVC;
 	
@@ -35,6 +36,7 @@ operation mGram!Entidad getModelo(): mArq!Modelo {
 	return modelo;
 }   
 
+//Obtener Modelos Tabla Pila
 operation  getModelosTablaPila(): Set {
 	var modelos = new Set;
 	var modelo;
@@ -132,6 +134,7 @@ operation mGram!LlaveValor getCodigoValor(): mArq!CodigoValor {
 	return codigoValor;
 }   
 
+//Obtener Atributos de Modelos Tabla Pila
 operation mArq!Modelo getAtributosModelosTablaPila() {
 	self.atributos = new Set;
 	var atributoModelo = new mArq!AtributoModelo;
