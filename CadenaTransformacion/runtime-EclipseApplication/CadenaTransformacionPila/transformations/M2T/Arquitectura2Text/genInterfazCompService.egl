@@ -1,0 +1,15 @@
+package services;
+
+import entities.Pensionado;
+
+
+public interface IComputoServices {
+
+[%
+	for(servicio in servicios) {
+%]
+	public double [%=servicio.name.firstToUpperCase()%](Pensionado pensionado);
+[%
+	}
+%]	 
+}

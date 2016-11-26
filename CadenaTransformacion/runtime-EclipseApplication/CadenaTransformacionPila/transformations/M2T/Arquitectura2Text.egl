@@ -71,14 +71,19 @@
 	
 	//Generador de ManagedBeans de Pagos!!!!!!!
 	
-	//Generador de Servivio de Pagos
+	//Generador de Servicio de Computo
 	var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
 	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/genCompService.egl');
 	tServicioComputo.populate('servicios', serviciosComputo);
 	tServicioComputo.setFormatter(jFormatter);
     tServicioComputo.generate(srcJavaPath + '/services/ComputoServices.java');
 	
-	//Generador de Interfaz de Pagos!!!!!!!	
+	//Generador de Interfaz de Computo	
+	var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
+	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/genInterfazCompService.egl');
+	tServicioComputo.populate('servicios', serviciosComputo);
+	tServicioComputo.setFormatter(jFormatter);
+    tServicioComputo.generate(srcJavaPath + '/services/IComputoServices.java');
 	
 	//Generador de Enums
 	for(modelo in root.modelos) {
