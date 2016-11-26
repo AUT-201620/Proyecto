@@ -20,7 +20,7 @@ public class ComputoServices {
 	for(servicio in servicios) {
 	
 %]
-	public float [%=servicio.name.firstToUpperCase()%](Pensionado pensionado) {
+	public double [%=servicio.name.firstToUpperCase()%](Pensionado pensionado) {
 [%
 	if (servicio.variables.isDefined()) {
 		for (variable in servicio.variables) {
