@@ -88,7 +88,7 @@
 				var tEnum: Template := TemplateFactory.load(templatePath + '/mToEnum.egl');
 				tEnum.populate('atributoModelo', atributoModelo);
 				tEnum.setFormatter(jFormatter);
-				tEnum.generate(srcJavaPath + '/entities/' + atributoModelo.nombre.firstToUpperCase() + 'Enum.java');
+				tEnum.generate(srcJavaPath + '/enumerators/' + atributoModelo.nombre.firstToUpperCase() + 'Enum.java');
 			}
 		}
 	}
