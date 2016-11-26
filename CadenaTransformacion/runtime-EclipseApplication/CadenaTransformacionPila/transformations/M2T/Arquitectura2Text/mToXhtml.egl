@@ -14,6 +14,7 @@
 	<ui:include src="menu.xhtml" />
 	<h1>[%=vista.nombre.toUpperCase()%]</h1>
 	<h:form id="[%=vista.nombre.firstToLowerCase()%]Crud">
+
 		<p:commandButton action="#{[%=vista.nombre.firstToLowerCase()%]Bean.clear[%=vista.nombre.firstToUpperCase()%]}"
 				value="Nuevo [%=vista.nombre.firstToLowerCase()%]" 
 				oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').show();" update="formulario[%=vista.nombre.firstToUpperCase()%]"/>
@@ -21,7 +22,7 @@
 		
 		<p:dataTable var="[%=vista.nombre.firstToLowerCase()%]" value="#{[%=vista.nombre.firstToLowerCase()%]Bean.[%=vista.nombre.firstToLowerCase()%]List}">
 		
-		[%for (atributo in vista.atributos.select(a|a.tipo <> mArq!TipoAtributoVista#REFERENCIA and a.enLista)) {	
+		[%for (atributo in vista.atributos.select(a|a.tipo <> mArq!TipoAtributoVista#REFERENCIA and a.tipo <> mArq!TipoAtributoVista#LISTA and a.enLista)) {	
 		%]
 			<p:column headerText="[%=atributo.etiqueta%]">
 				<h:outputText value="#{[%=vista.nombre.firstToLowerCase()%].[%=atributo.nombre.firstToLowerCase()%]}" />
@@ -40,12 +41,12 @@
 				
 		[%for (atributo in vista.atributos.select(a|a.tipo = mArq!TipoAtributoVista#REFERENCIA)) {
 		%]
-				<p:commandButton action="[%=atributo.nombre.firstToLowerCase()%]" value="[%=atributo.nombre.firstToUpperCase()%]" actionListener="#{[%=atributo.vistaReferencia.nombre.firstToLowerCase()%]Bean.findBy[%=vista.nombre.firstToUpperCase()%]([%=vista.nombre.firstToLowerCase()%].id)}"/>
+				<p:commandButton action="[%=atributo.vistaReferencia.nombre.firstToLowerCase()%]" value="[%=atributo.nombre.firstToUpperCase()%]" actionListener="#{[%=atributo.vistaReferencia.nombre.firstToLowerCase()%]Bean.findBy[%=vista.nombre.firstToUpperCase()%]([%=vista.nombre.firstToLowerCase()%].id)}"/>
 		[%
 		}
 		if(vista.atributos.select(a|a.tipo = mArq!TipoAtributoVista#REFERENCIA).size()>0){
 		%]
-			<p:commandButton value="Pago Servicios" action="computoServices" actionListener="#{computoServiceBean.find[%=vista.nombre.firstToUpperCase()%]ById([%=vista.nombre.firstToLowerCase()%].id)}" />
+			<p:commandButton value="Pago Servicios" action="computoServices" actionListener="#{computoServicesBean.find[%=vista.nombre.firstToUpperCase()%]ById([%=vista.nombre.firstToLowerCase()%].id)}" />
 		[%
 		}
 		%]		
@@ -70,7 +71,7 @@
 					<p:commandButton value="Crear"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
 						actionListener="#{[%=vista.nombre.firstToLowerCase()%]Bean.crear}"  oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').hide();" update="[%=vista.nombre.firstToLowerCase()%]Crud"
-						rendered="#{[%=vista.nombre.firstToLowerCase()%]Beann.buttonCrud}"/>
+						rendered="#{[%=vista.nombre.firstToLowerCase()%]Bean.buttonCrud}"/>
 						
 					<p:commandButton value="Editar"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
@@ -98,7 +99,7 @@
 		}
 		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#ENUM)) {
 			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':"/>\n');
-			out.print('<h:selectOneMenu value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('<p:selectOneMenu value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
 			out.print('required="true" label="'+atributo.etiqueta+'">\n');
 			out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'Enum}" />\n');
 			out.print('</p:selectOneMenu>\n');
@@ -116,23 +117,59 @@
 	}
 	
 	operation mArq!Vista obtenerTipoAtributosLista() {
-		out.print('<h:panelGrid columns="2">\n');
-		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA)) {
+		out.print('<h:panelGrid columns="1">\n');
+		for(atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA and a.nombre='tipoPension')){
 			out.print('<p:outputPanel id ="panel'+ atributo.nombre.firstToUpperCase()+'">\n');
 			out.print('<h:outputLabel for="'+ atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':" />\n');
 			out.print('<p:selectOneMenu ');
 			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
-			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'.id}" ');
 			out.print('required="true" label="'+atributo.etiqueta+'">\n');
 			
 			out.print('<f:selectItem  itemLabel="Seleccione" itemValue="-1" />\n');
-			out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'List}" ');
+			out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'}" ');
 			out.print('var="'+atributo.nombre.firstToLowerCase()+'" itemLabel="#{'+atributo.nombre.firstToLowerCase()+'.descripcion}" ');
 			out.print('itemValue="#{'+atributo.nombre.firstToLowerCase()+'.id}"/>\n');
 			atributo.getListaReferencia();
 			out.print('</p:selectOneMenu>\n');
 			out.print('</p:outputPanel>\n');
 		}
+		
+		for(atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA and  a.nombre == 'tipoPensionado')){
+
+			out.print('<p:outputPanel id ="panel'+ atributo.nombre.firstToUpperCase()+'">\n');
+			out.print('<h:outputLabel for="'+ atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':" />\n');
+			out.print('<p:selectOneMenu ');
+			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
+			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'.id}" ');
+			out.print('required="true" label="'+atributo.etiqueta+'">\n');
+			
+			out.print('<f:selectItem  itemLabel="Seleccione" itemValue="-1" />\n');
+			out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('var="'+atributo.nombre.firstToLowerCase()+'" itemLabel="#{'+atributo.nombre.firstToLowerCase()+'.descripcion}" ');
+			out.print('itemValue="#{'+atributo.nombre.firstToLowerCase()+'.id}"/>\n');
+			atributo.getListaReferencia();
+			out.print('</p:selectOneMenu>\n');
+			out.print('</p:outputPanel>\n');
+		}
+		for(atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA and a.nombre == 'tipoPagadorPension')){
+		
+			out.print('<p:outputPanel id ="panel'+ atributo.nombre.firstToUpperCase()+'">\n');
+			out.print('<h:outputLabel for="'+ atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':" />\n');
+			out.print('<p:selectOneMenu ');
+			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
+			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'.id}" ');
+			out.print('required="true" label="'+atributo.etiqueta+'">\n');
+			
+			out.print('<f:selectItem  itemLabel="Seleccione" itemValue="-1" />\n');
+			out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'}" ');
+			out.print('var="'+atributo.nombre.firstToLowerCase()+'" itemLabel="#{'+atributo.nombre.firstToLowerCase()+'.descripcion}" ');
+			out.print('itemValue="#{'+atributo.nombre.firstToLowerCase()+'.id}"/>\n');
+			atributo.getListaReferencia();
+			out.print('</p:selectOneMenu>\n');
+			out.print('</p:outputPanel>\n');
+		}
+
 		out.print('</h:panelGrid>');
 		out.print('\n');
 	}
@@ -140,7 +177,7 @@
 	operation mArq!Vista obtenerTipoAtributosCheck() {
 		out.print('<h:panelGrid columns="4" cellpadding="5">\n');
 		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#BOOLEANO)) {
-			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'"+ value="'+atributo.etiqueta+':"/>\n');
+			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':"/>\n');
 			out.print('<p:selectBooleanCheckbox ');
 			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
 			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
@@ -150,7 +187,7 @@
 		out.print('\n');
 	}
 	
-		operation mArq!AtributoVista getListaReferencia() {
+	operation mArq!AtributoVista getListaReferencia() {
 		var modelo : mArq!Modelo := mArq!Modelo.all.select(m|m.nombre = self.nombre.firstToUpperCase()).first;
 		var update : String :='';
 		var separador: String :='';

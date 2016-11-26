@@ -63,9 +63,11 @@
 	//Pendientes:
 	//1. Falta normalizar beans para estandarizar e identificar diferencias
 	//2. Se crean beans pero aun estan incompletos
+	var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
 	for(vista in root.vistas) {
 		var tVista: Template := TemplateFactory.load(templatePath + '/mToManagedBean.egl');
 		tVista.populate('vista', vista);
+		tVista.setFormatter(jFormatter);
 		tVista.generate(srcJavaPath + '/web/beans/' + vista.nombre.firstToUpperCase() +'Bean.java');
 	}
 	
@@ -171,4 +173,9 @@
 	//8. pom.xml
 	var t: Template:=TemplateFactory.load(templatePath + '/genPomXml.egl');
 	t.generate(appPath + '/pom.xml');	
+	//9. index.xhtml
+	var t: Template:=TemplateFactory.load(templatePath + '/genIndexXhtml.egl');
+	t.setFormatter(xhtmlFormatter);
+	t.generate(srcMainPath + '/webapp/pages/index.xhtml');
+	t.generate(appPath + '/WebContent/pages/index.xhtml');
 %]

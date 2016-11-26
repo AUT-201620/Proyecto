@@ -25,16 +25,19 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 
 	private List<[%=vista.nombre.firstToUpperCase()%]> [%=vista.nombre.firstToLowerCase()%]List = new ArrayList<[%=vista.nombre.firstToUpperCase()%]>();
 	private I[%=vista.nombre.firstToUpperCase()%]Services services;
-	private IValidacionesServices validacionesServices;
+	[%
+		if(vista.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA).size()>0){
+	%]
+		private IValidacionesServices validacionesServices;
+	[%
+		}
+	%]
 	private [%=vista.nombre.firstToUpperCase()%] [%=vista.nombre.firstToLowerCase()%];
 	private Long identificador;
 	private Boolean buttonCrud;
-	private TipoDocumento [] tiposDocumento;
-	
 	[%
-	//private List<TipoPension> tipoPension;
-	//private List<TipoPensionado> tipoPensionado;
-	//private List<TipoPagador> tipoPagador;
+	vista.obtenerTipoAtributosEnum();
+	vista.obtenerTipoAtributosLista();
 	%]
 
 	/**
@@ -42,14 +45,20 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 	 */
 	public [%=vista.nombre.firstToUpperCase()%]Bean() {
 		services = new [%=vista.nombre.firstToUpperCase()%]Services();
-		validacionesServices = new ValidacionesServices();
 		[%=vista.nombre.firstToLowerCase()%] = new [%=vista.nombre.firstToUpperCase()%]();
 		buttonCrud = Boolean.TRUE;
-	[%
-		//pensionado.setTipoPension(new TipoPension());
-		//pensionado.setTipoPensionado(new TipoPensionado());
-		//pensionado.setTipoPagador(new TipoPagador());
-	%]
+		[%
+		if(vista.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA).size()>0){
+		%]
+			validacionesServices = new ValidacionesServices();
+		[%
+			}
+			for(atributo in vista.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA)){
+		%]
+			[%=vista.nombre.firstToLowerCase()%].set[%=atributo.nombre.firstToUpperCase()%](new [%=atributo.nombre.firstToUpperCase()%]());
+		[%
+		}
+		%]
 	}
 	
 	
@@ -85,24 +94,22 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 		this.[%=vista.nombre.firstToLowerCase()%] = new [%=vista.nombre.firstToUpperCase()%]();
 		buttonCrud = Boolean.TRUE;
 	[%
-		//Pensionado.setTipoPension(new TipoPension());
-		//Pensionado.setTipoPensionado(new TipoPensionado());
-		//Pensionado.setTipoPagador(new TipoPagador());
-		//this.tipoPensionado = null;
-		//this.tipoPagador = null;
+		for(atributo in vista.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA)){
+	%]
+		[%=vista.nombre.firstToLowerCase()%].set[%=atributo.nombre.firstToUpperCase()%](new [%=atributo.nombre.firstToUpperCase()%]());
+	[%
+	}
+		if(vista.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA).size()>0){
+	%]
+		this.tipoPensionado = null;
+		this.tipoPagadorPension = null;
+	[%
+		}
 	%]
 	}
-
 	[%
-	//public void getListTipos() {
-       //if(pensionado.getTipoPension().getId()!=null){
-			//this.setTipoPensionado(validacionesservices.getTipoPensionado(pensionado.getTipoPension().getId()));
-		//} 
-        //if(pensionado.getTipoPension().getId()!=null && pensionado.getTipoPensionado().getId() !=null){
-			//this.setTipoPagador(validacionesservices.getTipoPagador(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
-		//}
-    //}
-    %]
+		vista.getValidaciones();
+	%]
 	
 	/**
 	 * @return the [%=vista.nombre.firstToLowerCase()%]List
@@ -165,64 +172,77 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 	public void setButtonCrud(Boolean buttonCrud) {
 		this.buttonCrud = buttonCrud;
 	}
-
-	/**
-	 * @return the tiposDocumento
-	 */
-	public TipoDocumento[] getTiposDocumento() {
-		return TipoDocumento.values();
-	}
-
-	/**
-	 * @param tiposDocumento the tiposDocumento to set
-	 */
-	public void setTiposDocumento(TipoDocumento[] tiposDocumento) {
-		this.tiposDocumento = tiposDocumento;
-	}
-
 [%
-	/**
-	 * @return the tipoPension
-	 */
-	/*public List<TipoPension> getTipoPension() {
-		this.tipoPension= validacionesservices.getTipoPension();
-		return tipoPension;
-	}
-
-	/**
-	 * @param tipoPension the tipoPension to set
-	 */
-	/*public void setTipoPension(List<TipoPension> tipoPension) {
-		this.tipoPension = tipoPension;
-	}
-
-
-	/**
-	 * @return the tipoPensionado
-	 */
-	/*public List<TipoPensionado> getTipoPensionado() {
-		return tipoPensionado;
-	}
-
-	/**
-	 * @param tipoPensionado the tipoPensionado to set
-	 */
-	/*public void setTipoPensionado(List<TipoPensionado> tipoPensionado) {
-		this.tipoPensionado = tipoPensionado;
-	}
-
-	/**
-	 * @return the tipoPagador
-	 */
-	/*public List<TipoPagador> getTipoPagador() {
-		return tipoPagador;
-	}
-
-	/**
-	 * @param tipoPagador the tipoPagador to set
-	 */
-	/*public void setTipoPagador(List<TipoPagador> tipoPagador) {
-		this.tipoPagador = tipoPagador;
-	}*/
+	vista.obtenerTipoAtributosEnumGetSet();
+	vista.obtenerTipoAtributosListaGetSet();
 %]
 }
+
+[%
+	operation mArq!Vista obtenerTipoAtributosEnum() {
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#ENUM)) {
+			out.print('private '+atributo.nombre.firstToUpperCase()+'Enum [] '+atributo.nombre.firstToLowerCase()+'Enum;\n');
+		}
+	}
+	
+	operation mArq!Vista obtenerTipoAtributosEnumGetSet() {
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#ENUM)) {
+			out.print('/**\n');
+			out.print(' * @return the' +atributo.nombre.firstToLowerCase()+'\n');
+			out.print(' */ \n');
+			out.print('public '+atributo.nombre.firstToUpperCase()+'Enum[] get'+atributo.nombre.firstToUpperCase()+'Enum() {\n');
+				out.print('return '+atributo.nombre.firstToUpperCase()+'Enum.values();\n');
+			out.print('}\n');
+		
+			out.print('/**\n');
+			out.print(' * @param '+atributo.nombre.firstToLowerCase()+' the '+atributo.nombre.firstToLowerCase()+' to set\n');
+			out.print(' */\n');
+			out.print('public void set'+atributo.nombre.firstToUpperCase()+'Enum('+atributo.nombre.firstToUpperCase()+'Enum[] '+atributo.nombre.firstToLowerCase()+'Enum) {\n');
+			out.print('this.'+atributo.nombre.firstToLowerCase()+'Enum = '+atributo.nombre.firstToLowerCase()+'Enum;\n');
+			out.print('}\n');
+		}
+	}
+	
+	operation mArq!Vista obtenerTipoAtributosLista() {
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA)) {
+			out.print('private List<'+atributo.nombre.firstToUpperCase()+'> ' +atributo.nombre.firstToLowerCase()+';\n');
+		}
+	}
+	
+	operation mArq!Vista obtenerTipoAtributosListaGetSet() {	
+		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA)) {
+			out.print('/**\n');
+			out.print(' * @return the' +atributo.nombre.firstToLowerCase()+'\n');
+			out.print(' */ \n');
+			out.print('public List<'+atributo.nombre.firstToUpperCase()+'> get'+atributo.nombre.firstToUpperCase()+'() {\n');
+				out.print('return '+atributo.nombre.firstToLowerCase()+';\n');
+			out.print('}\n');
+		
+			out.print('/**\n');
+			out.print(' * @param '+atributo.nombre.firstToLowerCase()+' the '+atributo.nombre.firstToLowerCase()+' to set\n');
+			out.print(' */\n');
+			out.print('public void set'+atributo.nombre.firstToUpperCase()+'(List<'+atributo.nombre.firstToUpperCase()+'> '+atributo.nombre.firstToLowerCase()+') {\n');
+			out.print('this.'+atributo.nombre.firstToLowerCase()+' = '+atributo.nombre.firstToLowerCase()+';\n');
+			out.print('}\n');
+		}
+	}
+	
+	operation mArq!Vista getValidaciones() {
+		if(self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA).size()>0){
+			out.print('public void getListTipos() {\n');
+				
+			out.print('if('+self.nombre.firstToLowerCase()+'.getTipoPension() != null && '+self.nombre.firstToLowerCase()+'.getTipoPension().getId()>0){\n');
+			out.print('this.setTipoPensionado(validacionesServices.getTipoPensionado('+self.nombre.firstToLowerCase()+'.getTipoPension().getId()));\n');
+			out.print('} else{\n');
+			out.print('this.setTipoPensionado(new ArrayList<TipoPensionado>());\n');
+			out.print('}');
+		    out.print('if('+self.nombre.firstToLowerCase()+'.getTipoPension() != null && '+self.nombre.firstToLowerCase()+'.getTipoPension().getId()>0 && '+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId() != null && '+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId() >0){\n');
+			out.print('this.setTipoPagadorPension(validacionesServices.getTipoPagadorPension('+self.nombre.firstToLowerCase()+'.getTipoPension().getId(),'+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId()));\n');
+			out.print('}\n');
+		    out.print('else{\n');
+			out.print('his.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());\n');
+			out.print('}\n');
+			out.print('}\n');
+		}
+	}
+%]

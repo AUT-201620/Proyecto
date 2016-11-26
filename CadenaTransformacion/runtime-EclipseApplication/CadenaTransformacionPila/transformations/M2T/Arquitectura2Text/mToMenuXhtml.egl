@@ -4,18 +4,19 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:shiro="http://shiro.apache.org/tags">
    
 <h:form>  
 
     <p:menubar>
-    [%
-for (vista in mArq!ArquitecturaMVC.all.at(0).vistas){
-%]
-	 	<p:menuitem value="[%=vista.nombre.firstToUpperCase()%]" url="/pages/[%=vista.nombre.firstToLowerCase()%].xhtml" />
-[%
-}
-%]
+    	<shiro:hasRole name="aportante"> 
+        	<p:menuitem value="Pensionados" url="/pages/pensionado.xhtml" />
+        </shiro:hasRole>
+        <shiro:hasRole name="operador">
+        	<p:menuitem value="Aportantes" url="/pages/aportante.xhtml" />
+        </shiro:hasRole>
+
 		<p:menuitem value="Cerrar Sesión" url="/logout" />
     </p:menubar>
 	</h:form>
