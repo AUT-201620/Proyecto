@@ -2,9 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Date;
 
 /**
  * @author am.osorio
@@ -306,6 +304,19 @@ public class Pensionado implements Serializable {
 	 */
 	public void setAportante(Aportante aportante) {
 		this.aportante = aportante;
+	}
+	
+	
+	public boolean tieneNovedades(){
+		return (novedades != null && !novedades.isEmpty());
+	}
+	
+	
+	public Novedad ultimaNovedad(){
+		if(tieneNovedades()){
+			return novedades.get(novedades.size()-1);
+		}
+		return null;
 	}
 	
 	@Override

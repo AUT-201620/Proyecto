@@ -3,8 +3,6 @@
  */
 package services;
 
-import java.util.List;
-
 import javax.annotation.ManagedBean;
 
 import entities.Novedad;
@@ -15,13 +13,8 @@ import entities.Pensionado;
  *
  */
 @ManagedBean
-public class PagosServices implements IPagosServices {
-
-	private INovedadServices servicesNovedad;
+public class ComputoServices implements IComputoServices {
 	
-	public PagosServices() {
-		servicesNovedad= new NovedadServices();
-	}
 
 	@Override
 	public float pagoRiesgos(Pensionado pensionado) {
@@ -62,8 +55,7 @@ public class PagosServices implements IPagosServices {
 	
 	@Override
 	public float pagoPension(Pensionado pensionado) {
-		List<Novedad> novedadesList = servicesNovedad.findByPensionadoId(pensionado.getId());
-		
+	
 		float tarifa = 0;
 		if (pensionado.getAltoRiesgo()) {
 			tarifa = (float) 1.26;
@@ -78,9 +70,9 @@ public class PagosServices implements IPagosServices {
 			tarifa = (float) 1.21;
 		}
 		else {
-			if (!novedadesList.isEmpty()) {
-				Novedad ultimaNovedad = novedadesList.get(novedadesList.size()-1);
-				long dias = ultimaNovedad.getFechaFin().getTime() - ultimaNovedad.getFechaInicio().getTime();
+			if (pensionado.tieneNovedades()) {
+				Novedad ultimaNovedad = pensionado.ultimaNovedad();
+				long dias = ultimaNovedad.diasEntreFechaFinInicio();
 				if (dias < 4) {
 					tarifa = 0;
 				}

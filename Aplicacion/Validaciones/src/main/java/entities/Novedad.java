@@ -81,4 +81,8 @@ public class Novedad implements Serializable
     public void setPensionado(Pensionado pensionado) {
         this.pensionado = pensionado;
     }
+    
+    public long diasEntreFechaFinInicio(){
+		return (fechaFin.getTime() - fechaInicio.getTime());
+	}
 }

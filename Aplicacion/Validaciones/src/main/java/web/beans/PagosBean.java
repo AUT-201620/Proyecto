@@ -3,8 +3,8 @@ package web.beans;
 import entities.Pensionado;
 import org.primefaces.context.RequestContext;
 
-import services.IPagosServices;
-import services.PagosServices;
+import services.IComputoServices;
+import services.ComputoServices;
 import services.PensionadoServices;
 import services.IPensionadoServices;
 import javax.faces.application.FacesMessage;
@@ -24,7 +24,7 @@ public class PagosBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private IPensionadoServices services;
-	private IPagosServices servicesPagos;
+	private IComputoServices servicesPagos;
 	private Long pensionadoId;
 	private float pagoSalud;
 	private float pagoPension;
@@ -34,7 +34,7 @@ public class PagosBean implements Serializable {
 
 	public PagosBean() {
 		services = new PensionadoServices();
-		servicesPagos = new PagosServices();
+		servicesPagos = new ComputoServices();
 
 	}
 

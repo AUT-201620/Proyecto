@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import entities.Aportante;
+import enumerators.TipoIdentificacionEnum;
 //import entities.TipoActividad;
 import services.AportanteServices;
 import services.IAportanteServices;

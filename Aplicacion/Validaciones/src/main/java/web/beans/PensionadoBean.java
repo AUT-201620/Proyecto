@@ -12,6 +12,7 @@ import entities.Pensionado;
 import entities.TipoPagadorPension;
 import entities.TipoPension;
 import entities.TipoPensionado;
+import enumerators.TipoIdentificacionEnum;
 import services.PensionadoServices;
 import services.ValidacionesServices;
 import services.IPensionadoServices;

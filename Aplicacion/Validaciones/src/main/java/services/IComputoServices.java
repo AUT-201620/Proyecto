@@ -3,7 +3,7 @@ package services;
 import entities.Pensionado;
 
 
-public interface IPagosServices {
+public interface IComputoServices {
 	
 	public float pagoRiesgos(Pensionado pensionado);
 	

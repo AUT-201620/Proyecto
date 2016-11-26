@@ -2,6 +2,7 @@ package web.beans;
 
 import entities.Pensionado;
 import entities.Novedad;
+import enumerators.TipoNovedadEnum;
 import services.PensionadoServices;
 import services.NovedadServices;
 import services.IPensionadoServices;
@@ -9,6 +10,7 @@ import services.INovedadServices;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class NovedadBean implements Serializable{
 
     private Long entidadId;
     private Boolean buttonCrud;
-    private TipoNovedad [] tiposNovedad;
+    private TipoNovedadEnum [] tiposNovedad;
 
     /**
      *
@@ -167,14 +169,14 @@ public class NovedadBean implements Serializable{
 	/**
 	 * @return the tiposNovedad
 	 */
-	public TipoNovedad [] getTiposNovedad() {
-		return TipoNovedad.values();
+	public TipoNovedadEnum [] getTiposNovedad() {
+		return TipoNovedadEnum.values();
 	}
 
 	/**
 	 * @param tiposNovedad the tiposNovedad to set
 	 */
-	public void setTiposNovedad(TipoNovedad [] tiposNovedad) {
+	public void setTiposNovedad(TipoNovedadEnum [] tiposNovedad) {
 		this.tiposNovedad = tiposNovedad;
 	}
     

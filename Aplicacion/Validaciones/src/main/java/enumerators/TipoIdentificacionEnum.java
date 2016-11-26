@@ -1,4 +1,4 @@
-package web.beans;
+package enumerators;
 
 public enum TipoIdentificacionEnum {
 	CEDULA_CIUDADANIA, CEDULA_EXTRANJERIA, 
