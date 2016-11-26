@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.*;
 import javax.faces.event.ValueChangeEvent;
 
 import entities.*;
 import services.*;
+import enumerators.*;
 
 /**
  * Backing Bean para la pantalla [%=vista.nombre.firstToUpperCase()%]
@@ -18,7 +18,17 @@ import services.*;
  */
 
 @ManagedBean
+[%
+if(not vista.tieneReferencia()){
+%]
 @ViewScoped
+[%
+}else{
+%]
+@SessionScoped
+[%
+}
+%]
 public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,7 +41,9 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 		private IValidacionesServices validacionesServices;
 	[%
 		}
+		vista.getRelaciones();
 	%]
+	
 	private [%=vista.nombre.firstToUpperCase()%] [%=vista.nombre.firstToLowerCase()%];
 	private Long identificador;
 	private Boolean buttonCrud;
@@ -58,36 +70,62 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 			[%=vista.nombre.firstToLowerCase()%].set[%=atributo.nombre.firstToUpperCase()%](new [%=atributo.nombre.firstToUpperCase()%]());
 		[%
 		}
+		vista.getRelationConstructor();
 		%]
 	}
 	
-	
+	[%
+		if(not vista.tieneReferencia()){
+	%]
 	/**
 	 * 
 	 */
 	@PostConstruct
 	public void init() {
-		this.[%=vista.nombre.firstToLowerCase()%]List = services.getAll();
+		[%
+			vista.findAll();
+		%]
 	}
+	[%
+		}
+	%]
 
+	[%
+		vista.getRelationMetodo();
+	%]
 	public void crear() {
+	[%
+		vista.getCrearRelacion();
+	%]
 		services.create(this.[%=vista.nombre.firstToLowerCase()%]);
-		this.[%=vista.nombre.firstToLowerCase()%]List = services.getAll();
+		[%
+			vista.findAll();
+		%]
 	}
 
 	public void delete() {
 		services.delete(this.identificador);
-		this.[%=vista.nombre.firstToLowerCase()%]List = services.getAll();
+		[%
+			vista.findAll();
+		%]
 	}
 
 	public void ver() {
 		this.[%=vista.nombre.firstToLowerCase()%] = services.find(this.identificador);
 		buttonCrud = Boolean.FALSE;
+		[%
+		if(vista.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA).size()>0){
+		%]
+			getListTipos();
+		[%
+		}
+		%]
 	}
 	
+
 	public void editar() {
 		this.[%=vista.nombre.firstToLowerCase()%] = services.update(this.[%=vista.nombre.firstToLowerCase()%]);
-		this.[%=vista.nombre.firstToLowerCase()%]List = services.getAll();
+		this.[%=vista.nombre.firstToLowerCase()%]List = services.findAll();
 	}
 
 	public void clear[%=vista.nombre.firstToUpperCase()%]() {
@@ -173,6 +211,7 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 		this.buttonCrud = buttonCrud;
 	}
 [%
+	vista.getSetRelacion();
 	vista.obtenerTipoAtributosEnumGetSet();
 	vista.obtenerTipoAtributosListaGetSet();
 %]
@@ -212,9 +251,12 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 	operation mArq!Vista obtenerTipoAtributosListaGetSet() {	
 		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA)) {
 			out.print('/**\n');
-			out.print(' * @return the' +atributo.nombre.firstToLowerCase()+'\n');
+			out.print(' * @return the ' +atributo.nombre.firstToLowerCase()+'\n');
 			out.print(' */ \n');
 			out.print('public List<'+atributo.nombre.firstToUpperCase()+'> get'+atributo.nombre.firstToUpperCase()+'() {\n');
+				if(atributo.nombre == 'tipoPension'){
+					out.print('this.'+atributo.nombre.firstToLowerCase()+'= validacionesServices.get'+atributo.nombre.firstToUpperCase()+'();\n');
+				}
 				out.print('return '+atributo.nombre.firstToLowerCase()+';\n');
 			out.print('}\n');
 		
@@ -240,9 +282,90 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 			out.print('this.setTipoPagadorPension(validacionesServices.getTipoPagadorPension('+self.nombre.firstToLowerCase()+'.getTipoPension().getId(),'+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId()));\n');
 			out.print('}\n');
 		    out.print('else{\n');
-			out.print('his.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());\n');
+			out.print('this.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());\n');
 			out.print('}\n');
 			out.print('}\n');
 		}
+	}
+	
+	operation mArq!Vista getRelaciones(){
+		for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
+			for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
+			 	out.print('private I'+vistaReferencia.nombre.firstToUpperCase()+'Services services'+vistaReferencia.nombre.firstToUpperCase()+';\n');
+			 	out.print('private '+vistaReferencia.nombre.firstToUpperCase()+' '+vistaReferencia.nombre.firstToLowerCase()+';');
+			}	
+		}
+	}
+	
+	operation mArq!Vista getCrearRelacion(){
+		for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
+			for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
+			 	out.print(self.nombre.firstToLowerCase()+ '.set'+vistaReferencia.nombre.firstToUpperCase()+'('+vistaReferencia.nombre.firstToLowerCase()+');\n');
+			}	
+		}
+	}
+	
+	operation mArq!Vista getSetRelacion(){
+		for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
+			for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
+			 	
+			 	out.print('/**\n');
+				out.print('* @return the ' +vistaReferencia.nombre.firstToLowerCase()+'\n');
+				out.print('*/\n');
+				out.print('public '+vistaReferencia.nombre.firstToUpperCase()+' get'+vistaReferencia.nombre.firstToUpperCase()+'() {\n');
+				out.print('return '+vistaReferencia.nombre.firstToLowerCase()+';\n');
+				out.print('}\n');
+				
+				out.print('/**\n');
+				out.print('* @param ' +vistaReferencia.nombre.firstToLowerCase()+'the '+vistaReferencia.nombre.firstToLowerCase()+'to set\n');
+				out.print('*/\n');
+				out.print('public void set'+vistaReferencia.nombre.firstToUpperCase()+'('+vistaReferencia.nombre.firstToUpperCase()+' '+vistaReferencia.nombre.firstToLowerCase()+' ) {\n');
+				out.print('this.'+vistaReferencia.nombre.firstToLowerCase()+'='+vistaReferencia.nombre.firstToLowerCase()+';\n');
+				out.print('}\n');
+			}	
+		}
+	}
+	operation mArq!Vista getRelationConstructor(){
+		for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
+			for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
+			 	 out.print('services'+vistaReferencia.nombre.firstToUpperCase()+' = new '+vistaReferencia.nombre.firstToUpperCase()+'Services();\n');    
+		 	}
+		}
+	}
+	operation mArq!Vista getRelationMetodo(){
+		for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
+			for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
+	
+				out.print('public void findBy'+vistaReferencia.nombre.firstToUpperCase()+'(Long id'+vistaReferencia.nombre.firstToUpperCase()+'){\n');
+				out.print(vistaReferencia.nombre.firstToLowerCase()+' = new '+vistaReferencia.nombre.firstToUpperCase()+'();\n');
+				out.print(vistaReferencia.nombre.firstToLowerCase()+' =services'+vistaReferencia.nombre.firstToUpperCase()+'.find(id'+vistaReferencia.nombre.firstToUpperCase()+');\n');
+				out.print('this.'+self.nombre.firstToLowerCase()+'List = services.findBy'+vistaReferencia.nombre.firstToUpperCase()+'All('+vistaReferencia.nombre.firstToLowerCase()+');\n');
+				out.print('}\n');
+			}
+		}
+	}
+	
+	operation mArq!Vista findAll(){
+		if ( self.tieneReferencia()){
+			for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
+				for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
+					out.print('this.'+self.nombre.firstToLowerCase()+'List = services.findBy'+vistaReferencia.nombre.firstToUpperCase()+'All('+vistaReferencia.nombre.firstToLowerCase()+');\n');	
+				}
+			}
+		}else{
+		
+			out.print('this.'+self.nombre.firstToLowerCase()+'List = services.findAll();\n');
+		}
+	
+	}
+	
+	operation mArq!Vista tieneReferencia(): Boolean{
+		for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
+			for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 %]
