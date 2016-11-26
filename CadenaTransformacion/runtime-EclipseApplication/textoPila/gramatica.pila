@@ -33,7 +33,7 @@ entidad Pensionado {
 		3="TarjetaIdentidad", 4="RegistroCivil", 5="Pasaporte", 6="CarneDiplomatico"
 	};
 	atributo numeroIdentificacion: Entero;
-	atributo montoPension: Flotante;
+	atributo montoPension: Doble;
 	atributo novedades: Lista Novedad;
 	atributo actividadEconomica: Entero;
 	atributo tipoPensionado: Referencia TipoPensionado;
@@ -42,7 +42,7 @@ entidad Pensionado {
 }
 
 servicioComputo pagoSalud {
-	var tarifa: Flotante = 1.12;
+	var tarifa: Doble = 1.12;
 	si pensionado.getViveExterior && pensionado.getNoTieneGrupoFamiliar {
 		tarifa = 0;
 	 }
@@ -53,7 +53,7 @@ servicioComputo pagoSalud {
 }
 
 servicioComputo pagoPension  {
-	var tarifa: Flotante = 0;
+	var tarifa: Doble = 0;
 	si pensionado.getAltoRiesgo {
 		tarifa = 1.26;
 	}
@@ -88,7 +88,7 @@ servicioComputo pagoPension  {
 }
 
 servicioComputo pagoRiesgos {
-	var tarifa: Flotante = 0;
+	var tarifa: Doble = 0;
 	si pensionado.getActividadEconomica == 8022 {
 		tarifa = 1.00522;
 	}

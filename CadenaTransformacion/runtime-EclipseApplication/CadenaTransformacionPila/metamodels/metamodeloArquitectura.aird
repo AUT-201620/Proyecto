@@ -704,9 +704,9 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
         </ownedElements>
-        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_FMOdc6eCEea1kb3jkTTcrA" name="FLOAT" tooltipText="">
-          <target xmi:type="ecore:EEnumLiteral" href="metamodeloArquitectura.ecore#//TipoDato/FLOAT"/>
-          <semanticElements xmi:type="ecore:EEnumLiteral" href="metamodeloArquitectura.ecore#//TipoDato/FLOAT"/>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_FMOdc6eCEea1kb3jkTTcrA" name="DOUBLE" tooltipText="">
+          <target xmi:type="ecore:EEnumLiteral" href="metamodeloArquitectura.ecore#//TipoDato/DOUBLE"/>
+          <semanticElements xmi:type="ecore:EEnumLiteral" href="metamodeloArquitectura.ecore#//TipoDato/DOUBLE"/>
           <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_FMOddKeCEea1kb3jkTTcrA" labelAlignment="LEFT">
             <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
           </ownedStyle>

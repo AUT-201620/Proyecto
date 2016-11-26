@@ -43,7 +43,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="TipoDato">
     <eLiterals name="STRING"/>
     <eLiterals name="INTEGER" value="1"/>
-    <eLiterals name="FLOAT"/>
+    <eLiterals name="DOUBLE"/>
     <eLiterals name="DATE" value="3"/>
     <eLiterals name="BOOLEAN" value="4"/>
     <eLiterals name="REFERENCE" value="5"/>

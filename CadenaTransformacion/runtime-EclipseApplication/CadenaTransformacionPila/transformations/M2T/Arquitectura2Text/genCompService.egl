@@ -98,8 +98,8 @@ public class ComputoServices {
 			else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#ENTERO) {
 				out.print('int');
 			}
-			else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FLOTANTE) {
-				out.print('float');
+			else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#DOBLE) {
+				out.print('double');
 			}
 			else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FECHA) {
 				out.print('Date');

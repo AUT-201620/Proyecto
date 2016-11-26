@@ -50,7 +50,7 @@
       <listaLlaveValor llave="6" valor="&quot;CarneDiplomatico&quot;"/>
     </atributos>
     <atributos name="numeroIdentificacion" tipoPrimitivo="Entero"/>
-    <atributos name="montoPension" tipoPrimitivo="Flotante"/>
+    <atributos name="montoPension" tipoPrimitivo="Doble"/>
     <atributos name="novedades" listaEntidad="//@entidades.1"/>
     <atributos name="actividadEconomica" tipoPrimitivo="Entero"/>
     <atributos name="tipoPensionado" referencia="TipoPensionado"/>
@@ -58,7 +58,7 @@
     <atributos name="tipoPension" referencia="TipoPension"/>
   </entidades>
   <serviciosComputo name="pagoSalud">
-    <variables name="tarifa" tipoPrimitivo="Flotante">
+    <variables name="tarifa" tipoPrimitivo="Doble">
       <expresion>
         <expresionTerminal real="1.12"/>
       </expresion>
@@ -114,7 +114,7 @@
     </expresionRetorno>
   </serviciosComputo>
   <serviciosComputo name="pagoPension">
-    <variables name="tarifa" tipoPrimitivo="Flotante">
+    <variables name="tarifa" tipoPrimitivo="Doble">
       <expresion>
         <expresionTerminal/>
       </expresion>
@@ -260,7 +260,7 @@
     </expresionRetorno>
   </serviciosComputo>
   <serviciosComputo name="pagoRiesgos">
-    <variables name="tarifa" tipoPrimitivo="Flotante">
+    <variables name="tarifa" tipoPrimitivo="Doble">
       <expresion>
         <expresionTerminal/>
       </expresion>

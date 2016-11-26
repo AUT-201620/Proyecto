@@ -92,8 +92,8 @@ operation mGram!Atributo getAtributoModelo(): mArq!AtributoModelo {
 	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#ENTERO) {
 		atributoModelo.tipo = mArq!TipoDato#INTEGER;
 	}
-	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FLOTANTE) {
-		atributoModelo.tipo = mArq!TipoDato#FLOAT;
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#DOBLE) {
+		atributoModelo.tipo = mArq!TipoDato#DOUBLE;
 	}
 	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FECHA) {
 		atributoModelo.tipo = mArq!TipoDato#DATE;
@@ -383,7 +383,7 @@ operation mGram!Atributo getAtributoVista(): mArq!AtributoVista {
 	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#ENTERO) {
 		atributoVista.tipo = mArq!TipoAtributoVista#TEXTO;
 	}
-	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FLOTANTE) {
+	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#DOBLE) {
 		atributoVista.tipo = mArq!TipoAtributoVista#TEXTO;
 	}
 	else if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#FECHA) {
