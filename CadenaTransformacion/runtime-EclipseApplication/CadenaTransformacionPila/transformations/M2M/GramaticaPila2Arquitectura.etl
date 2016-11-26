@@ -1,5 +1,6 @@
 pre {
 	mGram!PagoServicio.all.collect(p|p.getArquitectura());
+	"Iniciando transformacion ETL".println();
 }
 
 //De GramaticaPila!PagoServicio a ArquitecturaMVC!Modelo
@@ -7,21 +8,21 @@ operation mGram!PagoServicio getArquitectura(): mArq!ArquitecturaMVC {
 	var arqMVC = new mArq!ArquitecturaMVC;
 	
     //Modelos
+	"Generando Modelos".println();
 	arqMVC.modelos = self.entidades.collect(e|e.getModelo());
 	arqMVC.modelos.addAll(getModelosTablaPila());
-	
-	
 	for (m: mArq!Modelo in arqMVC.modelos) {
 		m.completarModelos();
 	}
 
 	//Controladores
+	"Generando Contoladores".println();
 	arqMVC.controladores = self.entidades.collect(e|e.getControlador());
 	arqMVC.controladores.addAll(getControladoresTablaPila());
 
     //Vistas
+	"Generando Vistas".println();
 	arqMVC.vistas = self.entidades.collect(e|e.getVista());
-	
 	for (m: mArq!Vista in arqMVC.vistas) {
 		m.completarVistas();
 	}
@@ -33,6 +34,7 @@ operation mGram!PagoServicio getArquitectura(): mArq!ArquitecturaMVC {
 operation mGram!Entidad getModelo(): mArq!Modelo {
 	var modelo = new mArq!Modelo;
 	modelo.nombre = self.name;
+	("Generando Modelo " + modelo.nombre).println();
 	return modelo;
 }   
 
@@ -41,15 +43,15 @@ operation  getModelosTablaPila(): Set {
 	var modelos = new Set;
 	var modelo;
 	
-	//Correccion para que no se generan QUEMADOS los modelos de TipoPension, TipoPensionado y TipoPagador
 	for (m: mGram!Atributo in mGram!Atributo.all.select(e|e.referencia <> null)){
 		modelo = new mArq!Modelo;
 		modelo.nombre = m.name.firstToUpperCase();
 		modelo.esCrud = false;
+		("Generando Modelo " + modelo.nombre).println();
 		modelos.add(modelo);
 	}
 	
-	//NOTA:: Esta parte si deberia ir "Quemada" ???
+	("Generando Modelos relacion").println();
 	modelo = new mArq!Modelo;
 	modelo.nombre = "TipoPension_TipoPensionado";
 	modelo.esCrud = false;
@@ -76,11 +78,17 @@ operation mArq!Modelo completarModelos()  {
 	if (entidad.isDefined()) {
 		self.atributos = entidad.atributos.collect(e|e.getAtributoModelo());
 	}
+	("Completar Modelo Tipo Pension").println();
 	completarModeloTipoPension();
+	("Completar Modelo Tipo Pensionado").println();
 	completarModeloTipoPensionado();
+	("Completar Modelo Tipo Pagador Pension").println();
 	completarModeloTipoPagadorPension();
+	("Completar Modelo Tipo Pension Tipo Pensionado").println();
 	completarModeloTipoPensionTipoPensionado();
+	("Completar Modelo Tipo Pension Tipo Pagador Pension").println();
 	completarModeloTipoPensionTipoPagador();
+	("Completar Modelo Tipo Pensionado Tipo Pagador Pension").println();
 	completarModeloTipoPensionadoTipoPagador();
 }   
 
@@ -88,6 +96,7 @@ operation mArq!Modelo completarModelos()  {
 operation mGram!Atributo getAtributoModelo(): mArq!AtributoModelo {
 	var atributoModelo = new mArq!AtributoModelo;
 	atributoModelo.nombre = self.name;
+	("Generando Atributo Modelo " + atributoModelo.nombre).println();
 	if (self.tipoPrimitivo = mGram!TipoDatoPrimitivo#CADENA_CARACTERES) {
 		atributoModelo.tipo = mArq!TipoDato#STRING;
 	}
@@ -136,21 +145,25 @@ operation mGram!LlaveValor getCodigoValor(): mArq!CodigoValor {
 
 //Obtener Atributos de Modelos Tabla Pila
 operation mArq!Modelo getAtributosModelosTablaPila() {
+	("Generando Atributo Modelo Codigo").println();
 	self.atributos = new Set;
 	var atributoModelo = new mArq!AtributoModelo;
 	atributoModelo.nombre = "codigo";
 	atributoModelo.tipo = mArq!TipoDato#INTEGER;
 	self.atributos.add(atributoModelo);
+	("Generando Atributo Modelo Nombre").println();
 	atributoModelo = new mArq!AtributoModelo;
 	atributoModelo.nombre = "nombre";
 	atributoModelo.tipo = mArq!TipoDato#STRING;
 	self.atributos.add(atributoModelo);
+	("Generando Atributo Modelo Descripcion").println();
 	atributoModelo = new mArq!AtributoModelo;
 	atributoModelo.nombre = "descripcion";
 	atributoModelo.tipo = mArq!TipoDato#STRING;
 	self.atributos.add(atributoModelo);
 }
 
+//Completar Modelo Tipo Pension
 operation completarModeloTipoPension() {
 	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPension").first();
 	if (modelo.isDefined()) {
@@ -159,6 +172,7 @@ operation completarModeloTipoPension() {
 	}
 }
 
+//Completar Atributos Modelo Tipo Pension
 operation mArq!Modelo completarAtributosModeloTipoPension() {
 	self.getAtributosModelosTablaPila();
 	
@@ -183,6 +197,7 @@ operation mArq!Modelo completarAtributosModeloTipoPension() {
 	self.atributos.add(atributoModelo);
 }
 
+//Completar Datos Modelo Tipo Pension
 operation mArq!Modelo completarDatosModeloTipoPension() {
 	var tiposPension = mTab!TipoPension.all;
 	self.datos = new Set;
@@ -194,6 +209,7 @@ operation mArq!Modelo completarDatosModeloTipoPension() {
 	}
 }
 
+//Completar Modelo Tipo Pensionado
 operation completarModeloTipoPensionado() {
 	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionado").first();
 	if (modelo.isDefined()) {
@@ -202,6 +218,7 @@ operation completarModeloTipoPensionado() {
 	}
 }
 
+//Completar Atributos Modelo Tipo Pensionado
 operation mArq!Modelo completarAtributosModeloTipoPensionado() {
 	self.getAtributosModelosTablaPila();
 	var atributoModelo = new mArq!AtributoModelo;
@@ -215,6 +232,7 @@ operation mArq!Modelo completarAtributosModeloTipoPensionado() {
 	self.atributos.add(atributoModelo);
 }
 
+//Completar Datos Modelo Tipo Pensionado
 operation mArq!Modelo completarDatosModeloTipoPensionado() {
 	var tiposPensionado = mTab!TipoPensionado.all;
 	self.datos = new Set;
@@ -226,6 +244,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionado() {
 	}
 }
 
+//Completar Modelo Tipo Pagador Pension
 operation completarModeloTipoPagadorPension() {
 	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPagadorPension").first();
 	if (modelo.isDefined()) {
@@ -234,10 +253,12 @@ operation completarModeloTipoPagadorPension() {
 	}
 }
 
+//Completar Atributos Modelo Tipo Pagador Pension
 operation mArq!Modelo completarAtributosModeloTipoPagadorPension() {
 	self.getAtributosModelosTablaPila();
 }
 
+//Completar Datos Modelo Tipo Pagador Pension
 operation mArq!Modelo completarDatosModeloTipoPagadorPension() {
 	var tiposPagadorPension = mTab!TipoPagadorPension.all;
 	self.datos = new Set;
@@ -249,6 +270,7 @@ operation mArq!Modelo completarDatosModeloTipoPagadorPension() {
 	}
 }
 
+//Completar Modelo Tipo Pension Tipo Pensionado
 operation completarModeloTipoPensionTipoPensionado() {
 	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionTipoPensionado").first();
 	if (modelo.isDefined()) {
@@ -256,6 +278,7 @@ operation completarModeloTipoPensionTipoPensionado() {
 	}
 }
 
+//Completar Datos Modelo Tipo Pension Tipo Pensionado
 operation mArq!Modelo completarDatosModeloTipoPensionTipoPensionado() {
 	var tiposPension = mTab!TipoPension.all;
 	self.datos = new Set;
@@ -269,6 +292,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionTipoPensionado() {
 	}
 }
 
+//Completar Modelo Tipo Pension Tipo Pagador Pension
 operation completarModeloTipoPensionTipoPagador() {
 	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionTipoPagador").first();
 	if (modelo.isDefined()) {
@@ -276,6 +300,7 @@ operation completarModeloTipoPensionTipoPagador() {
 	}
 }
 
+//Completar datos Modelo Tipo Pension Tipo Pagador Pension
 operation mArq!Modelo completarDatosModeloTipoPensionTipoPagador() {
 	var tiposPension = mTab!TipoPension.all;
 	self.datos = new Set;
@@ -289,6 +314,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionTipoPagador() {
 	}
 }
 
+//Completar Modelo Tipo Pensionado Tipo Pagador Pension
 operation completarModeloTipoPensionadoTipoPagador() {
 	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionadoTipoPagador").first();
 	if (modelo.isDefined()) {
@@ -296,6 +322,7 @@ operation completarModeloTipoPensionadoTipoPagador() {
 	}
 }
 
+//Completar Datos Modelo Tipo Pensionado Tipo Pagador Pension
 operation mArq!Modelo completarDatosModeloTipoPensionadoTipoPagador() {
 	var tiposPensionado = mTab!TipoPensionado.all;
 	self.datos = new Set;
@@ -314,6 +341,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionadoTipoPagador() {
 operation mGram!Entidad getControlador(): mArq!Controlador {
 	var modelo = new mArq!Controlador;
 	modelo.nombre = self.name;
+	("Generando Controlador" + modelo.nombre).println();
 	return modelo;
 }   
 
@@ -323,14 +351,17 @@ operation getControladoresTablaPila(): Set {
 	controlador.nombre = "TipoPension";
 	controlador.esCrud = false;
 	controladores.add(controlador);
+	("Generando Controlador " + controlador.nombre).println();
 	controlador = new mArq!Controlador;
 	controlador.nombre = "TipoPensionado";
 	controlador.esCrud = false;
 	controladores.add(controlador);
+	("Generando Controlador " + controlador.nombre).println();
 	controlador = new mArq!Controlador;
 	controlador.nombre = "TipoPagadorPension";
 	controlador.esCrud = false;
 	controladores.add(controlador);
+	("Generando Controlador " + controlador.nombre).println();
 	
 	//Estos controladores no es necesario crearlos
 	/*controlador = new mArq!Controlador;
@@ -351,10 +382,11 @@ operation getControladoresTablaPila(): Set {
 operation mGram!Entidad getVista(): mArq!Vista {
 	var vista = new mArq!Vista;
 	vista.nombre = self.name;
+	("Generando Vista " + vista.nombre).println();
 	return vista;
 }   
 
-//De GramaticaPila!Entidad a ArquitecturaMVC!Modelo
+//Completar Vistas
 operation mArq!Vista completarVistas()  {
 	var entidad = mGram!Entidad.all.select(e|e.name = self.nombre).first();
 	if (entidad.isDefined()) {
@@ -366,6 +398,7 @@ operation mArq!Vista completarVistas()  {
 operation mGram!Atributo getAtributoVista(): mArq!AtributoVista {
 	var atributoVista = new mArq!AtributoVista;
 	atributoVista.nombre = self.name;
+	("Generando Atributo Vista " + atributoVista.nombre).println();
 	atributoVista.etiqueta = self.name.getEtiquetaAtributoVista();
 	if (self.listaLlaveValor.isDefined() and (self.listaLlaveValor.size() > 0)) {
 		atributoVista.tipo = mArq!TipoAtributoVista#ENUM;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ArquitecturaMVC:ArquitecturaMVC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ArquitecturaMVC="http://www.uniandes.edu.co.arquitecturaMVC">
+<ArquitecturaMVC:ArquitecturaMVC xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ArquitecturaMVC="http://www.uniandes.edu.co.arquitecturaMVC" xsi:schemaLocation="http://www.uniandes.edu.co.arquitecturaMVC ../metamodels/metamodeloArquitectura.ecore">
   <vistas nombre="Aportante">
     <atributos nombre="nombreRazonSocial" etiqueta="Nombre Razon Social"/>
     <atributos nombre="digitoVerificacion" etiqueta="Digito Verificacion"/>
@@ -38,8 +38,8 @@
   <controladores nombre="Novedad"/>
   <controladores nombre="Pensionado"/>
   <controladores nombre="TipoPensionado" esCrud="false"/>
-  <controladores nombre="TipoPagadorPension" esCrud="false"/>
   <controladores nombre="TipoPension" esCrud="false"/>
+  <controladores nombre="TipoPagadorPension" esCrud="false"/>
   <modelos nombre="Aportante">
     <atributos nombre="nombreRazonSocial"/>
     <atributos nombre="digitoVerificacion"/>
@@ -95,9 +95,9 @@
     <atributos nombre="actividadEconomica" tipo="INTEGER"/>
     <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.4" tipoReferencia="MANY_TO_ONE"/>
     <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.7" tipoReferencia="MANY_TO_ONE"/>
-    <atributos nombre="tipoPension" tipo="REFERENCE" modeloReferencia="//@modelos.6" tipoReferencia="MANY_TO_ONE"/>
+    <atributos nombre="tipoPension" tipo="REFERENCE" modeloReferencia="//@modelos.8" tipoReferencia="MANY_TO_ONE"/>
   </modelos>
-  <modelos nombre="TipoPension_TipoPagador" esCrud="false" esEntidad="false"/>
+  <modelos nombre="TipoPension_TipoPensionado" esCrud="false" esEntidad="false"/>
   <modelos nombre="TipoPensionado" esCrud="false">
     <atributos nombre="codigo" tipo="INTEGER"/>
     <atributos nombre="nombre"/>
@@ -114,6 +114,16 @@
     <datos campos="id, codigo, nombre, descripcion" valores="9, 9, 'Beneficiario UPC Adicional', 'Beneficiario UPC Adicional'"/>
   </modelos>
   <modelos nombre="TipoPensionado_TipoPagador" esCrud="false" esEntidad="false"/>
+  <modelos nombre="TipoPension_TipoPagador" esCrud="false" esEntidad="false"/>
+  <modelos nombre="TipoPagadorPension" esCrud="false">
+    <atributos nombre="codigo" tipo="INTEGER"/>
+    <atributos nombre="nombre"/>
+    <atributos nombre="descripcion"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Empleador', 'Empleador'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Administrador Pensiones', 'Administrador de Pensiones'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Pagador Pensiones', 'Pagador de Pensiones'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="4, 4, 'Entidades regimen Especial', 'Pensiones de entidades de los regimenes especial y de excepcion'"/>
+  </modelos>
   <modelos nombre="TipoPension" esCrud="false">
     <atributos nombre="codigo" tipo="INTEGER"/>
     <atributos nombre="nombre"/>
@@ -139,14 +149,4 @@
     <datos campos="id, codigo, nombre, descripcion" valores="20, 20, 'Sentencia judicial', 'Sentencia judicial'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="18, 18, 'Conciliaciones', 'Conciliaciones'"/>
   </modelos>
-  <modelos nombre="TipoPagadorPension" esCrud="false">
-    <atributos nombre="codigo" tipo="INTEGER"/>
-    <atributos nombre="nombre"/>
-    <atributos nombre="descripcion"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Empleador', 'Empleador'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Administrador Pensiones', 'Administrador de Pensiones'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Pagador Pensiones', 'Pagador de Pensiones'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="4, 4, 'Entidades regimen Especial', 'Pensiones de entidades de los regimenes especial y de excepcion'"/>
-  </modelos>
-  <modelos nombre="TipoPension_TipoPensionado" esCrud="false" esEntidad="false"/>
 </ArquitecturaMVC:ArquitecturaMVC>
