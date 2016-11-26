@@ -12,6 +12,7 @@
 
 	var root : mArq!ArquitecturaMVC:= mArq!ArquitecturaMVC.all.at(0);
 	var serviciosComputo: Set := mGram!ServicioComputo.all.asSet();
+	"Inicio del EGL".println();
 %]
 
 [%
@@ -22,6 +23,7 @@
 		if(modelo.esEntidad){
 			var tEntities: Template := TemplateFactory.load(templatePath + '/mToEntities.egl');
 			tEntities.populate('modelo', modelo);
+			('Generando entidad ' + modelo.nombre.firstToUpperCase() +'.java').println();
 			tEntities.generate(srcJavaPath + '/entities/' + modelo.nombre.firstToUpperCase() +'.java');
 		}
 	}
@@ -33,6 +35,7 @@
 		if(modelo.esEntidad and modelo.esCrud){
 			var tPersistence: Template := TemplateFactory.load(templatePath + '/mToPersistence.egl');
 			tPersistence.populate('modelo', modelo);
+			('Generando entidad ' + modelo.nombre.firstToUpperCase() +'Persistence.java').println();
 			tPersistence.generate(srcJavaPath + '/persistence/' + modelo.nombre.firstToUpperCase() +'Persistence.java');
 		}
 	}
@@ -44,6 +47,7 @@
 		if(controlador.esCrud){
 			var tInterfaz: Template := TemplateFactory.load(templatePath + '/mToInterfaz.egl');
 			tInterfaz.populate('controlador', controlador);
+			('Generando Interfaz de servicio ' + controlador.nombre.firstToUpperCase() +'Services.java').println();
 			tInterfaz.generate(srcJavaPath + '/services/I' + controlador.nombre.firstToUpperCase() +'Services.java');
 		}
 	}
@@ -55,6 +59,7 @@
 		if(controlador.esCrud){
 			var tService: Template := TemplateFactory.load(templatePath + '/mToService.egl');
 			tService.populate('controlador', controlador);
+			('Generando Servicio ' + controlador.nombre.firstToUpperCase() +'Services.java').println();
 			tService.generate(srcJavaPath + '/services/' + controlador.nombre.firstToUpperCase() +'Services.java');
 		}
 	}
@@ -68,6 +73,7 @@
 		var tVista: Template := TemplateFactory.load(templatePath + '/mToManagedBean.egl');
 		tVista.populate('vista', vista);
 		tVista.setFormatter(jFormatter);
+		('Generando Servicio ' + vista.nombre.firstToUpperCase() +'Bean.java').println();
 		tVista.generate(srcJavaPath + '/web/beans/' + vista.nombre.firstToUpperCase() +'Bean.java');
 	}
 	
@@ -78,6 +84,7 @@
 	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/genCompService.egl');
 	tServicioComputo.populate('servicios', serviciosComputo);
 	tServicioComputo.setFormatter(jFormatter);
+	('Generando Servicio ComputoServices.java').println();
     tServicioComputo.generate(srcJavaPath + '/services/ComputoServices.java');
 	
 	//Generador de Interfaz de Computo	
@@ -85,6 +92,7 @@
 	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/genInterfazCompService.egl');
 	tServicioComputo.populate('servicios', serviciosComputo);
 	tServicioComputo.setFormatter(jFormatter);
+	('Generando Servicio IComputoServices.java').println();
     tServicioComputo.generate(srcJavaPath + '/services/IComputoServices.java');
 	
 	//Generador de Enums
@@ -95,6 +103,7 @@
 				var tEnum: Template := TemplateFactory.load(templatePath + '/mToEnum.egl');
 				tEnum.populate('atributoModelo', atributoModelo);
 				tEnum.setFormatter(jFormatter);
+				('Generando Enumeracion ' + atributoModelo.nombre.firstToUpperCase() + 'Enum.java').println();
 				tEnum.generate(srcJavaPath + '/enumerators/' + atributoModelo.nombre.firstToUpperCase() + 'Enum.java');
 			}
 		}
@@ -107,12 +116,14 @@
 		tVista.populate('vista', vista);
 		tVista.setFormatter(xhtmlFormatter);
 		tVista.generate(srcMainPath + '/webapp/pages/' + vista.nombre.firstToLowerCase() +'.xhtml');
+		('Generando Pagina ' + vista.nombre.firstToLowerCase() +'.xhtml').println();
 		tVista.generate(appPath + '/WebContent/pages/' + vista.nombre.firstToLowerCase() +'.xhtml');
 	}
 	
 	//Generador de menu.xhtml
 	var tVista: Template:=TemplateFactory.load(templatePath + '/mToMenuXhtml.egl');
 	tVista.setFormatter(xhtmlFormatter);
+	('Generando Menu').println();
 	tVista.generate(srcMainPath + '/webapp/pages/menu.xhtml');
 	tVista.generate(appPath + '/WebContent/pages/menu.xhtml');
 %]
@@ -122,22 +133,26 @@
 	//Generador de interfaz de validaciones
 	var t: Template:=TemplateFactory.load(templatePath + '/mToInterfazVal.egl');
 	t.populate('modelosEntidad', modelosEntidad);
+	('Generando Interfaz Validaciones').println();
 	t.generate(srcJavaPath + '/services/IValidacionesServices.java');
 	
 	//Generador de Servicio de validaciones
 	var t: Template:=TemplateFactory.load(templatePath + '/mToServiceVal.egl');
 	t.populate('modelosEntidad', modelosEntidad);
+	('Generando Servicio Validaciones').println();
 	t.generate(srcJavaPath + '/services/ValidacionesServices.java');
 	
 	//Generador de Servicio de Persistencia de validaciones
 	var t: Template:=TemplateFactory.load(templatePath + '/mToPersistenceVal.egl');
 	t.populate('modelosEntidad', modelosEntidad);
+	('Generando Persistencia Validaciones').println();
 	t.generate(srcJavaPath + '/persistence/ValidacionesPersistence.java');
 	
 	//Generador de script para validaciones
 	var tEntities: Template := TemplateFactory.load(templatePath + '/genLoadSql.egl');
 	tEntities.populate('modelosEntidad', root.modelos.select(m|not m.esCrud and m.esEntidad));
 	tEntities.populate('modelosRelacion', root.modelos.select(m|not m.esCrud and not m.esEntidad));
+	('Generando Archivos sentencia SQL').println();
 	tEntities.generate(srcMainPath + '/resources/META-INF/load.sql');
 %]
 
@@ -145,37 +160,46 @@
 	//Generador de objetos genericos
 	//1. PersistanceManager
 	var t: Template:=TemplateFactory.load(templatePath + '/genEntityManager.egl');
+	('Generando Administrador de Persistencia').println();
 	t.generate(srcJavaPath + '/persistence/PersistenceManager.java');
 	//2. Hibernate dialect
 	var t: Template:=TemplateFactory.load(templatePath + '/genImprovedDialect.egl');
+	('Generando Dialecto').println();
 	t.generate(srcJavaPath + '/dialect/ImprovedDialect.java');
 	//3. Persistence.xml
 	var t: Template:=TemplateFactory.load(templatePath + '/genPersistenceXml.egl');
+	('Generando Configuracion Persistencia').println();
 	t.generate(srcMainPath + '/resources/META-INF/persistence.xml');
 	//4. faces-config.xml
 	var t: Template:=TemplateFactory.load(templatePath + '/genFacesConfigXml.egl');
+	('Generando Configuracion Faces').println();
 	t.generate(srcMainPath + '/webapp/WEB-INF/faces-config.xml');
 	t.generate(appPath + '/WebContent/WEB-INF/faces-config.xml');
 	//5. web.xml
 	var t: Template:=TemplateFactory.load(templatePath + '/genWebXml.egl');
+	('Generando Configuracion Web').println();
 	t.generate(srcMainPath + '/webapp/WEB-INF/web.xml');
 	t.generate(appPath + '/WebContent/WEB-INF/web.xml');
 	//6. Shiro.ini
 	var t: Template:=TemplateFactory.load(templatePath + '/genShiro.egl');
+	('Generando Configuracion Seguridad').println();
 	t.generate(srcMainPath + '/webapp/WEB-INF/shiro.ini');
 	t.generate(appPath + '/WebContent/WEB-INF/shiro.ini');
 	//7. Login.xhtml
 	var xhtmlFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.XmlFormatter");
 	var t: Template:=TemplateFactory.load(templatePath + '/genLoginXhtml.egl');
 	t.setFormatter(xhtmlFormatter);
+	('Generando Login').println();
 	t.generate(srcMainPath + '/webapp/login.xhtml');
 	t.generate(appPath + '/WebContent/login.xhtml');
 	//8. pom.xml
 	var t: Template:=TemplateFactory.load(templatePath + '/genPomXml.egl');
+	('Generando Configuracion Maven').println();
 	t.generate(appPath + '/pom.xml');	
 	//9. index.xhtml
 	var t: Template:=TemplateFactory.load(templatePath + '/genIndexXhtml.egl');
 	t.setFormatter(xhtmlFormatter);
+	('Generando Pagina Principal').println();
 	t.generate(srcMainPath + '/webapp/pages/index.xhtml');
 	t.generate(appPath + '/WebContent/pages/index.xhtml');
 %]
