@@ -10,7 +10,7 @@
       <genEnumLiterals ecoreEnumLiteral="Pila.ecore#//TipoDatoPrimitivo/NO_ASIGNADO"/>
       <genEnumLiterals ecoreEnumLiteral="Pila.ecore#//TipoDatoPrimitivo/CADENA_CARACTERES"/>
       <genEnumLiterals ecoreEnumLiteral="Pila.ecore#//TipoDatoPrimitivo/ENTERO"/>
-      <genEnumLiterals ecoreEnumLiteral="Pila.ecore#//TipoDatoPrimitivo/FLOTANTE"/>
+      <genEnumLiterals ecoreEnumLiteral="Pila.ecore#//TipoDatoPrimitivo/DOBLE"/>
       <genEnumLiterals ecoreEnumLiteral="Pila.ecore#//TipoDatoPrimitivo/FECHA"/>
       <genEnumLiterals ecoreEnumLiteral="Pila.ecore#//TipoDatoPrimitivo/BOOLEANO"/>
     </genEnums>

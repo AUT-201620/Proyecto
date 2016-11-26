@@ -28,7 +28,7 @@
     <eLiterals name="NO_ASIGNADO" literal="NoAsignado"/>
     <eLiterals name="CADENA_CARACTERES" value="1" literal="CadenaCaracteres"/>
     <eLiterals name="ENTERO" value="2" literal="Entero"/>
-    <eLiterals name="FLOTANTE" value="3" literal="Flotante"/>
+    <eLiterals name="DOBLE" value="3" literal="Doble"/>
     <eLiterals name="FECHA" value="4" literal="Fecha"/>
     <eLiterals name="BOOLEANO" value="5" literal="Booleano"/>
   </eClassifiers>

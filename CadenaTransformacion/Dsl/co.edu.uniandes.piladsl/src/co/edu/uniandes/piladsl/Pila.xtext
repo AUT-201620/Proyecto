@@ -20,7 +20,7 @@ LlaveValor:
 ;
 
 enum TipoDatoPrimitivo:
-	NO_ASIGNADO = 'NoAsignado' | CADENA_CARACTERES = 'CadenaCaracteres' | ENTERO = 'Entero' | FLOTANTE = 'Flotante' | FECHA = 'Fecha' | BOOLEANO = 'Booleano' 
+	NO_ASIGNADO = 'NoAsignado' | CADENA_CARACTERES = 'CadenaCaracteres' | ENTERO = 'Entero' | DOBLE = 'Doble' | FECHA = 'Fecha' | BOOLEANO = 'Booleano' 
 ;	
         
 ServicioComputo:

@@ -51,14 +51,14 @@ public enum TipoDatoPrimitivo implements Enumerator
   ENTERO(2, "ENTERO", "Entero"),
 
   /**
-   * The '<em><b>FLOTANTE</b></em>' literal object.
+   * The '<em><b>DOBLE</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #FLOTANTE_VALUE
+   * @see #DOBLE_VALUE
    * @generated
    * @ordered
    */
-  FLOTANTE(3, "FLOTANTE", "Flotante"),
+  DOBLE(3, "DOBLE", "Doble"),
 
   /**
    * The '<em><b>FECHA</b></em>' literal object.
@@ -126,19 +126,19 @@ public enum TipoDatoPrimitivo implements Enumerator
   public static final int ENTERO_VALUE = 2;
 
   /**
-   * The '<em><b>FLOTANTE</b></em>' literal value.
+   * The '<em><b>DOBLE</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of '<em><b>FLOTANTE</b></em>' literal object isn't clear,
+   * If the meaning of '<em><b>DOBLE</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #FLOTANTE
-   * @model literal="Flotante"
+   * @see #DOBLE
+   * @model literal="Doble"
    * @generated
    * @ordered
    */
-  public static final int FLOTANTE_VALUE = 3;
+  public static final int DOBLE_VALUE = 3;
 
   /**
    * The '<em><b>FECHA</b></em>' literal value.
@@ -182,7 +182,7 @@ public enum TipoDatoPrimitivo implements Enumerator
       NO_ASIGNADO,
       CADENA_CARACTERES,
       ENTERO,
-      FLOTANTE,
+      DOBLE,
       FECHA,
       BOOLEANO,
     };
@@ -246,7 +246,7 @@ public enum TipoDatoPrimitivo implements Enumerator
       case NO_ASIGNADO_VALUE: return NO_ASIGNADO;
       case CADENA_CARACTERES_VALUE: return CADENA_CARACTERES;
       case ENTERO_VALUE: return ENTERO;
-      case FLOTANTE_VALUE: return FLOTANTE;
+      case DOBLE_VALUE: return DOBLE;
       case FECHA_VALUE: return FECHA;
       case BOOLEANO_VALUE: return BOOLEANO;
     }

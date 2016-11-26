@@ -866,7 +866,7 @@ public class PilaPackageImpl extends EPackageImpl implements PilaPackage
     addEEnumLiteral(tipoDatoPrimitivoEEnum, TipoDatoPrimitivo.NO_ASIGNADO);
     addEEnumLiteral(tipoDatoPrimitivoEEnum, TipoDatoPrimitivo.CADENA_CARACTERES);
     addEEnumLiteral(tipoDatoPrimitivoEEnum, TipoDatoPrimitivo.ENTERO);
-    addEEnumLiteral(tipoDatoPrimitivoEEnum, TipoDatoPrimitivo.FLOTANTE);
+    addEEnumLiteral(tipoDatoPrimitivoEEnum, TipoDatoPrimitivo.DOBLE);
     addEEnumLiteral(tipoDatoPrimitivoEEnum, TipoDatoPrimitivo.FECHA);
     addEEnumLiteral(tipoDatoPrimitivoEEnum, TipoDatoPrimitivo.BOOLEANO);
 

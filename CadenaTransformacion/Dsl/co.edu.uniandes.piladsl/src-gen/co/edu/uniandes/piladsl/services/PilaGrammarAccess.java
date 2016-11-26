@@ -662,20 +662,20 @@ public class PilaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCADENA_CARACTERESCadenaCaracteresKeyword_1_0 = (Keyword)cCADENA_CARACTERESEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cENTEROEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cENTEROEnteroKeyword_2_0 = (Keyword)cENTEROEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cFLOTANTEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cFLOTANTEFlotanteKeyword_3_0 = (Keyword)cFLOTANTEEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cDOBLEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cDOBLEDobleKeyword_3_0 = (Keyword)cDOBLEEnumLiteralDeclaration_3.eContents().get(0);
 		private final EnumLiteralDeclaration cFECHAEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
 		private final Keyword cFECHAFechaKeyword_4_0 = (Keyword)cFECHAEnumLiteralDeclaration_4.eContents().get(0);
 		private final EnumLiteralDeclaration cBOOLEANOEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
 		private final Keyword cBOOLEANOBooleanoKeyword_5_0 = (Keyword)cBOOLEANOEnumLiteralDeclaration_5.eContents().get(0);
 		
 		//enum TipoDatoPrimitivo:
-		//	NO_ASIGNADO='NoAsignado' | CADENA_CARACTERES='CadenaCaracteres' | ENTERO='Entero' | FLOTANTE='Flotante' |
-		//	FECHA='Fecha' | BOOLEANO='Booleano';
+		//	NO_ASIGNADO='NoAsignado' | CADENA_CARACTERES='CadenaCaracteres' | ENTERO='Entero' | DOBLE='Doble' | FECHA='Fecha' |
+		//	BOOLEANO='Booleano';
 		public EnumRule getRule() { return rule; }
 		
-		//NO_ASIGNADO='NoAsignado' | CADENA_CARACTERES='CadenaCaracteres' | ENTERO='Entero' | FLOTANTE='Flotante' | FECHA='Fecha'
-		//| BOOLEANO='Booleano'
+		//NO_ASIGNADO='NoAsignado' | CADENA_CARACTERES='CadenaCaracteres' | ENTERO='Entero' | DOBLE='Doble' | FECHA='Fecha' |
+		//BOOLEANO='Booleano'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//NO_ASIGNADO='NoAsignado'
@@ -696,11 +696,11 @@ public class PilaGrammarAccess extends AbstractGrammarElementFinder {
 		//'Entero'
 		public Keyword getENTEROEnteroKeyword_2_0() { return cENTEROEnteroKeyword_2_0; }
 		
-		//FLOTANTE='Flotante'
-		public EnumLiteralDeclaration getFLOTANTEEnumLiteralDeclaration_3() { return cFLOTANTEEnumLiteralDeclaration_3; }
+		//DOBLE='Doble'
+		public EnumLiteralDeclaration getDOBLEEnumLiteralDeclaration_3() { return cDOBLEEnumLiteralDeclaration_3; }
 		
-		//'Flotante'
-		public Keyword getFLOTANTEFlotanteKeyword_3_0() { return cFLOTANTEFlotanteKeyword_3_0; }
+		//'Doble'
+		public Keyword getDOBLEDobleKeyword_3_0() { return cDOBLEDobleKeyword_3_0; }
 		
 		//FECHA='Fecha'
 		public EnumLiteralDeclaration getFECHAEnumLiteralDeclaration_4() { return cFECHAEnumLiteralDeclaration_4; }
@@ -954,8 +954,8 @@ public class PilaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum TipoDatoPrimitivo:
-	//	NO_ASIGNADO='NoAsignado' | CADENA_CARACTERES='CadenaCaracteres' | ENTERO='Entero' | FLOTANTE='Flotante' |
-	//	FECHA='Fecha' | BOOLEANO='Booleano';
+	//	NO_ASIGNADO='NoAsignado' | CADENA_CARACTERES='CadenaCaracteres' | ENTERO='Entero' | DOBLE='Doble' | FECHA='Fecha' |
+	//	BOOLEANO='Booleano';
 	public TipoDatoPrimitivoElements getTipoDatoPrimitivoAccess() {
 		return eTipoDatoPrimitivo;
 	}

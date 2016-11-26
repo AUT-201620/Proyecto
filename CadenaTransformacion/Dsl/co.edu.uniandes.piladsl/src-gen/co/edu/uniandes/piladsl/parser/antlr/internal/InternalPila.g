@@ -1145,10 +1145,10 @@ ruleTipoDatoPrimitivo returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_3='Flotante'
+			enumLiteral_3='Doble'
 			{
-				$current = grammarAccess.getTipoDatoPrimitivoAccess().getFLOTANTEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getTipoDatoPrimitivoAccess().getFLOTANTEEnumLiteralDeclaration_3());
+				$current = grammarAccess.getTipoDatoPrimitivoAccess().getDOBLEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getTipoDatoPrimitivoAccess().getDOBLEEnumLiteralDeclaration_3());
 			}
 		)
 		    |

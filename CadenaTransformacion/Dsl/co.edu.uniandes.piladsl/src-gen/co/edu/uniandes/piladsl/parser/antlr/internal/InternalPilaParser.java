@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPilaParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_LLAVEI", "RULE_LLAVED", "RULE_DOSPTOS", "RULE_COMA", "RULE_PTOCOMA", "RULE_INT", "RULE_IGUAL", "RULE_CADENA_LITERAL", "RULE_REAL", "RULE_PARENTI", "RULE_PARENTD", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'entidad'", "'atributo'", "'Lista'", "'Referencia'", "'servicioComputo'", "'retornar'", "'var'", "'si'", "'siNo'", "'siNinguno'", "'.'", "'NoAsignado'", "'CadenaCaracteres'", "'Entero'", "'Flotante'", "'Fecha'", "'Booleano'", "'+'", "'-'", "'*'", "'/'", "'=='", "'!='", "'>'", "'>='", "'<'", "'<='", "'&&'", "'||'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_LLAVEI", "RULE_LLAVED", "RULE_DOSPTOS", "RULE_COMA", "RULE_PTOCOMA", "RULE_INT", "RULE_IGUAL", "RULE_CADENA_LITERAL", "RULE_REAL", "RULE_PARENTI", "RULE_PARENTD", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'entidad'", "'atributo'", "'Lista'", "'Referencia'", "'servicioComputo'", "'retornar'", "'var'", "'si'", "'siNo'", "'siNinguno'", "'.'", "'NoAsignado'", "'CadenaCaracteres'", "'Entero'", "'Doble'", "'Fecha'", "'Booleano'", "'+'", "'-'", "'*'", "'/'", "'=='", "'!='", "'>'", "'>='", "'<'", "'<='", "'&&'", "'||'"
     };
     public static final int RULE_CADENA_LITERAL=12;
     public static final int RULE_DOSPTOS=7;
@@ -2685,7 +2685,7 @@ public class InternalPilaParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTipoDatoPrimitivo"
-    // InternalPila.g:1115:1: ruleTipoDatoPrimitivo returns [Enumerator current=null] : ( (enumLiteral_0= 'NoAsignado' ) | (enumLiteral_1= 'CadenaCaracteres' ) | (enumLiteral_2= 'Entero' ) | (enumLiteral_3= 'Flotante' ) | (enumLiteral_4= 'Fecha' ) | (enumLiteral_5= 'Booleano' ) ) ;
+    // InternalPila.g:1115:1: ruleTipoDatoPrimitivo returns [Enumerator current=null] : ( (enumLiteral_0= 'NoAsignado' ) | (enumLiteral_1= 'CadenaCaracteres' ) | (enumLiteral_2= 'Entero' ) | (enumLiteral_3= 'Doble' ) | (enumLiteral_4= 'Fecha' ) | (enumLiteral_5= 'Booleano' ) ) ;
     public final Enumerator ruleTipoDatoPrimitivo() throws RecognitionException {
         Enumerator current = null;
 
@@ -2700,10 +2700,10 @@ public class InternalPilaParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalPila.g:1121:2: ( ( (enumLiteral_0= 'NoAsignado' ) | (enumLiteral_1= 'CadenaCaracteres' ) | (enumLiteral_2= 'Entero' ) | (enumLiteral_3= 'Flotante' ) | (enumLiteral_4= 'Fecha' ) | (enumLiteral_5= 'Booleano' ) ) )
-            // InternalPila.g:1122:2: ( (enumLiteral_0= 'NoAsignado' ) | (enumLiteral_1= 'CadenaCaracteres' ) | (enumLiteral_2= 'Entero' ) | (enumLiteral_3= 'Flotante' ) | (enumLiteral_4= 'Fecha' ) | (enumLiteral_5= 'Booleano' ) )
+            // InternalPila.g:1121:2: ( ( (enumLiteral_0= 'NoAsignado' ) | (enumLiteral_1= 'CadenaCaracteres' ) | (enumLiteral_2= 'Entero' ) | (enumLiteral_3= 'Doble' ) | (enumLiteral_4= 'Fecha' ) | (enumLiteral_5= 'Booleano' ) ) )
+            // InternalPila.g:1122:2: ( (enumLiteral_0= 'NoAsignado' ) | (enumLiteral_1= 'CadenaCaracteres' ) | (enumLiteral_2= 'Entero' ) | (enumLiteral_3= 'Doble' ) | (enumLiteral_4= 'Fecha' ) | (enumLiteral_5= 'Booleano' ) )
             {
-            // InternalPila.g:1122:2: ( (enumLiteral_0= 'NoAsignado' ) | (enumLiteral_1= 'CadenaCaracteres' ) | (enumLiteral_2= 'Entero' ) | (enumLiteral_3= 'Flotante' ) | (enumLiteral_4= 'Fecha' ) | (enumLiteral_5= 'Booleano' ) )
+            // InternalPila.g:1122:2: ( (enumLiteral_0= 'NoAsignado' ) | (enumLiteral_1= 'CadenaCaracteres' ) | (enumLiteral_2= 'Entero' ) | (enumLiteral_3= 'Doble' ) | (enumLiteral_4= 'Fecha' ) | (enumLiteral_5= 'Booleano' ) )
             int alt20=6;
             switch ( input.LA(1) ) {
             case 32:
@@ -2796,15 +2796,15 @@ public class InternalPilaParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalPila.g:1147:3: (enumLiteral_3= 'Flotante' )
+                    // InternalPila.g:1147:3: (enumLiteral_3= 'Doble' )
                     {
-                    // InternalPila.g:1147:3: (enumLiteral_3= 'Flotante' )
-                    // InternalPila.g:1148:4: enumLiteral_3= 'Flotante'
+                    // InternalPila.g:1147:3: (enumLiteral_3= 'Doble' )
+                    // InternalPila.g:1148:4: enumLiteral_3= 'Doble'
                     {
                     enumLiteral_3=(Token)match(input,35,FOLLOW_2); 
 
-                    				current = grammarAccess.getTipoDatoPrimitivoAccess().getFLOTANTEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-                    				newLeafNode(enumLiteral_3, grammarAccess.getTipoDatoPrimitivoAccess().getFLOTANTEEnumLiteralDeclaration_3());
+                    				current = grammarAccess.getTipoDatoPrimitivoAccess().getDOBLEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+                    				newLeafNode(enumLiteral_3, grammarAccess.getTipoDatoPrimitivoAccess().getDOBLEEnumLiteralDeclaration_3());
                     			
 
                     }

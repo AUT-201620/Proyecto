@@ -12,9 +12,9 @@
 '>='=45
 'Booleano'=37
 'CadenaCaracteres'=33
+'Doble'=35
 'Entero'=34
 'Fecha'=36
-'Flotante'=35
 'Lista'=23
 'NoAsignado'=32
 'Referencia'=24

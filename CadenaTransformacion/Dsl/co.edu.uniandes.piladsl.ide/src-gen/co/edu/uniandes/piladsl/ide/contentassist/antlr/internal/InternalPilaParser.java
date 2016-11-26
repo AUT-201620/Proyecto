@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPilaParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LLAVEI", "RULE_LLAVED", "RULE_DOSPTOS", "RULE_PTOCOMA", "RULE_COMA", "RULE_IGUAL", "RULE_ID", "RULE_INT", "RULE_CADENA_LITERAL", "RULE_REAL", "RULE_PARENTI", "RULE_PARENTD", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'si'", "'siNo'", "'NoAsignado'", "'CadenaCaracteres'", "'Entero'", "'Flotante'", "'Fecha'", "'Booleano'", "'+'", "'-'", "'*'", "'/'", "'=='", "'!='", "'>'", "'>='", "'<'", "'<='", "'&&'", "'||'", "'entidad'", "'atributo'", "'Lista'", "'Referencia'", "'servicioComputo'", "'retornar'", "'var'", "'.'", "'siNinguno'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_LLAVEI", "RULE_LLAVED", "RULE_DOSPTOS", "RULE_PTOCOMA", "RULE_COMA", "RULE_IGUAL", "RULE_ID", "RULE_INT", "RULE_CADENA_LITERAL", "RULE_REAL", "RULE_PARENTI", "RULE_PARENTD", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'si'", "'siNo'", "'NoAsignado'", "'CadenaCaracteres'", "'Entero'", "'Doble'", "'Fecha'", "'Booleano'", "'+'", "'-'", "'*'", "'/'", "'=='", "'!='", "'>'", "'>='", "'<'", "'<='", "'&&'", "'||'", "'entidad'", "'atributo'", "'Lista'", "'Referencia'", "'servicioComputo'", "'retornar'", "'var'", "'.'", "'siNinguno'"
     };
     public static final int RULE_CADENA_LITERAL=12;
     public static final int RULE_DOSPTOS=6;
@@ -1635,13 +1635,13 @@ public class InternalPilaParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TipoDatoPrimitivo__Alternatives"
-    // InternalPila.g:497:1: rule__TipoDatoPrimitivo__Alternatives : ( ( ( 'NoAsignado' ) ) | ( ( 'CadenaCaracteres' ) ) | ( ( 'Entero' ) ) | ( ( 'Flotante' ) ) | ( ( 'Fecha' ) ) | ( ( 'Booleano' ) ) );
+    // InternalPila.g:497:1: rule__TipoDatoPrimitivo__Alternatives : ( ( ( 'NoAsignado' ) ) | ( ( 'CadenaCaracteres' ) ) | ( ( 'Entero' ) ) | ( ( 'Doble' ) ) | ( ( 'Fecha' ) ) | ( ( 'Booleano' ) ) );
     public final void rule__TipoDatoPrimitivo__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPila.g:501:1: ( ( ( 'NoAsignado' ) ) | ( ( 'CadenaCaracteres' ) ) | ( ( 'Entero' ) ) | ( ( 'Flotante' ) ) | ( ( 'Fecha' ) ) | ( ( 'Booleano' ) ) )
+            // InternalPila.g:501:1: ( ( ( 'NoAsignado' ) ) | ( ( 'CadenaCaracteres' ) ) | ( ( 'Entero' ) ) | ( ( 'Doble' ) ) | ( ( 'Fecha' ) ) | ( ( 'Booleano' ) ) )
             int alt7=6;
             switch ( input.LA(1) ) {
             case 23:
@@ -1746,20 +1746,20 @@ public class InternalPilaParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // InternalPila.g:520:2: ( ( 'Flotante' ) )
+                    // InternalPila.g:520:2: ( ( 'Doble' ) )
                     {
-                    // InternalPila.g:520:2: ( ( 'Flotante' ) )
-                    // InternalPila.g:521:3: ( 'Flotante' )
+                    // InternalPila.g:520:2: ( ( 'Doble' ) )
+                    // InternalPila.g:521:3: ( 'Doble' )
                     {
-                     before(grammarAccess.getTipoDatoPrimitivoAccess().getFLOTANTEEnumLiteralDeclaration_3()); 
-                    // InternalPila.g:522:3: ( 'Flotante' )
-                    // InternalPila.g:522:4: 'Flotante'
+                     before(grammarAccess.getTipoDatoPrimitivoAccess().getDOBLEEnumLiteralDeclaration_3()); 
+                    // InternalPila.g:522:3: ( 'Doble' )
+                    // InternalPila.g:522:4: 'Doble'
                     {
                     match(input,26,FOLLOW_2); 
 
                     }
 
-                     after(grammarAccess.getTipoDatoPrimitivoAccess().getFLOTANTEEnumLiteralDeclaration_3()); 
+                     after(grammarAccess.getTipoDatoPrimitivoAccess().getDOBLEEnumLiteralDeclaration_3()); 
 
                     }
 

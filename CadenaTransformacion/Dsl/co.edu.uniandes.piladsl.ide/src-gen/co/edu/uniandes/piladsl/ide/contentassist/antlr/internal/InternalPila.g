@@ -518,9 +518,9 @@ rule__TipoDatoPrimitivo__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getTipoDatoPrimitivoAccess().getFLOTANTEEnumLiteralDeclaration_3()); }
-		('Flotante')
-		{ after(grammarAccess.getTipoDatoPrimitivoAccess().getFLOTANTEEnumLiteralDeclaration_3()); }
+		{ before(grammarAccess.getTipoDatoPrimitivoAccess().getDOBLEEnumLiteralDeclaration_3()); }
+		('Doble')
+		{ after(grammarAccess.getTipoDatoPrimitivoAccess().getDOBLEEnumLiteralDeclaration_3()); }
 	)
 	|
 	(
