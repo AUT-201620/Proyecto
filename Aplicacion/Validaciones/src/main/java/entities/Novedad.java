@@ -28,7 +28,8 @@ public class Novedad implements Serializable
     private Date fechaCreacion;
     private Date fechaInicio;
     private Date fechaFin;
-    private String tipo;
+    private String tipoNovedad;
+    private Boolean noConsolidada;
 
     @ManyToOne
     @JoinColumn(name="pensionado_id", nullable = false)
@@ -66,12 +67,12 @@ public class Novedad implements Serializable
         this.fechaFin = fechaFin;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTipoNovedad() {
+        return tipoNovedad;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoNovedad(String tipoNovedad) {
+        this.tipoNovedad = tipoNovedad;
     }
 
     public Pensionado getPensionado() {
@@ -84,5 +85,13 @@ public class Novedad implements Serializable
     
     public long diasEntreFechaFinInicio(){
 		return (fechaFin.getTime() - fechaInicio.getTime());
+	}
+
+	public Boolean getNoConsolidada() {
+		return noConsolidada;
+	}
+
+	public void setNoConsolidada(Boolean noConsolidada) {
+		this.noConsolidada = noConsolidada;
 	}
 }

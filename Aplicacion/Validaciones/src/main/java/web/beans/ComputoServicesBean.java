@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 @ManagedBean
 @SessionScoped
-public class PagosBean implements Serializable {
+public class ComputoServicesBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public class PagosBean implements Serializable {
 	private float valorPorPagar;
 	private Pensionado pensionado=new Pensionado();
 
-	public PagosBean() {
+	public ComputoServicesBean() {
 		services = new PensionadoServices();
 		servicesPagos = new ComputoServices();
 

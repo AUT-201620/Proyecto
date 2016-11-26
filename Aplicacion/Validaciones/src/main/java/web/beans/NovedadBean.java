@@ -30,42 +30,33 @@ public class NovedadBean implements Serializable{
     private INovedadServices services;
     private IPensionadoServices servicesEntidad;
     private Novedad novedad;
-    private Pensionado entidad;
+    private Pensionado pensionado;
     private Long identificador;
 
-    private Long entidadId;
     private Boolean buttonCrud;
-    private TipoNovedadEnum [] tiposNovedad;
+    private TipoNovedadEnum [] tipoNovedadEnum;
 
     /**
      *
      */
-    public NovedadBean()
-    {
+    public NovedadBean(){
         services = new NovedadServices();
-        servicesEntidad = new PensionadoServices();
-        entidadId = (-1L);        
+        servicesEntidad = new PensionadoServices();     
         novedad = new Novedad();
         buttonCrud = Boolean.TRUE;
-    }
-
-	public void findEntidadById(Long idEn)
-    {
-        entidad = new Pensionado();
-		entidad=servicesEntidad.find(idEn);
-	}
-	
-	public void findByEntidad(Long idEn){
-
-		this.novedadList = services.findByPensionadoAll(entidad);
-        findEntidadById(idEn);
+    }	
+    
+	public void findByPensionado(Long idPensionado){
+		pensionado = new Pensionado();
+		pensionado=servicesEntidad.find(idPensionado);
+		this.novedadList = services.findByPensionadoAll(pensionado);
 	}
 
     public void crear()
     {
-        novedad.setPensionado(entidad);
+        novedad.setPensionado(pensionado);
         services.create(this.novedad);
-        this.novedadList = services.findByPensionadoAll(entidad);
+        this.novedadList = services.findByPensionadoAll(pensionado);
     }
 
     public void delete() {
@@ -150,34 +141,26 @@ public class NovedadBean implements Serializable{
         this.buttonCrud = buttonCrud;
     }
 
-	public Pensionado getEntidad() {
-		return entidad;
+	public Pensionado getPensionado() {
+		return pensionado;
 	}
 
-	public void setEntidad(Pensionado entidad) {
-		this.entidad = entidad;
-	}
-
-	public Long getEntidadId() {
-		return entidadId;
-	}
-
-	public void setEntidadId(Long entidadId) {
-		this.entidadId = entidadId;
+	public void setPensionado(Pensionado pensionado) {
+		this.pensionado = pensionado;
 	}
 
 	/**
 	 * @return the tiposNovedad
 	 */
-	public TipoNovedadEnum [] getTiposNovedad() {
+	public TipoNovedadEnum [] getTipoNovedadEnum() {
 		return TipoNovedadEnum.values();
 	}
 
 	/**
 	 * @param tiposNovedad the tiposNovedad to set
 	 */
-	public void setTiposNovedad(TipoNovedadEnum [] tiposNovedad) {
-		this.tiposNovedad = tiposNovedad;
+	public void setTipoNovedadEnum(TipoNovedadEnum [] tipoNovedadEnum) {
+		this.tipoNovedadEnum = tipoNovedadEnum;
 	}
     
 }

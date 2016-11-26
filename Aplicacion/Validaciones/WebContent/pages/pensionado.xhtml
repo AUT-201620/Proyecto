@@ -70,7 +70,7 @@
 				<p:commandButton action="novedad" value="Novedades" actionListener="#{novedadBean.findByEntidad(pensionado.id)}">
 				</p:commandButton>
 				<p:commandButton value="pagos Servicios" action="pagoServicios"
-								 actionListener="#{pagosBean.findPensionadoById(pensionado.id)}" />
+								 actionListener="#{computoServiceBean.findPensionadoById(pensionado.id)}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

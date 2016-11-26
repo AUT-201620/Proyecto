@@ -2,98 +2,97 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
-
-<h:head>
-</h:head>
-<h:body>
-	<ui:include src="menu.xhtml" />
-	<h1>NOVEDADES</h1>
-	<h:form id="novedadCrud">
-		<f:param>
-			<f:viewParam name="nombre" value="#{pensionadoBean.pensionado.id}"></f:viewParam>
-		</f:param>
-		<p:commandButton action="#{novedadBean.clearNovedad}"
-		value="Nueva Novedad"
-		oncomplete="PF('formularioNovedad').show();" update="formularioNovedad"/>
-
-		<p:dataTable id="novedades" var="novedad"
-			value="#{novedadBean.novedadList}">
-
-			<p:column headerText="Tipo Novedad:">
-				<h:outputText value="#{novedad.tipo}" />
-			</p:column>
-
-			<p:column headerText="Fecha Inicio Novedad:">
-				<h:outputText value="#{novedad.fechaInicio}" />
-			</p:column>
-
-			<p:column headerText="Fecha Fin Novedad">
-				<h:outputText value="#{novedad.fechaFin}" />
-			</p:column>
-
-			<p:column headerText="Acciones">
-
-			<p:commandButton action="#{novedadBean.delete}" value="Eliminar"
-				update=":novedadCrud">
-				<f:setPropertyActionListener target="#{novedadBean.identificador}"
-					value="#{novedad.id}" />
-			</p:commandButton>
-
-			<p:commandButton action="#{novedadBean.ver}" value="Ver/Editar"
-				oncomplete="PF('formularioNovedad').show();" update="formularioNovedad">
-				<f:setPropertyActionListener target="#{novedadBean.identificador}"
-					value="#{novedad.id}" />
-			</p:commandButton>
-			</p:column>
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+	<h:head>
+	</h:head>
+	<h:body>
+		<ui:include src="menu.xhtml" />
+		<h1>NOVEDAD</h1>
+		<h:form id="novedadCrud">
 			
-		</p:dataTable>
-
-	</h:form>
-
-	<p:dialog header="formularioNovedad" widgetVar="formularioNovedad"
-		modal="true" width="80%%" height="100%" id="formularioNovedad">
-		<h:form>
-			<h:panelGrid columns="4" cellpadding="5">
-				<h:outputLabel for="fechaInicio" value="Fecha Inicio Novedad:" />
-				<p:calendar id="fechaInicio"
-					value="#{novedadBean.novedad.fechaInicio}" required="true"
-					label="Fecha Inicio Novedad" />
-
-				<h:outputLabel for="fechaFin" value="Fecha Fin Novedad:" />
-				<p:calendar id="fechaFin" value="#{novedadBean.novedad.fechaFin}"
-					required="true" label="Fecha Fin Novedad" />
-
-				<h:outputLabel for="tipoNovedad" value="Tipo Novedad:" />
-
-				<h:selectOneMenu value="#{novedadBean.novedad.tipo}" required="true" label="Tipo Novedad" id="tipoNovedad">
-				    <f:selectItems value="#{novedadBean.tiposNovedad}" />
-				</h:selectOneMenu>
+			<p:commandButton action="#{novedadBean.clearNovedad}"
+			value="Nuevo novedad" 
+			oncomplete="PF('formularioNovedad').show();" update="formularioNovedad"/>
+			
+			
+			<p:dataTable var="novedad" value="#{novedadBean.novedadList}">
 				
-				<f:facet name="footer">
-					<p:commandButton value="Crear"
+				<p:column headerText="Fecha Inicio">
+					<h:outputText value="#{novedad.fechaInicio}" />
+				</p:column>
+				<p:column headerText="Fecha Fin">
+					<h:outputText value="#{novedad.fechaFin}" />
+				</p:column>
+				<p:column headerText="No Consolidada">
+					<h:outputText value="#{novedad.noConsolidada}" />
+				</p:column>
+				<p:column headerText="Fecha Creacion">
+					<h:outputText value="#{novedad.fechaCreacion}" />
+				</p:column>
+				<p:column headerText="Tipo Novedad">
+					<h:outputText value="#{novedad.tipoNovedad}" />
+				</p:column>
+				<p:column headerText="Acciones" >			
+					<p:commandButton action="#{novedadBean.delete}" value="Eliminar" update=":novedadCrud">
+						<f:setPropertyActionListener target="#{novedadBean.identificador}" value="#{novedad.id}" />
+					</p:commandButton>
+					
+					<p:commandButton action="#{novedadBean.ver}" value="Ver/Editar" oncomplete="PF('formularioNovedad').show();" update="formularioNovedad">
+						<f:setPropertyActionListener target="#{novedadBean.identificador}" value="#{novedad.id}" />
+					</p:commandButton>
+					
+					
+				</p:column>
+				
+			</p:dataTable>
+			
+		</h:form>
+		
+		
+		<p:dialog header="formularioNovedad" widgetVar="formularioNovedad"
+		modal="true" width="80%" height="100%" id="formularioNovedad">
+			<h:form>			
+				<h:panelGrid columns="4" cellpadding="5">
+					<h:outputLabel for="tipoNovedad" value="Tipo Novedad:"/>
+					<p:selectOneMenu value="#{novedadBean.novedad.tipoNovedad}" required="true" label="Tipo Novedad">
+						<f:selectItems value="#{novedadBean.tipoNovedadEnum}" />
+					</p:selectOneMenu>
+					<h:outputLabel for="fechaInicio" value="Fecha Inicio:"/>
+					<p:calendar id="fechaInicio" value="#{novedadBean.novedad.fechaInicio}" required="true" label="Fecha Inicio"/>
+					<h:outputLabel for="fechaFin" value="Fecha Fin:"/>
+					<p:calendar id="fechaFin" value="#{novedadBean.novedad.fechaFin}" required="true" label="Fecha Fin"/>
+					<h:outputLabel for="fechaCreacion" value="Fecha Creacion:"/>
+					<p:calendar id="fechaCreacion" value="#{novedadBean.novedad.fechaCreacion}" required="true" label="Fecha Creacion"/>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+				</h:panelGrid>
+				<h:panelGrid columns="4" cellpadding="5">
+					<h:outputLabel for="noConsolidada" value="No Consolidada:"/>
+					<p:selectBooleanCheckbox id="noConsolidada" value="#{novedadBean.novedad.noConsolidada}" required="true" label="No Consolidada"/>
+				</h:panelGrid>
+				<h:panelGrid columns="3">
+					<f:facet name="footer">
+						<p:commandButton value="Crear"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
 						actionListener="#{novedadBean.crear}"  oncomplete="PF('formularioNovedad').hide();" update="novedadCrud"
 						rendered="#{novedadBean.buttonCrud}"/>
 						
-					<p:commandButton value="Editar"
+						<p:commandButton value="Editar"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
 						actionListener="#{novedadBean.editar}"  oncomplete="PF('formularioNovedad').hide();" update="novedadCrud"
 						rendered="#{!novedadBean.buttonCrud}"/>
-
-					<p:commandButton value="Cancelar" styleClass="ui-confirmdialog-no"
-						icon="ui-icon-close" onclick="PF('formularioNovedad').hide();"
-						update="novedadCrud" />
-				</f:facet>
-			</h:panelGrid>
-
-		</h:form>
-	</p:dialog>
-
-
-</h:body>
+						
+						<p:commandButton value="Cancelar" 
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="PF('formularioNovedad').hide();"  update="novedadCrud"/>
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</h:body>
 </html>
+

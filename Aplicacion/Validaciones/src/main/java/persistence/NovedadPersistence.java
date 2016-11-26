@@ -62,7 +62,7 @@ public class NovedadPersistence
         novedadtmp.setFechaCreacion(novedad.getFechaCreacion());
         novedadtmp.setFechaFin(novedad.getFechaFin());
         novedadtmp.setFechaInicio(novedad.getFechaInicio());
-        novedadtmp.setTipo(novedad.getTipo());
+        novedadtmp.setTipoNovedad(novedad.getTipoNovedad());
         em.getTransaction().commit();
         em.close();
         return novedad;
