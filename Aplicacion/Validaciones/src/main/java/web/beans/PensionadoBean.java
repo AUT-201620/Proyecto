@@ -7,70 +7,66 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ValueChangeEvent;
 
-import entities.Pensionado;
-import entities.TipoPagadorPension;
-import entities.TipoPension;
-import entities.TipoPensionado;
-import enumerators.TipoIdentificacionEnum;
-import services.PensionadoServices;
-import services.ValidacionesServices;
-import services.IPensionadoServices;
-import services.IValidacionesServices;
+import entities.*;
+import services.*;
+import enumerators.*;
 
 /**
- * Backing Bean Entity CRUD
- *
- */
+* Backing Bean para la pantalla Pensionado
+*
+*/
 
 @ManagedBean
 @ViewScoped
 public class PensionadoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private List<Pensionado> pensionadoList = new ArrayList<Pensionado>();
 	private IPensionadoServices services;
-	private IValidacionesServices validacionesservices;
+	private IValidacionesServices validacionesServices;
 	private Pensionado pensionado;
 	private Long identificador;
 	private Boolean buttonCrud;
 	private TipoIdentificacionEnum [] tipoIdentificacionEnum;
-	private List<TipoPension> tipoPension;
 	private List<TipoPensionado> tipoPensionado;
 	private List<TipoPagadorPension> tipoPagadorPension;
-
+	private List<TipoPension> tipoPension;
+	
 	/**
-	 * 
-	 */
+	* Constructor de PensionadoBean
+	*/
 	public PensionadoBean() {
 		services = new PensionadoServices();
-		validacionesservices = new ValidacionesServices();
 		pensionado = new Pensionado();
-		pensionado.setTipoPension(new TipoPension());
+		buttonCrud = Boolean.TRUE;
+		validacionesServices = new ValidacionesServices();
 		pensionado.setTipoPensionado(new TipoPensionado());
 		pensionado.setTipoPagadorPension(new TipoPagadorPension());
-		buttonCrud = Boolean.TRUE;
+		pensionado.setTipoPension(new TipoPension());
 	}
-
+	
+	
 	/**
-	 * 
-	 */
+	* 
+	*/
 	@PostConstruct
 	public void init() {
 		this.pensionadoList = services.findAll();
 	}
-
+	
 	public void crear() {
 		services.create(this.pensionado);
 		this.pensionadoList = services.findAll();
 	}
-
+	
 	public void delete() {
 		services.delete(this.identificador);
 		this.pensionadoList = services.findAll();
 	}
-
+	
 	public void ver() {
 		this.pensionado = services.find(this.identificador);
 		buttonCrud = Boolean.FALSE;
@@ -81,156 +77,138 @@ public class PensionadoBean implements Serializable {
 		this.pensionado = services.update(this.pensionado);
 		this.pensionadoList = services.findAll();
 	}
-
-	public void novedades()
-	{
-
-	}
-
+	
 	public void clearPensionado() {
 		this.pensionado = new Pensionado();
-		pensionado.setTipoPension(new TipoPension());
+		buttonCrud = Boolean.TRUE;
 		pensionado.setTipoPensionado(new TipoPensionado());
 		pensionado.setTipoPagadorPension(new TipoPagadorPension());
+		pensionado.setTipoPension(new TipoPension());
 		this.tipoPensionado = null;
 		this.tipoPagadorPension = null;
-		buttonCrud = Boolean.TRUE;
 	}
-
-	
 	public void getListTipos() {
-        if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0){
-			this.setTipoPensionado(validacionesservices.getTipoPensionado(pensionado.getTipoPension().getId()));
+		if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0){
+			this.setTipoPensionado(validacionesServices.getTipoPensionado(pensionado.getTipoPension().getId()));
 		} else{
 			this.setTipoPensionado(new ArrayList<TipoPensionado>());
+		}if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0 && pensionado.getTipoPensionado().getId() != null && pensionado.getTipoPensionado().getId() >0){
+			this.setTipoPagadorPension(validacionesServices.getTipoPagadorPension(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
 		}
-        if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0 
-        		&& pensionado.getTipoPensionado().getId() != null && pensionado.getTipoPensionado().getId() >0){
-			this.setTipoPagadorPension(validacionesservices.getTipoPagadorPension(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
-		}
-        else{
+		else{
 			this.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());
 		}
-    }
+	}
 	
 	/**
-	 * @return the entityList
-	 */
+	* @return the pensionadoList
+	*/
 	public List<Pensionado> getPensionadoList() {
 		return pensionadoList;
 	}
-
+	
 	/**
-	 * @param entityList
-	 *            the entityList to set
-	 */
+	* @param pensionadoList
+	* the pensionadoList to set
+	*/
 	public void setPensionadoList(List<Pensionado> pensionadoList) {
 		this.pensionadoList = pensionadoList;
 	}
-
+	
 	/**
-	 * @return the pensionado
-	 */
+	* @return the pensionado
+	*/
 	public Pensionado getPensionado() {
 		if (pensionado == null) {
 			pensionado = new Pensionado();
 		}
 		return pensionado;
 	}
-
+	
 	/**
-	 * @param pensionado
-	 *            the pensionado to set
-	 */
+	* @param pensionado
+	* the pensionado to set
+	*/
 	public void setPensionado(Pensionado pensionado) {
 		this.pensionado = pensionado;
 	}
-
+	
 	/**
-	 * @return the identificador
-	 */
+	* @return the identificador
+	*/
 	public Long getIdentificador() {
 		return identificador;
 	}
-
+	
 	/**
-	 * @param identificador
-	 *            the identificador to set
-	 */
+	* @param identificador
+	* the identificador to set
+	*/
 	public void setIdentificador(Long identificador) {
 		this.identificador = identificador;
 	}
-
+	
 	/**
-	 * @return the buttonCrud
-	 */
+	* @return the buttonCrud
+	*/
 	public Boolean getButtonCrud() {
 		return buttonCrud;
 	}
-
+	
 	/**
-	 * @param buttonCrud the buttonCrud to set
-	 */
+	* @param buttonCrud the buttonCrud to set
+	*/
 	public void setButtonCrud(Boolean buttonCrud) {
 		this.buttonCrud = buttonCrud;
 	}
-
 	/**
-	 * @return the tiposDocumento
-	 */
+	* @return thetipoIdentificacion
+	*/ 
 	public TipoIdentificacionEnum[] getTipoIdentificacionEnum() {
 		return TipoIdentificacionEnum.values();
 	}
-
 	/**
-	 * @param tiposDocumento the tiposDocumento to set
-	 */
+	* @param tipoIdentificacion the tipoIdentificacion to set
+	*/
 	public void setTipoIdentificacionEnum(TipoIdentificacionEnum[] tipoIdentificacionEnum) {
 		this.tipoIdentificacionEnum = tipoIdentificacionEnum;
 	}
-
 	/**
-	 * @return the tipoPension
-	 */
-	public List<TipoPension> getTipoPension() {
-		this.tipoPension= validacionesservices.getTipoPension();
-		return tipoPension;
-	}
-
-	/**
-	 * @param tipoPension the tipoPension to set
-	 */
-	public void setTipoPension(List<TipoPension> tipoPension) {
-		this.tipoPension = tipoPension;
-	}
-
-
-	/**
-	 * @return the tipoPensionado
-	 */
+	* @return the tipoPensionado
+	*/ 
 	public List<TipoPensionado> getTipoPensionado() {
 		return tipoPensionado;
 	}
-
 	/**
-	 * @param tipoPensionado the tipoPensionado to set
-	 */
+	* @param tipoPensionado the tipoPensionado to set
+	*/
 	public void setTipoPensionado(List<TipoPensionado> tipoPensionado) {
 		this.tipoPensionado = tipoPensionado;
 	}
-
 	/**
-	 * @return the tipoPagador
-	 */
+	* @return the tipoPagadorPension
+	*/ 
 	public List<TipoPagadorPension> getTipoPagadorPension() {
 		return tipoPagadorPension;
 	}
-
 	/**
-	 * @param tipoPagador the tipoPagador to set
-	 */
-	public void setTipoPagadorPension(List<TipoPagadorPension> tipoPagador) {
-		this.tipoPagadorPension = tipoPagador;
+	* @param tipoPagadorPension the tipoPagadorPension to set
+	*/
+	public void setTipoPagadorPension(List<TipoPagadorPension> tipoPagadorPension) {
+		this.tipoPagadorPension = tipoPagadorPension;
 	}
-
+	/**
+	* @return the tipoPension
+	*/ 
+	public List<TipoPension> getTipoPension() {
+		this.tipoPension= validacionesServices.getTipoPension();
+		return tipoPension;
+	}
+	/**
+	* @param tipoPension the tipoPension to set
+	*/
+	public void setTipoPension(List<TipoPension> tipoPension) {
+		this.tipoPension = tipoPension;
+	}
 }
+

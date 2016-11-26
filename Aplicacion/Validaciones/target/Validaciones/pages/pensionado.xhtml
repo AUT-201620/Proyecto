@@ -67,10 +67,10 @@
 					<f:setPropertyActionListener target="#{pensionadoBean.identificador}" value="#{pensionado.id}" />
 				</p:commandButton>
 
-				<p:commandButton action="novedad" value="Novedades" actionListener="#{novedadBean.findByEntidad(pensionado.id)}">
+				<p:commandButton action="novedad" value="Novedades" actionListener="#{novedadBean.findByPensionado(pensionado.id)}">
 				</p:commandButton>
-				<p:commandButton value="pagos Servicios" action="pagoServicios"
-								 actionListener="#{computoServiceBean.findPensionadoById(pensionado.id)}" />
+				<p:commandButton value="pagos Servicios" action="computoServices"
+								 actionListener="#{computoServicesBean.findPensionadoById(pensionado.id)}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
