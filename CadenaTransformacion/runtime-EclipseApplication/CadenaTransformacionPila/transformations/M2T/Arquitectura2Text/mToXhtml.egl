@@ -21,14 +21,12 @@
 		
 		<p:dataTable var="[%=vista.nombre.firstToLowerCase()%]" value="#{[%=vista.nombre.firstToLowerCase()%]Bean.[%=vista.nombre.firstToLowerCase()%]List}">
 		
-		[%for (atributo in vista.atributos) {
-			if (atributo.enLista){
+		[%for (atributo in vista.atributos.select(a|a.tipo <> mArq!TipoAtributoVista#REFERENCIA and a.enLista)) {	
 		%]
 			<p:column headerText="[%=atributo.etiqueta%]">
 				<h:outputText value="#{[%=vista.nombre.firstToLowerCase()%].[%=atributo.nombre.firstToLowerCase()%]}" />
 			</p:column>
 		[%
-			}
 		}
 		%]
 			<p:column headerText="Acciones" >			
@@ -39,6 +37,18 @@
 				<p:commandButton action="#{[%=vista.nombre.firstToLowerCase()%]Bean.ver}" value="Ver/Editar" oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').show();" update="formulario[%=vista.nombre.firstToUpperCase()%]">
 					<f:setPropertyActionListener target="#{[%=vista.nombre.firstToLowerCase()%]Bean.identificador}" value="#{[%=vista.nombre.firstToLowerCase()%].id}" />
 				</p:commandButton>
+				
+		[%for (atributo in vista.atributos.select(a|a.tipo = mArq!TipoAtributoVista#REFERENCIA)) {
+		%]
+				<p:commandButton action="[%=atributo.nombre.firstToLowerCase()%]" value="[%=atributo.nombre.firstToUpperCase()%]" actionListener="#{[%=atributo.vistaReferencia.nombre.firstToLowerCase()%]Bean.findBy[%=vista.nombre.firstToUpperCase()%]([%=vista.nombre.firstToLowerCase()%].id)}"/>
+		[%
+		}
+		if(vista.atributos.select(a|a.tipo = mArq!TipoAtributoVista#REFERENCIA).size()>0){
+		%]
+			<p:commandButton value="Pago Servicios" action="computoServices" actionListener="#{computoServiceBean.find[%=vista.nombre.firstToUpperCase()%]ById([%=vista.nombre.firstToLowerCase()%].id)}" />
+		[%
+		}
+		%]		
 			</p:column>
 			
 		</p:dataTable>
