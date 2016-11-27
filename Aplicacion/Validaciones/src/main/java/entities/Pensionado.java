@@ -2,22 +2,23 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.math.*;
+import java.util.*;
 
 /**
- * @author am.osorio
- *
- */
+* @author am.osorio
+*
+*/
 
 @NamedQueries({
 	@NamedQuery(name = "Pensionado.getPensionados",
-    	query = "SELECT e FROM Pensionado e")
+	query = "SELECT e FROM Pensionado e")
 })
 
 @Entity
 public class Pensionado implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
@@ -33,7 +34,7 @@ public class Pensionado implements Serializable {
 	private String segundoApellido;
 	private String tipoIdentificacion;
 	private Integer numeroIdentificacion;
-	private Float montoPension;
+	private Double montoPension;
 	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "pensionado")
 	private List<Novedad> novedades;
 	private Integer actividadEconomica;
@@ -43,275 +44,214 @@ public class Pensionado implements Serializable {
 	private TipoPagadorPension tipoPagadorPension;
 	@ManyToOne
 	private TipoPension tipoPension;
-	@ManyToOne
-	private Aportante aportante;
-
+	
 	/**
-	 * @return the id
-	 */
+	* @return the id
+	*/
 	public Long getId() {
 		return id;
 	}
 	/**
-	 * @param id the id to set
-	 */
+	* @param id the id to set
+	*/
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	/**
-	 * @return the viveExterior
-	 */
+	* @return the viveExterior
+	*/
 	public Boolean getViveExterior() {
 		return viveExterior;
 	}
 	/**
-	 * @param viveExterior the viveExterior to set
-	 */
+	* @param viveExterior the viveExterior to set
+	*/
 	public void setViveExterior(Boolean viveExterior) {
 		this.viveExterior = viveExterior;
 	}
-
+	
 	/**
-	 * @return the noTieneGrupoFamiliar
-	 */
+	* @return the noTieneGrupoFamiliar
+	*/
 	public Boolean getNoTieneGrupoFamiliar() {
 		return noTieneGrupoFamiliar;
 	}
 	/**
-	 * @param noTieneGrupoFamiliar the noTieneGrupoFamiliar to set
-	 */
+	* @param noTieneGrupoFamiliar the noTieneGrupoFamiliar to set
+	*/
 	public void setNoTieneGrupoFamiliar(Boolean noTieneGrupoFamiliar) {
 		this.noTieneGrupoFamiliar = noTieneGrupoFamiliar;
 	}
-
+	
 	/**
-	 * @return the altoRiesgo
-	 */
+	* @return the altoRiesgo
+	*/
 	public Boolean getAltoRiesgo() {
 		return altoRiesgo;
 	}
 	/**
-	 * @param altoRiesgo the altoRiesgo to set
-	 */
+	* @param altoRiesgo the altoRiesgo to set
+	*/
 	public void setAltoRiesgo(Boolean altoRiesgo) {
 		this.altoRiesgo = altoRiesgo;
 	}
-
+	
 	/**
-	 * @return the congresista
-	 */
+	* @return the congresista
+	*/
 	public Boolean getCongresista() {
 		return congresista;
 	}
 	/**
-	 * @param congresista the congresista to set
-	 */
+	* @param congresista the congresista to set
+	*/
 	public void setCongresista(Boolean congresista) {
 		this.congresista = congresista;
 	}
-
+	
 	/**
-	 * @return the cti
-	 */
+	* @return the cti
+	*/
 	public Boolean getCti() {
 		return cti;
 	}
 	/**
-	 * @param cti the cti to set
-	 */
+	* @param cti the cti to set
+	*/
 	public void setCti(Boolean cti) {
 		this.cti = cti;
 	}
-
+	
 	/**
-	 * @return the aviador
-	 */
+	* @return the aviador
+	*/
 	public Boolean getAviador() {
 		return aviador;
 	}
 	/**
-	 * @param aviador the aviador to set
-	 */
+	* @param aviador the aviador to set
+	*/
 	public void setAviador(Boolean aviador) {
 		this.aviador = aviador;
 	}
-
+	
 	/**
-	 * @return the primerNombre
-	 */
+	* @return the primerNombre
+	*/
 	public String getPrimerNombre() {
 		return primerNombre;
 	}
 	/**
-	 * @param primerNombre the primerNombre to set
-	 */
+	* @param primerNombre the primerNombre to set
+	*/
 	public void setPrimerNombre(String primerNombre) {
 		this.primerNombre = primerNombre;
 	}
-
+	
 	/**
-	 * @return the otrosNombres
-	 */
+	* @return the otrosNombres
+	*/
 	public String getOtrosNombres() {
 		return otrosNombres;
 	}
 	/**
-	 * @param otrosNombres the otrosNombres to set
-	 */
+	* @param otrosNombres the otrosNombres to set
+	*/
 	public void setOtrosNombres(String otrosNombres) {
 		this.otrosNombres = otrosNombres;
 	}
-
+	
 	/**
-	 * @return the primerApellido
-	 */
+	* @return the primerApellido
+	*/
 	public String getPrimerApellido() {
 		return primerApellido;
 	}
 	/**
-	 * @param primerApellido the primerApellido to set
-	 */
+	* @param primerApellido the primerApellido to set
+	*/
 	public void setPrimerApellido(String primerApellido) {
 		this.primerApellido = primerApellido;
 	}
-
+	
 	/**
-	 * @return the segundoApellido
-	 */
+	* @return the segundoApellido
+	*/
 	public String getSegundoApellido() {
 		return segundoApellido;
 	}
 	/**
-	 * @param segundoApellido the segundoApellido to set
-	 */
+	* @param segundoApellido the segundoApellido to set
+	*/
 	public void setSegundoApellido(String segundoApellido) {
 		this.segundoApellido = segundoApellido;
 	}
-
+	
 	/**
-	 * @return the tipoIdentificacion
-	 */
+	* @return the tipoIdentificacion
+	*/
 	public String getTipoIdentificacion() {
 		return tipoIdentificacion;
 	}
 	/**
-	 * @param tipoIdentificacion the tipoIdentificacion to set
-	 */
+	* @param tipoIdentificacion the tipoIdentificacion to set
+	*/
 	public void setTipoIdentificacion(String tipoIdentificacion) {
 		this.tipoIdentificacion = tipoIdentificacion;
 	}
-
+	
 	/**
-	 * @return the numeroIdentificacion
-	 */
+	* @return the numeroIdentificacion
+	*/
 	public Integer getNumeroIdentificacion() {
 		return numeroIdentificacion;
 	}
 	/**
-	 * @param numeroIdentificacion the numeroIdentificacion to set
-	 */
+	* @param numeroIdentificacion the numeroIdentificacion to set
+	*/
 	public void setNumeroIdentificacion(Integer numeroIdentificacion) {
 		this.numeroIdentificacion = numeroIdentificacion;
 	}
-
+	
 	/**
-	 * @return the montoPension
-	 */
-	public Float getMontoPension() {
+	* @return the montoPension
+	*/
+	public Double getMontoPension() {
 		return montoPension;
 	}
 	/**
-	 * @param montoPension the montoPension to set
-	 */
-	public void setMontoPension(Float montoPension) {
+	* @param montoPension the montoPension to set
+	*/
+	public void setMontoPension(Double montoPension) {
 		this.montoPension = montoPension;
 	}
-
+	
 	/**
-	 * @return the novedades
-	 */
+	* @return the novedades
+	*/
 	public List<Novedad> getNovedades() {
 		return novedades;
 	}
 	/**
-	 * @param novedades the novedades to set
-	 */
+	* @param novedades the novedades to set
+	*/
 	public void setNovedades(List<Novedad> novedades) {
 		this.novedades = novedades;
 	}
 	
 	/**
-	 * @return the actividadEconomica
-	 */
-	public Integer getActividadEconomica() {
-		return actividadEconomica;
-	}
-	/**
-	 * @param actividadEconomica the actividadEconomica to set
-	 */
-	public void setActividadEconomica(Integer actividadEconomica) {
-		this.actividadEconomica = actividadEconomica;
-	}
-
-	/**
-	 * @return the tipoPensionado
-	 */
-	public TipoPensionado getTipoPensionado() {
-		return tipoPensionado;
-	}
-	/**
-	 * @param tipoPensionado the tipoPensionado to set
-	 */
-	public void setTipoPensionado(TipoPensionado tipoPensionado) {
-		this.tipoPensionado = tipoPensionado;
-	}
-	
-	/**
-	 * @return the tipoPagadorPension
-	 */
-	public TipoPagadorPension getTipoPagadorPension() {
-		return tipoPagadorPension;
-	}
-	/**
-	 * @param tipoPagadorPension the tipoPagadorPension to set
-	 */
-	public void setTipoPagadorPension(TipoPagadorPension tipoPagadorPension) {
-		this.tipoPagadorPension = tipoPagadorPension;
-	}
-	
-	/**
-	 * @return the tipoPension
-	 */
-	public TipoPension getTipoPension() {
-		return tipoPension;
-	}
-	/**
-	 * @param tipoPension the tipoPension to set
-	 */
-	public void setTipoPension(TipoPension tipoPension) {
-		this.tipoPension = tipoPension;
-	}
-	
-	/**
-	 * @return the aportante
-	 */
-	public Aportante getAportante() {
-		return aportante;
-	}
-	/**
-	 * @param aportante the aportante to set
-	 */
-	public void setAportante(Aportante aportante) {
-		this.aportante = aportante;
-	}
-	
-	
+	* 
+	* @return
+	*/
 	public boolean tieneNovedades(){
 		return (novedades != null && !novedades.isEmpty());
 	}
 	
-	
+	/**
+	* 
+	* @return
+	*/
 	public Novedad ultimaNovedad(){
 		if(tieneNovedades()){
 			return novedades.get(novedades.size()-1);
@@ -319,30 +259,81 @@ public class Pensionado implements Serializable {
 		return null;
 	}
 	
+	/**
+	* @return the actividadEconomica
+	*/
+	public Integer getActividadEconomica() {
+		return actividadEconomica;
+	}
+	/**
+	* @param actividadEconomica the actividadEconomica to set
+	*/
+	public void setActividadEconomica(Integer actividadEconomica) {
+		this.actividadEconomica = actividadEconomica;
+	}
+	
+	/**
+	* @return the tipoPensionado
+	*/
+	public TipoPensionado getTipoPensionado() {
+		return tipoPensionado;
+	}
+	/**
+	* @param tipoPensionado the tipoPensionado to set
+	*/
+	public void setTipoPensionado(TipoPensionado tipoPensionado) {
+		this.tipoPensionado = tipoPensionado;
+	}
+	
+	/**
+	* @return the tipoPagadorPension
+	*/
+	public TipoPagadorPension getTipoPagadorPension() {
+		return tipoPagadorPension;
+	}
+	/**
+	* @param tipoPagadorPension the tipoPagadorPension to set
+	*/
+	public void setTipoPagadorPension(TipoPagadorPension tipoPagadorPension) {
+		this.tipoPagadorPension = tipoPagadorPension;
+	}
+	
+	/**
+	* @return the tipoPension
+	*/
+	public TipoPension getTipoPension() {
+		return tipoPension;
+	}
+	/**
+	* @param tipoPension the tipoPension to set
+	*/
+	public void setTipoPension(TipoPension tipoPension) {
+		this.tipoPension = tipoPension;
+	}
+	
 	@Override
 	public String toString() {
 		return "Pensionado{" +
-				"id=" + id +
-				", viveExterior='" + viveExterior + '\'' +
-				", noTieneGrupoFamiliar='" + noTieneGrupoFamiliar + '\'' +
-				", altoRiesgo='" + altoRiesgo + '\'' +
-				", congresista='" + congresista + '\'' +
-				", cti='" + cti + '\'' +
-				", aviador='" + aviador + '\'' +
-				", primerNombre='" + primerNombre + '\'' +
-				", otrosNombres='" + otrosNombres + '\'' +
-				", primerApellido='" + primerApellido + '\'' +
-				", segundoApellido='" + segundoApellido + '\'' +
-				", tipoIdentificacion='" + tipoIdentificacion + '\'' +
-				", numeroIdentificacion='" + numeroIdentificacion + '\'' +
-				", montoPension='" + montoPension + '\'' +
-				", novedades='" + novedades + '\'' +
-				", actividadEconomica='" + actividadEconomica + '\'' +
-				", tipoPensionado='" + tipoPensionado + '\'' +
-				", tipoPagadorPension='" + tipoPagadorPension + '\'' +
-				", tipoPension='" + tipoPension + '\'' +
-				", aportante='" + aportante + '\'' +
-				'}';
+		"id=" + id +
+		", viveExterior='" + viveExterior + '\'' +
+		", noTieneGrupoFamiliar='" + noTieneGrupoFamiliar + '\'' +
+		", altoRiesgo='" + altoRiesgo + '\'' +
+		", congresista='" + congresista + '\'' +
+		", cti='" + cti + '\'' +
+		", aviador='" + aviador + '\'' +
+		", primerNombre='" + primerNombre + '\'' +
+		", otrosNombres='" + otrosNombres + '\'' +
+		", primerApellido='" + primerApellido + '\'' +
+		", segundoApellido='" + segundoApellido + '\'' +
+		", tipoIdentificacion='" + tipoIdentificacion + '\'' +
+		", numeroIdentificacion='" + numeroIdentificacion + '\'' +
+		", montoPension='" + montoPension + '\'' +
+		", novedades='" + novedades + '\'' +
+		", actividadEconomica='" + actividadEconomica + '\'' +
+		", tipoPensionado='" + tipoPensionado + '\'' +
+		", tipoPagadorPension='" + tipoPagadorPension + '\'' +
+		", tipoPension='" + tipoPension + '\'' +
+		'}';
 	}
 }
 

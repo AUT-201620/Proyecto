@@ -3,34 +3,48 @@ package services;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-
+import persistence.*;
 import entities.*;
-import persistence.ValidacionesPersistence;
 
+
+/**
+ * @author am.osorio
+ * Servicios de Validaciones
+ */
 public class ValidacionesServices implements IValidacionesServices {
 
 private ValidacionesPersistence persistance;
-	
-	@Inject
-    private EntityManager etm;
-	
+	    
+	/**
+	 * Constructor ValidacionesServices
+	 */
 	public ValidacionesServices(){
 		persistance = new ValidacionesPersistence();
 	}
-	public List<TipoPension> getTipoPension(){
-		List<TipoPension> tipos = persistance.findAll();
-		return tipos;
-		
+	@Override
+	public List<TipoPagadorPension> getTipoPagadorPensiones() {
+		List<TipoPagadorPension> tipoPagadorPensiones = persistance.findTipoPagadorPensiones();
+		return tipoPagadorPensiones;
 	}
-	
-	public List<TipoPensionado> getTipoPensionado(Long idPension){
-		List<TipoPensionado> tipos = persistance.findByPension(idPension);
-		return tipos;
+	@Override
+	public List<TipoPagadorPension> getByTipoPensionadoTipoPension(Long idTipoPension, Long idTipoPensionado) {
+		List<TipoPagadorPension> tipoPagadorPensiones = persistance.findByTipoPensionadoTipoPension(idTipoPension, idTipoPensionado);
+		return tipoPagadorPensiones;
 	}
-	
-	public List<TipoPagadorPension> getTipoPagadorPension(Long idPension,Long idPensionado){
-		List<TipoPagadorPension> tipos = persistance.findByPensionPensionado(idPension,idPensionado);
-		return tipos;
+	@Override
+	public List<TipoPension> getTipoPensiones() {
+		List<TipoPension> tipoPensiones = persistance.findTipoPensiones();
+		return tipoPensiones;
+	}
+	@Override
+	public List<TipoPensionado> getTipoPensionados() {
+		List<TipoPensionado> tipoPensionados = persistance.findTipoPensionados();
+		return tipoPensionados;
+	}
+	@Override
+	public List<TipoPensionado> getByTipoPension(Long idTipoPension) {
+		List<TipoPensionado> tipoPensionados = persistance.findByTipoPension(idTipoPension);
+		return tipoPensionados;
 	}
 }
+

@@ -1,11 +1,9 @@
-/**
- * 
- */
 package entities;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
+import java.io.Serializable;
+import java.math.*;
+import java.util.*;
 
 /**
  * @author am.osorio
@@ -13,20 +11,19 @@ import javax.persistence.*;
  */
 
 @NamedQueries({
-@NamedQuery(name="Aportante.getAportantes",
-    query="SELECT e FROM Aportante e")          
+	@NamedQuery(name = "Aportante.getAportantes",
+    	query = "SELECT e FROM Aportante e")
 })
 
 @Entity
 public class Aportante implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String nombreRazonSocial;
 	private String digitoVerificacion;
-
 	private String naturalezaJuridica;
 	private Integer numeroIdentificacion;
 	private String tipoIdentificacion;
@@ -43,6 +40,7 @@ public class Aportante implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the nombreRazonSocial
 	 */
@@ -55,6 +53,7 @@ public class Aportante implements Serializable {
 	public void setNombreRazonSocial(String nombreRazonSocial) {
 		this.nombreRazonSocial = nombreRazonSocial;
 	}
+
 	/**
 	 * @return the digitoVerificacion
 	 */
@@ -67,28 +66,20 @@ public class Aportante implements Serializable {
 	public void setDigitoVerificacion(String digitoVerificacion) {
 		this.digitoVerificacion = digitoVerificacion;
 	}
+
 	/**
 	 * @return the naturalezaJuridica
 	 */
-	//public TipoActividad getNaturalezaJuridica() {
-	//	return naturalezaJuridica;
-	//}
-
 	public String getNaturalezaJuridica() {
 		return naturalezaJuridica;
 	}
-
+	/**
+	 * @param naturalezaJuridica the naturalezaJuridica to set
+	 */
 	public void setNaturalezaJuridica(String naturalezaJuridica) {
 		this.naturalezaJuridica = naturalezaJuridica;
 	}
 
-	/**
-	 *
-	 * @param naturalezaJuridica the naturalezaJuridica to set
-	 */
-	//public void setNaturalezaJuridica(TipoActividad naturalezaJuridica) {
-	//	this.naturalezaJuridica = naturalezaJuridica;
-	//}
 	/**
 	 * @return the numeroIdentificacion
 	 */
@@ -101,6 +92,7 @@ public class Aportante implements Serializable {
 	public void setNumeroIdentificacion(Integer numeroIdentificacion) {
 		this.numeroIdentificacion = numeroIdentificacion;
 	}
+
 	/**
 	 * @return the tipoIdentificacion
 	 */
@@ -114,4 +106,16 @@ public class Aportante implements Serializable {
 		this.tipoIdentificacion = tipoIdentificacion;
 	}
 
+	@Override
+	public String toString() {
+		return "Aportante{" +
+				"id=" + id +
+				", nombreRazonSocial='" + nombreRazonSocial + '\'' +
+				", digitoVerificacion='" + digitoVerificacion + '\'' +
+				", naturalezaJuridica='" + naturalezaJuridica + '\'' +
+				", numeroIdentificacion='" + numeroIdentificacion + '\'' +
+				", tipoIdentificacion='" + tipoIdentificacion + '\'' +
+				'}';
+	}
 }
+

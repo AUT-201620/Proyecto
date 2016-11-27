@@ -1,13 +1,12 @@
 package services;
 
-import entities.Pensionado;
+import entities.*;
 
 
 public interface IComputoServices {
+
+	public double pagoPension(Pensionado pensionado);
+	public double pagoSalud(Pensionado pensionado);
+	public double pagoRiesgos(Pensionado pensionado);
 	
-	public float pagoRiesgos(Pensionado pensionado);
-	
-	public float pagoPension(Pensionado pensionado);
-	
-	public float pagoSalud(Pensionado pensionado);
 }

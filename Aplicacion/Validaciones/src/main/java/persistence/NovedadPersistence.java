@@ -1,79 +1,80 @@
 package persistence;
 
-import entities.Novedad;
-import entities.Pensionado;
-
-import javax.persistence.EntityManager;
-
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import entities.*;
+
 /**
- * Created by santi on 14/10/2016.
+ * @author am.osorio
+ * Clases de Persistencia para Novedad
  */
-public class NovedadPersistence
-{
+@Stateless
+public class NovedadPersistence {
+
     public List<Novedad> findAll(){
-        EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-        em.getTransaction().begin();
-        @SuppressWarnings("unchecked")
-		List<Novedad> novedadList = (List<Novedad>)em.createNamedQuery("Novedad.getNovedades").getResultList();
-        em.close();
-        return novedadList;
-
+    	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+    	List<Novedad> novedadList = (List<Novedad>)em.createNamedQuery("Novedad.getNovedades").getResultList();
+		em.close();		
+    	return novedadList;
+    	
     }
-
+    
     public Novedad find(Long id){
-        EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-        em.getTransaction().begin();
-        Novedad novedad = em.find(Novedad.class, id);
-        em.close();
-        return novedad;
+    	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+		Novedad novedad = em.find(Novedad.class, id);
+    	em.close();
+		return novedad;
     }
     
-    public List<Novedad> findByPensionadoId(Long id){
-        EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-        em.getTransaction().begin();
-		List<Novedad> novedadListByEntidadId = (List<Novedad>)em.createNamedQuery("Novedad.findByEntidadId").setParameter("entidadId", id).getResultList();        
-        em.close();
-        return novedadListByEntidadId;
+    public Novedad create(Novedad novedad){
+    	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+    	em.persist(novedad);
+    	em.getTransaction().commit();
+    	em.close();
+		return novedad;
     }
-    
-    public List<Novedad> findByPensionadoAll(Pensionado pensionado){    	
+
+	public Novedad update(Novedad novedad){
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+		em.merge(novedad);
+		em.getTransaction().commit();
+		em.close();
+		return novedad;
+	}
+	
+	public void delete(Long id){
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+		Novedad novedad = em.find(Novedad.class, id);
+		em.remove(novedad);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	
+	   public List<Novedad> findByPensionadoAll(Pensionado pensionado){    	
         EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
         em.getTransaction().begin();       
 		List<Novedad> novedadListByEntidadId = (List<Novedad>)em.createNamedQuery("Novedad.findByPensionadoAll").setParameter("pensionado", pensionado).getResultList();        
         em.close();
         return novedadListByEntidadId;
     }
-
-    public Novedad create(Novedad novedad){
+    
+	    
+    public List<Novedad> findByPensionadoId(Long id){
         EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
         em.getTransaction().begin();
-        em.merge(novedad);
-        em.getTransaction().commit();
+		List<Novedad> novedadListByPensionadoId = 
+			(List<Novedad>)em.createNamedQuery("Novedad.findByPensionadoId").setParameter("pensionadoId", id).getResultList();        
         em.close();
-        return novedad;
-    }
-
-    public Novedad update(Novedad novedad){
-        EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-        em.getTransaction().begin();
-        Novedad novedadtmp = em.find(Novedad.class, novedad.getId());
-        novedadtmp.setFechaCreacion(novedad.getFechaCreacion());
-        novedadtmp.setFechaFin(novedad.getFechaFin());
-        novedadtmp.setFechaInicio(novedad.getFechaInicio());
-        novedadtmp.setTipoNovedad(novedad.getTipoNovedad());
-        em.getTransaction().commit();
-        em.close();
-        return novedad;
-    }
-
-    public void delete(Long id){
-        EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-        em.getTransaction().begin();
-        Novedad novedad = em.find(Novedad.class, id);
-        em.remove(novedad);
-        em.getTransaction().commit();
-        em.close();
+        return novedadListByPensionadoId;
     }
 }
+
+

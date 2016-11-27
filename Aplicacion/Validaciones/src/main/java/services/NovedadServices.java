@@ -1,64 +1,91 @@
 package services;
 
-import entities.Pensionado;
-import entities.Novedad;
-import persistence.NovedadPersistence;
+import entities.*;
+import persistence.*;
 
+import javax.annotation.ManagedBean;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
 
-import java.util.List;
+import java.util.*;
 
 /**
- * Created by santi on 14/10/2016.
+ * @author am.osorio
+ * Servicios CRUD de Novedad
  */
-public class NovedadServices implements INovedadServices 
-{
-    private NovedadPersistence persistance;
+@ManagedBean
+public class NovedadServices implements INovedadServices {
 
-    @Inject
-    private EntityManager etm;
+	private NovedadPersistence persistance;
 
-    public NovedadServices() {
-        persistance = new NovedadPersistence();
-    }
-
-    @Override
-    public List<Novedad> findAll() {
-        List<Novedad> novedadList = persistance.findAll();
-        return novedadList;
-    }
-
-    @Override
-    public Novedad find(Long id) {
-        Novedad novedad = persistance.find(id);
-        return novedad;
-    }
-
-    @Override
-	 public List<Novedad> findByPensionadoId(Long entidadId) {
-    	List<Novedad> novedadListByIdEntidad = persistance.findByPensionadoId(entidadId);
-    	return novedadListByIdEntidad;        
+	/**
+	 * Constructor  NovedadServices
+	 */
+	public NovedadServices() {
+		persistance = new NovedadPersistence();
+	}
+	
+	/**
+	 *
+	 * @return
+	 */
+	@Override
+	public List<Novedad> findAll() {
+		List<Novedad> novedadList = persistance.findAll();
+		return novedadList;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public Novedad find(Long id) {
+		Novedad novedad = persistance.find(id);
+		return novedad;
+	}
+	
+	/**
+	 * 
+	 * @param novedad
+	 * @return
+	 */
+	@Override
+	public Novedad create(Novedad novedad) {
+		return persistance.create(novedad);
+	}
+	
+	/**
+	 * 
+	 * @param novedad
+	 * @return
+	 */
+	@Override
+	public Novedad update(Novedad novedad) {
+		return persistance.update(novedad);
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@Override
+	public void delete(Long id) {
+		persistance.delete(id);
+	}
+	
+	 @Override
+	 public List<Novedad> findByPensionadoId(Long pensionadoId) {
+    	List<Novedad> novedadList = persistance.findByPensionadoId(pensionadoId);
+    	return novedadList;        
 	    }
     
     @Override
     public List<Novedad> findByPensionadoAll(Pensionado pensionado) {
-    	List<Novedad> novedadListByIdEntidad = persistance.findByPensionadoAll(pensionado);
-    	return novedadListByIdEntidad;        
-    }
+    	List<Novedad> novedadList = persistance.findByPensionadoAll(pensionado);
+    	return novedadList;        
 
-    @Override
-    public Novedad create(Novedad novedad) {
-        return persistance.create(novedad);
     }
-    @Override
-    public Novedad update(Novedad novedad) {
-        return persistance.update(novedad);
-    }
-    @Override
-    public void delete(Long id) {
-        persistance.delete(id);
-    }
+ 
 }

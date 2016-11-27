@@ -1,55 +1,75 @@
-/**
- * 
- */
 package services;
 
-import entities.Pensionado;
-import persistence.PensionadoPersistence;
+import entities.*;
+import persistence.*;
 
 import javax.annotation.ManagedBean;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @author am.osorio
- *
+ * Servicios CRUD de Pensionado
  */
 @ManagedBean
 public class PensionadoServices implements IPensionadoServices {
 
 	private PensionadoPersistence persistance;
-	
-	@Inject
-    private EntityManager etm;
 
-	
+	/**
+	 * Constructor  PensionadoServices
+	 */
 	public PensionadoServices() {
 		persistance = new PensionadoPersistence();
 	}
 	
+	/**
+	 *
+	 * @return
+	 */
 	@Override
 	public List<Pensionado> findAll() {
-		List<Pensionado> entidadList = persistance.findAll();
-		return entidadList;
+		List<Pensionado> pensionadoList = persistance.findAll();
+		return pensionadoList;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public Pensionado find(Long id) {
-		Pensionado entidad = persistance.find(id);
-		return entidad;
+		Pensionado pensionado = persistance.find(id);
+		return pensionado;
 	}
 	
+	/**
+	 * 
+	 * @param pensionado
+	 * @return
+	 */
+	@Override
+	public Pensionado create(Pensionado pensionado) {
+		return persistance.create(pensionado);
+	}
 	
+	/**
+	 * 
+	 * @param pensionado
+	 * @return
+	 */
 	@Override
-	public Pensionado create(Pensionado entidad) {
-		return persistance.create(entidad);
+	public Pensionado update(Pensionado pensionado) {
+		return persistance.update(pensionado);
 	}
-	@Override
-	public Pensionado update(Pensionado entidad) {
-		return persistance.update(entidad);
-	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public void delete(Long id) {
 		persistance.delete(id);

@@ -1,16 +1,15 @@
 package services;
 
 import java.util.List;
-
-//import entities.TipoActividad;
 import entities.TipoPagadorPension;
-import entities.TipoPension;
 import entities.TipoPensionado;
-
+import entities.TipoPension;
 
 public interface IValidacionesServices {
-	
-	public List<TipoPension> getTipoPension();
-	public List<TipoPensionado> getTipoPensionado(Long idPension);
-	public List<TipoPagadorPension> getTipoPagadorPension(Long idPension,Long idPensionado);
+	public List<TipoPagadorPension> getTipoPagadorPensiones();
+	public List<TipoPagadorPension> getByTipoPensionadoTipoPension(Long idTipoPensionado, Long idTipoPension);
+	public List<TipoPensionado> getTipoPensionados();
+	public List<TipoPensionado> getByTipoPension(Long idTipoPension);
+	public List<TipoPension> getTipoPensiones();
 }
+

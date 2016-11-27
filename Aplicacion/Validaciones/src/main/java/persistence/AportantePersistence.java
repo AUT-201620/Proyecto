@@ -4,57 +4,55 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import entities.*;
 
-import entities.Aportante;
-
+/**
+ * @author am.osorio
+ * Clases de Persistencia para Aportante
+ */
 @Stateless
 public class AportantePersistence {
 
     public List<Aportante> findAll(){
     	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-    	List<Aportante> entidadList = (List<Aportante>)em.createNamedQuery("Aportante.getAportantes").getResultList();
+    	List<Aportante> aportanteList = (List<Aportante>)em.createNamedQuery("Aportante.getAportantes").getResultList();
 		em.close();		
-    	return entidadList;
+    	return aportanteList;
     	
     }
     
     public Aportante find(Long id){
     	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-		Aportante superEntidad = em.find(Aportante.class, id);
+		Aportante aportante = em.find(Aportante.class, id);
     	em.close();
-		return superEntidad;
+		return aportante;
     }
     
-    public Aportante create(Aportante superEntidad){
+    public Aportante create(Aportante aportante){
     	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-    	em.getTransaction().begin();
-    	em.persist(superEntidad);
+		em.getTransaction().begin();
+    	em.persist(aportante);
     	em.getTransaction().commit();
     	em.close();
-		return superEntidad;
+		return aportante;
     }
 
-	public Aportante update(Aportante superEntidad){
+	public Aportante update(Aportante aportante){
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-		Aportante superEntidadtmp = em.find(Aportante.class, superEntidad.getId());
-		superEntidadtmp.setDigitoVerificacion(superEntidad.getDigitoVerificacion());
-		superEntidadtmp.setNaturalezaJuridica(superEntidad.getNaturalezaJuridica());
-		superEntidadtmp.setNombreRazonSocial(superEntidad.getNombreRazonSocial());
-		superEntidadtmp.setNumeroIdentificacion(superEntidad.getNumeroIdentificacion());
-		superEntidadtmp.setTipoIdentificacion(superEntidad.getTipoIdentificacion());
+		em.merge(aportante);
 		em.getTransaction().commit();
 		em.close();
-		return superEntidad;
+		return aportante;
 	}
 	
 	public void delete(Long id){
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-		Aportante superEntidad = em.find(Aportante.class, id);
-		em.remove(superEntidad);
+		Aportante aportante = em.find(Aportante.class, id);
+		em.remove(aportante);
 		em.getTransaction().commit();
 		em.close();
 	}

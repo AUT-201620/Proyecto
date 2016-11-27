@@ -1,6 +1,6 @@
 package services;
 
-import entities.Pensionado;
+import entities.*;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ public interface IPensionadoServices {
 	
 	public Pensionado find(Long id);
 	
-	public Pensionado create(Pensionado entidad);
+	public Pensionado create(Pensionado pensionado);
 		
-	public Pensionado update(Pensionado entidad);
+	public Pensionado update(Pensionado pensionado);
 		
 	public void delete(Long id);
 

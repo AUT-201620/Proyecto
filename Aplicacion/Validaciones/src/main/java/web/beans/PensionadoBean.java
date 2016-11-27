@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.*;
 import javax.faces.event.ValueChangeEvent;
 
 import entities.*;
@@ -18,6 +17,7 @@ import enumerators.*;
 *
 */
 
+
 @ManagedBean
 @ViewScoped
 public class PensionadoBean implements Serializable {
@@ -27,6 +27,7 @@ public class PensionadoBean implements Serializable {
 	private List<Pensionado> pensionadoList = new ArrayList<Pensionado>();
 	private IPensionadoServices services;
 	private IValidacionesServices validacionesServices;
+	
 	private Pensionado pensionado;
 	private Long identificador;
 	private Boolean buttonCrud;
@@ -47,7 +48,6 @@ public class PensionadoBean implements Serializable {
 		pensionado.setTipoPagadorPension(new TipoPagadorPension());
 		pensionado.setTipoPension(new TipoPension());
 	}
-	
 	
 	/**
 	* 
@@ -73,6 +73,7 @@ public class PensionadoBean implements Serializable {
 		getListTipos();
 	}
 	
+	
 	public void editar() {
 		this.pensionado = services.update(this.pensionado);
 		this.pensionadoList = services.findAll();
@@ -89,11 +90,11 @@ public class PensionadoBean implements Serializable {
 	}
 	public void getListTipos() {
 		if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0){
-			this.setTipoPensionado(validacionesServices.getTipoPensionado(pensionado.getTipoPension().getId()));
+			this.setTipoPensionado(validacionesServices.getByTipoPension(pensionado.getTipoPension().getId()));
 		} else{
 			this.setTipoPensionado(new ArrayList<TipoPensionado>());
 		}if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0 && pensionado.getTipoPensionado().getId() != null && pensionado.getTipoPensionado().getId() >0){
-			this.setTipoPagadorPension(validacionesServices.getTipoPagadorPension(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
+			this.setTipoPagadorPension(validacionesServices.getByTipoPensionadoTipoPension(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
 		}
 		else{
 			this.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());
@@ -201,7 +202,7 @@ public class PensionadoBean implements Serializable {
 	* @return the tipoPension
 	*/ 
 	public List<TipoPension> getTipoPension() {
-		this.tipoPension= validacionesServices.getTipoPension();
+		this.tipoPension= validacionesServices.getTipoPensiones();
 		return tipoPension;
 	}
 	/**

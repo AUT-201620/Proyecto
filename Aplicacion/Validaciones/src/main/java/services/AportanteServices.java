@@ -1,48 +1,75 @@
-/**
- * 
- */
 package services;
 
-import java.util.List;
+import entities.*;
+import persistence.*;
 
 import javax.annotation.ManagedBean;
+import javax.inject.Inject;
 
-import entities.Aportante;
-import persistence.AportantePersistence;
+import java.util.*;
 
 /**
  * @author am.osorio
- *
+ * Servicios CRUD de Aportante
  */
 @ManagedBean
 public class AportanteServices implements IAportanteServices {
+
 	private AportantePersistence persistance;
 
-
+	/**
+	 * Constructor  AportanteServices
+	 */
 	public AportanteServices() {
 		persistance = new AportantePersistence();
 	}
 	
+	/**
+	 *
+	 * @return
+	 */
 	@Override
 	public List<Aportante> findAll() {
-		List<Aportante> entidadList = persistance.findAll();
-		return entidadList;
+		List<Aportante> aportanteList = persistance.findAll();
+		return aportanteList;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public Aportante find(Long id) {
-		Aportante superEntidad = persistance.find(id);
-		return superEntidad;
+		Aportante aportante = persistance.find(id);
+		return aportante;
 	}
 	
+	/**
+	 * 
+	 * @param aportante
+	 * @return
+	 */
 	@Override
-	public Aportante create(Aportante superEntidad) {
-		return persistance.create(superEntidad);
+	public Aportante create(Aportante aportante) {
+		return persistance.create(aportante);
 	}
+	
+	/**
+	 * 
+	 * @param aportante
+	 * @return
+	 */
 	@Override
-	public Aportante update(Aportante superEntidad) {
-		return persistance.update(superEntidad);
+	public Aportante update(Aportante aportante) {
+		return persistance.update(aportante);
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public void delete(Long id) {
 		persistance.delete(id);

@@ -26,10 +26,10 @@ public class ComputoServicesBean implements Serializable {
 	private IPensionadoServices services;
 	private IComputoServices servicesPagos;
 	private Long pensionadoId;
-	private float pagoSalud;
-	private float pagoPension;
-	private float pagoRiesgo;
-	private float valorPorPagar;
+	private double pagoSalud;
+	private double pagoPension;
+	private double pagoRiesgo;
+	private double valorPorPagar;
 	private Pensionado pensionado=new Pensionado();
 
 	public ComputoServicesBean() {
@@ -67,7 +67,7 @@ public class ComputoServicesBean implements Serializable {
 	}
 
 
-	public float getValorPorPagar() {
+	public double getValorPorPagar() {
 		return valorPorPagar;
 	}
 
@@ -83,27 +83,27 @@ public class ComputoServicesBean implements Serializable {
 		this.pensionadoId = pensionadoId;
 	}
 
-	public float getPagoPension() {
+	public double getPagoPension() {
 		return pagoPension;
 	}
 
-	public void setPagoPension(float pagoPension) {
+	public void setPagoPension(double pagoPension) {
 		this.pagoPension = pagoPension;
 	}
 	
-	public float getPagoSalud() {
+	public double getPagoSalud() {
 		return pagoSalud;
 	}
 
-	public void setPagoSalud(float pagoSalud) {
+	public void setPagoSalud(double pagoSalud) {
 		this.pagoSalud = pagoSalud;
 	}
 	
-	public float getPagoRiesgo() {
+	public double getPagoRiesgo() {
 		return pagoRiesgo;
 	}
 
-	public void setPagoRiesgo(float pagoRiesgo) {
+	public void setPagoRiesgo(double pagoRiesgo) {
 		this.pagoRiesgo = pagoRiesgo;
 	}
 

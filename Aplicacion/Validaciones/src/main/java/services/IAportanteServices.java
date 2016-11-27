@@ -1,8 +1,8 @@
 package services;
 
-import java.util.List;
+import entities.*;
 
-import entities.Aportante;;
+import java.util.List;
 
 public interface IAportanteServices {
 	
@@ -10,9 +10,9 @@ public interface IAportanteServices {
 	
 	public Aportante find(Long id);
 	
-	public Aportante create(Aportante superEntidad);
+	public Aportante create(Aportante aportante);
 		
-	public Aportante update(Aportante superEntidad);
+	public Aportante update(Aportante aportante);
 		
 	public void delete(Long id);
 

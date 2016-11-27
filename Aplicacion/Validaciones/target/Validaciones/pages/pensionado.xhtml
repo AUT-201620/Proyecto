@@ -143,7 +143,7 @@
 				<h:outputLabel for="tipoPagadorPension"
 							value="Tipo Pagador Pension:" />
 				<p:outputPanel id ="panelTipoPagadorPension">			
-						<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPagadorPension.id}" required="true" label="tipoPagador" id="tipoPagador">
+						<p:selectOneMenu value="#{pensionadoBean.pensionado.tipoPagadorPension.id}" required="true" label="tipoPagador" id="tipoPagadorPension">
 							<f:selectItem  itemLabel="Seleccione" itemValue="-1"/>
 							<f:selectItems value="#{pensionadoBean.tipoPagadorPension}" var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo.id}"  />
 						</p:selectOneMenu>

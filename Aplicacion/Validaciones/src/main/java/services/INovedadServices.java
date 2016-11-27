@@ -1,26 +1,24 @@
 package services;
 
-import entities.Novedad;
-import entities.Pensionado;
+import entities.*;
 
 import java.util.List;
 
-/**
- * Created by santi on 14/10/2016.
- */
-public interface INovedadServices
-{
-    public List<Novedad> findAll();
-
-    public Novedad find(Long id);
-
-    public List<Novedad> findByPensionadoId(Long entidadId);
+public interface INovedadServices {
+	
+	public List<Novedad> findAll();
+	
+	public Novedad find(Long id);
+	
+	public Novedad create(Novedad novedad);
+		
+	public Novedad update(Novedad novedad);
+		
+	public void delete(Long id);
+	
+	
+	public List<Novedad> findByPensionadoId(Long pensionadoId);
     
     public List<Novedad> findByPensionadoAll(Pensionado pensionado);
 
-    public Novedad create(Novedad entidad);
-
-    public Novedad update(Novedad entidad);
-
-    public void delete(Long id);
 }

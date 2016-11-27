@@ -4,26 +4,30 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import entities.Pensionado;
+import entities.*;
 
+/**
+ * @author am.osorio
+ * Clases de Persistencia para Pensionado
+ */
 @Stateless
 public class PensionadoPersistence {
 
     public List<Pensionado> findAll(){
     	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-    	List<Pensionado> entidadList = (List<Pensionado>)em.createNamedQuery("Pensionado.getPensionados").getResultList();
+    	List<Pensionado> pensionadoList = (List<Pensionado>)em.createNamedQuery("Pensionado.getPensionados").getResultList();
 		em.close();		
-    	return entidadList;
+    	return pensionadoList;
     	
     }
     
     public Pensionado find(Long id){
     	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-		Pensionado entidad = em.find(Pensionado.class, id);
+		Pensionado pensionado = em.find(Pensionado.class, id);
     	em.close();
-		return entidad;
+		return pensionado;
     }
     
     public Pensionado create(Pensionado pensionado){
@@ -36,7 +40,6 @@ public class PensionadoPersistence {
     }
 
 	public Pensionado update(Pensionado pensionado){
-		System.out.println(pensionado.toString());
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		em.merge(pensionado);
