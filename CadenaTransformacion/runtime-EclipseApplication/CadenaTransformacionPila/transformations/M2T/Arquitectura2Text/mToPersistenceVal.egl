@@ -37,7 +37,8 @@ public class ValidacionesPersistence {
 			      a.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY and 
 			      a.modeloReferencia.nombre = modelo.nombre
 			  ).size() > 0
-			);
+			).asOrderedSet();
+					
 		if (modelosConRefManyToManyAEsteModelo.size() > 0) {
 			var parametros: String := '';
 			var parametrosEje: String := '';
@@ -53,7 +54,7 @@ public class ValidacionesPersistence {
 			}
 %]
 
-	public List<[%=modelo.nombre.firstToUpperCase()%]> getBy[%=nombre%]([%=parametros%]) {
+	public List<[%=modelo.nombre.firstToUpperCase()%]> findBy[%=nombre%]([%=parametros%]) {
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
     	List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = (List<[%=modelo.nombre.firstToUpperCase()%]>) em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].getBy[%=nombre%]")

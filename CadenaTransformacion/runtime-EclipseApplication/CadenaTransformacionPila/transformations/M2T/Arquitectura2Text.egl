@@ -19,10 +19,12 @@
 	//Generador de entidades
 	//Pendientes:
 	//1. Revisión de errores en despligue
+	var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
 	for(modelo in root.modelos) {
 		if(modelo.esEntidad){
 			var tEntities: Template := TemplateFactory.load(templatePath + '/mToEntities.egl');
 			tEntities.populate('modelo', modelo);
+			tEntities.setFormatter(jFormatter);
 			('Generando entidad ' + modelo.nombre.firstToUpperCase() +'.java').println();
 			tEntities.generate(srcJavaPath + '/entities/' + modelo.nombre.firstToUpperCase() +'.java');
 		}

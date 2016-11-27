@@ -191,7 +191,7 @@
             </expresionTerminal>
           </expresion>
         </variables>
-        <variables name="dias" tipoPrimitivo="Fecha">
+        <variables name="dias" tipoPrimitivo="Entero">
           <expresion>
             <expresionTerminal>
               <nombreCalificado>

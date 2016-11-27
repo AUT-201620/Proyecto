@@ -1,19 +1,40 @@
 package services;
 
-import entities.[%=controlador.nombre.firstToUpperCase()%];
+import entities.*;
 
 import java.util.List;
 
 public interface I[%=controlador.nombre.firstToUpperCase()%]Services {
 	
-	public List<[%=controlador.nombre.firstToUpperCase()%]> getAll();
+	public List<[%=controlador.nombre.firstToUpperCase()%]> findAll();
 	
-	public [%=controlador.nombre.firstToUpperCase()%] get(Long id);
+	public [%=controlador.nombre.firstToUpperCase()%] find(Long id);
 	
 	public [%=controlador.nombre.firstToUpperCase()%] create([%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%]);
 		
 	public [%=controlador.nombre.firstToUpperCase()%] update([%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%]);
 		
 	public void delete(Long id);
+	
+	
+	[%	
+	//Determinar si el modelo es referencia de otro modelo
+	var modeloConReferencia = mArq!Modelo.all.select(
+		m|m.nombre <> controlador.nombre.firstToUpperCase() and
+		  m.atributos.select(
+		   a|a.tipo == mArq!TipoDato#REFERENCE and a.tipoReferencia == mArq!TipoReferencia#ONE_TO_MANY and a.modeloReferencia.nombre ==controlador.nombre.firstToUpperCase()
+		  ).size() > 0
+		);
+
+	if (modeloConReferencia.size()>0) {
+			for (modeloReferencia in modeloConReferencia) {
+%]
+	public List<[%=controlador.nombre.firstToUpperCase()%]> findBy[%=modeloReferencia.nombre.firstToUpperCase()%]Id(Long [%=modeloReferencia.nombre.firstToLowerCase()%]Id);
+    
+    public List<[%=controlador.nombre.firstToUpperCase()%]> findBy[%=modeloReferencia.nombre.firstToUpperCase()%]All([%=modeloReferencia.nombre.firstToUpperCase()%] [%=modeloReferencia.nombre.firstToLowerCase()%]);
+[%
+ 		}
+ 	}
+ %]
 
 }

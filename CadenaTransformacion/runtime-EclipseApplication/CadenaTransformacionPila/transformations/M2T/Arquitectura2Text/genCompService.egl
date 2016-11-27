@@ -14,13 +14,13 @@ import java.util.List;
  * Servicios de Computo
  */
 @ManagedBean
-public class ComputoServices {
+public class ComputoServices implements IComputoServices{
 
 [%
 	for(servicio in servicios) {
 	
 %]
-	public double [%=servicio.name.firstToUpperCase()%](Pensionado pensionado) {
+	public double [%=servicio.name.firstToLowerCase()%](Pensionado pensionado) {
 [%
 	if (servicio.variables.isDefined()) {
 		for (variable in servicio.variables) {

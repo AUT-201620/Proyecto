@@ -58,12 +58,12 @@ operation  getModelosTablaPila(): Set {
 	modelo.esEntidad = false;
 	modelos.add(modelo);
 	modelo = new mArq!Modelo;
-	modelo.nombre = "TipoPensionado_TipoPagador";
+	modelo.nombre = "TipoPensionado_TipoPagadorPension";
 	modelo.esCrud = false;
 	modelo.esEntidad = false;
 	modelos.add(modelo);
 	modelo = new mArq!Modelo;
-	modelo.nombre = "TipoPension_TipoPagador";
+	modelo.nombre = "TipoPension_TipoPagadorPension";
 	modelo.esCrud = false;
 	modelo.esEntidad = false;
 	modelos.add(modelo);
@@ -272,7 +272,7 @@ operation mArq!Modelo completarDatosModeloTipoPagadorPension() {
 
 //Completar Modelo Tipo Pension Tipo Pensionado
 operation completarModeloTipoPensionTipoPensionado() {
-	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionTipoPensionado").first();
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPension_TipoPensionado").first();
 	if (modelo.isDefined()) {
 		modelo.completarDatosModeloTipoPensionTipoPensionado();
 	}
@@ -294,7 +294,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionTipoPensionado() {
 
 //Completar Modelo Tipo Pension Tipo Pagador Pension
 operation completarModeloTipoPensionTipoPagador() {
-	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionTipoPagador").first();
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPension_TipoPagadorPension").first();
 	if (modelo.isDefined()) {
 		modelo.completarDatosModeloTipoPensionTipoPagador();
 	}
@@ -307,7 +307,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionTipoPagador() {
 	for (tipoPension: mTab!TipoPension in tiposPension) {
 		for (tipoPagador: mTab!TipoPagadorPension in tipoPension.tiposPagadorPension) {
 			var dato = new mArq!Dato;
-			dato.campos = "tipopension_id, tipopagador_id";
+			dato.campos = "tipopension_id, tipopagadorpension_id";
 			dato.valores = tipoPension.codigo + ", " + tipoPagador.codigo;
 			self.datos.add(dato);
 		}
@@ -316,7 +316,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionTipoPagador() {
 
 //Completar Modelo Tipo Pensionado Tipo Pagador Pension
 operation completarModeloTipoPensionadoTipoPagador() {
-	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionadoTipoPagador").first();
+	var modelo = mArq!Modelo.all.select(m|m.nombre = "TipoPensionado_TipoPagadorPension").first();
 	if (modelo.isDefined()) {
 		modelo.completarDatosModeloTipoPensionadoTipoPagador();
 	}
@@ -329,7 +329,7 @@ operation mArq!Modelo completarDatosModeloTipoPensionadoTipoPagador() {
 	for (tipoPensionado: mTab!TipoPensionado in tiposPensionado) {
 		for (tipoPagador: mTab!TipoPagadorPension in tipoPensionado.tiposPagadorPension) {
 			var dato = new mArq!Dato;
-			dato.campos = "tipopensionado_id, tipopagador_id";
+			dato.campos = "tipopensionado_id, tipopagadorpension_id";
 			dato.valores = tipoPensionado.codigo + ", " + tipoPagador.codigo;
 			self.datos.add(dato);
 		}

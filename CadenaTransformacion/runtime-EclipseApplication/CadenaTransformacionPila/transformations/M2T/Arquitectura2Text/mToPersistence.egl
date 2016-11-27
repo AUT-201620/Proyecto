@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import entities.[%=modelo.nombre.firstToUpperCase()%];
+import entities.*;
 
 /**
  * @author am.osorio
@@ -13,16 +13,16 @@ import entities.[%=modelo.nombre.firstToUpperCase()%];
 @Stateless
 public class [%=modelo.nombre.firstToUpperCase()%]Persistence {
 
-    public List<[%=modelo.nombre.firstToUpperCase()%]> getAll(){
+    public List<[%=modelo.nombre.firstToUpperCase()%]> findAll(){
     	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-    	List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase()%]List = (List<[%=modelo.nombre.firstToUpperCase()%]>)em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase()%]s").getResultList();
+    	List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase()%]List = (List<[%=modelo.nombre.firstToUpperCase()%]>)em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].get[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]").getResultList();
 		em.close();		
     	return [%=modelo.nombre.firstToLowerCase()%]List;
     	
     }
     
-    public [%=modelo.nombre.firstToUpperCase()%] get(Long id){
+    public [%=modelo.nombre.firstToUpperCase()%] find(Long id){
     	EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
 		[%=modelo.nombre.firstToUpperCase()%] [%=modelo.nombre.firstToLowerCase()%] = em.find([%=modelo.nombre.firstToUpperCase()%].class, id);
@@ -56,4 +56,49 @@ public class [%=modelo.nombre.firstToUpperCase()%]Persistence {
 		em.getTransaction().commit();
 		em.close();
 	}
+	
+	
+	   public List<Novedad> findByPensionadoAll(Pensionado pensionado){    	
+        EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+        em.getTransaction().begin();       
+		List<Novedad> novedadListByEntidadId = (List<Novedad>)em.createNamedQuery("Novedad.findByPensionadoAll").setParameter("pensionado", pensionado).getResultList();        
+        em.close();
+        return novedadListByEntidadId;
+    }
+    
+[%	
+//Determinar si la vista es referencia de otra vista
+	var modeloConReferencia = mArq!Modelo.all.select(
+		m|m.nombre <> modelo.nombre.firstToUpperCase() and
+		  m.atributos.select(
+		   a|a.tipo == mArq!TipoDato#REFERENCE and a.tipoReferencia == mArq!TipoReferencia#ONE_TO_MANY and a.modeloReferencia.nombre ==modelo.nombre.firstToUpperCase()
+		  ).size() > 0
+		);
+
+	if (modeloConReferencia.size()>0) {
+			for (modeloReferencia in modeloConReferencia) {
+%]
+	    
+    public List<[%=modelo.nombre.firstToUpperCase()%]> findBy[%=modeloReferencia.nombre.firstToUpperCase()%]Id(Long id){
+        EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+        em.getTransaction().begin();
+		List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase()%]ListBy[%=modeloReferencia.nombre.firstToUpperCase()%]Id = 
+			(List<[%=modelo.nombre.firstToUpperCase()%]>)em.createNamedQuery("[%=modelo.nombre.firstToUpperCase()%].findBy[%=modeloReferencia.nombre.firstToUpperCase()%]Id").setParameter("[%=modeloReferencia.nombre.firstToLowerCase()%]Id", id).getResultList();        
+        em.close();
+        return [%=modelo.nombre.firstToLowerCase()%]ListBy[%=modeloReferencia.nombre.firstToUpperCase()%]Id;
+    }
+[%
+ 		}
+ 	}
+ %]
 }
+
+
+[%
+	operation String obtenerPlural(): String {
+		if (self.endsWith('a') or self.endsWith('e') or self.endsWith('i') or self.endsWith('o') or self.endsWith('u')) {
+			return self + 's';
+		}  
+		return self + 'es'; 
+	}
+%]	

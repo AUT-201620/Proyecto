@@ -4,13 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import persistence.*;
-[%
-	for (modelo in modelosEntidad) {
-%]
-import entities.[%=modelo.nombre.firstToUpperCase()%];
-[%
-	}
-%]
+import entities.*;
+
 
 /**
  * @author am.osorio
@@ -19,10 +14,7 @@ import entities.[%=modelo.nombre.firstToUpperCase()%];
 public class ValidacionesServices implements IValidacionesServices {
 
 private ValidacionesPersistence persistance;
-	
-	@Inject
-    private EntityManager etm;
-    
+	    
 	/**
 	 * Constructor ValidacionesServices
 	 */
@@ -32,9 +24,9 @@ private ValidacionesPersistence persistance;
 [%
 	for (modelo in modelosEntidad) {
 %]
-
+	@Override
 	public List<[%=modelo.nombre.firstToUpperCase()%]> get[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]() {
-		List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = persistance.get[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]();
+		List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = persistance.find[%=modelo.nombre.firstToUpperCase().obtenerPlural()%]();
 		return [%=modelo.nombre.firstToLowerCase().obtenerPlural()%];
 	}
 [%
@@ -46,7 +38,8 @@ private ValidacionesPersistence persistance;
 			      a.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY and 
 			      a.modeloReferencia.nombre = modelo.nombre
 			  ).size() > 0
-			);
+			).asOrderedSet();
+			
 		if (modelosConRefManyToManyAEsteModelo.size() > 0) {
 			var parametros: String := '';
 			var parametrosEje: String := '';
@@ -59,9 +52,9 @@ private ValidacionesPersistence persistance;
 				separador := ', ';
 			}
 %]
-
+	@Override
 	public List<[%=modelo.nombre.firstToUpperCase()%]> getBy[%=nombre%]([%=parametros%]) {
-		List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = persistance.getBy[%=nombre%]([%=parametrosEje%]);
+		List<[%=modelo.nombre.firstToUpperCase()%]> [%=modelo.nombre.firstToLowerCase().obtenerPlural()%] = persistance.findBy[%=nombre%]([%=parametrosEje%]);
 		return [%=modelo.nombre.firstToLowerCase().obtenerPlural()%];
 	}
 [%

@@ -17,15 +17,24 @@ import enumerators.*;
  *
  */
 
+[%
+//Determinar si la vista es referencia de otra vista
+	var vistaConReferencia = mArq!Vista.all.select(
+		m|m.nombre <> vista.nombre.firstToUpperCase() and
+		  m.atributos.select(
+		   a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==vista.nombre.firstToUpperCase()
+		  ).size() > 0
+		);
+%]	
 @ManagedBean
 [%
-if(not vista.tieneReferencia()){
+if(vistaConReferencia.size()>0){
 %]
-@ViewScoped
+@SessionScoped
 [%
 }else{
 %]
-@SessionScoped
+@ViewScoped
 [%
 }
 %]
@@ -41,7 +50,16 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 		private IValidacionesServices validacionesServices;
 	[%
 		}
-		vista.getRelaciones();
+	%]
+	[%
+		if(vistaConReferencia.size()>0){
+			for (vistaRef in vistaConReferencia){
+	%]			
+			 	private I[%=vistaRef.nombre.firstToUpperCase()%]Services services[%=vistaRef.nombre.firstToUpperCase()%];
+			 	private [%=vistaRef.nombre.firstToUpperCase()%] [%=vistaRef.nombre.firstToLowerCase()%];	
+	[%
+			}
+		}
 	%]
 	
 	private [%=vista.nombre.firstToUpperCase()%] [%=vista.nombre.firstToLowerCase()%];
@@ -75,16 +93,14 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 	}
 	
 	[%
-		if(not vista.tieneReferencia()){
+		if(vistaConReferencia.size()=0){
 	%]
 	/**
 	 * 
 	 */
 	@PostConstruct
 	public void init() {
-		[%
-			vista.findAll();
-		%]
+		this.[%=vista.nombre.firstToLowerCase()%]List = services.findAll();
 	}
 	[%
 		}
@@ -99,14 +115,34 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 	%]
 		services.create(this.[%=vista.nombre.firstToLowerCase()%]);
 		[%
-			vista.findAll();
+			if(vistaConReferencia.size()>0){
+				for (vistaRef in vistaConReferencia){
+		%]
+				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToUpperCase()%]);	
+		[%
+				}
+			}else{
+		%]
+			this.[%=vista.nombre.firstToLowerCase()%]List = services.findAll();
+		[%
+			}
 		%]
 	}
 
 	public void delete() {
 		services.delete(this.identificador);
 		[%
-			vista.findAll();
+			if(vistaConReferencia.size()>0){
+				for (vistaRef in vistaConReferencia){
+		%]
+				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToUpperCase()%]);	
+		[%
+				}
+			}else{
+		%]
+			this.[%=vista.nombre.firstToLowerCase()%]List = services.findAll();
+		[%
+			}
 		%]
 	}
 
@@ -125,7 +161,19 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 
 	public void editar() {
 		this.[%=vista.nombre.firstToLowerCase()%] = services.update(this.[%=vista.nombre.firstToLowerCase()%]);
-		this.[%=vista.nombre.firstToLowerCase()%]List = services.findAll();
+		[%
+			if(vistaConReferencia.size()>0){
+				for (vistaRef in vistaConReferencia){
+		%]
+				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToUpperCase()%]);	
+		[%
+				}
+			}else{
+		%]
+			this.[%=vista.nombre.firstToLowerCase()%]List = services.findAll();
+		[%
+			}
+		%]
 	}
 
 	public void clear[%=vista.nombre.firstToUpperCase()%]() {
@@ -255,7 +303,7 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 			out.print(' */ \n');
 			out.print('public List<'+atributo.nombre.firstToUpperCase()+'> get'+atributo.nombre.firstToUpperCase()+'() {\n');
 				if(atributo.nombre == 'tipoPension'){
-					out.print('this.'+atributo.nombre.firstToLowerCase()+'= validacionesServices.get'+atributo.nombre.firstToUpperCase()+'();\n');
+					out.print('this.'+atributo.nombre.firstToLowerCase()+'= validacionesServices.get'+atributo.nombre.firstToUpperCase().obtenerPlural()+'();\n');
 				}
 				out.print('return '+atributo.nombre.firstToLowerCase()+';\n');
 			out.print('}\n');
@@ -270,21 +318,24 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 	}
 	
 	operation mArq!Vista getValidaciones() {
+			
 		if(self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA).size()>0){
-			out.print('public void getListTipos() {\n');
-				
+			
+			out.print('public void getListTipos() {\n');	
 			out.print('if('+self.nombre.firstToLowerCase()+'.getTipoPension() != null && '+self.nombre.firstToLowerCase()+'.getTipoPension().getId()>0){\n');
-			out.print('this.setTipoPensionado(validacionesServices.getTipoPensionado('+self.nombre.firstToLowerCase()+'.getTipoPension().getId()));\n');
+			out.print('this.setTipoPensionado(validacionesServices.getByTipoPension('+self.nombre.firstToLowerCase()+'.getTipoPension().getId()));\n');
 			out.print('} else{\n');
 			out.print('this.setTipoPensionado(new ArrayList<TipoPensionado>());\n');
 			out.print('}');
 		    out.print('if('+self.nombre.firstToLowerCase()+'.getTipoPension() != null && '+self.nombre.firstToLowerCase()+'.getTipoPension().getId()>0 && '+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId() != null && '+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId() >0){\n');
-			out.print('this.setTipoPagadorPension(validacionesServices.getTipoPagadorPension('+self.nombre.firstToLowerCase()+'.getTipoPension().getId(),'+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId()));\n');
+			out.print('this.setTipoPagadorPension(validacionesServices.getByTipoPensionadoTipoPension('+self.nombre.firstToLowerCase()+'.getTipoPension().getId(),'+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId()));\n');
 			out.print('}\n');
 		    out.print('else{\n');
 			out.print('this.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());\n');
 			out.print('}\n');
-			out.print('}\n');
+			
+	//	}
+		out.print('}\n');
 		}
 	}
 	
@@ -344,28 +395,11 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 			}
 		}
 	}
-	
-	operation mArq!Vista findAll(){
-		if ( self.tieneReferencia()){
-			for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
-				for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
-					out.print('this.'+self.nombre.firstToLowerCase()+'List = services.findBy'+vistaReferencia.nombre.firstToUpperCase()+'All('+vistaReferencia.nombre.firstToLowerCase()+');\n');	
-				}
-			}
-		}else{
-		
-			out.print('this.'+self.nombre.firstToLowerCase()+'List = services.findAll();\n');
-		}
-	
-	}
-	
-	operation mArq!Vista tieneReferencia(): Boolean{
-		for (vistaReferencia in mArq!Vista.all.select(m|m.nombre <> self.nombre.firstToUpperCase())){
-			for (atributoReferencia in vistaReferencia.atributos.select(a|a.tipo == mArq!TipoAtributoVista#REFERENCIA and a.vistaReferencia.nombre ==self.nombre.firstToUpperCase())){
-				return true;
-			}
-		}
-		
-		return false;
-	}
+
+	operation String obtenerPlural(): String {
+		if (self.endsWith('a') or self.endsWith('e') or self.endsWith('i') or self.endsWith('o') or self.endsWith('u')) {
+			return self + 's';
+		}  
+		return self + 'es'; 
+	}	
 %]

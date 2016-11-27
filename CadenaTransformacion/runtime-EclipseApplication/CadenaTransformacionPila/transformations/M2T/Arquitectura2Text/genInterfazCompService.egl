@@ -1,6 +1,6 @@
 package services;
 
-import entities.Pensionado;
+import entities.*;
 
 
 public interface IComputoServices {
@@ -8,7 +8,7 @@ public interface IComputoServices {
 [%
 	for(servicio in servicios) {
 %]
-	public double [%=servicio.name.firstToUpperCase()%](Pensionado pensionado);
+	public double [%=servicio.name.firstToLowerCase()%](Pensionado pensionado);
 [%
 	}
 %]	 

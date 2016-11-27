@@ -23,7 +23,7 @@ public interface IValidacionesServices {
 			      a.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY and 
 			      a.modeloReferencia.nombre = modelo.nombre
 			  ).size() > 0
-			);
+			).asOrderedSet();
 		if (modelosConRefManyToManyAEsteModelo.size() > 0) {
 			var parametros: String := '';
 			var nombre: String = '';

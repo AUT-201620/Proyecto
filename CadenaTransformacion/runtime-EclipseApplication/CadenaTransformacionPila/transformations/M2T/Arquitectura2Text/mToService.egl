@@ -1,13 +1,12 @@
 package services;
 
-import entities.[%=controlador.nombre.firstToUpperCase()%];
-import persistence.[%=controlador.nombre.firstToUpperCase()%]Persistence;
+import entities.*;
+import persistence.*;
 
 import javax.annotation.ManagedBean;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @author am.osorio
@@ -17,9 +16,6 @@ import java.util.List;
 public class [%=controlador.nombre.firstToUpperCase()%]Services implements I[%=controlador.nombre.firstToUpperCase()%]Services {
 
 	private [%=controlador.nombre.firstToUpperCase()%]Persistence persistance;
-	
-	@Inject
-    private EntityManager etm;
 
 	/**
 	 * Constructor  [%=controlador.nombre.firstToUpperCase()%]Services
@@ -33,8 +29,8 @@ public class [%=controlador.nombre.firstToUpperCase()%]Services implements I[%=c
 	 * @return
 	 */
 	@Override
-	public List<[%=controlador.nombre.firstToUpperCase()%]> getAll() {
-		List<[%=controlador.nombre.firstToUpperCase()%]> [%=controlador.nombre.toLowerCase()%]List = persistance.getAll();
+	public List<[%=controlador.nombre.firstToUpperCase()%]> findAll() {
+		List<[%=controlador.nombre.firstToUpperCase()%]> [%=controlador.nombre.toLowerCase()%]List = persistance.findAll();
 		return [%=controlador.nombre.toLowerCase()%]List;
 	}
 	
@@ -44,8 +40,8 @@ public class [%=controlador.nombre.firstToUpperCase()%]Services implements I[%=c
 	 * @return
 	 */
 	@Override
-	public [%=controlador.nombre.firstToUpperCase()%] get(Long id) {
-		[%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%] = persistance.get(id);
+	public [%=controlador.nombre.firstToUpperCase()%] find(Long id) {
+		[%=controlador.nombre.firstToUpperCase()%] [%=controlador.nombre.toLowerCase()%] = persistance.find(id);
 		return [%=controlador.nombre.toLowerCase()%];
 	}
 	
@@ -78,4 +74,34 @@ public class [%=controlador.nombre.firstToUpperCase()%]Services implements I[%=c
 	public void delete(Long id) {
 		persistance.delete(id);
 	}
+	
+	[%	
+	//Determinar si el modelo es referencia de otro modelo
+	var modeloConReferencia = mArq!Modelo.all.select(
+		m|m.nombre <> controlador.nombre.firstToUpperCase() and
+		  m.atributos.select(
+		   a|a.tipo == mArq!TipoDato#REFERENCE and a.tipoReferencia == mArq!TipoReferencia#ONE_TO_MANY and a.modeloReferencia.nombre ==controlador.nombre.firstToUpperCase()
+		  ).size() > 0
+		);
+
+	if (modeloConReferencia.size()>0) {
+			for (modeloReferencia in modeloConReferencia) {
+%]
+	 @Override
+	 public List<[%=controlador.nombre.firstToUpperCase()%]> findBy[%=modeloReferencia.nombre.firstToUpperCase()%]Id(Long [%=modeloReferencia.nombre.firstToLowerCase()%]Id) {
+    	List<[%=controlador.nombre.firstToUpperCase()%]> [%=controlador.nombre.firstToLowerCase()%]List = persistance.findBy[%=modeloReferencia.nombre.firstToUpperCase()%]Id([%=modeloReferencia.nombre.firstToLowerCase()%]Id);
+    	return [%=controlador.nombre.firstToLowerCase()%]List;        
+	    }
+    
+    @Override
+    public List<[%=controlador.nombre.firstToUpperCase()%]> findBy[%=modeloReferencia.nombre.firstToUpperCase()%]All([%=modeloReferencia.nombre.firstToUpperCase()%] [%=modeloReferencia.nombre.firstToLowerCase()%]) {
+    	List<[%=controlador.nombre.firstToUpperCase()%]> [%=controlador.nombre.firstToLowerCase()%]List = persistance.findBy[%=modeloReferencia.nombre.firstToUpperCase()%]All([%=modeloReferencia.nombre.firstToLowerCase()%]);
+    	return [%=controlador.nombre.firstToLowerCase()%]List;        
+
+    }
+  [%
+ 		}
+ 	}
+ %]
+ 
 }

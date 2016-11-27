@@ -69,7 +69,7 @@ servicioComputo pagoPension  {
 	siNinguno {
 		si pensionado.tieneNovedades {
 			var ultimaNovedad: Novedad = pensionado.ultimaNovedad;
-			var dias: Fecha = ultimaNovedad.diasEntreFechaFinInicio;
+			var dias: Entero = ultimaNovedad.diasEntreFechaFinInicio;
 			si dias < 4 {
 				tarifa = 0;
 			}
