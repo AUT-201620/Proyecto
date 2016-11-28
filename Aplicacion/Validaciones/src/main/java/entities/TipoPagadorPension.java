@@ -14,9 +14,9 @@ import java.util.*;
 	@NamedQuery(name = "TipoPagadorPension.getTipoPagadorPensiones",
 	query = "SELECT e FROM TipoPagadorPension e")
 	
-	, @NamedQuery(name = "TipoPagadorPension.getByTipoPensionadoTipoPension",
+	, @NamedQuery(name = "TipoPagadorPension.getByTipoPensionTipoPensionado",
 	query = "SELECT t0 FROM TipoPagadorPension t0" +
-	" join t0.tipoPensionado t1 join t0.tipoPension t2 WHERE t1.id = :idTipoPensionado and t2.id = :idTipoPension")
+	" join t0.tipoPension t1 join t0.tipoPensionado t2 WHERE t1.id = :idTipoPension and t2.id = :idTipoPensionado")
 })
 
 @Entity
@@ -31,9 +31,9 @@ public class TipoPagadorPension implements Serializable {
 	private String descripcion;
 	//Referencia Bidireccional a Entidades que refieren a esta entidad como Many To Many
 	@ManyToMany(mappedBy = "tipoPagadorPension")
-	private List<TipoPensionado> tipoPensionado;
-	@ManyToMany(mappedBy = "tipoPagadorPension")
 	private List<TipoPension> tipoPension;
+	@ManyToMany(mappedBy = "tipoPagadorPension")
+	private List<TipoPensionado> tipoPensionado;
 	
 	/**
 	* @return the id
@@ -88,18 +88,6 @@ public class TipoPagadorPension implements Serializable {
 	}
 	
 	/**
-	* @return the tipoPensionado
-	*/
-	public List<TipoPensionado> getTipoPensionado() {
-		return tipoPensionado;
-	}
-	/**
-	* @param tipoPensionado the tipoPensionado to set
-	*/
-	public void setTipoPensionado(List<TipoPensionado> tipoPensionado) {
-		this.tipoPensionado = tipoPensionado;
-	}
-	/**
 	* @return the tipoPension
 	*/
 	public List<TipoPension> getTipoPension() {
@@ -110,6 +98,18 @@ public class TipoPagadorPension implements Serializable {
 	*/
 	public void setTipoPension(List<TipoPension> tipoPension) {
 		this.tipoPension = tipoPension;
+	}
+	/**
+	* @return the tipoPensionado
+	*/
+	public List<TipoPensionado> getTipoPensionado() {
+		return tipoPensionado;
+	}
+	/**
+	* @param tipoPensionado the tipoPensionado to set
+	*/
+	public void setTipoPensionado(List<TipoPensionado> tipoPensionado) {
+		this.tipoPensionado = tipoPensionado;
 	}
 	@Override
 	public String toString() {

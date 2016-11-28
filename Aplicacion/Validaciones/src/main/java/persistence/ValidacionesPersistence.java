@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import entities.TipoPagadorPension;
-import entities.TipoPensionado;
 import entities.TipoPension;
+import entities.TipoPensionado;
 
 /**
  * @author am.osorio
@@ -22,15 +22,23 @@ public class ValidacionesPersistence {
     	return tipoPagadorPensiones;
 	}
 
-	public List<TipoPagadorPension> findByTipoPensionadoTipoPension(Long idTipoPensionado, Long idTipoPension) {
+	public List<TipoPagadorPension> findByTipoPensionTipoPensionado(Long idTipoPension, Long idTipoPensionado) {
 		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 		em.getTransaction().begin();
-    	List<TipoPagadorPension> tipoPagadorPensiones = (List<TipoPagadorPension>) em.createNamedQuery("TipoPagadorPension.getByTipoPensionadoTipoPension")
+    	List<TipoPagadorPension> tipoPagadorPensiones = (List<TipoPagadorPension>) em.createNamedQuery("TipoPagadorPension.getByTipoPensionTipoPensionado")
 			.setParameter("idTipoPension", idTipoPension)
 			.setParameter("idTipoPensionado", idTipoPensionado)
     		.getResultList();
 		em.close();		
     	return tipoPagadorPensiones;
+	}
+
+	public List<TipoPension> findTipoPensiones() {
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		em.getTransaction().begin();
+    	List<TipoPension> tipoPensiones = (List<TipoPension>) em.createNamedQuery("TipoPension.getTipoPensiones").getResultList();
+		em.close();		
+    	return tipoPensiones;
 	}
 
 	public List<TipoPensionado> findTipoPensionados() {
@@ -49,13 +57,5 @@ public class ValidacionesPersistence {
     		.getResultList();
 		em.close();		
     	return tipoPensionados;
-	}
-
-	public List<TipoPension> findTipoPensiones() {
-		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
-		em.getTransaction().begin();
-    	List<TipoPension> tipoPensiones = (List<TipoPension>) em.createNamedQuery("TipoPension.getTipoPensiones").getResultList();
-		em.close();		
-    	return tipoPensiones;
 	}
 }

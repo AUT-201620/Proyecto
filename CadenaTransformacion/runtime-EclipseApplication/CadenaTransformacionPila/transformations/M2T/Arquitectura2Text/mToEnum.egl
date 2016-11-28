@@ -1,10 +1,10 @@
-package entities;
+package enumerators;
 
 /**
  * @author am.osorio
  *
  */
-public enum [%=atributoModelo.nombre.firstToUpperCase()%] {
+public enum [%=atributoModelo.nombre.firstToUpperCase()%]Enum {
 [%
 	var separador: String := '';
 	for (codigoValor in atributoModelo.codigosValor) {

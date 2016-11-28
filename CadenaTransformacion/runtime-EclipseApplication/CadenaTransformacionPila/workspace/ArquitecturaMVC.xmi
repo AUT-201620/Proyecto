@@ -93,9 +93,18 @@
     <atributos nombre="montoPension" tipo="DOUBLE"/>
     <atributos nombre="novedades" tipo="REFERENCE" modeloReferencia="//@modelos.1"/>
     <atributos nombre="actividadEconomica" tipo="INTEGER"/>
-    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.7" tipoReferencia="MANY_TO_ONE"/>
-    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.6" tipoReferencia="MANY_TO_ONE"/>
-    <atributos nombre="tipoPension" tipo="REFERENCE" modeloReferencia="//@modelos.8" tipoReferencia="MANY_TO_ONE"/>
+    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.8" tipoReferencia="MANY_TO_ONE"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.3" tipoReferencia="MANY_TO_ONE"/>
+    <atributos nombre="tipoPension" tipo="REFERENCE" modeloReferencia="//@modelos.7" tipoReferencia="MANY_TO_ONE"/>
+  </modelos>
+  <modelos nombre="TipoPagadorPension" esCrud="false">
+    <atributos nombre="codigo" tipo="INTEGER"/>
+    <atributos nombre="nombre"/>
+    <atributos nombre="descripcion"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Empleador', 'Empleador'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Administrador Pensiones', 'Administrador de Pensiones'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Pagador Pensiones', 'Pagador de Pensiones'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="4, 4, 'Entidades regimen Especial', 'Pensiones de entidades de los regimenes especial y de excepcion'"/>
   </modelos>
   <modelos nombre="TipoPensionado_TipoPagadorPension" esCrud="false" esEntidad="false">
     <datos campos="tipopensionado_id, tipopagadorpension_id" valores="1, 1"/>
@@ -236,36 +245,12 @@
     <datos campos="tipopension_id, tipopensionado_id" valores="18, 7"/>
     <datos campos="tipopension_id, tipopensionado_id" valores="18, 8"/>
   </modelos>
-  <modelos nombre="TipoPagadorPension" esCrud="false">
-    <atributos nombre="codigo" tipo="INTEGER"/>
-    <atributos nombre="nombre"/>
-    <atributos nombre="descripcion"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Empleador', 'Empleador'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Administrador Pensiones', 'Administrador de Pensiones'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Pagador Pensiones', 'Pagador de Pensiones'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="4, 4, 'Entidades regimen Especial', 'Pensiones de entidades de los regimenes especial y de excepcion'"/>
-  </modelos>
-  <modelos nombre="TipoPensionado" esCrud="false">
-    <atributos nombre="codigo" tipo="INTEGER"/>
-    <atributos nombre="nombre"/>
-    <atributos nombre="descripcion"/>
-    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.6" tipoReferencia="MANY_TO_MANY"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Prima Media Con Tope', 'Pensionado de regimen de prima media. Tope maximo de pension 25 SMMLV'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Prima Media Sin Tope', 'Pensionado de regimen de prima media. Sin tope maximo de pension'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Ahorro individual', 'Pensionado de regimen de ahorro individual. No aplica tope maximo de pension'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="4, 4, 'Riesgos Laborales Con Tope', 'Pensionado de Riesgos Laborales. Tope maximo de 25 smlmv'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="5, 5, 'Por Empleador Con Tope', 'Pensionado por el empleador con tope maximo de 25 smlmv'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="6, 6, 'Por Empleador Sin Tope', 'Pensionado por el empleador sin tope maximo de pension'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="7, 7, 'Por Entidad Regimen Especial Con Tope', 'Pensionado de entidades de los regimenes especial y de excepcion, con tope maximo de pensionde 25 smlmv'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="8, 8, 'Por Entidad Regimen Especial Sin Tope', 'Pensionado de entidades de los regimenes especial y de excepcion sin tope maximo en pension'"/>
-    <datos campos="id, codigo, nombre, descripcion" valores="9, 9, 'Beneficiario UPC Adicional', 'Beneficiario UPC Adicional'"/>
-  </modelos>
   <modelos nombre="TipoPension" esCrud="false">
     <atributos nombre="codigo" tipo="INTEGER"/>
     <atributos nombre="nombre"/>
     <atributos nombre="descripcion"/>
-    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.6" tipoReferencia="MANY_TO_MANY"/>
-    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.7" tipoReferencia="MANY_TO_MANY"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.3" tipoReferencia="MANY_TO_MANY"/>
+    <atributos nombre="tipoPensionado" tipo="REFERENCE" modeloReferencia="//@modelos.8" tipoReferencia="MANY_TO_MANY"/>
     <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Vejez', 'Vejez'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Sobrevivencia vitalicia', 'Sobrevivencia vitalicia riesgo comun'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Sobrevivencia temporal riesgo comun', 'Sobrevivencia temporal riesgo comun'"/>
@@ -284,5 +269,20 @@
     <datos campos="id, codigo, nombre, descripcion" valores="16, 16, 'Por convenio internacional', 'Por convenio internacional'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="20, 20, 'Sentencia judicial', 'Sentencia judicial'"/>
     <datos campos="id, codigo, nombre, descripcion" valores="18, 18, 'Conciliaciones', 'Conciliaciones'"/>
+  </modelos>
+  <modelos nombre="TipoPensionado" esCrud="false">
+    <atributos nombre="codigo" tipo="INTEGER"/>
+    <atributos nombre="nombre"/>
+    <atributos nombre="descripcion"/>
+    <atributos nombre="tipoPagadorPension" tipo="REFERENCE" modeloReferencia="//@modelos.3" tipoReferencia="MANY_TO_MANY"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="1, 1, 'Prima Media Con Tope', 'Pensionado de regimen de prima media. Tope maximo de pension 25 SMMLV'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="2, 2, 'Prima Media Sin Tope', 'Pensionado de regimen de prima media. Sin tope maximo de pension'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="3, 3, 'Ahorro individual', 'Pensionado de regimen de ahorro individual. No aplica tope maximo de pension'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="4, 4, 'Riesgos Laborales Con Tope', 'Pensionado de Riesgos Laborales. Tope maximo de 25 smlmv'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="5, 5, 'Por Empleador Con Tope', 'Pensionado por el empleador con tope maximo de 25 smlmv'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="6, 6, 'Por Empleador Sin Tope', 'Pensionado por el empleador sin tope maximo de pension'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="7, 7, 'Por Entidad Regimen Especial Con Tope', 'Pensionado de entidades de los regimenes especial y de excepcion, con tope maximo de pensionde 25 smlmv'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="8, 8, 'Por Entidad Regimen Especial Sin Tope', 'Pensionado de entidades de los regimenes especial y de excepcion sin tope maximo en pension'"/>
+    <datos campos="id, codigo, nombre, descripcion" valores="9, 9, 'Beneficiario UPC Adicional', 'Beneficiario UPC Adicional'"/>
   </modelos>
 </ArquitecturaMVC:ArquitecturaMVC>

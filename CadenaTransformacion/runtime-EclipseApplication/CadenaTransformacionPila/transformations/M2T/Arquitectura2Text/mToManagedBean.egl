@@ -118,7 +118,7 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 			if(vistaConReferencia.size()>0){
 				for (vistaRef in vistaConReferencia){
 		%]
-				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToUpperCase()%]);	
+				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToLowerCase()%]);	
 		[%
 				}
 			}else{
@@ -135,7 +135,7 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 			if(vistaConReferencia.size()>0){
 				for (vistaRef in vistaConReferencia){
 		%]
-				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToUpperCase()%]);	
+				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToLowerCase()%]);	
 		[%
 				}
 			}else{
@@ -165,7 +165,7 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 			if(vistaConReferencia.size()>0){
 				for (vistaRef in vistaConReferencia){
 		%]
-				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToUpperCase()%]);	
+				this.[%=vista.nombre.firstToLowerCase()%]List = services.findBy[%=vistaRef.nombre.firstToUpperCase()%]All([%=vistaRef.nombre.firstToLowerCase()%]);	
 		[%
 				}
 			}else{
@@ -318,6 +318,15 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 	}
 	
 	operation mArq!Vista getValidaciones() {
+		//Determinar los modelos que apuntan a este modelo con referencias Many To Many
+		var modelosConRefManyToManyAEsteModelo =  mArq!Modelo.all.select(
+			m|m.nombre <> 'TipoPagadorPension' and 
+			  m.atributos.select(
+			    a|a.tipo = mArq!TipoDato#REFERENCE and
+			      a.tipoReferencia = mArq!TipoReferencia#MANY_TO_MANY and 
+			      a.modeloReferencia.nombre = 'TipoPagadorPension'
+			  ).size() > 0
+			).asOrderedSet();
 			
 		if(self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA).size()>0){
 			
@@ -327,14 +336,28 @@ public class [%=vista.nombre.firstToUpperCase()%]Bean implements Serializable {
 			out.print('} else{\n');
 			out.print('this.setTipoPensionado(new ArrayList<TipoPensionado>());\n');
 			out.print('}');
-		    out.print('if('+self.nombre.firstToLowerCase()+'.getTipoPension() != null && '+self.nombre.firstToLowerCase()+'.getTipoPension().getId()>0 && '+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId() != null && '+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId() >0){\n');
-			out.print('this.setTipoPagadorPension(validacionesServices.getByTipoPensionadoTipoPension('+self.nombre.firstToLowerCase()+'.getTipoPension().getId(),'+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId()));\n');
-			out.print('}\n');
-		    out.print('else{\n');
-			out.print('this.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());\n');
-			out.print('}\n');
 			
-	//	}
+			if (modelosConRefManyToManyAEsteModelo.size() > 0) {
+				var parametros: String := '';
+				var parametrosEje: String := '';
+				var nombre: String = '';
+				var separador: String = '';
+				var listaParametros: Set;
+				for (modeloRef in modelosConRefManyToManyAEsteModelo) {
+					nombre = nombre + modeloRef.nombre.firstToUpperCase();
+					parametros = parametros + separador + 'Long id' + modeloRef.nombre.firstToUpperCase(); 
+					parametrosEje = parametrosEje + separador + 'id' + modeloRef.nombre.firstToUpperCase();
+					listaParametros.add('id' + modeloRef.nombre.firstToUpperCase()); 
+					separador := ', ';
+				}
+			    out.print('if('+self.nombre.firstToLowerCase()+'.getTipoPension() != null && '+self.nombre.firstToLowerCase()+'.getTipoPension().getId()>0 && '+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId() != null && '+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId() >0){\n');
+				out.print('this.setTipoPagadorPension(validacionesServices.getBy'+nombre+'('+self.nombre.firstToLowerCase()+'.getTipoPension().getId(),'+self.nombre.firstToLowerCase()+'.getTipoPensionado().getId()));\n');
+				out.print('}\n');
+			    out.print('else{\n');
+				out.print('this.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());\n');
+				out.print('}\n');
+				
+			}
 		out.print('}\n');
 		}
 	}

@@ -17,8 +17,6 @@
 
 [%
 	//Generador de entidades
-	//Pendientes:
-	//1. Revisión de errores en despligue
 	var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
 	for(modelo in root.modelos) {
 		if(modelo.esEntidad){
@@ -31,8 +29,6 @@
 	}
 
 	//Generador de Servicios de Persistencia
-	//Pendientes:
-	//1.  Falta generar metodo especial para novedades: public List<Novedad> findByEntidadId(Long pensionadoId)
 	for(modelo in root.modelos) {
 		if(modelo.esEntidad and modelo.esCrud){
 			var tPersistence: Template := TemplateFactory.load(templatePath + '/mToPersistence.egl');
@@ -42,9 +38,7 @@
 		}
 	}
 	
-	//Generador de interfaces Crud
-	//Pendientes:
-	//1. Falta metodo especial para novedades: public List<Novedad> findByEntidadId(Long pensionadoId);
+	//Generador de interfaces de Servicios
 	for(controlador in root.controladores) {
 		if(controlador.esCrud){
 			var tInterfaz: Template := TemplateFactory.load(templatePath + '/mToInterfaz.egl');
@@ -54,9 +48,7 @@
 		}
 	}
 	
-	//Generador de servicios Crud
-	//Pendientes:
-	//1. Falta metodo especial para novedades: public List<Novedad> findByEntidadId(Long pensionadoId);
+	//Generador de servicios 
 	for(controlador in root.controladores) {
 		if(controlador.esCrud){
 			var tService: Template := TemplateFactory.load(templatePath + '/mToService.egl');
@@ -67,9 +59,6 @@
 	}
 	
 	//Generador de ManagedBeans
-	//Pendientes:
-	//1. Falta normalizar beans para estandarizar e identificar diferencias
-	//2. Se crean beans pero aun estan incompletos
 	var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
 	for(vista in root.vistas) {
 		var tVista: Template := TemplateFactory.load(templatePath + '/mToManagedBean.egl');
@@ -78,12 +67,9 @@
 		('Generando Servicio ' + vista.nombre.firstToUpperCase() +'Bean.java').println();
 		tVista.generate(srcJavaPath + '/web/beans/' + vista.nombre.firstToUpperCase() +'Bean.java');
 	}
-	
-	//Generador de ManagedBeans de Pagos!!!!!!!
-	
 	//Generador de Servicio de Computo
 	var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
-	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/genCompService.egl');
+	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/mToCompService.egl');
 	tServicioComputo.populate('servicios', serviciosComputo);
 	tServicioComputo.setFormatter(jFormatter);
 	('Generando Servicio ComputoServices.java').println();
@@ -91,11 +77,19 @@
 	
 	//Generador de Interfaz de Computo	
 	var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
-	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/genInterfazCompService.egl');
+	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/mToInterfazCompService.egl');
 	tServicioComputo.populate('servicios', serviciosComputo);
 	tServicioComputo.setFormatter(jFormatter);
 	('Generando Servicio IComputoServices.java').println();
     tServicioComputo.generate(srcJavaPath + '/services/IComputoServices.java');
+    
+    //Generador de ManagedBeans de Servicios de Computo
+    var jFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.JavaFormatter");
+	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/mToManagedBeanCompService.egl');
+	tServicioComputo.populate('servicios', serviciosComputo);
+	tServicioComputo.setFormatter(jFormatter);
+	('Generando Bean ComputoServicesBean.java').println();
+    tServicioComputo.generate(srcJavaPath + '/web/beans/ComputoServicesBean.java');
 	
 	//Generador de Enums
 	for(modelo in root.modelos) {
@@ -121,6 +115,15 @@
 		('Generando Pagina ' + vista.nombre.firstToLowerCase() +'.xhtml').println();
 		tVista.generate(appPath + '/WebContent/pages/' + vista.nombre.firstToLowerCase() +'.xhtml');
 	}
+	
+	//Generador de xhtml de Servicios de Computo
+	var xhtmlFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.XmlFormatter");
+	var tServicioComputo: Template := TemplateFactory.load(templatePath + '/mToXhtmlCompService.egl');
+	tServicioComputo.populate('servicios', serviciosComputo);
+	tServicioComputo.setFormatter(xhtmlFormatter);
+	('Generando Pagina ComputoServicesBean.xhtml').println();
+    tServicioComputo.generate(srcMainPath + '/webapp/pages/computoServices.xhtml');
+	tServicioComputo.generate(appPath + '/WebContent/pages/computoServices.xhtml');
 	
 	//Generador de menu.xhtml
 	var tVista: Template:=TemplateFactory.load(templatePath + '/mToMenuXhtml.egl');
@@ -204,4 +207,14 @@
 	('Generando Pagina Principal').println();
 	t.generate(srcMainPath + '/webapp/pages/index.xhtml');
 	t.generate(appPath + '/WebContent/pages/index.xhtml');
+	//10. .project
+	var xhtmlFormatter = new Native("org.eclipse.epsilon.egl.formatter.language.XmlFormatter");
+	var t: Template:=TemplateFactory.load(templatePath + '/genProject.egl');
+	('Generando archivo .project').println();
+	t.setFormatter(xhtmlFormatter);
+	t.generate(appPath + '/.project');
+	//11. Create test folder
+	('Generando Folder de pruebas').println();
+	t.generate(srcPath+'/test/java/note.txt');
+
 %]

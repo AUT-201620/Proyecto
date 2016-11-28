@@ -9,31 +9,36 @@ import javax.faces.bean.*;
 import java.io.Serializable;
 
 /**
-* Backing Bean Computo Service
-*
-*/
+ * Backing Bean Computo Service
+ *
+ */
 @ManagedBean
 @SessionScoped
 public class ComputoServicesBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private IPensionadoServices servicesPensionado;
 	private IComputoServices services;
 	private Long pensionadoId;
 	private double valorPorPagar;
 	private Pensionado pensionado=new Pensionado();
 	
-	private double pagoRiesgos;
-	private double pagoSalud;
-	private double pagoPension;
+	[%
+	for(servicio in servicios) {
+	%]
+		private double [%=servicio.name.firstToLowerCase()%];
+	[%
+		}
+	%]	
 	
-	
-
+	/**
+	* Constructor de ComputoServicesBean
+	*/
 	public ComputoServicesBean() {
 		servicesPensionado = new PensionadoServices();
 		services = new ComputoServices();
-		
+
 	}
 	
 	
@@ -42,70 +47,72 @@ public class ComputoServicesBean implements Serializable {
 		pensionado=servicesPensionado.find(idPensionado);
 		calculoPagoTotal();
 	}
-	
+
 	public void calculoPagoTotal() {		
-	
-		pagoRiesgos = services.pagoRiesgos(pensionado);
-		pagoSalud = services.pagoSalud(pensionado);
-		pagoPension = services.pagoPension(pensionado);
-		
-		valorPorPagar = pagoRiesgos+pagoSalud+pagoPension;
+			
+		[%
+		var valorPagar='';
+		var operacion='';
+		var messagePago='"Pago exitoso", "Su pago fue realizado por los siguientes conceptos:"+\n';
+		for(servicio in servicios) {
+			valorPagar = valorPagar+operacion+servicio.name.firstToLowerCase();
+			operacion='+';
+			messagePago = messagePago + '" '+servicio.name.firstToLowerCase()+': $"+'+servicio.name.firstToLowerCase()+'+","+';
+		%]
+			[%=servicio.name.firstToLowerCase()%] = services.[%=servicio.name.firstToLowerCase()%](pensionado);
+		[%
+			}
+		%]
+				
+		valorPorPagar = [%=valorPagar%];
+		[%
+			messagePago = messagePago + '" Valor Total a Pagar =$" +valorPorPagar';
+		%]
 	}
-	
+
 	public void showMessagePago() {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"Pago exitoso", "Su pago fue realizado por los siguientes conceptos:"+
-		" pagoRiesgos: "+pagoRiesgos+","+" pagoSalud: "+pagoSalud+","+" pagoPension: "+pagoPension+","+" valor Total a Pagar =" +valorPorPagar);
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,[%=messagePago%]);
 		RequestContext.getCurrentInstance().showMessageInDialog(message);
 	}
-	
-	
+
+
 	public Pensionado getPensionado() {
 		return pensionado;
 	}
-	
+
 	public void setPensionado(Pensionado pensionado) {
 		this.pensionado = pensionado;
 	}
-	
-	
+
+
 	public double getValorPorPagar() {
 		return valorPorPagar;
 	}
-	
+
 	public void setValorPorPagar(float valorPorPagar) {
 		this.valorPorPagar = valorPorPagar;
 	}
-	
+
 	public Long getPensionadoId() {
 		return pensionadoId;
 	}
-	
+
 	public void setPensionadoId(Long pensionadoId) {
 		this.pensionadoId = pensionadoId;
 	}
 	
-	public double getPagoRiesgos() {
-		return pagoRiesgos;
-	}
+	[%
+	for(servicio in servicios) {
+	%]
+		public double get[%=servicio.name.firstToUpperCase()%]() {
+		return [%=servicio.name.firstToLowerCase()%];
+		}
 	
-	public void setPagoRiesgos(double pagoRiesgos) {
-		this.pagoRiesgos = pagoRiesgos;
-	}
-	
-	public double getPagoSalud() {
-		return pagoSalud;
-	}
-	
-	public void setPagoSalud(double pagoSalud) {
-		this.pagoSalud = pagoSalud;
-	}
-	
-	public double getPagoPension() {
-		return pagoPension;
-	}
-	
-	public void setPagoPension(double pagoPension) {
-		this.pagoPension = pagoPension;
-	}
-	
+		public void set[%=servicio.name.firstToUpperCase()%](double [%=servicio.name.firstToLowerCase()%]) {
+			this.[%=servicio.name.firstToLowerCase()%] = [%=servicio.name.firstToLowerCase()%];
+		}
+
+	[%
+		}
+	%]
 }

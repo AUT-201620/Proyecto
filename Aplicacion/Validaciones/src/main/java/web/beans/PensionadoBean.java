@@ -94,7 +94,7 @@ public class PensionadoBean implements Serializable {
 		} else{
 			this.setTipoPensionado(new ArrayList<TipoPensionado>());
 		}if(pensionado.getTipoPension() != null && pensionado.getTipoPension().getId()>0 && pensionado.getTipoPensionado().getId() != null && pensionado.getTipoPensionado().getId() >0){
-			this.setTipoPagadorPension(validacionesServices.getByTipoPensionadoTipoPension(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
+			this.setTipoPagadorPension(validacionesServices.getByTipoPensionTipoPensionado(pensionado.getTipoPension().getId(),pensionado.getTipoPensionado().getId()));
 		}
 		else{
 			this.setTipoPagadorPension(new ArrayList<TipoPagadorPension>());

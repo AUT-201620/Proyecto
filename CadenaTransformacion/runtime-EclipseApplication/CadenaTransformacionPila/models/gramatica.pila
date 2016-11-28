@@ -2,7 +2,7 @@ entidad Aportante {
 	atributo nombreRazonSocial: CadenaCaracteres;
 	atributo digitoVerificacion: CadenaCaracteres;
 	atributo naturalezaJuridica: CadenaCaracteres;
-	atributo numeroIdentificacion: Entero; 
+	atributo numeroIdentificacion: Entero;
 	atributo tipoIdentificacion: CadenaCaracteres {1="CedulaCiudadania", 2="CedulaExtranjeria", 
 		3="TarjetaIdentidad", 4="RegistroCivil", 5="Pasaporte", 6="CarneDiplomatico"
 	};

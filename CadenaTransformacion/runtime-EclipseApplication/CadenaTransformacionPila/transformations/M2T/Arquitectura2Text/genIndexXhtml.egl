@@ -12,5 +12,13 @@
 </h:head>
 <h:body>
 	 <ui:include src="menu.xhtml" />
+	<center>
+		<br/>
+		<br/>
+		<h1>BIENVENIDOS AL SISTEMA DE PAGOS</h1>
+		<br/>
+		<h3>Planilla Integrada de Liquidación de Aportes (PILA)</h3>
+		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTAQhA5FboqEkz8vnkbj9pVBBaPsl1RnZY7Q1TQbhCpTo1vF864"/>
+	</center>
 </h:body>
 </html>
