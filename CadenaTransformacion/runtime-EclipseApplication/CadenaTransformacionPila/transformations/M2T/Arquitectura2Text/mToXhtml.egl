@@ -58,7 +58,7 @@
 	
 	
 	<p:dialog header="formulario[%=vista.nombre.firstToUpperCase()%]" widgetVar="formulario[%=vista.nombre.firstToUpperCase()%]"
-		modal="true" width="80%" height="100%" id="formulario[%=vista.nombre.firstToUpperCase()%]">
+		modal="true" width="60%" height="100%" id="formulario[%=vista.nombre.firstToUpperCase()%]">
 		<h:form>			
 			[%
 				vista.obtenerTipoAtributosTexto();
@@ -70,9 +70,9 @@
 				<f:facet name="footer">
 					<p:commandButton value="Crear"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
-						actionListener="#{[%=vista.nombre.firstToLowerCase()%]Bean.crear}"  oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').hide();" update="[%=vista.nombre.firstToLowerCase()%]Crud"
+						actionListener="#{[%=vista.nombre.firstToLowerCase()%]Bean.crear}"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('formulario[%=vista.nombre.firstToUpperCase()%]').hide(); else PF('formulario[%=vista.nombre.firstToUpperCase()%]').show();" update="[%=vista.nombre.firstToLowerCase()%]Crud,formulario[%=vista.nombre.firstToUpperCase()%]"
 						rendered="#{[%=vista.nombre.firstToLowerCase()%]Bean.buttonCrud}"/>
-						
+
 					<p:commandButton value="Editar"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
 						actionListener="#{[%=vista.nombre.firstToLowerCase()%]Bean.editar}"  oncomplete="PF('formulario[%=vista.nombre.firstToUpperCase()%]').hide();" update="[%=vista.nombre.firstToLowerCase()%]Crud"
@@ -89,20 +89,22 @@
 
 [%
 	operation mArq!Vista obtenerTipoAtributosTexto() {
-		out.print('<h:panelGrid columns="4" cellpadding="5">\n');
+		out.print('<h:panelGrid columns="3" cellpadding="3">\n');
 		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#TEXTO)) {
 			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':"/>\n');
 			out.print('<p:inputText ');
 			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
 			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
 			out.print('required="true" label="'+atributo.etiqueta+'"/>\n');
+			out.print('<p:message for="'+atributo.nombre.firstToLowerCase()+'" display="icon" />\n');
 		}
 		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#ENUM)) {
 			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':"/>\n');
 			out.print('<p:selectOneMenu value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
-			out.print('required="true" label="'+atributo.etiqueta+'">\n');
+			out.print('required="true" label="'+atributo.etiqueta+'" id="'+atributo.nombre.firstToLowerCase()+'" >\n' );
 			out.print('<f:selectItems value="#{'+self.nombre.firstToLowerCase()+'Bean.'+atributo.nombre.firstToLowerCase()+'Enum}" />\n');
 			out.print('</p:selectOneMenu>\n');
+			out.print('<p:message for="'+atributo.nombre.firstToLowerCase()+'" display="icon"/>\n');
 		}
 		
 		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#FECHA)) {
@@ -111,13 +113,14 @@
 			out.print('id="'+atributo.nombre.firstToLowerCase()+'" ');
 			out.print('value="#{'+self.nombre.firstToLowerCase()+'Bean.'+self.nombre.firstToLowerCase()+'.'+atributo.nombre.firstToLowerCase()+'}" ');
 			out.print('required="true" label="'+atributo.etiqueta+'"/>\n');
+			out.print('<p:message for="'+atributo.nombre.firstToLowerCase()+'" display="icon" />\n');
 		}
 		out.print('</h:panelGrid>');
 		out.print('\n');
 	}
 	
 	operation mArq!Vista obtenerTipoAtributosLista() {
-		out.print('<h:panelGrid columns="1">\n');
+		out.print('<h:panelGrid columns="2">\n');
 		for(atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA and a.nombre='tipoPension')){
 			out.print('<p:outputPanel id ="panel'+ atributo.nombre.firstToUpperCase()+'">\n');
 			out.print('<h:outputLabel for="'+ atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':" />\n');
@@ -133,6 +136,7 @@
 			atributo.getListaReferencia();
 			out.print('</p:selectOneMenu>\n');
 			out.print('</p:outputPanel>\n');
+			out.print('<p:message for="'+atributo.nombre.firstToLowerCase()+'" display="icon" />\n');
 		}
 		
 		for(atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA and  a.nombre == 'tipoPensionado')){
@@ -151,6 +155,7 @@
 			atributo.getListaReferencia();
 			out.print('</p:selectOneMenu>\n');
 			out.print('</p:outputPanel>\n');
+			out.print('<p:message for="'+atributo.nombre.firstToLowerCase()+'" display="icon"/>\n');
 		}
 		for(atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#LISTA and a.nombre == 'tipoPagadorPension')){
 		
@@ -168,6 +173,7 @@
 			atributo.getListaReferencia();
 			out.print('</p:selectOneMenu>\n');
 			out.print('</p:outputPanel>\n');
+			out.print('<p:message for="'+atributo.nombre.firstToLowerCase()+'" display="icon"/>\n');
 		}
 
 		out.print('</h:panelGrid>');
@@ -175,7 +181,7 @@
 	}
 	
 	operation mArq!Vista obtenerTipoAtributosCheck() {
-		out.print('<h:panelGrid columns="4" cellpadding="5">\n');
+		out.print('<h:panelGrid columns="6" cellpadding="5">\n');
 		for (atributo in self.atributos.select(a|a.tipo == mArq!TipoAtributoVista#BOOLEANO)) {
 			out.print('<h:outputLabel for="'+atributo.nombre.firstToLowerCase()+'" value="'+atributo.etiqueta+':"/>\n');
 			out.print('<p:selectBooleanCheckbox ');
